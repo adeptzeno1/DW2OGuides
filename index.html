@@ -1,0 +1,413 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digimon World 2 DNA Digivolve Charts</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--fg:#1c2030;--mut:#5d6477;--card:#fff;--bd:#d9dce6;--v:22,128,56;--d:30,98,210;--i:204,38,38}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12141c;--fg:#e8eaf2;--mut:#98a0b5;--card:#1b1e29;--bd:#323750;--v:70,200,110;--d:90,150,255;--i:255,100,100}}
+:root[data-theme="dark"]{--bg:#12141c;--fg:#e8eaf2;--mut:#98a0b5;--card:#1b1e29;--bd:#323750;--v:70,200,110;--d:90,150,255;--i:255,100,100}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;padding:14px}
+h1{font-size:20px;margin:0 0 4px}p{margin:4px 0;color:var(--mut)}
+.leg,.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.pill,.tabs button{border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:999px;padding:5px 12px;font:inherit;cursor:pointer}
+.tabs button.on{background:var(--fg);color:var(--bg)}
+.wrap{overflow:auto;max-width:100%;max-height:70vh;border:1px solid var(--bd);border-radius:8px;background:var(--card)}
+table{border-collapse:separate;border-spacing:0;font-size:13px}
+th,td{padding:7px 10px;white-space:nowrap;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd);text-align:center}
+th{font-weight:700;font-size:13px}
+tbody tr:nth-child(even) td{background:rgba(128,128,128,.12)}
+td:nth-child(even){background:rgba(128,128,128,.12)}
+tbody tr:nth-child(even) td:nth-child(even){background:rgba(128,128,128,.24)}
+.sl{border-left:3px solid var(--fg)}.st>*{border-top:3px solid var(--fg)}
+thead th{position:sticky;top:0;z-index:2;background:var(--card)}
+tbody th{position:sticky;left:0;z-index:1;background:var(--card)}
+thead th:first-child{left:0;z-index:3}
+.t0{color:rgb(var(--v))}.t1{color:rgb(var(--d))}.t2{color:rgb(var(--i))}
+td{font-weight:600}
+thead th.t0{box-shadow:inset 0 -4px rgb(var(--v))}thead th.t1{box-shadow:inset 0 -4px rgb(var(--d))}thead th.t2{box-shadow:inset 0 -4px rgb(var(--i))}
+tbody th.t0{box-shadow:inset -4px 0 rgb(var(--v))}tbody th.t1{box-shadow:inset -4px 0 rgb(var(--d))}tbody th.t2{box-shadow:inset -4px 0 rgb(var(--i))}
+.pill.t0,.pill.t1,.pill.t2{border-color:currentColor;font-weight:700}
+td.hl{outline:1px solid var(--fg);outline-offset:-1px;font-weight:600}
+.grps{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px;margin-top:12px}
+.grp{border-radius:8px;padding:8px 10px;font-size:13px;border-left:5px solid var(--fg)}
+.grp.t0{border-color:rgb(var(--v))}.grp.t1{border-color:rgb(var(--d))}.grp.t2{border-color:rgb(var(--i))}
+.note{margin-top:12px;font-size:12px}
+td small{display:block;font-size:11px;color:var(--mut);font-weight:400}
+td small i{font-style:normal;font-weight:800}
+td{cursor:pointer}th[data-h]{cursor:pointer}
+.how{border:1px solid var(--bd);background:var(--card);border-radius:8px;padding:10px 14px;margin:10px 0}.how ol,.how ul{margin:6px 0 0;padding-left:20px}.how li{margin:2px 0}
+.finder input{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%}
+.finder small{color:var(--mut)}#fr{margin-top:8px}
+td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.5)!important}
+.info{margin:8px 0;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);font-size:14px}
+.info span,.rec span{padding:2px 8px;border-radius:6px;display:inline-block;margin:2px 0}
+.finder{margin-top:14px}.finder select{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%}
+#fo,#ro{max-height:260px;overflow:auto;margin-top:8px}
+[hidden]{display:none!important}
+.acw{position:relative;display:inline-block;max-width:100%}
+.sug{display:none;position:absolute;left:0;top:100%;z-index:30;min-width:100%;max-height:220px;overflow-y:auto;background:var(--card);border:1px solid var(--bd);border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.25);white-space:nowrap;font-size:13px}
+.sug div{padding:6px 10px;cursor:pointer}.sug div:hover{background:rgba(128,128,128,.2)}
+.tree,.tree ul{list-style:none;margin:0;padding:0}.tree ul{margin-left:10px;padding-left:12px;border-left:2px solid var(--bd)}.tree li{margin:5px 0}
+.dp{font-size:11px;border:1px solid var(--bd);border-radius:999px;padding:0 6px;color:var(--mut);white-space:nowrap}
+#dt{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;align-items:start;margin-top:10px}
+.fam{border:1px solid var(--bd);border-radius:8px;background:var(--card);padding:10px 12px;font-size:13px}
+.tabs.top button{font-weight:700;font-size:15px;padding:8px 18px}.tabs.top{border-bottom:2px solid var(--bd);padding-bottom:10px}
+.qg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:10px 0}.qc{border:1px solid var(--bd);border-radius:8px;background:var(--card);padding:10px 12px}.qc label{display:block;margin:6px 0 2px;color:var(--mut);font-size:12px}.qc input{font:inherit;width:100%;box-sizing:border-box;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg)}
+.qr{border:2px solid var(--fg);border-radius:8px;background:var(--card);padding:10px 14px;margin:10px 0}.qr .big{font-size:20px;font-weight:700}.foil{background:linear-gradient(100deg,#f5c542,#ff7ac6,#6ecbff,#f5c542);color:#222;border-radius:999px;padding:1px 10px;font-weight:700;font-size:12px}
+.qbtn{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:999px;padding:5px 12px;cursor:pointer}
+#qc{max-height:70vh;overflow:auto;margin-top:8px}
+.hit{background:rgba(245,170,0,.4);border-radius:4px;padding:0 3px}.rec{padding:4px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.mvf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}.mvf input,.mvf select{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%}
+.pill.on{background:var(--fg);color:var(--bg)}#mvt td{text-align:left;white-space:normal;font-weight:400;cursor:default;min-width:60px}#mvt td.n,#mvt td.c{white-space:nowrap}#mvt td.c{text-align:center}#mvt th{cursor:pointer;white-space:nowrap}
+#mvt td.ln span{cursor:pointer;font-weight:700;white-space:nowrap}#mvt td.ln span:hover{text-decoration:underline}#mvt td.n{font-weight:700}
+.tag{font-size:11px;border:1px solid var(--bd);border-radius:999px;padding:0 6px;margin-left:4px;white-space:nowrap}
+.fm{font-family:ui-monospace,Menlo,Consolas,monospace;background:rgba(128,128,128,.15);border-radius:6px;padding:6px 10px;display:block;overflow:auto;margin:6px 0;color:var(--fg)}
+</style></head><body>
+<h1>Digimon World 2 (PS1): Digivolve Guide</h1>
+<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digivolutions</button><button data-t="dna" onclick="show(cur)">DNA Digivolve</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button></div>
+<div id="pdna"><div class="how"><b>How to use this</b><b style="display:block;margin-top:6px">What each part does</b><ul>
+<li><b>Quick finder:</b> type any two Digimon, even at different levels, and it shows what they make. Type just one and press Possible combos to see everything it can make, shown as a family tree.</li>
+<li><b>Find a Parent Digimon in the chart:</b> type a Champion, Ultimate or Mega name to light up its row and column in gold.</li>
+<li><b>Reverse search:</b> type the Digimon you want and see every pair of parents that makes it.</li>
+<li><b>Type colors:</b> green is Vaccine, blue is Data and red is Virus, shown on names, letters and headers.</li>
+<li><b>Chart switcher:</b> choose Champion + Champion (makes a Rookie), Ultimate + Ultimate (makes a Champion) or Mega + Mega (makes an Ultimate).</li>
+<li><b>Row and column letters:</b> each letter is a group of Digimon that give the same result; hover or tap one to see who is in it.</li>
+<li><b>Cells:</b> the big name is the Digimon you get, and the small letters underneath are the two groups that made it.</li>
+<li><b>Box above the chart:</b> tap any cell to list the exact parent Digimon behind it.</li>
+<li><b>Group list below the chart:</b> shows every Digimon in each letter group.</li></ul></div>
+<div class="finder"><b>Quick finder:</b> <input id="fa" placeholder="First Digimon, e.g. Fly" autocomplete="off"> + <input id="fb" placeholder="Second Digimon, e.g. Octo" autocomplete="off"> <button class="qbtn" id="qcb" onclick="combos()">Possible combos</button><div id="fr"></div><div id="qc"></div></div>
+<div class="finder"><b>Find a Parent Digimon in the chart:</b> <input id="sq" placeholder="Type a name, e.g. Greymon" autocomplete="off"><datalist id="dl"></datalist> <span id="sm"></span></div>
+<div class="finder"><b>Reverse search, find the parents of a Digimon:</b> <input id="rv" placeholder="Type a name, e.g. Agumon" autocomplete="off"><div id="ro"></div></div>
+<div class="leg"><span class="pill t0">🛡️ Vaccine (green)</span><span class="pill t1">💾 Data (blue)</span><span class="pill t2">🦠 Virus (red)</span></div>
+<div class="tabs" id="tabs"></div>
+<div id="chart"><div class="info" id="info"></div>
+<div class="wrap"><table id="tb"></table></div>
+<div hidden><select id="fs"></select><div id="fo"></div></div>
+<div class="grps" id="grps"></div>
+<div class="note"><p><b>Mixing different levels:</b> bring the higher Digimon down by combining it with itself, then combine that result with the other one. Example: Apemon + Etemon: Etemon + Etemon = Ogremon, then Apemon + Ogremon = Tapirmon.</p>
+<p><b>Mutations</b> (cells marked Vademon, SandYanmamon, Yanmamon): M-Tyrannomon / MetalGreymon / Whamon / Zudomon + Cherrymon = Vademon. H-Kabuterimon + Baihumon / M-Garurumon / P-Mamemon / SaberLeomon = SandYanmamon. H-Kabuterimon + Gryphonmon / Rosemon = Yanmamon.</p></div></div></div>
+<div id="dv" hidden><div class="leg"><span class="pill t0">🛡️ Vaccine (green)</span><span class="pill t1">💾 Data (blue)</span><span class="pill t2">🦠 Virus (red)</span></div><div class="how"><b>Digivolution family trees</b><p>Each tree starts at a Rookie and branches into the Champions, Ultimates and Megas it can become. The DP badge is the Digivolve Points needed for that branch; the game picks the branch that matches your Digimon&rsquo;s DP. DP goes up by 1 each time you DNA Digivolve. Digivolving needs EL 11 (Rookie to Champion), EL 21 (Champion to Ultimate) and EL 31 (Ultimate to Mega).</p></div>
+<div class="finder"><b>Find a Digimon in the trees:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dt"></div>
+</div>
+<div id="qv" hidden><div class="how"><b>Digimon Quality calculator</b><p>Quality (0 to 100) sets how well a Digimon&rsquo;s stats grow, so higher is better. You can&rsquo;t see it on wild Digimon, because it is decided the moment one joins your party. Digimon with 95 to 100 Quality have a foil effect. Enter the two Digimon you plan to DNA Digivolve to see the new Digimon&rsquo;s max level and Quality.</p></div>
+<div class="qg"><div class="qc"><b>Digimon A</b><label for="qla">Level</label><input id="qla" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 15" oninput="qcalc()"><label for="qqa">Quality (0 to 100)</label><input id="qqa" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 66" oninput="qcalc()"></div>
+<div class="qc"><b>Digimon B</b><label for="qlb">Level</label><input id="qlb" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 13" oninput="qcalc()"><label for="qqb">Quality (0 to 100)</label><input id="qqb" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 87" oninput="qcalc()"></div></div>
+<button class="qbtn" onclick="qswap()">Swap A and B</button>
+<div id="qout"></div>
+<div class="note"><p><b>Max level:</b> the higher level + (the lower level &divide; 5), rounded down. Example: levels 15 and 13 give 15 + 2 = 17. Levels 13 and 17 give 17 + 2 = 19, whichever slot each is in (tested in game).</p><p><b>Quality:</b> the new Digimon inherits the Quality of the higher-level parent, and order doesn&rsquo;t matter. If both parents are the same level, it inherits the higher Quality. Examples: level 15 with Quality 66 and level 12 with Quality 87 gives 66. Level 13 with Quality 66 and level 15 with Quality 87 gives 87. Level 15 with Quality 66 and level 15 with Quality 87 gives 87.</p></div></div>
+<div id="mv" hidden><div class="how"><b>Digimon Moves</b><p>Every move, with the stage it belongs to, what it costs, how hard it hits and any side effect. A Digimon learns moves of its own stage, so the Stage column tells you when it comes online. Pick a stage, kind or status, search a move or Digimon, or tap a Digimon name in the table to see just its moves.</p>
+<p><b>Damage formula</b> (approximate, because the game shows rounded stats):</p><code class="fm">damage = floor( floor(Type &times; Specialty &times; Power &times; MoveTile) &times; Attack &divide; floor(Defense &times; DefenderTile) )</code>
+<ul><li><b>Type</b>: 1.2 when the attacker has the advantage (Virus beats Data, Data beats Vaccine, Vaccine beats Virus), 0.8 when at a disadvantage, otherwise 1.0.</li>
+<li><b>Specialty</b>: 1.2, 1.0 or 0.8 from the move&rsquo;s element against the target&rsquo;s (for example a Water move against a Fire Digimon is 1.2).</li>
+<li><b>Power</b>: the move&rsquo;s listed power. <b>MoveTile</b>: 1.2, 1.0 or 0.8 for the tile under the attacker matching the move&rsquo;s element (a Darkness move on a Darkness tile is 1.2).</li>
+<li><b>Attack / Defense</b>: the attacker&rsquo;s Attack and the target&rsquo;s Defense stats. <b>DefenderTile</b>: the same 1.2, 1.0 or 0.8 idea, for the target&rsquo;s own specialty on its tile.</li></ul><p><b>Stat-down effects</b> (the Debuff moves that hit all enemies):</p><ul><li><b>Duration:</b> they now last 3 rounds, not the whole battle.</li><li><b>No stacking:</b> hitting a stat that is already lowered just restarts the 3 rounds, so two Okuwamon give the same effect as one.</li><li><b>Bosses:</b> they only get half the effect, and a boss stat can never drop below 75% of its original value.</li></ul></div>
+<div class="mvf"><span class="acw"><input id="mvq" placeholder="Search move or Digimon" autocomplete="off"></span><select id="mvs"><option value="">Any specialty</option><option>None</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select><button class="qbtn" onclick="mvReset()">Reset</button></div>
+<div class="mvf" id="mvst"></div><div class="mvf" id="mvk"></div><div class="mvf" id="mve"></div>
+<div id="mvc" class="note"></div><div class="wrap"><table id="mvt"></table></div>
+<div class="note"><p>Power shows &ldquo;&ndash;&rdquo; for moves that don&rsquo;t deal damage. &ldquo;Unknown&rdquo; learners are moves only seen on bosses or wild Digimon. Move data from a community skill list; effects are summarised in my own words.</p></div></div>
+<script>
+const L=i=>String.fromCharCode(65+i);
+const P=(p,s)=>s.split(',').map((x,i)=>{const a=x.split(' ');return{n:a[0],g:a[1],c:p+L(i)}});
+const RK=[...P('A',"Agumon,Biyomon,ClearAgumon,Gomamon,Penguinmon,SnowAgumon,Tapirmon,Tentomon,ToyAgumon,Veemon"),
+...P('D',"Candlemon,Crabmon,Elecmon,Floramon,Gabumon,Gotsumon,Palmon,Patamon"),
+...P('I',"Betamon,DemiDevimon,Dokunemon,Gazimon,Gizamon,Goburimon,Hagurumon,Kunemon,Mushroomon,Otamamon,SnowGoburimon,Syakomon,Tsukaimon")];
+const CH=[...P('A',"Airdramon B,Angemon C,Apemon E,Birdramon B,Dolphmon D,Flamedramon B,Frigimon E,Garurumon E,Gatomon C,Greymon A,Gururumon E,Ikkakumon D,Kabuterimon F,Leomon C,Mojyamon E,Piddomon C,Saberdramon B,ShimaUnimon E,Tortomon D,Unimon E,Veedramon B"),
+...P('D',"Akatorimon H,Centarumon K,Clockmon M,Coelamon J,Drimogemon K,Flarerizamon G,Icemon K,J-Mojyamon K,Kiwimon H,Kokatorimon H,Meramon M,Monochromon G,MoriShellmon J,MudFrigimon K,Ninjamon I,N-Drimogemon K,SandYanmamon L,Seadramon J,Shellmon J,Starmon I,Tankmon M,Togemon N,Tyrannomon G,Wizardmon I,Yanmamon L"),
+...P('I',"Bakemon P,Cyclonemon O,Darkrizamon O,D-Tyrannomon O,Deltamon O,Devidramon O,Devimon P,Flymon S,Gekomon Q,Gesomon Q,Guardromon T,Hyogamon R,IceDevimon P,Kuwagamon S,Nanimon P,Numemon T,Octomon Q,Ogremon R,P-Sukamon T,Raremon T,RedVegiemon U,Soulmon P,Sukamon T,Tuskmon O,Vegiemon U,Woodmon U")];
+const UL=[...P('A',"AeroVeedramon A,Andromon B,Angewomon B,Garudamon A,Giromon B,MagnaAngemon B,Mammothmon C,M-Tyrannomon D,M-Kabuterimon E,MetalGreymon D,Monzaemon C,Panjyamon B,Raidramon A,WereGarurumon C,Whamon F,Zudomon F"),
+...P('D',"Blossomon G,BlueMeramon H,Deramon I,Digitamamon J,Lillymon G,Mamemon J,MegaSeadramon K,MetalMamemon J,Meteormon L,Piximon I,Pumpkinmon G,Scorpiomon K,SkullMeramon H,Tinmon H,Triceramon M,Vermillimon M"),
+...P('I',"Cherrymon N,Datamon O,Dragmon P,Etemon Q,Extyrannomon R,Garbagemon O,Gigadramon R,MarineDevimon P,Megadramon R,MetalTyrannomon R,Myotismon S,Okuwamon T,Phantomon S,ShogunGekomon P,SkullGreymon R,Tekkamon S,Vademon O,WaruMonzaemon Q,WaruSeadramon P")];
+const ME=P('',"H-Kabuterimon A,I-dramon B,Jijimon C,Magnadramon D,MarineAngemon E,Omnimon F,Phoenixmon B,Seraphimon D,S-Mammothmon C,WarGreymon F,Baihumon G,Boltmon H,Gryphonmon I,M-Garurumon G,M-Seadramon J,Preciomon J,P-Mamemon K,Rosemon L,SaberLeomon K,Diaboromon M,GranKuwagamon M,Machinedramon N,MetalEtemon O,Pierrotmon P,VenomMyotismon P,Pukumon Q,Puppetmon R");
+const MAP=a=>Object.fromEntries(a.map(d=>[d.c,d.n]));
+const MUT={MA:'Vademon',MB:'SandYanmamon',MC:'Yanmamon'};
+const CC="AAAJAIAAAFAHDCDDDHDCDEDDDCDBAAAIAAAFAHAAAE AJABABABABAHDDDDDDDDDDDDDDDGAJABABABAHABAH AIABACADAIAHDHDDDHDBDHDDDFDGAIACADAIAHAFAH AAABADADAGADDCDDDBDBDFDBDBDBAAADADAGADAEAE AFABAIAGAGAHDDDDDHDFDEDDDFDEAFAIAGAGAHAFAG AHAHAHADAHAHDDDDDDDBDDDDDADDAHAHADAHAHAHAH DCDDDHDCDDDDDCDDDHDCDEDDDCDBIAIMIEIFIHIEIJ DDDDDDDDDDDDDDDDDDDDDDDDDDDGICICICICIHICII DHDDDHDBDHDDDHDDDHDBDHDDDFDGIMIBIJIDIHIKII DCDDDBDBDFDBDCDDDBDBDFDBDBDBIEIJILIKILILIJ DEDDDHDFDEDDDEDDDHDFDEDDDFDEIFIDIKIFIHIKIF DDDDDDDBDDDDDDDDDDDBDDDDDADDIHIHILIHIHIGIH DCDDDFDBDFDBDCDDDFDBDFDADADAIEIKILIKIGIGIG DBDGDGDBDEDDDBDGDGDBDEDDDADGIJIIIJIFIHIGII AAAJAIAAAFAHIAICIMIEIFIHIEIJIAIMIEIFIHIEIJ AIABACADAIAHIMICIBIJIDIHIKIIIMIBIJIDIHIKII AAABADADAGADIEICIJILIKILILIJIEIJIJIDILIKII AFABAIAGAGAHIFICIDIKIFIHIKIFIFIDIDIFIHIKIF AHAHAHADAHAHIHIHIHILIHIHIGIHIHIHILIHIHIGIH AAABAFAEAFAHIEICIKILIKIGIGIGIEIKIKIKIGIGIG AEAHAHAEAGAHIJIIIIIJIFIHIGIIIJIIIIIFIHIGII".split(' ');
+const UU="ADAUAQAUAMAADVDIDJDIDADJDAAMAAAAAQAUAUAM AUABANAIAMALDVDBDIDTDRDODXAMAGALANAIABAM AQANAHARAMAODHDNDJDODPDGDEATACAOAHARANAM AUAIARAJAMARDMDLDADXDFDEDWMAAJAJARAJAIAM AMAMAMAMAMAEDYDUDYDQDSDQDQAMAMAEAMAMAMAM AAALAOARAEALDMDSDADRDRDPDFMAAEALAOAJALAE DVDVDHDMDYDMDVDCDVDVDMDHDMIZITIKIRIKIUIN DIDBDNDLDUDSDCDKDIDBDSDBDLITIIIQILIBILIS DJDIDJDADYDADVDIDJDIDIDIDAIYIHIHIHIHIHIN DIDTDODXDQDRDVDBDIDTDRDODXIUILIJIAIMIGIN DADRDPDFDSDRDMDSDIDRDRDPDFIKIQIQILICIJIJ DJDODGDEDQDPDHDBDIDODPDGDEIRILILIRIRIAIN DADXDEDWDQDPDMDLDADXDFDEDWIKIBICIRIDIMIN AMAMATMAAMMAIZITIYIUIKIRIKIZITIKIRIKIUIN AAAGACAJAMAEITIIIHILIQILIBITIIIQILIBILIS AAALAOAJAEALIKIQIHIJIQILICIKIQIQILICIJIJ AQANAHARAMAOIRILIHIAILIRIRIRILILIRIRIAIN AUAIARAJAMAJIKIBIHIMICIRIDIKIBICIRIDIMIN AUABANAIAMALIUILIHIGIJIAIMIUILIJIAIMIGIN AMAMAMAMAMAEINISININIJINININISIJININININ".split(' ');
+const MM="AIAIAIAIAPAIMBDMMCDGMBMCAIAIAIAIAPAI AIADAAADAAAADCDJDCDCDJDAAIAAAAADAAAI AIAAANALAGANDIDIDCDIDFDIAIANANALAGAK AIADALAFAPABDFDIDJDGDHDKAIABALAFAPAI APAAAGAPAPAHDIDLDCDGDGDLAOAHAGAPAOAP AIAAANABAHAJDIDODJDPDDDLAIAJANABAHAP MBDCDIDFDIDIDIDIDCDIDFDIILIDIDIMIRID DMDJDIDIDLDODIDNDJDLDIDBIQIEIRIRISIF MCDCDCDJDCDJDCDJDCDCDJDAILILILILILIA DGDCDIDGDGDPDIDLDCDGDGDLINIOIRINICIH MBDJDFDHDGDDDFDIDJDGDHDKILIPIMIKINIA MCDADIDKDLDLDIDBDADLDKDEILIHIDIAIHIA AIAIAIAIAOAIILIQILINILILILILILILINIL AIAAANABAHAJIDIEILIOIPIHILIIIDIPIOIH AIAAANALAGANIDIRILIRIMIDILIDIDIMIRID AIADALAFAPABIMIRILINIKIAILIPIMIKINIA APAAAGAPAOAHIRISILICINIHINIOIRINICIH AIAIAKAIAPAPIDIFIAIHIAIAILIHIDIAIHIA".split(' ');
+const LV=[
+ {t:'Champion + Champion = Rookie',m:CC,res:{...MAP(RK)},ins:CH,cut:[6,14]},
+ {t:'Ultimate + Ultimate = Champion',m:UU,res:{...MAP(CH),...MUT},ins:UL,cut:[6,13]},
+ {t:'Mega + Mega = Ultimate',m:MM,res:{...MAP(UL),...MUT},ins:ME,cut:[6,12]}];
+const IC=['🛡️','💾','🦠'];
+const rt=c=>c[0]=='A'?0:c[0]=='D'?1:c[0]=='I'?2:(c=='MA'?2:1);
+let cur=0;
+function show(k){cur=k;fill(k);setTop('dna');setTimeout(applyFoc,0);
+ const v=LV[k],n=v.m.length,ty=i=>i<v.cut[0]?0:i<v.cut[1]?1:2;
+ document.querySelectorAll('#tabs button').forEach((b,i)=>b.classList.toggle('on',i==k));
+ let h='<thead><tr><th></th>'+Array.from({length:n},(_,i)=>`<th class="t${ty(i)}${i==v.cut[0]||i==v.cut[1]?' sl':''}" data-h="${i}" title="${gn(v,i)}">${IC[ty(i)]} ${L(i)}</th>`).join('')+'</tr></thead><tbody>';
+ v.m.forEach((row,r)=>{h+=`<tr class="${r==v.cut[0]||r==v.cut[1]?'st':''}"><th class="t${ty(r)}" data-h="${r}" title="${gn(v,r)}">${IC[ty(r)]} ${L(r)}</th>`;
+  for(let c=0;c<n;c++){const code=row.substr(c*2,2);h+=`<td class="t${rt(code)}${c==v.cut[0]||c==v.cut[1]?' sl':''}" data-r="${r}" data-c="${c}">${v.res[code]||code}<small><i class="t${ty(r)}">${L(r)}</i> + <i class="t${ty(c)}">${L(c)}</i></small></td>`}
+  h+='</tr>'});
+ document.getElementById('tb').innerHTML=h+'</tbody>';
+ document.getElementById('grps').innerHTML=Array.from({length:n},(_,i)=>`<div class="grp t${ty(i)}"><b>${IC[ty(i)]} ${L(i)}</b> ${v.ins.filter(d=>d.g==L(i)).map(d=>d.n).join(', ')}</div>`).join('');
+}
+const gn=(v,i)=>v.ins.filter(d=>d.g==L(i)).map(d=>d.n).join(' / ');
+function fill(k){const v=LV[k],n=v.m.length,ty=i=>i<v.cut[0]?0:i<v.cut[1]?1:2,fs=document.getElementById('fs'),fo=document.getElementById('fo');
+ document.getElementById('info').textContent='Tap any cell to see which parent Digimon make it.';fo.innerHTML='';
+ const names=[...new Set(v.m.join('').match(/../g).map(c=>v.res[c]||c))].sort();
+ fs.innerHTML='<option value="">Find the parents of a Digimon...</option>'+names.map(x=>`<option>${x}</option>`).join('');
+ fs.onchange=()=>{if(!fs.value){fo.innerHTML='';return}const seen=new Set(),out=[];
+  v.m.forEach((row,r)=>{for(let c=0;c<n;c++){const code=row.substr(c*2,2);if((v.res[code]||code)!=fs.value)continue;
+   const a=Math.min(r,c),b=Math.max(r,c),key=a+'-'+b;if(seen.has(key))continue;seen.add(key);
+   out.push(`<div class="rec"><span class="t${ty(a)}"><b>${L(a)}</b> ${gn(v,a)}</span> + <span class="t${ty(b)}"><b>${L(b)}</b> ${gn(v,b)}</span></div>`)}});
+  fo.innerHTML=`<div class="rec"><b>${out.length} parent combinations make ${fs.value}:</b></div>`+out.join('')}}
+const tb=document.getElementById('tb');
+tb.addEventListener('mouseover',e=>{const t=e.target.closest('td');if(!t)return;
+ tb.querySelectorAll('.hl').forEach(x=>x.classList.remove('hl'));
+ tb.querySelectorAll(`td[data-r="${t.dataset.r}"],td[data-c="${t.dataset.c}"]`).forEach(x=>x.classList.add('hl'))});
+tb.addEventListener('click',e=>{const h=e.target.closest('th[data-h]');if(h){const v=LV[cur],i=+h.dataset.h,k=i<v.cut[0]?0:i<v.cut[1]?1:2;document.getElementById('info').innerHTML=`<span class="t${k}"><b>${L(i)}</b> ${gn(v,i)}</span><br><small>Every Digimon in this group gives the same result in this chart.</small>`;return}const t=e.target.closest('td');if(!t)return;const v=LV[cur],r=+t.dataset.r,c=+t.dataset.c,ty=i=>i<v.cut[0]?0:i<v.cut[1]?1:2;
+ document.getElementById('info').innerHTML=`<span class="t${ty(r)}"><b>${L(r)}</b> ${gn(v,r)}</span> + <span class="t${ty(c)}"><b>${L(c)}</b> ${gn(v,c)}</span> &rarr; <b>${t.firstChild.textContent}</b><br><small>Any Digimon from the first group combined with any from the second makes this result.</small>`;
+ tb.querySelectorAll('.hl').forEach(x=>x.classList.remove('hl'));
+ tb.querySelectorAll(`td[data-r="${r}"],td[data-c="${c}"]`).forEach(x=>x.classList.add('hl'))});
+document.getElementById('tabs').innerHTML=LV.map((v,i)=>`<button onclick="show(${i})">${v.t}</button>`).join('');
+const LN=['Champion','Ultimate','Mega'],RL=['Rookie','Champion','Ultimate'],MX=[CC,UU,MM];
+const ALL=[...CH.map(d=>({n:d.n,lv:0,g:d.g})),...UL.map(d=>({n:d.n,lv:1,g:d.g})),...ME.map(d=>({n:d.n,lv:2,g:d.g}))];
+const tyOf=d=>{const i=d.g.charCodeAt(0)-65,c=LV[d.lv].cut;return i<c[0]?0:i<c[1]?1:2};
+const CHC=Object.fromEntries(CH.map(d=>[d.c,d])),ULC=Object.fromEntries(UL.map(d=>[d.c,d]));
+const MUTE={MA:{n:'Vademon',lv:1,g:'O'},MB:{n:'SandYanmamon',lv:0,g:'L'},MC:{n:'Yanmamon',lv:0,g:'L'}};
+const fa=document.getElementById('fa'),fb=document.getElementById('fb'),fr=document.getElementById('fr'),sq=document.getElementById('sq'),sm=document.getElementById('sm');
+let foc=null;
+function down(d,st){const i=d.g.charCodeAt(0)-65,code=MX[d.lv][i].substr(i*2,2),e=(d.lv==2?ULC:CHC)[code],r=e?{n:e.n,lv:d.lv-1,g:e.g}:MUTE[code];st.push(`${d.n} (${LN[d.lv]}) + itself = <span class="t${rt(code)}">${r.n}</span> (${LN[r.lv]})`);return r}
+const pick=v=>{const q=v.trim().toLowerCase();if(!q)return [];let m=ALL.filter(d=>d.n.toLowerCase()==q);if(!m.length)m=ALL.filter(d=>d.n.toLowerCase().startsWith(q));return m};
+function calc(){document.getElementById('qc').innerHTML='';const ma=pick(fa.value),mb=pick(fb.value),st=[];
+ const hint=(m,v,w)=>!v.trim()?'':m.length==0?`No Digimon starts with "${v}". Only Champion, Ultimate and Mega Digimon can be parents.`:m.length>1?`"${v}" matches ${m.slice(0,6).map(d=>d.n).join(', ')}${m.length>6?'...':''}. Keep typing the ${w} name.`:'';
+ const h=hint(ma,fa.value,'first')||hint(mb,fb.value,'second');if(h){fr.innerHTML='<small>'+h+'</small>';return}if(!ma.length||!mb.length){fr.innerHTML='';return}
+ const a=ma[0],b=mb[0];let x=a,y=b;while(x.lv>y.lv)x=down(x,st);while(y.lv>x.lv)y=down(y,st);
+ const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2),nm=LV[x.lv].res[code]||code;
+ fr.innerHTML=(st.length?'<div><small>Different levels: the higher one is first reduced by combining it with itself.</small><br>'+st.join('<br>')+'<br><small>Then '+x.n+' + '+y.n+':</small></div>':'')+`<div style="font-size:16px;margin-top:4px"><b>${a.n} + ${b.n} &rarr; <span class="t${rt(code)}">${nm}</span></b> <small>${code[0]=='M'?'(mutation)':'('+RL[x.lv]+')'}</small></div>`}
+function applyFoc(){tb.querySelectorAll('.gl').forEach(x=>x.classList.remove('gl'));if(!foc||foc.lv!=cur)return;const i=foc.g.charCodeAt(0)-65;
+ tb.querySelectorAll(`td[data-r="${i}"],td[data-c="${i}"]`).forEach(x=>x.classList.add('gl'));
+ tb.querySelector(`thead th:nth-child(${i+2})`).classList.add('gl');tb.querySelector(`tbody tr:nth-child(${i+1}) th`).classList.add('gl');
+ const t=tb.querySelector(`td[data-r="${i}"][data-c="${i}"]`);if(t)t.scrollIntoView({block:'nearest',inline:'center'})}
+const opts=[0,1,2].map(lv=>`<optgroup label="${LN[lv]}">`+ALL.map((d,i)=>[d,i]).filter(p=>p[0].lv==lv).sort((p,q)=>p[0].n.localeCompare(q[0].n)).map(p=>`<option value="${p[1]}">${IC[tyOf(p[0])]} ${p[0].n}</option>`).join('')+'</optgroup>').join('');
+fa.oninput=fb.oninput=calc;calc();
+document.getElementById('dl').innerHTML=ALL.map(d=>`<option value="${d.n}">`).join('');
+sq.oninput=()=>{const q=sq.value.trim().toLowerCase();sm.innerHTML='';foc=null;if(!q){applyFoc();return}
+ let m=ALL.filter(d=>d.n.toLowerCase()==q);if(!m.length)m=ALL.filter(d=>d.n.toLowerCase().includes(q));
+ if(m.length!=1){sm.textContent=m.length?'Keep typing: '+m.length+' matches':'No match. Only Champion, Ultimate and Mega Digimon are parents.';applyFoc();return}
+ foc=m[0];sm.innerHTML=`<span class="t${tyOf(foc)}"><b>${foc.n}</b></span> is in group <b>${foc.g}</b> of the ${LN[foc.lv]} chart.`;if(cur!=foc.lv)show(foc.lv);else applyFoc()};
+const PL=ALL.map(d=>({n:d.n,t:tyOf(d),l:LN[d.lv]}));
+const RES=[...RK.map(d=>({n:d.n,lv:0,t:rt(d.c),l:'Rookie'})),...CH.map(d=>({n:d.n,lv:1,t:rt(d.c),l:'Champion'})),...UL.map(d=>({n:d.n,lv:2,t:rt(d.c),l:'Ultimate'}))];
+function ac(inp,list){const w=document.createElement('span');w.className='acw';inp.parentNode.insertBefore(w,inp);w.appendChild(inp);const box=document.createElement('div');box.className='sug';w.appendChild(box);
+ const render=()=>{const q=inp.value.trim().toLowerCase();let m=list.filter(d=>d.n.toLowerCase().startsWith(q));if(q)m=m.concat(list.filter(d=>!d.n.toLowerCase().startsWith(q)&&d.n.toLowerCase().includes(q)));
+  box.innerHTML=m.map(d=>`<div data-n="${d.n}"><span class="t${d.t}">${IC[d.t]} ${d.n}</span> <small>${d.l}</small></div>`).join('');box.style.display=m.length?'block':'none'};
+ inp.addEventListener('input',render);inp.addEventListener('focus',render);inp.addEventListener('blur',()=>{box.style.display='none'});
+ inp.addEventListener('keydown',e=>{if(e.key=='Escape')box.style.display='none'});
+ box.addEventListener('mousedown',e=>{e.preventDefault();const r=e.target.closest('div[data-n]');if(!r)return;inp.value=r.dataset.n;inp.dispatchEvent(new Event('input'));box.style.display='none'})}
+const rv=document.getElementById('rv'),ro=document.getElementById('ro');
+function rev(){const q=rv.value.trim().toLowerCase(),d=RES.find(x=>x.n.toLowerCase()==q);if(!d){ro.innerHTML=q?'<small>Pick a Digimon from the list.</small>':'';return}
+ const v=LV[d.lv],n=v.m.length,ty=i=>i<v.cut[0]?0:i<v.cut[1]?1:2,seen=new Set(),out=[];
+ v.m.forEach((row,r)=>{for(let c=0;c<n;c++){const code=row.substr(c*2,2);if((v.res[code]||code)!=d.n)continue;const a=Math.min(r,c),b=Math.max(r,c),key=a+'-'+b;if(seen.has(key))continue;seen.add(key);
+  out.push(`<div class="rec"><span class="t${ty(a)}"><b>${L(a)}</b> ${gn(v,a)}</span> + <span class="t${ty(b)}"><b>${L(b)}</b> ${gn(v,b)}</span></div>`)}});
+ ro.innerHTML=`<div class="rec"><b>${out.length} parent combinations make <span class="t${d.t}">${d.n}</span></b> <small>(two ${LN[d.lv]} Digimon; mixed levels reduce first, see Quick finder)</small></div>`+out.join('')}
+rv.oninput=rev;
+[fa,fb,sq].forEach(i=>ac(i,PL));ac(rv,RES);
+const DVT=`#0
+Agumon=Greymon 0+
+Biyomon=Airdramon 0-2,Veedramon 3-5,Saberdramon 6-7,Birdramon 8+
+ClearAgumon=Angemon 0-2,Piddomon 3+
+Gomamon=Tortomon 0-2,Ikkakumon 3+
+Penguinmon=Ikkakumon 0-2,Dolphmon 3+
+SnowAgumon=Frigimon 0-2,Mojyamon 3-5,Gururumon 6+
+Tapirmon=Unimon 0-2,ShimaUnimon 3-5,Garurumon 6-7,Apemon 8+
+Tentomon=Kabuterimon 0+
+ToyAgumon=Leomon 0-2,Gatomon 3+
+Veemon=Veedramon 0-3,Flamedramon 4+
+Airdramon=AeroVeedramon 0+
+Angemon=Andromon 0-5,MagnaAngemon 6+
+Apemon=Mammothmon 0+
+Birdramon=Garudamon 0+
+Dolphmon=Whamon 0+
+Flamedramon=AeroVeedramon 0-5,Raidramon 6+
+Frigimon=Monzaemon 0+
+Garurumon=WereGarurumon 0+
+Gatomon=Angewomon 0+
+Greymon=MetalGreymon 0-5,MasterTyrannomon 6-8,SkullGreymon 9+
+Gururumon=WereGarurumon 0+
+Ikkakumon=Whamon 0-5,Zudomon 6+
+Kabuterimon=MegaKabuterimon 0+
+Leomon=Panjyamon 0+
+Mojyamon=Monzaemon 0+
+Piddomon=MagnaAngemon 0-6,Giromon 6+
+Saberdramon=Garudamon 0+
+ShimaUnimon=Mammothmon 0+
+Tortomon=Zudomon 0+
+Unimon=Mammothmon 0+
+Veedramon=AeroVeedramon 0+
+AeroVeedramon=Phoenixmon 0+
+Andromon=Seraphimon 0+
+Angewomon=Magnadramon 0+
+Garudamon=Phoenixmon 0+
+Giromon=Seraphimon 0+
+MagnaAngemon=Seraphimon 0+
+Mammothmon=SkullMammothmon 0+
+MasterTyrannomon=WarGreymon 0+
+MegaKabuterimon=HerculesKabuterimon 0+
+MetalGreymon=WarGreymon 0-19,Omnimon 20+
+Monzaemon=Jijimon 0+
+Panjyamon=SaberLeomon 0-8,Magnadramon 9+
+Raidramon=Phoenixmon 0-7,Imperialdramon 8+
+WereGarurumon=SkullMammothmon 0-7,MetalGarurumon 8+
+Whamon=MarineAngemon 0+
+Zudomon=Preciomon 0-8,MarineAngemon 9+
+#1
+Candlemon=Tankmon 0-2,Meramon 3-5,Clockmon 6+
+Crabmon=Coelamon 0-2,MoriShellmon 3-5,Shellmon 6-7,Seadramon 8+
+Elecmon=Tyrannomon 0-2,Flarerizamon 3-5,Monochromon 6+
+Floramon=Kiwimon 0-2,Kokatorimon 3-5,Akatorimon 6+
+Gabumon=Centarumon 0-2,Drimogemon 3-5,NiseDrimogemon 6-7,Garurumon 8+
+Gotsumon=Icemon 0-2,MudFrigimon 3-5,J-Mojyamon 6+
+Palmon=Togemon 0+
+Patamon=Ninjamon 0-2,Starmon 3-5,Wizardmon 6-7,Angemon 8+
+Akatorimon=Piximon 0+
+Centarumon=Meteormon 0+
+Clockmon=Tinmon 0-7,SkullMeramon 8+
+Coelamon=MegaSeadramon 0+
+Drimogemon=Meteormon 0+
+Flarerizamon=Triceramon 0-5,Vermilimon 6+
+Icemon=Meteormon 0+
+J-Mojyamon=Meteormon 0+
+Kiwimon=Deramon 0+
+Kokatorimon=Deramon 0-5,Piximon 6+
+Meramon=BlueMeramon 0-5,SkullMeramon 6+
+Monochromon=Vermilimon 0+
+MoriShellmon=Scorpiomon 0+
+MudFrigimon=Meteormon 0+
+Ninjamon=Mamemon 0+
+NiseDrimogemon=Meteormon 0+
+Seadramon=MegaSeadramon 0+
+Shellmon=Scorpiomon 0+
+Starmon=Mamemon 0-5,MetalMamemon 6-7,Digitamamon 8+
+Tankmon=Tinmon 0-5,SkullMeramon 6+
+Togemon=Pumpkinmon 0-5,Blossomon 6-7,Lillymon 8+
+Tyrannomon=Triceramon 0-7,MasterTyrannomon 8+
+Wizardmon=Digitamamon 0+
+Yanmamon=Pumpkinmon 0+
+Blossomon=Rosemon 0+
+BlueMeramon=Boltmon 0+
+Deramon=Gryphonmon 0+
+Digitamamon=SaberLeomon 0+
+Lillymon=Rosemon 0+
+Mamemon=PrinceMamemon 0+
+MegaSeadramon=MetalSeadramon 0+
+MetalMamemon=PrinceMamemon 0-8,SaberLeomon 9+
+Meteormon=MetalGarurumon 0-19,Baihumon 20+
+Piximon=Gryphonmon 0+
+Pumpkinmon=Rosemon 0+
+Scorpiomon=Preciomon 0+
+SkullMeramon=Boltmon 0+
+Tinmon=Boltmon 0+
+#2
+Betamon=DarkTyrannomon 0-2,Darkrizamon 3-5,Tuskmon 6+
+DemiDevimon=IceDevimon 0-3,Devimon 4+
+Dokunemon=Flymon 0+
+Gazimon=Nanimon 0+
+Gizamon=Cyclonemon 0-2,Deltamon 3-5,Devidramon 6+
+Goburimon=Ogremon 0+
+Hagurumon=Numemon 0,Sukamon 1,P-Sukamon 2-3,Raremon 4-5,Guardromon 6+
+Kunemon=Kuwagamon 0+
+Mushroomon=Vegiemon 0,RedVegiemon 1-3,Woodmon 4+
+Otamamon=Gekomon 0-2,Octomon 3+
+SnowGoburimon=Hyogamon 0+
+Syakomon=Octomon 0-2,Gesomon 3+
+Tsukaimon=Bakemon 0-2,Soulmon 3+
+Bakemon=Phantomon 0+
+Cyclonemon=Megadramon 0+
+Darkrizamon=ExTyrannomon 0+
+DarkTyrannomon=ExTyrannomon 0-5,MetalTyrannomon 6+
+Deltamon=Megadramon 0-5,Gigadramon 6+
+Devidramon=Gigadramon 0+
+Devimon=Myotismon 0+
+Flymon=Okuwamon 0+
+Gekomon=ShogunGekomon 0+
+Gesomon=MarineDevimon 0-5,WaruSeadramon 6+
+Guardromon=Vademon 0-5,Garbagemon 6-8,Datamon 9+
+Hyogamon=WaruMonzaemon 0+
+IceDevimon=Myotismon 0+
+Kuwagamon=Okuwamon 0+
+Nanimon=Tekkamon 0+
+Numemon=
+Octomon=Dragomon 0+
+Ogremon=Etemon 0+
+P-Sukamon=Vademon 0+
+Raremon=Vademon 0-4,Garbagemon 5+
+RedVegiemon=Cherrymon 0+
+Soulmon=Phantomon 0+
+Sukamon=
+Tuskmon=MetalTyrannomon 0+
+Vegiemon=Cherrymon 0+
+Woodmon=Cherrymon 0+
+Cherrymon=Puppetmon 0+
+Dragomon=Pukumon 0+
+Etemon=MetalEtemon 0+
+MarineDevimon=Pukumon 0+
+Myotismon=VenomMyotismon 0+
+Okuwamon=GranKuwagamon 0-19,Diaboromon 20+
+Phantomon=Piedmon 0+
+ShogunGekomon=Pukumon 0+
+SkullGreymon=Machinedramon 0+
+Tekkamon=Piedmon 0+
+WaruMonzaemon=MetalEtemon 0+
+WaruSeadramon=Pukumon 0+`;
+const DE={},DT={},DC={};let blk=0;
+DVT.split('\n').forEach(l=>{if(l[0]=='#'){blk=+l[1];return}const q=l.split('='),p=q[0];DT[p]=blk;DE[p]=(q[1]||'').split(',').filter(Boolean).map(x=>x.split(' '));DE[p].forEach(c=>{if(DC[c[0]]==null)DC[c[0]]=blk})});
+const AL={NiseDrimogemon:'N-Drimogemon',DarkTyrannomon:'D-Tyrannomon',ExTyrannomon:'Extyrannomon',MetalSeadramon:'M-Seadramon',PrinceMamemon:'P-Mamemon',Dragomon:'Dragmon',MasterTyrannomon:'M-Tyrannomon',MetalGarurumon:'M-Garurumon',MegaKabuterimon:'M-Kabuterimon',HerculesKabuterimon:'H-Kabuterimon',Imperialdramon:'I-dramon',Vermilimon:'Vermillimon',Piedmon:'Pierrotmon',SkullMammothmon:'S-Mammothmon'};
+const TYN=Object.fromEntries(ALL.map(d=>[d.n,tyOf(d)]));
+const dty=n=>{const a=AL[n]||n;return TYN[a]!=null?TYN[a]:(DT[n]!=null?DT[n]:DC[n])};
+const tr=(n,dp)=>`<li>${dp?`<span class="dp">DP ${dp}</span> `:''}<b class="t${dty(n)}" data-n="${n.toLowerCase()}">${IC[dty(n)]} ${n}</b>${(DE[n]||[]).length?'<ul>'+DE[n].map(c=>tr(c[0],c[1])).join('')+'</ul>':''}</li>`;
+document.getElementById('dt').innerHTML=RK.map(d=>`<div class="fam"><ul class="tree">${tr(d.n,'')}</ul></div>`).join('');
+const dq=document.getElementById('dq');
+dq.oninput=()=>{const q=dq.value.trim().toLowerCase();document.querySelectorAll('#dt .fam').forEach(c=>{let h=0;c.querySelectorAll('b[data-n]').forEach(b=>{const m=q&&b.dataset.n.includes(q);b.classList.toggle('hit',!!m);if(m)h++});c.style.display=(!q||h)?'':'none'})};
+ac(dq,Object.keys({...DT,...DC}).sort().map(n=>({n:n,t:dty(n),l:''})));
+function setTop(t){document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
+function showDv(){setTop('dv')}
+const qi=id=>document.getElementById(id);
+function showQv(){setTop('qv');qcalc()}
+function qswap(){['l','q'].forEach(k=>{const a=qi('q'+k+'a'),b=qi('q'+k+'b'),t=a.value;a.value=b.value;b.value=t});qcalc()}
+function qcalc(){const out=qi('qout'),f=[['qla','Level A',1,1e9],['qqa','Quality A',0,100],['qlb','Level B',1,1e9],['qqb','Quality B',0,100]],v={};
+ for(const [id,nm,lo,hi] of f){const raw=qi(id).value.trim();if(raw===''){out.innerHTML='<div class="qr"><small>Fill in both levels and both Qualities to see the result.</small></div>';return}
+  const x=Number(raw);if(!Number.isInteger(x)||x<lo||x>hi){out.innerHTML=`<div class="qr"><small>${nm} must be a whole number from ${lo} to ${hi==1e9?'any size':hi}.</small></div>`;return}v[id]=x}
+ const la=v.qla,qa=v.qqa,lb=v.qlb,qb=v.qqb,hi=Math.max(la,lb),lo=Math.min(la,lb),mx=hi+Math.floor(lo/5);
+ let q,why;if(la>lb){q=qa;why=`Digimon A has the higher level (${la} vs ${lb}), so the new Digimon inherits A&rsquo;s Quality.`}else if(lb>la){q=qb;why=`Digimon B has the higher level (${lb} vs ${la}), so the new Digimon inherits B&rsquo;s Quality.`}else{q=Math.max(qa,qb);why=`Both are level ${la}, so the new Digimon inherits the higher Quality (${q}).`}
+ out.innerHTML=`<div class="qr"><div class="big">Quality ${q} ${q>=95?'<span class="foil">FOIL</span>':''}</div><div>${why}${q>=95?' 95 and above has the foil effect.':''}</div>
+ <div class="big" style="margin-top:8px">Max level ${mx}</div><div>The higher level (${hi}) is the base, plus the lower level (${lo}) &divide; 5, rounded down (${Math.floor(lo/5)}), = ${mx}. It doesn&rsquo;t matter which slot each Digimon is in.</div></div>`}
+function combine(a,b){let x=a,y=b,st=[];while(x.lv>y.lv)x=down(x,st);while(y.lv>x.lv)y=down(y,st);const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2);return{nm:LV[x.lv].res[code]||code,code:code,lv:x.lv}}
+function combos(){const out=document.getElementById('qc'),A=fa.value.trim(),B=fb.value.trim(),msg=t=>{out.innerHTML='<div class="rec"><small>'+t+'</small></div>'};
+ if(A&&B){msg('Leave one box empty to see every possible combo for a single parent.');return}
+ if(!A&&!B){msg('Type one parent Digimon first, then press Possible combos.');return}
+ const q=A||B,m=pick(q);if(m.length!=1){msg(m.length?'Keep typing to pick one Digimon: '+m.slice(0,6).map(d=>d.n).join(', ')+(m.length>6?'...':''):'No Digimon starts with "'+q+'". Only Champion, Ultimate and Mega Digimon can be parents.');return}
+ const p=m[0],g={};ALL.forEach(o=>{const r=combine(p,o);(g[r.nm]=g[r.nm]||{code:r.code,lv:r.lv,list:[]}).list.push(o)});
+ const keys=Object.keys(g).sort((a,b)=>rt(g[a].code)-rt(g[b].code)||a.localeCompare(b)),col=d=>'<span class="t'+tyOf(d)+'">'+d.n+'</span>';
+ out.innerHTML='<div class="rec"><b>'+keys.length+' possible results for <span class="t'+tyOf(p)+'">'+p.n+'</span></b> <small>('+LN[p.lv]+'; a Digimon of a different level is reduced first, same as the Quick finder)</small></div><ul class="tree"><li><b class="t'+tyOf(p)+'">'+IC[tyOf(p)]+' '+p.n+'</b><ul>'+keys.map(k=>{const r=g[k];return '<li><span class="dp">'+(r.code[0]=='M'?'Mutation':RL[r.lv])+'</span> <b class="t'+rt(r.code)+'">'+IC[rt(r.code)]+' '+k+'</b><ul><li><small>with</small> '+r.list.map(col).join(', ')+'</li></ul></li>'}).join('')+'</ul></li></ul>'}
+const MVD=[["Air Attack","Champion","Nature","Attack","One Enemy",8,20.0,["Unimon"],"",""],["Alias Fake","Mega","None","Assist","Self",26,null,[],"Leaves a decoy behind, so enemies miss you more often.",""],["Alien Ray","Ultimate","Machine","Attack","One Enemy",20,37.5,["Vademon"],"",""],["Anti-Confusion","Champion","None","Assist","One Ally",12,null,["Saberdramon"],"Removes confusion from one ally.","cure"],["Anti-Dote","Champion","None","Assist","One Ally",10,null,["Gururumon"],"Removes poison from one ally.","cure"],["Anti-Freeze","Champion","None","Assist","One Ally",12,null,["ShimaUnimon"],"Removes paralysis from one ally.","cure"],["Armor Aid","Mega","None","Assist","Self",20,null,[],"Raises your own defense by 20%.","buff"],["Armor Coating","Champion","None","Assist","One Ally",10,null,["MudFrigimon"],"Raises one ally's attack by 20%.","buff"],["Banana Slip","Mega","None","Assist","All Enemies",60,null,["MetalEtemon"],"Enemies that are waiting to counter lose their turn.",""],["Beast King Fist","Champion","None","Counter","One Enemy",12,15.0,["Leomon"],"Counter that sends back 1.5x the damage taken (rounded down).",""],["Big Bang Boom","Ultimate","Machine","Attack","All Enemies",40,30.0,["Giromon"],"",""],["BlackPearl Shot","Rookie","None","Attack","One Enemy",4,20.0,["Syakomon"],"Ignores the target's defense.",""],["Blaze Blast","Champion","Fire","Attack","One Enemy",10,25.0,["Tyrannomon"],"",""],["Blaze Buster","Champion","Fire","Assist","One Ally",10,null,["Flarerizamon"],"Turns all of an ally's moves into Fire moves.","buff"],["Blind Attack","Mega","None","Attack","All",30,60.0,[],"Hits one random Digimon, ally or enemy.",""],["Blue Blaster","Rookie","Fire","Attack","One Enemy",4,10.0,["Gabumon"],"",""],["Bolt Strike","Rookie","Water","Attack","One Enemy",6,10.0,["SnowGoburimon"],"",""],["Boom Bubble","Rookie","Nature","Attack","One Enemy",6,12.5,["Patamon"],"",""],["Brown Stinger","Champion","Nature","Attack","One Enemy",12,20.0,["Flymon"],"Needle attack (in-game text mentions poison needles).",""],["Buffalo Breath","Champion","Darkness","Counter","One Enemy",10,22.5,["Raremon"],"Counter that can confuse the attacker.","confuse"],["Chaos Cannon","Mega","Machine","Attack","Random Enemy",40,25.0,[],"Keeps firing at random enemies while each shot knocks one out.",""],["Chrono Breaker","Champion","Machine","Interrupt","One Enemy",14,20.0,["Clockmon"],"Pushes the enemy's attack to the end of the turn.",""],["Concert Crush","Ultimate","None","Attack","One Enemy",18,27.5,["Etemon"],"Target can't use its power techs.",""],["Coral Crusher","Champion","Water","Attack","One Enemy",12,20.0,["Gesomon"],"Lowers the target's speed by 20%.","debuff"],["Crimson Claw","Champion","Darkness","Attack","One Enemy",18,35.0,["Devidramon"],"Passes your own confusion, poison or stun on to the enemy.","poison,confuse,stun"],["Crimson Flame","Mega","None","Assist","One Ally",100,null,["Phoenixmon"],"Brings one ally back at full HP, even if knocked out.","heal"],["Critical Blow","Mega","None","Attack","One Enemy",26,20.0,[],"Only deals damage when it would defeat the target (at least 20 power).",""],["Dark Shot","Ultimate","Machine","Attack","Random Enemy",20,40.0,["SkullGreymon"],"",""],["Darkness Gear","Rookie","Machine","Attack","One Enemy",8,17.5,["Hagurumon"],"",""],["Darkness Ray","Champion","Darkness","Assist","One Ally",10,null,["Darkrizamon"],"Turns all of an ally's moves into Darkness moves.","buff"],["Darkside Attack","Ultimate","Machine","Attack","One Enemy",20,32.5,["Megadramon"],"Target can't recover HP.",""],["Defensive Ray","Champion","None","Assist","One Ally",10,null,["Icemon"],"Raises one ally's defense by 20%.","buff"],["Demi Dart","Rookie","Darkness","Attack","One Enemy",8,15.0,["DemiDevimon"],"Lowers the target's MP a little.",""],["Destabilizer Ray","Mega","None","Attack","All Enemies",60,null,[],"Lowers all enemies' defense by 20%.","debuff"],["Digital Bomb","Ultimate","Machine","Attack","All Enemies",30,22.5,["Datamon"],"",""],["Duo ScissorClaw","Ultimate","None","Attack","All Enemies",60,22.5,["Okuwamon"],"Lowers each target's defense by about 20% before the hit lands.","debuff"],["Electric Shock","Rookie","Nature","Attack","One Enemy",8,17.5,["Betamon"],"",""],["Electro Thread","Rookie","Nature","Attack","One Enemy",8,17.5,["Kunemon"],"",""],["Electro-Shocker","Champion","Nature","Interrupt","One Enemy",12,22.5,["Kabuterimon"],"Lowers the target's attack by 20%.","debuff"],["Energetic Bomb","Ultimate","Machine","Counter","One Enemy",20,30.0,["MetalMamemon"],"Counter that hits every enemy instead of one.",""],["Energy Blast","Mega","Machine","Attack","All Enemies",60,37.5,["M-Seadramon"],"",""],["Energy Blast (Boss)","Mega","None","Attack","One Enemy",40,60.0,[],"",""],["E-Stun Blast","Rookie","Darkness","Attack","One Enemy",8,15.0,["Gazimon"],"Blast that may paralyze the target.","paralyze"],["Evil Charm","Champion","Darkness","Attack","One Enemy",12,20.0,["Bakemon"],"Spell that can confuse the target.","confuse"],["Evil Touch","Champion","Darkness","Attack","One Enemy",12,22.5,["Devimon"],"Lowers the target's MP.",""],["Evil Wind","Ultimate","Water","Attack","All Enemies",60,20.0,["MarineDevimon"],"Lowers all enemies' speed by 20%.","debuff"],["Fantasmic Bomb","Mega","Fire","Attack","All Enemies",84,42.5,[],"",""],["Fantasmic Ray","Mega","Machine","Attack","All Enemies",90,45.0,[],"",""],["Fire Blast","Champion","Fire","Attack","All Enemies",22,17.5,["D-Tyrannomon"],"",""],["Fire Blast II","Ultimate","Machine","Attack","One Enemy",20,37.5,["MetalTyrannomon"],"",""],["Fire Tornado","Mega","None","Attack","All Enemies",80,45.0,["Magnadramon"],"",""],["Fireball","Champion","Fire","Attack","One Enemy",12,30.0,["Meramon"],"",""],["Fist of Fate","Champion","None","Attack","One Enemy",10,27.5,["Angemon"],"",""],["Flame Bomber","Rookie","Fire","Attack","One Enemy",6,15.0,["Candlemon"],"",""],["Flaming Rocket","Champion","Fire","Attack","One Enemy",12,30.0,["Flamedramon"],"",""],["Flower Cannon","Ultimate","Nature","Attack","One Enemy",16,35.0,["Lillymon"],"",""],["Fossil Bite","Champion","None","Attack","One Enemy",8,20.0,["Coelamon"],"",""],["Freeze Breath","Mega","Water","Attack","All Enemies",60,37.5,["M-Garurumon"],"",""],["Friendly Fire","Rookie","Fire","Attack","One Ally",4,17.5,["Tsukaimon"],"Targets an ally, which lets you trigger ally-reactive moves.",""],["Full HP Cure","Mega","None","Assist","All Allies",130,null,["Seraphimon"],"Fully heals every ally in battle.","heal"],["Full Recovery","Ultimate","None","Assist","One Ally",55,null,["Panjyamon"],"Fully heals one ally (does not revive).","heal"],["Fungus Cruncher","Rookie","None","Assist","Self",8,null,["Mushroomon"],"Makes you poisonous, so anything that hits you is poisoned.","poison"],["GAIA Gear","Mega","None","Counter","One Enemy",48,67.5,[],"Counter only. Misses automatically if no counter is triggered.",""],["Garuru Cannon","Mega","Machine","Attack","All Enemies",80,45.0,[],"Missile barrage on all enemies. Only seen on wild Omnimon in Tera Domain.",""],["Giga Blaster","Ultimate","Machine","Attack","One Enemy",18,37.5,["MetalGreymon"],"",""],["Giga Byte Wing","Ultimate","Machine","Attack","One Enemy",20,32.5,["Gigadramon"],"Target can't regain from status moves.",""],["Giga Cannon","Mega","Machine","Attack","Random Enemy",60,30.0,["Machinedramon"],"Keeps firing until your MP runs out.",""],["GigaScissorClaw","Mega","Nature","Interrupt","One Enemy",40,30.0,["H-Kabuterimon"],"Stops the enemy from attacking.",""],["Grisly Wing","Ultimate","Darkness","Attack","All Enemies",40,30.0,["Myotismon"],"",""],["Hail Storm","Rookie","Water","Attack","One Enemy",8,17.5,["SnowAgumon"],"",""],["Harpoon Torpedo","Champion","Machine","Attack","One Enemy",10,25.0,["Ikkakumon"],"",""],["Heart Break Hit","Ultimate","None","Assist","All",36,null,["WaruMonzaemon"],"Lowers attack and defense of every Data Digimon in battle by 20%.","debuff"],["Heaven's Arrow","Ultimate","None","Attack","One Enemy",16,35.0,["Angewomon"],"",""],["Horn Buster","Ultimate","None","Interrupt","One Enemy",20,32.5,["M-Kabuterimon"],"Sharply lowers the enemy's offense.","debuff"],["Howling Blaster","Champion","Fire","Attack","One Enemy",12,27.5,["Garurumon"],"",""],["Howling Crusher","Mega","None","Attack","One Enemy",30,45.0,["SaberLeomon"],"Claw strike that cannot be countered.",""],["HP Recovery","Ultimate","None","Assist","All Allies",65,null,["MagnaAngemon"],"Heals every ally for 150 HP.","heal"],["HP Zapper","Mega","None","Attack","One Enemy",36,null,[],"Deals damage equal to half the target's remaining HP (rounded down).",""],["Hung on Death","Mega","None","Assist","One Ally",100,null,["Jijimon"],"Removes the Zombie status from one ally.","cure"],["Hydro Blaster","Champion","Water","Attack","One Enemy",10,25.0,["Shellmon"],"",""],["Hyper Cannon","Champion","Machine","Attack","One Enemy",10,25.0,["Tankmon"],"",""],["Hyper Flashing","Ultimate","None","Assist","All",36,null,["Digitamamon"],"Lowers attack and defense of every Vaccine Digimon in battle by 20%.","debuff"],["Hyper Heat","Champion","Fire","Attack","One Enemy",10,22.5,["Cyclonemon"],"",""],["Ice Blast","Champion","Water","Attack","All Enemies",18,15.0,["Seadramon"],"",""],["Icicle Shot","Champion","Water","Attack","One Enemy",10,25.0,["Mojyamon"],"",""],["Inferno Missile","Mega","Machine","Attack","All Enemies",80,45.0,["Diaboromon"],"",""],["Invincibility","Ultimate","None","Assist","One Ally",20,null,["Meteormon"],"Blocks all attacks against one ally.","buff"],["Invisibility","Rookie","None","Assist","Self",8,null,["Dokunemon"],"Enemies stop targeting you.","buff"],["Iron Drill Spin","Champion","Machine","Attack","One Enemy",10,25.0,["Drimogemon"],"",""],["Junk Chunker","Ultimate","Darkness","Attack","One Enemy",12,30.0,["Garbagemon"],"",""],["Karate Sweep","Mega","None","Attack","All Enemies",80,45.0,[],"",""],["Kongou","Mega","None","Assist","Self",16,null,["Baihumon"],"You take no damage during your own turn.","buff"],["Left Hand","Mega","None","Attack","One Enemy",36,55.0,[],"",""],["Legendary Blade","Mega","None","Attack","All Enemies",70,40.0,["Gryphonmon"],"",""],["Life Shield","Rookie","None","Interrupt","One Enemy",6,null,["Goburimon"],"Defends an ally during an attack and lowers the attacker's tech power.",""],["Light Gun","Mega","None","Attack","One Enemy",60,70.0,[],"",""],["Lightning Blade","Ultimate","None","Attack","All Enemies",24,20.0,["Andromon"],"",""],["Lightning Blast","Ultimate","Nature","Attack","One Enemy",20,40.0,["Raidramon"],"",""],["Lightning Paw","Champion","None","Attack","One Enemy",10,25.0,["Gatomon"],"",""],["Lightning Spear","Ultimate","Nature","Attack","One Enemy",16,35.0,["MegaSeadramon"],"",""],["Magical Tail","Ultimate","None","Attack","One Enemy",18,37.5,["Piximon"],"",""],["Marching Fishes","Rookie","Water","Attack","One Enemy",6,15.0,["Gomamon"],"",""],["Mech Ray","Champion","Machine","Assist","One Ally",10,null,["N-Drimogemon"],"Turns all of an ally's moves into Machine moves.","buff"],["Mega Bone Stick","Champion","None","Attack","All Enemies",14,12.5,["Apemon"],"",""],["Mega Fire","Mega","None","Attack","All Enemies",84,42.5,["I-dramon"],"",""],["Mega Heal","Champion","None","Assist","One Ally",30,null,["Piddomon"],"Heals one ally for 150 HP.","heal"],["Metal Fireball","Ultimate","Machine","Attack","All Enemies",32,25.0,["SkullMeramon"],"",""],["Meteor Stream","Champion","Fire","Counter","One Enemy",12,20.0,["Starmon"],"Counter that hits all enemies.",""],["Meteor Wing","Champion","Fire","Attack","All Enemies",18,15.0,["Birdramon"],"",""],["MP Destroyer","Ultimate","None","Interrupt","One Enemy",12,null,["Tekkamon"],"Drains the MP the enemy used and lowers its tech power.","debuff"],["MP Magic","Ultimate","None","Interrupt","One Enemy",4,null,["BlueMeramon"],"Absorbs the MP the enemy spent on its move.",""],["Musical Fist","Ultimate","None","Attack","Random Enemy",12,37.5,["ShogunGekomon"],"Hits a random enemy, but heals targets you have a type advantage over.",""],["Nature Hit Ray","Champion","Nature","Assist","One Ally",10,null,["MoriShellmon"],"Turns all of an ally's moves into Nature moves.","buff"],["Necro Magic","Champion","None","Assist","Random Enemy",0,null,["Soulmon"],"Takes MP from a knocked-out Digimon, much more than guarding gives.",""],["Needle Spray","Champion","Nature","Counter","One Enemy",10,22.5,["Togemon"],"Counter that poisons the attacker.","poison"],["Needle Squall","Mega","Machine","Attack","All Enemies",80,42.5,["Pukumon"],"",""],["Ninja Flower","Ultimate","Nature","Attack","All Enemies",30,25.0,["Blossomon"],"",""],["NinjaKnifeThrow","Champion","None","Counter","One Enemy",10,22.5,["Ninjamon"],"Counter that deals 1.5x total damage.",""],["Nova Blast","Champion","Fire","Attack","One Enemy",12,27.5,["Greymon"],"",""],["Ocean Love","Mega","None","Attack","Random Enemy",30,35.0,["MarineAngemon"],"Disables the target's strong techs.",""],["Panic Wave","Champion","None","Assist","One Ally",10,null,["P-Sukamon"],"Adds confusion to one ally's attacks.","confuse"],["Parameter Patch","Champion","None","Assist","One Ally",12,null,["J-Mojyamon"],"Clears every ailment except death from one ally.","cure"],["Party Time","Champion","Darkness","Attack","One Enemy",10,20.0,["Nanimon","Numemon","Sukamon","Vegiemon"],"Attack power is 1.5x while you are poisoned.",""],["Pepper Breath","Rookie","Fire","Attack","One Enemy",8,17.5,["Agumon"],"",""],["Pit Pelter","Ultimate","Nature","Attack","All Enemies",40,27.5,["Cherrymon"],"",""],["Poison Ivy","Rookie","Nature","Attack","One Enemy",8,15.0,["Palmon"],"Can poison the target.","poison"],["Poison Wave","Ultimate","None","Assist","One Ally",26,null,["WaruSeadramon"],"Adds poison to one ally's attacks.","poison"],["Poison Wing","Mega","Fire","Attack","One Enemy",40,60.0,["Kimeramon"],"",""],["Pretty Attack","Ultimate","None","Attack","One Enemy",20,30.0,["ExTyrannomon"],"Disables the target's strong techs.",""],["Protect Grenade","Champion","Machine","Attack","One Enemy",12,20.0,["Guardromon"],"",""],["Pulse Blast","Champion","None","Attack","One Enemy",12,20.0,["Dolphmon"],"Lowers the target's attack by 20%.","debuff"],["Pummel Peck","Champion","Machine","Attack","One Enemy",10,25.0,["Kiwimon"],"",""],["Pummel Whack","Champion","None","Counter","One Enemy",20,30.0,["Ogremon"],"Counter that costs the attacker's move MP from you instead.",""],["Puppet Pummel","Mega","Machine","Attack","One Enemy",32,50.0,["Puppetmon"],"",""],["Rail Cannon","Mega","Machine","Attack","One Enemy",40,67.5,[],"Always strikes last in the turn.",""],["Rain of Pollen","Rookie","Nature","Attack","One Enemy",6,15.0,["Floramon"],"",""],["Recovery Power","Ultimate","None","Assist","All Allies",36,null,["Tinmon"],"Cures confusion, poison and stun on all allies.","cure"],["Reduction Ray","Mega","None","Assist","One Enemy",12,null,[],"Lowers one enemy's attack by 20%.","debuff"],["Re-Format","Ultimate","None","Assist","All Enemies",40,null,["Vermilimon"],"Wipes all status changes, including boosts, from every enemy.",""],["Re-Initialize","Champion","None","Assist","One Enemy",12,null,["Hyogamon"],"Wipes all status changes, including boosts, from one enemy.",""],["Reset Status","Mega","None","Assist","Self",32,null,[],"Removes all of your own status changes, boosts included.",""],["Right Hand","Mega","None","Attack","One Enemy",30,47.5,[],"",""],["Rock Fist","Rookie","None","Attack","One Enemy",8,20.0,["Gotsumon"],"",""],["Rose Spear","Mega","Nature","Attack","All Enemies",60,35.0,["Rosemon"],"",""],["RottenRainballs","Champion","None","Assist","One Ally",8,null,["RedVegiemon"],"One ally poisons whatever it hits.","poison"],["Royal Smasher","Ultimate","Nature","Attack","One Enemy",14,32.5,["Deramon"],"",""],["Sad Water Blast","Mega","Water","Attack","All Enemies",80,45.0,["Preciomon"],"",""],["Safety Sphere","Mega","None","Assist","Self",18,null,[],"Raises your defense by 20% and makes you harder to target.","buff"],["S-Bone Crusher","Mega","None","Attack","All Enemies",70,40.0,["S-Mammothmon"],"",""],["Scissor Claw","Champion","None","Attack","One Enemy",12,22.5,["Kuwagamon"],"Lowers the target's defense by about 20% before the hit lands.","debuff"],["Scissor Magic","Rookie","None","Attack","One Enemy",6,15.0,["Crabmon"],"",""],["Shadow Scythe","Ultimate","Darkness","Attack","One Enemy",20,37.5,["Phantomon"],"Strikes again if the target is knocked out.",""],["Slamming Tusk","Champion","None","Attack","One Enemy",12,22.5,["Tuskmon"],"",""],["Small HP Cure","Rookie","None","Assist","One Ally",12,null,["ClearAgumon"],"Heals one ally for 50 HP.","heal"],["Smiley Bomb","Ultimate","Machine","Counter","One Enemy",16,32.5,["Mamemon"],"Counter that deals 1.5x damage, minus 1.",""],["Smiley Warhead","Mega","Machine","Counter","One Enemy",40,40.0,["P-Mamemon"],"Counter that hits all enemies with power 60.",""],["Solar Ray","Champion","Machine","Attack","One Enemy",8,20.0,["Centarumon"],"",""],["Sonic Crusher","Champion","None","Attack","One Enemy",12,20.0,["Gekomon"],"Sonic blow that can confuse the target.","confuse"],["Spinning Needle","Champion","Nature","Attack","One Enemy",10,22.5,["Airdramon"],"1.5x power against enemies waiting to counter.",""],["Spiral Saw","Rookie","None","Attack","One Enemy",8,17.5,["Gizamon"],"",""],["Spiral Twister","Rookie","Fire","Attack","One Enemy",6,12.5,["Biyomon"],"",""],["Spurting Ink","Champion","Water","Attack","One Enemy",10,25.0,["Octomon"],"",""],["S-Thunder Smack","Rookie","Nature","Attack","Random Enemy",6,17.5,["Elecmon"],"",""],["Strong Carapace","Champion","None","Attack","All Enemies",12,10.0,["Tortomon"],"",""],["Stun Bubble","Rookie","Water","Attack","One Enemy",8,15.0,["Otamamon"],"Bubble attack that confuses the target.","confuse"],["Stun Flame Shot","Champion","Fire","Attack","One Enemy",12,20.0,["Kokatorimon"],"Flame that stuns the target.","stun"],["Stun Punch","Mega","None","Counter","One Enemy",44,57.5,[],"Counter that stuns the attacker.","stun"],["Stun Ray","Champion","None","Assist","One Ally",10,null,["SandYanmamon"],"Makes one ally's attacks stun their targets.","stun"],["SubzeroIcePunch","Champion","Water","Attack","One Enemy",10,25.0,["Frigimon"],"Gains +2.5 power for each successive use.",""],["Super Shocker","Rookie","Nature","Attack","Random Enemy",6,12.5,["Tentomon"],"",""],["Super Slap","Rookie","None","Attack","One Enemy",6,15.0,["Penguinmon"],"",""],["Tail Blade","Ultimate","None","Counter","One Enemy",18,30.0,["Scorpiomon"],"Counter stance that makes enemies more likely to miss you.",""],["Tentacle Claw","Ultimate","None","Attack","One Enemy",16,27.5,["Dragomon"],"",""],["Terra Force","Mega","None","Attack","One Enemy",40,60.0,["WarGreymon"],"",""],["Thunder Ball","Champion","Nature","Counter","Random Enemy",10,22.5,["Wizardmon"],"Counter that stuns a random enemy.","stun"],["Thunder Ray","Champion","Nature","Attack","One Enemy",10,25.0,["Yanmamon"],"",""],["Tidal Wave","Ultimate","Water","Attack","All Enemies",60,20.0,["Whamon"],"Lowers all enemies' attack by 20%.","debuff"],["Titan Laser","Mega","Machine","Attack","All Enemies",90,47.5,[],"Laser on every enemy (seems to add about 2 extra damage on neutral targets).",""],["Tomahawk Crunch","Mega","Machine","Attack","All Enemies",60,37.5,["Boltmon"],"",""],["Toy Flame","Rookie","None","Attack","One Enemy",6,15.0,["ToyAgumon"],"",""],["Transcend Sword","Mega","None","Attack","One Enemy",38,50.0,["Omnimon"],"Power rises to 75 against enemies waiting to counter. Can paralyze.","paralyze"],["Trick or Treat","Ultimate","Nature","Attack","All Enemies",30,30.0,["Pumpkinmon"],"Hits all enemies, but drops your own defense to 0.",""],["Tri-Horn Attack","Ultimate","None","Attack","One Enemy",16,35.0,["Triceramon"],"",""],["Triple Forces","Champion","Darkness","Attack","All Enemies",18,15.0,["Deltamon"],"",""],["Trump Sword","Mega","None","Attack","One Enemy",30,45.0,["Pierrotmon"],"",""],["Tubular Attack","Mega","None","Counter","One Enemy",56,47.5,[],"Counter that hits all enemies.",""],["Tusk Crusher","Ultimate","None","Attack","One Enemy",18,32.5,["Mammothmon"],"",""],["Twig Tap","Champion","Nature","Attack","One Enemy",12,20.0,["Woodmon"],"Drains the target's HP.",""],["Vee Head Butt","Rookie","None","Attack","One Enemy",8,20.0,["Veemon"],"",""],["Venom Infusion","Mega","None","Interrupt","One Enemy",40,null,["V-Myotismon"],"Frightens the enemy so it cannot attack.","stun"],["Virus Attack","Ultimate","None","Assist","All",36,null,["Monzaemon"],"Lowers attack and defense of every Virus Digimon in battle by 20%.","debuff"],["V-Nova Blast","Champion","None","Attack","One Enemy",10,22.5,["Veedramon"],"1.5x power against enemies waiting to counter.",""],["Volcanic Strike","Champion","Fire","Attack","One Enemy",12,30.0,["Monochromon"],"",""],["Vulcan's Hammer","Ultimate","None","Attack","All Enemies",28,22.5,["Zudomon"],"",""],["V-Wing Blade","Ultimate","None","Attack","One Enemy",16,32.5,["AeroVeedramon"],"1.5x power against enemies waiting to counter.",""],["Waking Dream","Rookie","Darkness","Attack","One Enemy",4,10.0,["Tapirmon"],"",""],["Water Ray","Champion","Water","Assist","One Ally",10,null,["IceDevimon"],"Turns all of an ally's moves into Water moves.","buff"],["Wing Blade","Ultimate","Nature","Interrupt","One Enemy",20,35.0,["Garudamon"],"Interrupts the enemy with a vacuum blade.",""],["Wolf Claw","Ultimate","None","Attack","One Enemy",16,35.0,["WereGarurumon"],"",""],["X-Scissor Claw","Mega","None","Attack","One Enemy",40,55.0,["GranKuwagamon"],"",""],["Zen Recovery","Ultimate","None","Assist","All Allies",40,null,["MasterTyrannomon"],"Restores every ally's status to normal.","cure"],["Zip Boom","Champion","None","Assist","One Ally",12,null,["Akatorimon"],"Raises one ally's speed by 20%.","buff"]];
+const MR=['Rookie','Champion','Ultimate','Mega'],MA={'V-Myotismon':'VenomMyotismon'};
+const mvt=n=>{const a=MA[n]||n,v=dty(a);return v==null?'':'t'+v};
+const MS={r:new Set(),k:new Set(),e:new Set(),q:'',s:'',d:'',sort:'r',dir:1};
+const EL=[['poison','Poison'],['confuse','Confusion'],['stun','Stun'],['paralyze','Paralysis'],['debuff','Debuff'],['buff','Buff'],['heal','Heal'],['cure','Cure status']];
+function mvBtns(id,arr,set){const b=document.getElementById(id);b.innerHTML=arr.map(a=>`<button class="pill${set.has(a[0])?' on':''}" data-v="${a[0]}">${a[1]}</button>`).join('');b.onclick=e=>{const v=e.target.dataset&&e.target.dataset.v;if(!v)return;set.has(v)?set.delete(v):set.add(v);mvRender()}}
+function mvRender(){
+ mvBtns('mvst',MR.map(x=>[x,x]),MS.r);mvBtns('mvk',['Attack','Counter','Interrupt','Assist'].map(x=>[x,x]),MS.k);mvBtns('mve',EL,MS.e);
+ const q=MS.q.toLowerCase();
+ let rows=MVD.filter(r=>(!MS.r.size||MS.r.has(r[1]))&&(!MS.k.size||MS.k.has(r[3]))&&(!MS.s||r[2]==MS.s)&&(!MS.d||r[7].includes(MS.d))&&(!MS.e.size||[...MS.e].some(t=>r[9].split(',').includes(t)))&&(!q||r[0].toLowerCase().includes(q)||r[7].some(n=>n.toLowerCase().includes(q))));
+ const key={r:r=>MR.indexOf(r[1]),m:r=>r[0].toLowerCase(),p:r=>r[6]==null?-1:r[6],c:r=>r[5]};
+ const f=key[MS.sort];rows=rows.slice().sort((a,b)=>{const x=f(a),y=f(b);return (x<y?-1:x>y?1:(MR.indexOf(a[1])-MR.indexOf(b[1])||a[0].localeCompare(b[0])))*MS.dir});
+ const H=[['m','Move'],['r','Stage'],[0,'Kind'],[0,'Specialty'],[0,'Target'],['c','MP'],['p','Power'],[0,'Learned by'],[0,'Special effect']];
+ const ar=k=>MS.sort==k?(MS.dir>0?' \u25B2':' \u25BC'):'';
+ const tg={poison:'Poison',confuse:'Confusion',stun:'Stun',paralyze:'Paralysis'};
+ document.getElementById('mvt').innerHTML='<thead><tr>'+H.map(h=>`<th${h[0]?` data-s="${h[0]}"`:''}>${h[1]}${h[0]?ar(h[0]):''}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>{
+  const lr=r[7].length?r[7].map(n=>`<span class="${mvt(n)}" data-d="${n}">${n}</span>`).join(', '):'<small>Unknown (boss/wild only)</small>';
+  const tags=r[9].split(',').filter(t=>tg[t]).map(t=>`<span class="tag">${tg[t]}</span>`).join('');
+  return `<tr><td class="n">${r[0]}</td><td class="c">${r[1]}</td><td class="c">${r[3]}</td><td class="c">${r[2]}</td><td class="c">${r[4]}</td><td class="c">${r[5]}</td><td class="c">${r[6]==null?'&ndash;':r[6]}</td><td class="ln">${lr}</td><td>${r[8]||'<small>Plain damage</small>'}${tags}</td></tr>`}).join('')+'</tbody>';
+ document.getElementById('mvc').innerHTML=`${rows.length} of ${MVD.length} moves`+(MS.d?` &middot; showing moves of <b class="${mvt(MS.d)}">${MS.d}</b> <button class="qbtn" onclick="MS.d='';mvRender()">Clear</button>`:'');
+}
+document.getElementById('mvt').onclick=e=>{const t=e.target;if(t.dataset&&t.dataset.s){if(MS.sort==t.dataset.s)MS.dir=-MS.dir;else{MS.sort=t.dataset.s;MS.dir=t.dataset.s=='r'||t.dataset.s=='m'?1:-1}mvRender()}else if(t.dataset&&t.dataset.d){MS.d=t.dataset.d;mvRender()}};
+const mvq=document.getElementById('mvq');mvq.oninput=()=>{MS.q=mvq.value.trim();mvRender()};
+document.getElementById('mvs').onchange=e=>{MS.s=e.target.value;mvRender()};
+function mvReset(){MS.r.clear();MS.k.clear();MS.e.clear();MS.q='';MS.s='';MS.d='';MS.sort='r';MS.dir=1;mvq.value='';document.getElementById('mvs').value='';mvRender()}
+function showMv(){setTop('mv');mvRender()}
+show(0);
+</script></body></html>
+
+</body></html>

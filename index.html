@@ -80,7 +80,21 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .wmore{font:inherit;font-size:12px;border:0;background:none;color:var(--fg);text-decoration:underline;cursor:pointer;padding:6px 0}
 .wcard details{margin-top:6px}.wcard summary{cursor:pointer;font-weight:700;font-size:13px}.wcard details div{margin-top:4px;line-height:1.7}
 .wkc{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;align-items:start}
-.mvbr{font-size:12px;border-top:1px solid var(--bd);padding:4px 0}.mvbr .m{color:var(--mut)}</style></head><body>
+.mvbr{font-size:12px;border-top:1px solid var(--bd);padding:4px 0}.mvbr .m{color:var(--mut)}#dt .tree ul{margin-left:10px;padding-left:20px;border-left:2px solid var(--bd)}
+#dt .tree ul>li{position:relative;margin:7px 0}#dt .tree ul>li::before{content:"";position:absolute;left:-20px;top:13px;width:18px;border-top:2px solid var(--bd)}
+#dt .tree li.ch{margin-top:12px}
+.dpb{display:inline-block;min-width:56px;text-align:center;box-sizing:border-box;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid var(--mut);background:rgba(128,128,128,.14);color:var(--fg);margin-right:5px}
+.dpa{display:inline-block;font-size:11px;color:var(--mut);opacity:.7;margin-right:5px}
+.stg{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:0 6px;margin-left:7px;border-radius:4px;border:1px solid var(--mut);color:var(--mut);vertical-align:1px;white-space:nowrap}
+.stg.s1{background:rgba(128,128,128,.2);color:var(--fg);border-color:var(--mut)}.stg.s2{background:rgba(128,128,128,.5);color:var(--fg);border-color:var(--fg)}.stg.s3{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pick{font-size:12px;color:var(--mut);margin:3px 0 0 2px;font-style:italic}.pick b{color:var(--fg)}
+#dt .tree>li>.nm>b{font-size:15px}.nm{white-space:nowrap}
+.stl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.stl .stg{margin:0;font-size:11px;padding:1px 8px}
+#dt .tree ul.fork{border-left:4px solid var(--mut);border-radius:2px}
+#dt .tree ul.fork>li::before{left:-22px;width:20px;border-top:4px solid var(--mut)}
+#dt .tree ul>li.or{margin:0;height:14px;line-height:14px}#dt .tree ul>li.or::before{display:none}
+.or span{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--fg);background:var(--card);border:1px solid var(--mut);border-radius:999px;padding:0 7px;position:relative;left:-39px;line-height:14px}
+</style></head><body>
 <h1>Digimon World 2 (PS1): Digivolve Guide</h1>
 <div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digivolutions</button><button data-t="dna" onclick="show(cur)">DNA Digivolve</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Weaknesses</button></div>
 <div id="pdna"><div class="how"><b>How to use this</b><b style="display:block;margin-top:6px">What each part does</b><ul>
@@ -104,8 +118,8 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 <div class="grps" id="grps"></div>
 <div class="note"><p><b>Mixing different levels:</b> bring the higher Digimon down by combining it with itself, then combine that result with the other one. Example: Apemon + Etemon: Etemon + Etemon = Ogremon, then Apemon + Ogremon = Tapirmon.</p>
 <p><b>Mutations</b> (cells marked Vademon, SandYanmamon, Yanmamon): M-Tyrannomon / MetalGreymon / Whamon / Zudomon + Cherrymon = Vademon. H-Kabuterimon + Baihumon / M-Garurumon / P-Mamemon / SaberLeomon = SandYanmamon. H-Kabuterimon + Gryphonmon / Rosemon = Yanmamon.</p></div></div></div>
-<div id="dv" hidden><div class="leg"><span class="pill t0">🛡️ Vaccine (green)</span><span class="pill t1">💾 Data (blue)</span><span class="pill t2">🦠 Virus (red)</span></div><div class="how"><b>Digivolution family trees</b><p>Each tree starts at a Rookie and branches into the Champions, Ultimates and Megas it can become. The DP badge is the Digivolve Points needed for that branch; the game picks the branch that matches your Digimon&rsquo;s DP. DP goes up by 1 each time you DNA Digivolve. Digivolving needs EL 11 (Rookie to Champion), EL 21 (Champion to Ultimate) and EL 31 (Ultimate to Mega).</p></div>
-<div class="finder"><b>Find a Digimon in the trees:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dt"></div>
+<div id="dv" hidden><div class="leg"><span class="pill t0">🛡️ Vaccine (green)</span><span class="pill t1">💾 Data (blue)</span><span class="pill t2">🦠 Virus (red)</span></div><div class="how"><b>Digivolution family trees</b><p>Each tree starts at a Rookie and branches into the Champions, Ultimates and Megas it can become. The <b>DP badge</b> is the Digivolve Points needed for that branch, and the game picks the branch that matches your Digimon&rsquo;s DP. &ldquo;any DP&rdquo; means there is no DP choice at that step. DP goes up by 1 each time you DNA Digivolve. Digivolving needs EL 11 (Rookie to Champion), EL 21 (Champion to Ultimate) and EL 31 (Ultimate to Mega).</p></div>
+<div class="stl"><b>Stages, left to right as it grows:</b> <span class="stg s0">Rookie</span> &rarr; <span class="stg s1">Champion</span> &rarr; <span class="stg s2">Ultimate</span> &rarr; <span class="stg s3">Mega</span></div><div class="finder"><b>Find a Digimon in the trees:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dt"></div>
 </div>
 <div id="qv" hidden><div class="how"><b>Digimon Quality calculator</b><p>Quality (0 to 100) sets how well a Digimon&rsquo;s stats grow, so higher is better. You can&rsquo;t see it on wild Digimon, because it is decided the moment one joins your party. Digimon with 95 to 100 Quality have a foil effect. Enter the two Digimon you plan to DNA Digivolve to see the new Digimon&rsquo;s max level and Quality.</p></div>
 <div class="qg"><div class="qc"><b>Digimon A</b><label for="qla">Level</label><input id="qla" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 15" oninput="qcalc()"><label for="qqa">Quality (0 to 100)</label><input id="qqa" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 66" oninput="qcalc()"></div>
@@ -381,7 +395,8 @@ DVT.split('\n').forEach(l=>{if(l[0]=='#'){blk=+l[1];return}const q=l.split('='),
 const AL={NiseDrimogemon:'N-Drimogemon',DarkTyrannomon:'D-Tyrannomon',ExTyrannomon:'Extyrannomon',MetalSeadramon:'M-Seadramon',PrinceMamemon:'P-Mamemon',Dragomon:'Dragmon',MasterTyrannomon:'M-Tyrannomon',MetalGarurumon:'M-Garurumon',MegaKabuterimon:'M-Kabuterimon',HerculesKabuterimon:'H-Kabuterimon',Imperialdramon:'I-dramon',Vermilimon:'Vermillimon',Piedmon:'Pierrotmon',SkullMammothmon:'S-Mammothmon'};
 const TYN=Object.fromEntries(ALL.map(d=>[d.n,tyOf(d)]));
 const dty=n=>{const a=AL[n]||n;return TYN[a]!=null?TYN[a]:(DT[n]!=null?DT[n]:DC[n])};
-const tr=(n,dp)=>`<li>${dp?`<span class="dp">DP ${dp}</span> `:''}<b class="t${dty(n)}" data-n="${n.toLowerCase()}">${IC[dty(n)]} ${n}</b>${(DE[n]||[]).length?'<ul>'+DE[n].map(c=>tr(c[0],c[1])).join('')+'</ul>':''}</li>`;
+const STG=['Rookie','Champion','Ultimate','Mega'];
+const tr=(n,dp,d=0)=>{const k=DE[n]||[],ch=k.length>1;return `<li${dp&&dp!='0+'?' class="ch"':''}>${dp?(dp=='0+'?'<span class="dpa">any DP</span> ':`<span class="dpb">DP ${dp}</span> `):''}<span class="nm"><b class="t${dty(n)}" data-n="${n.toLowerCase()}">${IC[dty(n)]} ${n}</b><span class="stg s${d}">${STG[d]||''}</span></span>${k.length?'<ul'+(ch?' class="fork"':'')+'>'+k.map(c=>tr(c[0],c[1],d+1)).join(ch?'<li class="or"><span>or</span></li>':'')+'</ul>':''}</li>`};
 document.getElementById('dt').innerHTML=RK.map(d=>`<div class="fam"><ul class="tree">${tr(d.n,'')}</ul></div>`).join('');
 const dq=document.getElementById('dq');
 dq.oninput=()=>{const q=dq.value.trim().toLowerCase();document.querySelectorAll('#dt .fam').forEach(c=>{let h=0;c.querySelectorAll('b[data-n]').forEach(b=>{const m=q&&b.dataset.n.includes(q);b.classList.toggle('hit',!!m);if(m)h++});c.style.display=(!q||h)?'':'none'})};

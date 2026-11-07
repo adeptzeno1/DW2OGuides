@@ -151,6 +151,48 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bcml{align-items:center}#bc .bcml input{width:80px}
 .bcc{border-color:var(--acc,#d08a00)}
 .bcl{font-size:12px;color:var(--mut)}
+.qsrc{margin:10px 0 0;text-align:right}
+
+.qn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:12px;font-weight:700;margin-right:8px;vertical-align:1px}
+.qopt{font-weight:400;color:var(--mut);font-size:12px;margin-left:6px}
+.qxpar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center}
+@media (max-width:560px){.qxpar{grid-template-columns:minmax(0,1fr)}.qxplus{text-align:center}}
+.qxpc{display:grid;gap:6px;border:1px solid var(--bd);border-radius:10px;padding:10px;background:var(--card)}
+.qxplus{font-size:20px;font-weight:700;color:var(--mut)}
+.qxp{margin-top:10px;display:grid;gap:4px}
+.qxres{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.qsr3b{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.qfrom{font-size:11px;color:#3f9b62;min-height:14px}
+#qv input,#qv select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);width:100%;box-sizing:border-box;font-variant-numeric:tabular-nums}
+
+.qsg{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:820px){.qsg{grid-template-columns:minmax(0,1fr)}}
+.qsc{display:grid;gap:10px}
+.qsr{display:flex;flex-direction:column;gap:3px;min-width:0}.qsr label,.qsh{font-size:12px;color:var(--mut)}
+.qsr2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qsr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsr3 .qsh{grid-column:1/-1}
+.qst{display:grid;grid-template-columns:minmax(0,1fr) 84px 92px;gap:6px 8px;align-items:center}
+.qst>span{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+.qst label{font-weight:600;font-size:13px}
+#qsim input,#qsim select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);width:100%;box-sizing:border-box;font-variant-numeric:tabular-nums}
+.qso{min-width:0;display:grid;gap:12px}
+.qshead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.qsbig{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.qtag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;border:1.5px solid currentColor}
+.qt0{color:#8b97a0}.qt1{color:#3f9b62}.qt2{color:#3b82d6}.qt3{color:#c9940f}
+.qsm{font-size:13px;color:var(--mut)}.qsm b{color:var(--fg);font-variant-numeric:tabular-nums}
+.qbar{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--bd)}
+.qbar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#10171c;white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
+.qkey{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--mut)}.qkey i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.qtab{overflow-x:auto}.qtab table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.qtab th,.qtab td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--bd);white-space:nowrap}
+.qtab th{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+.qtab th:first-child,.qtab td:first-child{text-align:left}
+.qtab td.qv{font-size:17px;font-weight:700}.qtab small{display:block;font-size:11px;color:var(--mut);font-weight:400}
+.qtiers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 10px}
+@media (max-width:560px){.qtiers{grid-template-columns:1fr 1fr}}
+.qtier{display:grid;gap:1px;border:1.5px solid currentColor;border-radius:8px;padding:8px 10px;font-variant-numeric:tabular-nums}
+.qtier span{color:var(--fg);font-size:13px}.qtier span:last-child{font-weight:700}
 .disc{margin:-4px 0 4px;font-size:12px;color:var(--mut);border-left:3px solid var(--bd);padding-left:8px}
 .bdone{margin-top:8px;font-weight:600}
 .bwarn{margin-top:6px;padding:6px 10px;border-radius:8px;border:1px solid #d08a00;border-left-width:4px;font-size:12px;line-height:1.5}
@@ -271,18 +313,42 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 <li><b>Level limits:</b> a Digimon needs a Max level of at least 11, 21 or 31 to reach Champion, Ultimate or Mega. Max levels are only checked for Digimon you entered one for, and for lines made only from them.</li>
 <li><b>Copies:</b> unticked Digimon can be used more than once. When that happens, the route tells you how many extra to recruit. Ticked Digimon are used once.</li>
 <li><b>No route:</b> the route suggests wild Digimon to catch, Rookies first, then Champions. A Champion counts as two Rookie catches. It never suggests the Digimon you want or any Mega. Ultimates are only suggested if you allow them, and only when one saves at least five Rookie catches. Caught Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div></div>
-<div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Enter the level and Quality of the two Digimon you plan to DNA Digivolve to see the new Digimon&rsquo;s Max level and Quality.</p><ul>
-<li><b>Quality</b> (0 to 100) sets how well a Digimon&rsquo;s stats grow. Higher is better.</li>
-<li>Wild Digimon don&rsquo;t show Quality. It&rsquo;s set when a Digimon joins your party.</li>
-<li>Digimon with 95 to 100 Quality have a foil effect.</li></ul></div>
-<div class="qg"><div class="qc"><b>Digimon A</b><label for="qla">Level</label><input id="qla" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 15" oninput="qcalc()"><label for="qqa">Quality (0 to 100)</label><input id="qqa" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 66" oninput="qcalc()"></div>
-<div class="qc"><b>Digimon B</b><label for="qlb">Level</label><input id="qlb" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 13" oninput="qcalc()"><label for="qqb">Quality (0 to 100)</label><input id="qqb" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 87" oninput="qcalc()"></div></div>
-<button class="qbtn" onclick="qswap()">Swap A and B</button>
-<div id="qout"></div>
-<div class="note"><p><b>Max level</b> = the higher parent&rsquo;s level + (the lower parent&rsquo;s level &divide; 5), rounded down. The order of the parents doesn&rsquo;t matter (tested in game). Examples: levels 15 and 13 give 15 + 2 = 17. Levels 13 and 17 give 17 + 2 = 19.</p><p><b>Quality</b> comes from the higher-level parent, whichever slot it&rsquo;s in. If both parents are the same level, the result gets the higher Quality.</p><ul>
-<li>EL 15 (Quality 66) + EL 12 (Quality 87) gives Quality 66</li>
-<li>EL 13 (Quality 66) + EL 15 (Quality 87) gives Quality 87</li>
-<li>EL 15 (Quality 66) + EL 15 (Quality 87) gives Quality 87</li></ul></div></div>
+<div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Plan a DNA Digivolve and see how strong the new Digimon will be.</p><ol>
+<li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality. You get the new Digimon&rsquo;s Quality and Max level.</li>
+<li><b>New Digimon</b>: check its Quality and Max level (filled in from step 1, or type them in yourself), then enter its starting stats.</li>
+<li><b>Result</b>: its stats at Max level, next to what Quality 0, Quality 100 and the original game would give.</li></ol></div>
+<div class="dsec dcs"><h4><span class="qn">1</span>Parents <small class="qopt">optional</small></h4>
+<div class="qxpar"><div class="qxpc"><b>Parent A</b><div class="qsr2"><div class="qsr"><label for="qxla">Level</label><input id="qxla" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 15"></div><div class="qsr"><label for="qxqa">Quality</label><input id="qxqa" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div></div>
+<span class="qxplus">+</span>
+<div class="qxpc"><b>Parent B</b><div class="qsr2"><div class="qsr"><label for="qxlb">Level</label><input id="qxlb" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 13"></div><div class="qsr"><label for="qxqb">Quality</label><input id="qxqb" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div></div></div>
+<div id="qxp" class="qxp"></div></div>
+<div class="dsec dcs"><h4><span class="qn">2</span>New Digimon</h4>
+<div class="qsg"><div class="qsc">
+ <div class="qsr3b"><div class="qsr"><label for="qxq">Quality</label><input id="qxq" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"><span class="qfrom" id="qxqf"></span></div>
+ <div class="qsr"><label for="qxl0">Start level</label><input id="qxl0" type="number" min="1" max="98" inputmode="numeric" placeholder="e.g. 1"></div>
+ <div class="qsr"><label for="qxl1">Max level</label><input id="qxl1" type="number" min="2" max="99" inputmode="numeric" placeholder="e.g. 40"><span class="qfrom" id="qxlf"></span></div></div>
+ <div class="qst"><span>Stat</span><span>At start</span><span>Growth</span>
+  <label for="qx0">HP</label><input id="qx0" type="number" min="1" max="999" inputmode="numeric" placeholder="e.g. 60"><select id="qxg0" aria-label="HP growth"><option value="0">A (best)</option><option value="1" selected>B</option><option value="2">C</option></select>
+  <label for="qx1">MP</label><input id="qx1" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 40"><select id="qxg1" aria-label="MP growth"><option value="0">A (best)</option><option value="1" selected>B</option><option value="2">C</option></select>
+  <label for="qx2">Attack</label><input id="qx2" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 15"><select id="qxg2" aria-label="Attack growth"><option value="0">A (best)</option><option value="1" selected>B</option><option value="2">C</option></select>
+  <label for="qx3">Defense</label><input id="qx3" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 12"><select id="qxg3" aria-label="Defense growth"><option value="0">A (best)</option><option value="1" selected>B</option><option value="2">C</option></select>
+  <label for="qx4">Speed</label><input id="qx4" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 10"><select id="qxg4" aria-label="Speed growth"><option value="0">A (best)</option><option value="1" selected>B</option><option value="2">C</option></select></div>
+ <div class="qsr"><label for="qxr0">Stage at the start level</label><select id="qxr0"><option value="0">Rookie</option><option value="1">Champion</option><option value="2">Ultimate</option><option value="3">Mega</option></select></div>
+ <div class="qsr3"><span class="qsh">Digivolves at level (leave blank if it won&rsquo;t)</span><div class="qsr"><label for="qxd1">Champion</label><input id="qxd1" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 11"></div><div class="qsr"><label for="qxd2">Ultimate</label><input id="qxd2" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 21"></div><div class="qsr"><label for="qxd3">Mega</label><input id="qxd3" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 31"></div></div>
+ <p class="bcl"><b>Starting stats</b> are the numbers on its status screen at the start level. <b>Growth</b> is the species&rsquo; growth class for that stat (A grows best). Each new stage restarts the big early Attack and Defense gains, so the digivolve levels matter.</p>
+</div>
+<div class="qso"><h4 style="margin:0"><span class="qn">3</span>Result</h4><div id="qxo"></div></div></div></div>
+<div class="note"><p><b>DNA rules</b></p><ul>
+<li><b>Max level</b> = the higher parent&rsquo;s level + (the lower parent&rsquo;s level &divide; 5), rounded down. Which slot each parent is in doesn&rsquo;t matter (tested in game). Example: EL 15 + EL 13 gives 15 + 2 = 17.</li>
+<li><b>Quality</b> comes from the higher-level parent. If both are the same level, the result gets the higher Quality. Example: EL 15 (Quality 66) + EL 12 (Quality 87) gives Quality 66.</li></ul>
+<p><b>How Quality changes growth</b></p><ul>
+<li><b>Better rolls:</b> each level-up, every stat gains from one of 4 rolls, lowest to highest. At Quality 0 the chances are 50 / 30 / 15 / 5 %. At Quality 100 they are 5 / 15 / 30 / 50 %. Values in between scale evenly.</li>
+<li><b>Bonus growth:</b> every gain gets an extra Quality &divide; 10 %: +10 % at 100, +7.7 % at 77. Leftover fractions are saved and added in later.</li>
+<li><b>Late levels:</b> later in growth, Attack and Defense only rise on the best roll. Quality 0 gets it 5 % of the time and Quality 100 gets it 50 %, so high Quality keeps growing long after low Quality stops.</li>
+<li><b>Not included:</b> stat changes from digivolving itself, DNA, items and gear. Wild Digimon don&rsquo;t show Quality; it&rsquo;s set when one joins your party.</li></ul>
+<p><b>Quality tiers and recruit odds</b> (the exact value within a tier is random)</p>
+<div class="qtiers"><div class="qtier qt0"><b>Normal</b><span>0 to 59</span><span>58.64 %</span></div><div class="qtier qt1"><b>Fine</b><span>60 to 84</span><span>35.01 %</span></div><div class="qtier qt2"><b>Rare</b><span>85 to 94</span><span>6.01 %</span></div><div class="qtier qt3"><b>Perfect</b><span>95 to 100, foil effect</span><span>0.34 %</span></div></div>
+<p><b>Tinker reroll:</b> rerolls a Digimon&rsquo;s Quality for 10,000 bits and 5 Microprocessors. Each tier above Normal is half as likely as it is on a recruit.</p></div><p class="bcl qsrc">Source: Wyrelade&rsquo;s Quality table and calculator.</p></div>
 <div id="mv" hidden><div class="how"><b>Digimon Moves</b><p>Every move a player Digimon can learn, with its stage, MP cost, power and side effects. Search for a move or a Digimon, filter by stage, kind or status, or tap a Digimon name in the table to see only its moves.</p>
 <p><b>When moves are learned:</b> each Digimon learns its move at EL 12 (Champion), EL 22 (Ultimate) or EL 32 (Mega). It keeps its moves when it digivolves, and DNA Digivolving passes both parents&rsquo; moves to the result.</p>
 <p><b>Damage formula</b> (approximate, because the game rounds the stats it shows):</p><code class="fm">damage = floor( floor(Type &times; Specialty &times; Power &times; MoveTile) &times; Attack &divide; floor(Defense &times; DefenderTile) )</code>
@@ -522,7 +588,7 @@ ac(dq,Object.keys({...DT,...DC}).sort().map(n=>({n:n,t:dty(n),l:''})));
 function setTop(t){CT=t;document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.getElementById('wk').hidden=t!='wk';document.getElementById('bc').hidden=t!='bc';document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
 function showDv(){setTop('dv')}
 const qi=id=>document.getElementById(id);
-function showQv(){setTop('qv');qcalc()}
+function showQv(){setTop('qv')}
 function qswap(){['l','q'].forEach(k=>{const a=qi('q'+k+'a'),b=qi('q'+k+'b'),t=a.value;a.value=b.value;b.value=t});qcalc()}
 function qcalc(){const out=qi('qout'),f=[['qla','Level A',1,1e9],['qqa','Quality A',0,100],['qlb','Level B',1,1e9],['qqb','Quality B',0,100]],v={};
  for(const [id,nm,lo,hi] of f){const raw=qi(id).value.trim();if(raw===''){out.innerHTML='<div class="qr"><small>Fill in both levels and both Qualities to see the result.</small></div>';return}
@@ -530,7 +596,7 @@ function qcalc(){const out=qi('qout'),f=[['qla','Level A',1,1e9],['qqa','Quality
  const la=v.qla,qa=v.qqa,lb=v.qlb,qb=v.qqb,hi=Math.max(la,lb),lo=Math.min(la,lb),mx=hi+Math.floor(lo/5);
  let q,why;if(la>lb){q=qa;why=`Digimon A has the higher level (${la} vs ${lb}), so the new Digimon inherits A&rsquo;s Quality.`}else if(lb>la){q=qb;why=`Digimon B has the higher level (${lb} vs ${la}), so the new Digimon inherits B&rsquo;s Quality.`}else{q=Math.max(qa,qb);why=`Both are level ${la}, so the new Digimon inherits the higher Quality (${q}).`}
  out.innerHTML=`<div class="qr"><div class="big">Quality ${q} ${q>=95?'<span class="foil">FOIL</span>':''}</div><div>${why}${q>=95?' 95 and above has the foil effect.':''}</div>
- <div class="big" style="margin-top:8px">Max level ${mx}</div><div>The higher level (${hi}) is the base, plus the lower level (${lo}) &divide; 5, rounded down (${Math.floor(lo/5)}), = ${mx}. It doesn&rsquo;t matter which slot each Digimon is in.</div></div>`}
+ <div class="big" style="margin-top:8px">Max level ${mx}</div><div>The higher level (${hi}) is the base, plus the lower level (${lo}) &divide; 5, rounded down (${Math.floor(lo/5)}), = ${mx}. It doesn&rsquo;t matter which slot each Digimon is in.</div><button class="qbtn" type="button" style="margin-top:8px" onclick="qsUse(${q},${mx})">Use Quality ${q} and Max level ${mx} in the stat projection</button></div>`}
 function combine(a,b){let x=a,y=b,st=[];while(x.lv>y.lv)x=down(x,st);while(y.lv>x.lv)y=down(y,st);const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2);return{nm:LV[x.lv].res[code]||code,code:code,lv:x.lv}}
 function combos(){const out=document.getElementById('qc'),A=fa.value.trim(),B=fb.value.trim(),msg=t=>{out.innerHTML='<div class="rec"><small>'+t+'</small></div>'};
  if(A&&B){msg('Leave one box empty to see every possible combo for a single parent.');return}
@@ -730,6 +796,62 @@ function dnRender(){
 [fn,fp].forEach(i=>i.addEventListener('input',dnRender));
 ac(fn,RES.map(d=>({n:d.n,t:d.t,l:d.l})));ac(fp,PL);
 dnRender();
+
+/* ---- DNA Level/Quality Calc ---- */
+(()=>{
+ const HPMP=[[[-1,0,1,2],[-1,0,0,1],[-2,-1,0,1]],[[-1,0,1,1],[-1,0,0,1],[-1,-1,0,1]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,0,1],[-1,0,0,1],[-1,0,0,0]],[[0,0,1,1],[0,0,1,1],[0,0,1,1]],[[0,0,0,1],[0,0,0,1],[0,0,0,1]]];
+ const ATKDEF=[[[-1,0,1,1],[-1,0,0,1],[-1,-1,0,1]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,0,1],[-1,0,0,1],[-1,0,0,0]],[[0,0,0,1],[0,0,0,1],[0,0,0,1]]];
+ const SPEED=[[[-1,0,1,1],[-1,0,0,1],[-1,-1,0,1]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,0,1],[-1,0,0,1],[-1,0,0,0]],[[0,0,0,1],[0,0,0,1],[0,0,0,1]],[[0,0,0,0],[0,0,0,0],[0,0,0,0]]];
+ const LO=[50,30,15,5],HI=[5,15,30,50],NM=['HP','MP','Attack','Defense','Speed'],RUNS=4000,TN=['Normal','Fine','Rare','Perfect'],TC=['#8b97a0','#3f9b62','#3b82d6','#c9940f'];
+ const rng=seed=>{let a=seed>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}};
+ const roll=(draw,q)=>{if(q<0)return draw&3;let x=Math.floor(draw*10000/4096),r;for(r=0;r<3;r++){x-=LO[r]*(100-q)+HI[r]*q;if(x<0)break}return r};
+ const gain=(g,q,carry,k)=>{if(q<=0||g<=0)return g;const c=carry[k]+Math.floor(g*q*10/100);carry[k]=c%100;return g+Math.floor(c/100)};
+ const cap=v=>v>=1000?999:v,rankAt=(c,lv)=>{let r=c.r0;for(let s=1;s<=3;s++)if(c.dv[s]&&s>r&&lv>c.dv[s])r=s;return r};
+ function run(c,q,rnd){const st=c.st.slice(),carry=[0,0,0,0,0];let b,add,g,r;
+  for(let lv=c.l0+1;lv<=c.l1;lv++){
+   for(let k=0;k<2;k++){r=roll((rnd()*4096)|0,q);if(lv<12){b=0;add=10}else if(lv<22){b=1;add=6}else if(lv<32){b=2;add=4}else if(lv<42){b=3;add=2}else if(lv<52){b=4;add=0}else{b=5;add=0}
+    g=HPMP[b][c.cls[k]][r]+add;st[k]=cap(st[k]+(q<0?g:gain(g,q,carry,k)))}
+   const la=lv-(rankAt(c,lv)*10+1);
+   for(let k=2;k<4;k++){r=roll((rnd()*4096)|0,q);if(la===1){b=0;add=4}else if(la<4){b=1;add=3}else if(la<7){b=2;add=2}else if(la<11){b=3;add=1}else{b=4;add=0}
+    g=ATKDEF[b][c.cls[k]][r]+add;st[k]=cap(st[k]+(q<0?g:gain(g,q,carry,k)))}
+   r=roll((rnd()*4096)|0,q);const sp=st[4];if(sp<21){b=0;add=3}else if(sp<51){b=1;add=2}else if(sp<101){b=2;add=1}else{b=3;add=0}
+   g=SPEED[b][c.cls[4]][r]+add;st[4]=cap(st[4]+(q<0?g:gain(g,q,carry,4)))}
+  return st}
+ function sum(c,q){const rnd=rng(11),all=[[],[],[],[],[]];for(let i=0;i<RUNS;i++){const s=run(c,q,rnd);for(let k=0;k<5;k++)all[k].push(s[k])}
+  return all.map(a=>{a.sort((x,y)=>x-y);let t=0;for(const v of a)t+=v;return{avg:t/a.length,lo:a[Math.floor(a.length*.1)],hi:a[Math.floor(a.length*.9)]}})}
+ const $=id=>document.getElementById(id),num=(id,lo,hi)=>{const v=$(id).value.trim();if(v==='')return null;const n=parseInt(v,10);return isNaN(n)?null:Math.max(lo,Math.min(hi,n))};
+ const f=v=>Math.round(v).toLocaleString('en-US'),pct=v=>(Math.round(v*100)/100).toString()+' %',tier=q=>q>=95?3:q>=85?2:q>=60?1:0,tag=q=>`<span class="qtag qt${tier(q)}">${TN[tier(q)]}</span>`;
+ let auto={q:null,l:null},tmr=null;
+ function parents(){const la=num('qxla',1,99),qa=num('qxqa',0,100),lb=num('qxlb',1,99),qb=num('qxqb',0,100),o=$('qxp');
+  if([la,qa,lb,qb].every(v=>v==null)){o.innerHTML='<div class="bcl">Skip this step if you already know the new Digimon&rsquo;s Quality and Max level.</div>';return null}
+  if([la,qa,lb,qb].some(v=>v==null)){o.innerHTML='<div class="bcl">Enter the Level and Quality of both parents.</div>';return null}
+  const hi=Math.max(la,lb),lo=Math.min(la,lb),mx=Math.min(99,hi+Math.floor(lo/5)),q=la>lb?qa:lb>la?qb:Math.max(qa,qb);
+  const why=la!=lb?`Quality comes from the higher-level parent, Parent ${la>lb?'A':'B'} (EL ${hi}).`:`Both parents are EL ${la}, so it gets the higher Quality.`;
+  o.innerHTML=`<div class="qxres"><span class="qsm">New Digimon</span><span class="qsbig">Quality ${q}</span>${tag(q)}<span class="qsbig">Max level ${mx}</span></div>`+
+   `<div class="bcl">${why} Max level = ${hi} + (${lo} &divide; 5 = ${Math.floor(lo/5)}) = ${mx}. Both values are filled in below.</div>`;
+  return {q,mx}}
+ function render(){const P=parents();
+  if(P){const qi=$('qxq'),li=$('qxl1');if(qi.value===''||+qi.value===auto.q)qi.value=P.q;if(li.value===''||+li.value===auto.l)li.value=P.mx;auto={q:P.q,l:P.mx}}
+  $('qxqf').textContent=P&&+$('qxq').value===P.q?'from parents':'';$('qxlf').textContent=P&&+$('qxl1').value===P.mx?'from parents':'';
+  const q=num('qxq',0,100),l0=num('qxl0',1,98),l1=num('qxl1',2,99),st=[0,1,2,3,4].map(k=>num('qx'+k,0,999)),o=$('qxo');let h='';
+  if(q!=null){const w=[0,1,2,3].map(r=>(LO[r]*(100-q)+HI[r]*q)/100);
+   h+=`<div class="qshead"><span class="qsbig">Quality ${q}</span>${tag(q)}${q>=95?'<span class="qsm">foil effect</span>':''}</div>`+
+    `<div class="qsm">Every stat gain gets <b>+${(q/10).toFixed(1).replace(/\.0$/,'')} %</b> bonus growth, and the best roll comes up <b>${pct(w[3])}</b> of the time.</div>`+
+    `<div><div class="qsm" style="margin-bottom:4px">Chance of each level-up roll (the original game is 25 % each)</div><div class="qbar">${w.map((p,i)=>`<div style="flex:0 0 ${p}%;background:${TC[i]}" title="Roll ${i+1}: ${pct(p)}">${p>=8?pct(p):''}</div>`).join('')}</div>`+
+    `<div class="qkey" style="margin-top:4px">${['Lowest gain','Low','High','Highest gain'].map((n,i)=>`<span><i style="background:${TC[i]}"></i>${n}</span>`).join('')}</div></div>`}
+  const miss=[q==null?'Quality':'',l0==null?'Start level':'',l1==null?'Max level':'',st.some(v=>v==null)?'the five starting stats':''].filter(Boolean);
+  if(miss.length){o.innerHTML=h+`<div class="qr"><small>To see its stats at Max level, enter ${miss.join(', ').replace(/, ([^,]*)$/,' and $1')} in step 2.</small></div>`;return}
+  if(l1<=l0){o.innerHTML=h+'<div class="qr"><small>Max level has to be higher than the start level.</small></div>';return}
+  const c={l0,l1,st,cls:[0,1,2,3,4].map(k=>+$('qxg'+k).value),r0:+$('qxr0').value,dv:[0,num('qxd1',1,99)||0,num('qxd2',1,99)||0,num('qxd3',1,99)||0]};
+  const cur=sum(c,q),z=sum(c,0),hd=sum(c,100),og=sum(c,-1);
+  h+=`<div class="qsm"><b>Stats at Max level ${l1}</b>, starting from EL ${l0}</div><div class="qtab"><table><thead><tr><th>Stat</th><th>Start</th><th>Quality ${q}</th><th>Quality 0</th><th>Quality 100</th><th>Original game</th></tr></thead><tbody>`+
+   cur.map((r,k)=>`<tr><td>${NM[k]}</td><td>${st[k]}</td><td class="qv">${f(r.avg)}<small>usually ${f(r.lo)} to ${f(r.hi)}</small></td><td>${f(z[k].avg)}</td><td>${f(hd[k].avg)}</td><td>${f(og[k].avg)}</td></tr>`).join('')+
+   `</tbody></table></div><p class="bcl" style="margin:0">Each number is the average of ${RUNS.toLocaleString('en-US')} simulated level-ups. &ldquo;Usually&rdquo; is where 80 % of them land. Quality 0 and 100 show the worst and best case, and &ldquo;Original game&rdquo; is the unmodded game (25 % rolls, no bonus growth).</p>`;
+  o.innerHTML=h}
+ const sched=()=>{clearTimeout(tmr);tmr=setTimeout(render,120)};
+ $('qv').addEventListener('input',sched);$('qv').addEventListener('change',sched);
+ render();
+})();
 
 /* ---- DNA Chain ---- */
 (()=>{

@@ -383,6 +383,7 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .qsc{display:grid;gap:10px}
 .qsr{display:flex;flex-direction:column;gap:3px;min-width:0}.qsr label,.qsh{font-size:12px;color:var(--mut)}
 .qsr2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#qv .acw.hasic>input{padding-left:34px}.qxstg .acw{display:block}.qxstg .acw>input{width:100%;box-sizing:border-box}.qfrom.bad{color:#e0483e}
 .qxps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.qxps .qsh{grid-column:1/-1;font-size:12px;color:var(--mut);font-weight:600}.qxps .qsh small{font-weight:400}.qxps .qsr label{font-size:11.5px}.qxps input{min-width:0;width:100%;box-sizing:border-box}
 @media (max-width:560px){.qxps{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .qxst2{border-collapse:collapse;font-size:13.5px;margin-top:4px;width:100%}.qxst2 td,.qxst2 th{border:0;border-bottom:1px solid var(--bd);padding:4px 8px;text-align:left;background:transparent!important;position:static}.qxst2 th{font-size:12px;color:var(--mut);font-weight:600}.qxst2 td.v{font-weight:700;font-size:15px;text-align:right;font-variant-numeric:tabular-nums}.qxst2 td.w{color:var(--mut);font-size:12.5px}
@@ -581,7 +582,7 @@ const cur=()=>R.dataset.theme||(sys()?'dark':'light'),lab=()=>{const d=cur()==='
 B.onclick=()=>{const n=cur()==='dark'?'light':'dark';R.dataset.theme=n;try{localStorage.setItem('dw2-theme',n)}catch(e){}lab()};
 lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',lab)})();</script>
 <p class="tip disc">Info on these pages comes from the original Digimon World 2 (PS1), plus the balance changes and info from DW2 Online. I&rsquo;ll keep updating it as things change.</p>
-<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="bank" onclick="setTop('bank')">DigiBank</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Damage Formula</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button><button data-t="pn" onclick="setTop('pn')">DW2Notes</button></div>
+<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="bank" onclick="setTop('bank')">DigiBank</button><button data-t="qv" onclick="showQv()">DNA Stats</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Damage Formula</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button><button data-t="pn" onclick="setTop('pn')">DW2Notes</button></div>
 <div id="pdna"><div class="how"><b>DNA Digivolve</b><ul>
 <li><b>Add parents:</b> enter two Champion, Ultimate or Mega Digimon to see what they make, or one and press <b>Possible combos</b>.</li>
 <li><b>Find combos:</b> enter the Digimon you want in <b>Result name</b>, then open it to see every pair of parents that makes it. Use <b>Parent includes</b> to show only combos that use a certain Digimon.</li>
@@ -666,15 +667,15 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>Level limits:</b> a Digimon needs a Max level of at least 11, 21 or 31 to reach Champion, Ultimate or Mega. Max levels are only checked for Digimon you entered one for, and for lines made only from them.</li>
 <li><b>Copies:</b> each Digimon you added can be used at most once, and only if the route needs it. The route never asks you to get one you already have. If you have more than one, add each to the list.</li>
 <li><b>No route:</b> the route suggests Digimon to get, Rookies first, then Champions, then Ultimates. A Champion counts as two Rookies, and an Ultimate as five, so Ultimates only come up when they save a lot of steps. It never suggests the Digimon you want or any Mega. New Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div><p class="bcl qsrc">Source: DNA Max level and Quality rules posted by Wyrelade on the DW2 Online Discord, and checked in game.</p></div>
-<div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Plan a DNA Digivolve and see how strong the new Digimon will be.</p><ol>
-<li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality to get the new Digimon&rsquo;s Quality and Max level. Add their stage and stats to also get its starting stats.</li>
-<li><b>New Digimon</b>: check its Quality and Max level (filled in from step 1, or type them in yourself), then enter its starting stats.</li>
+<div id="qv" hidden><div class="how"><b>DNA Stats</b><p>Work out what a DNA Digivolve gives you: the new Digimon&rsquo;s Max level, Quality and starting stats, and the stats it reaches at its Max level.</p><ol>
+<li><b>Parents</b> (optional): enter each parent&rsquo;s name, Level and Quality to get the new Digimon&rsquo;s Max level and Quality. Add both parents&rsquo; stats to also get its starting stats.</li>
+<li><b>New Digimon</b>: its Quality, Max level and starting stats, filled in from step 1 or typed in yourself. Pick each stat&rsquo;s growth class.</li>
 <li><b>Result</b>: its stats at Max level, next to what Quality 0, Quality 100 and the original game would give.</li></ol></div>
 <div class="dsec dcs"><h4><span class="qn">1</span>Parents <small class="qopt">optional</small></h4>
-<div class="qxpar"><div class="qxpc"><b>Parent A</b><div class="qsr2"><div class="qsr"><label for="qxla">Level</label><input id="qxla" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 15"></div><div class="qsr"><label for="qxqa">Quality</label><input id="qxqa" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div><div class="qsr qxstg"><label for="qxsa">Stage</label><select id="qxsa"><option value="">Pick</option><option value="1">Champion</option><option value="2">Ultimate</option><option value="3">Mega</option></select></div>
+<div class="qxpar"><div class="qxpc"><b>Parent A</b><div class="qsr qxstg"><label for="qxna">Digimon</label><input id="qxna" placeholder="e.g. M-Kabuterimon" autocomplete="off"><span class="qfrom" id="qxsfa"></span></div><div class="qsr2"><div class="qsr"><label for="qxla">Level</label><input id="qxla" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 15"></div><div class="qsr"><label for="qxqa">Quality</label><input id="qxqa" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div>
 <div class="qxps"><span class="qsh">Stats <small>(optional, to work out the new Digimon&rsquo;s starting stats)</small></span><div class="qsr"><label for="qxpa0">HP</label><input id="qxpa0" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 296"></div><div class="qsr"><label for="qxpa1">MP</label><input id="qxpa1" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 295"></div><div class="qsr"><label for="qxpa2">Attack</label><input id="qxpa2" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 138"></div><div class="qsr"><label for="qxpa3">Defense</label><input id="qxpa3" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 125"></div><div class="qsr"><label for="qxpa4">Speed</label><input id="qxpa4" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 74"></div></div></div>
 <span class="qxplus">+</span>
-<div class="qxpc"><b>Parent B</b><div class="qsr2"><div class="qsr"><label for="qxlb">Level</label><input id="qxlb" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 13"></div><div class="qsr"><label for="qxqb">Quality</label><input id="qxqb" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div><div class="qsr qxstg"><label for="qxsb">Stage</label><select id="qxsb"><option value="">Pick</option><option value="1">Champion</option><option value="2">Ultimate</option><option value="3">Mega</option></select></div>
+<div class="qxpc"><b>Parent B</b><div class="qsr qxstg"><label for="qxnb">Digimon</label><input id="qxnb" placeholder="e.g. D-Tyrannomon" autocomplete="off"><span class="qfrom" id="qxsfb"></span></div><div class="qsr2"><div class="qsr"><label for="qxlb">Level</label><input id="qxlb" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 13"></div><div class="qsr"><label for="qxqb">Quality</label><input id="qxqb" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div>
 <div class="qxps"><span class="qsh">Stats <small>(optional, to work out the new Digimon&rsquo;s starting stats)</small></span><div class="qsr"><label for="qxpb0">HP</label><input id="qxpb0" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 296"></div><div class="qsr"><label for="qxpb1">MP</label><input id="qxpb1" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 295"></div><div class="qsr"><label for="qxpb2">Attack</label><input id="qxpb2" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 138"></div><div class="qsr"><label for="qxpb3">Defense</label><input id="qxpb3" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 125"></div><div class="qsr"><label for="qxpb4">Speed</label><input id="qxpb4" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 74"></div></div></div></div>
 <div id="qxp" class="qxp"></div><div id="qxps" class="qxp"></div></div>
 <div class="dsec dcs"><h4><span class="qn">2</span>New Digimon</h4>
@@ -695,12 +696,13 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="qso"><h4 style="margin:0"><span class="qn">3</span>Result</h4><div id="qxo"></div></div></div></div>
 <div class="note"><p><b>DNA rules</b></p><ul>
 <li><b>Max level</b> = the higher parent&rsquo;s level + (the lower parent&rsquo;s level &divide; 5), rounded down. Which slot each parent is in doesn&rsquo;t matter (tested in game). Example: EL 15 + EL 13 gives 15 + 2 = 17.</li>
-<li><b>Quality</b> comes from the higher-level parent. If both are the same level, the result gets the higher Quality. Example: EL 15 (Quality 66) + EL 12 (Quality 87) gives Quality 66.</li></ul>
+<li><b>Quality</b> comes from the higher-level parent. If both are the same level, the result gets the higher Quality. Example: EL 15 (Quality 66) + EL 12 (Quality 87) gives Quality 66.</li>
+<li><b>Starting stats</b> come from both parents&rsquo; stats, rounded down. A Champion parent makes a Rookie: HP and MP 10% of both added together, Attack and Defense 40% of the higher + 30% of the lower, Speed 30% of both. Ultimate + Ultimate or Mega + Ultimate makes a Champion (34%, 50% + 30%, 45%). Mega + Mega makes an Ultimate (45%, 50% + 40%, 50%). Rookies can&rsquo;t be DNA Digivolved.</li></ul>
 <p><b>How Quality changes growth</b></p><ul>
 <li><b>Better rolls:</b> each level-up, every stat gains from one of 4 rolls, lowest to highest. At Quality 0 the chances are 50 / 30 / 15 / 5 %. At Quality 100 they are 5 / 15 / 30 / 50 %. Values in between scale evenly.</li>
 <li><b>Bonus growth:</b> every gain gets an extra Quality &divide; 10 %: +10 % at 100, +7.7 % at 77. Leftover fractions are saved and added in later.</li>
 <li><b>Late levels:</b> later in growth, Attack and Defense only rise on the best roll. Quality 0 gets it 5 % of the time and Quality 100 gets it 50 %, so high Quality keeps growing long after low Quality stops.</li>
-<li><b>Not included:</b> stat changes from digivolving itself, DNA, items and gear. Wild Digimon don&rsquo;t show Quality; it&rsquo;s set when one joins your party.</li></ul>
+<li><b>Not included:</b> stat changes from digivolving itself, items and gear. Wild Digimon don&rsquo;t show Quality; it&rsquo;s set when one joins your party.</li></ul>
 <p><b>Quality tiers and recruit odds</b> (the exact value within a tier is random)</p>
 <div class="qtiers"><div class="qtier qt0"><b><span class="qb qb0" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Normal</b><span>0 to 59</span><span>58.64 %</span></div><div class="qtier qt1"><b><span class="qb qb1" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Fine</b><span>60 to 84</span><span>35.01 %</span></div><div class="qtier qt2"><b><span class="qb qb2" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4" class="on"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Rare</b><span>85 to 94</span><span>6.01 %</span></div><div class="qtier qt3"><b><span class="qb qb3" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4" class="on"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4" class="on"/></svg></span>Perfect</b><span>95 to 100, foil effect</span><span>0.34 %</span></div></div>
 <p><b>Tinker reroll:</b> rerolls a Digimon&rsquo;s Quality for 10,000 bits and 5 Microprocessors. Each tier above Normal is half as likely as it is on a recruit.</p></div><p class="bcl qsrc">Sources: Wyrelade&rsquo;s Quality table and calculator, and the DNA rules Wyrelade posted on the DW2 Online Discord.</p></div>
@@ -1849,7 +1851,7 @@ document.getElementById('wkq').oninput=wkLook;ac(document.getElementById('wkq'),
 function showWk(){setTop('wk');wkRender()}
 /* ---- Digimon info cards + clickable names ---- */
 let CT='dna';
-const TYPN=['Vaccine','Data','Virus'],STN=['Rookie','Champion','Ultimate','Mega'],TABN={dna:'DNA Digivolve',dv:'Digipedia',qv:'DNA Level/Quality Calc',mv:'Digimon Moves',wk:'Damage Formula',bc:'DNA Chain',pn:'DW2Notes'};
+const TYPN=['Vaccine','Data','Virus'],STN=['Rookie','Champion','Ultimate','Mega'],TABN={dna:'DNA Digivolve',dv:'Digipedia',qv:'DNA Stats',mv:'Digimon Moves',wk:'Damage Formula',bc:'DNA Chain',pn:'DW2Notes'};
 const NAMES=new Set(),PROP0={},NRMK={},FZC=new Map();
 // names are found even with different spaces, hyphens or capitals, or one small typo
 const NRM=x=>String(x).toLowerCase().replace(/[\s\-_.'’:]/g,'');
@@ -1986,7 +1988,7 @@ function dnRender(){
 ac(fn,RES.map(d=>({n:d.n,t:d.t,l:d.l})));ac(fp,PL);
 dnRender();
 
-/* ---- DNA Level/Quality Calc ---- */
+/* ---- DNA Stats ---- */
 (()=>{
  const HPMP=[[[-1,0,1,2],[-1,0,0,1],[-2,-1,0,1]],[[-1,0,1,1],[-1,0,0,1],[-1,-1,0,1]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,0,1],[-1,0,0,1],[-1,0,0,0]],[[0,0,1,1],[0,0,1,1],[0,0,1,1]],[[0,0,0,1],[0,0,0,1],[0,0,0,1]]];
  const ATKDEF=[[[-1,0,1,1],[-1,0,0,1],[-1,-1,0,1]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,1,1],[-1,0,0,1],[-1,-1,0,0]],[[0,0,0,1],[-1,0,0,1],[-1,0,0,0]],[[0,0,0,1],[0,0,0,1],[0,0,0,1]]];
@@ -2012,7 +2014,7 @@ dnRender();
  const f=v=>Math.round(v).toLocaleString('en-US'),pct=v=>(Math.round(v*100)/100).toString()+' %',tier=q=>q>=95?3:q>=85?2:q>=60?1:0,tag=q=>`<span class="qtag qt${tier(q)}">${qBars(q)}${TN[tier(q)]}</span>`;
  let auto={q:null,l:null},tmr=null;
  function parents(){const la=num('qxla',1,99),qa=num('qxqa',0,100),lb=num('qxlb',1,99),qb=num('qxqb',0,100),o=$('qxp');
-  if([la,qa,lb,qb].every(v=>v==null)){o.innerHTML='<div class="bcl">Skip this step if you already know the new Digimon&rsquo;s Quality and Max level.</div>';return null}
+  if([la,qa,lb,qb].every(v=>v==null)){o.innerHTML='<div class="bcl">Skip this step if you already know the new Digimon&rsquo;s Quality, Max level and starting stats.</div>';return null}
   if([la,qa,lb,qb].some(v=>v==null)){o.innerHTML='<div class="bcl">Enter the Level and Quality of both parents.</div>';return null}
   const hi=Math.max(la,lb),lo=Math.min(la,lb),mx=Math.min(99,hi+Math.floor(lo/5)),q=la>lb?qa:lb>la?qb:Math.max(qa,qb);
   const why=la!=lb?`Quality comes from the higher-level parent, Parent ${la>lb?'A':'B'} (EL ${hi}).`:`Both parents are EL ${la}, so it gets the higher Quality.`;
@@ -2022,9 +2024,10 @@ dnRender();
  // DNA starting stats: which formula depends on the parents' stages (Champion 1, Ultimate 2, Mega 3); every result is rounded down
  const SF={0:{n:'Rookie',hm:10,ah:40,al:30,sp:30,ok:1},1:{n:'Champion',hm:34,ah:50,al:30,sp:45},2:{n:'Ultimate',hm:45,ah:50,al:40,sp:50}};
  let autoS=null;
- function pstats(){const sa=num('qxsa',1,3),sb=num('qxsb',1,3),A=[0,1,2,3,4].map(i=>num('qxpa'+i,0,999)),B=[0,1,2,3,4].map(i=>num('qxpb'+i,0,999)),o=$('qxps');
-  const anyS=[...A,...B].some(v=>v!=null);if(!anyS&&sa==null&&sb==null){o.innerHTML='';return null}
-  if(sa==null||sb==null){o.innerHTML='<div class="bcl">Pick both parents&rsquo; stage to work out the starting stats.</div>';return null}
+ const stOfN=id=>{const v=$(id).value.trim();if(!v)return {s:null,t:''};const n=PROP[v.toLowerCase()]||PROP[v];if(!n)return {s:null,t:'Pick a Digimon from the list',bad:1};const st=ST[KEY(n)];if(st==null)return {s:null,t:n+' can&rsquo;t be DNA Digivolved here',bad:1};if(st===0)return {s:null,t:n+' is a Rookie, and Rookies can&rsquo;t be DNA Digivolved',bad:1};return {s:st,t:STN[st],n}};
+ function pstats(){const NA=stOfN('qxna'),NB=stOfN('qxnb');[['a',NA],['b',NB]].forEach(([x,o])=>{const e=$('qxsf'+x);e.innerHTML=o.t;e.classList.toggle('bad',!!o.bad)});const sa=NA.s,sb=NB.s,A=[0,1,2,3,4].map(i=>num('qxpa'+i,0,999)),B=[0,1,2,3,4].map(i=>num('qxpb'+i,0,999)),o=$('qxps');
+  const anyS=[...A,...B].some(v=>v!=null);if(!anyS&&sa==null&&sb==null&&!NA.bad&&!NB.bad){o.innerHTML='';return null}
+  if(sa==null||sb==null){o.innerHTML='<div class="bcl">Enter both parents&rsquo; names to work out the starting stats.</div>';return null}
   const rs=Math.min(sa,sb)===1?0:(sa===3&&sb===3)?2:1,F=SF[rs],nm=['HP','MP','Attack','Defense','Speed'];
   if([...A,...B].some(v=>v==null)){o.innerHTML=`<div class="bcl">The new Digimon will be a <b>${F.n}</b>. Enter all five stats for both parents to work out its starting stats.</div>`;return {stage:rs}}
   const fl=(n,d)=>Math.floor(n/d),dec=(n,d)=>{const v=n/d;return Number.isInteger(v)?String(v):(Math.floor(v*10)/10).toFixed(1)};
@@ -2056,6 +2059,7 @@ dnRender();
    `</tbody></table></div><p class="bcl" style="margin:0">Each number is the average of ${RUNS.toLocaleString('en-US')} simulated level-ups. &ldquo;Usually&rdquo; is where 80 % of them land. Quality 0 and 100 show the worst and best case, and &ldquo;Original game&rdquo; is the unmodded game (25 % rolls, no bonus growth).</p>`;
   o.innerHTML=h}
  const sched=()=>{clearTimeout(tmr);tmr=setTimeout(render,120)};
+ setTimeout(()=>{try{const L=[...PL.map(d=>({n:d.n,t:dty(d.n),l:d.l})),...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>e.n===d.n)===i);['qxna','qxnb'].forEach(id=>{const i=$(id);ac(i,L);i.addEventListener('acpick',sched)})}catch(e){}},0);
  $('qv').addEventListener('input',sched);$('qv').addEventListener('change',sched);
  render();
 })();

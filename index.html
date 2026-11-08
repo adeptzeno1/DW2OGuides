@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Digimon World 2 Online Tools</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
@@ -64,9 +67,67 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 #qc{max-height:70vh;overflow:auto;margin-top:8px}
 .hit{background:rgba(245,170,0,.4);border-radius:4px;padding:0 3px}.rec{padding:4px 0;border-bottom:1px solid var(--bd);font-size:13px}
 .mvf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}.mvf input,.mvf select{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%}
-.pill.on{background:var(--fg);color:var(--bg)}#mvt td{text-align:left;white-space:normal;font-weight:400;cursor:default;min-width:60px}#mvt td.n,#mvt td.c{white-space:nowrap}#mvt td.c{text-align:center}#mvt th{cursor:pointer;white-space:nowrap}
+.pill.on{background:var(--fg);color:var(--bg)}#mvt td{text-align:left;white-space:normal;font-weight:400;cursor:default;min-width:60px}#mvt td.n,#mvt td.c{white-space:nowrap}#mvt td.c{text-align:center}#mvt th{cursor:pointer;white-space:nowrap;user-select:none;box-shadow:inset 0 -1px var(--bd)}#mvt th:hover{color:var(--fg)}#mvt th.on{color:var(--fg)}
+#mvt th .sar{margin-left:4px;font-size:10px;opacity:.45}#mvt th.on .sar{opacity:1}
+#mvt .stg{font-size:10px}.kd{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:1px 8px;border:1px solid currentColor}
+.kd.k0{color:#e0603a}.kd.k1{color:#d4a72c}.kd.k2{color:#b066e8}.kd.k3{color:#2fae5e}
+#mvt .spc{font-size:12.5px}.mnone{color:var(--mut);font-size:12.5px}
+#mvq{width:min(360px,100%)}
+#mvc{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.mvn{margin-right:4px}
+.mvx{font:inherit;font-size:12px;border:1px solid var(--bd);border-radius:999px;padding:2px 9px;background:var(--card);color:var(--fg);cursor:pointer}.mvx span{opacity:.6;margin-left:2px}.mvx:hover span{opacity:1}
+.mvx.clr{border-style:dashed;color:var(--mut)}
+@media (max-width:700px){#mv .wrap{max-height:none;overflow:visible;border:0;background:none}
+ #mvt,#mvt tbody,#mvt tr,#mvt td{display:block;width:auto}#mvt thead{display:block}#mvt thead tr{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}#mvt thead th{position:static;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;background:var(--card)!important;box-shadow:none;font-size:12px}
+ #mvt tbody tr{border:1px solid var(--bd);border-radius:10px;background:var(--card);padding:8px 10px;margin-bottom:8px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 8px;font-size:13px}
+ #mvt thead tr::before{content:'Sort by';width:100%;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+ #mvt td{border:0!important;padding:0!important;min-width:0;text-align:left!important;background:none!important;position:static}
+ #mvt td.n{grid-column:1/-1;font-size:15px}#mvt td.ln,#mvt td.fx{grid-column:1/-1}
+ #mvt td[data-l]:not(.n)::before{content:attr(data-l);display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+ #mvt td.fx small{font-size:12px}
+ #mvt td.c{white-space:normal}}
 #mvt td.ln span{cursor:pointer;font-weight:700;white-space:nowrap}#mvt td.ln span:hover{text-decoration:underline}#mvt td.n{font-weight:700}
 .tag{font-size:11px;border:1px solid var(--bd);border-radius:999px;padding:0 6px;margin-left:4px;white-space:nowrap}
+.pnsw{display:inline-flex;border:1px solid var(--bd);border-radius:999px;padding:3px;gap:3px;background:var(--card);margin:2px 0 10px}.pnsw button{font:inherit;font-size:14px;font-weight:600;border:0;border-radius:999px;padding:5px 16px;cursor:pointer;background:none;color:var(--mut)}.pnsw button.on{background:var(--fg);color:var(--bg)}
+.pnl{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.pnv{border:1px solid var(--bd);border-radius:10px;background:var(--card);padding:0 14px}
+.pnv>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding:10px 0}.pnv>summary::-webkit-details-marker{display:none}
+.pnv>summary::before{content:'▸';color:var(--mut);transition:transform .15s}.pnv[open]>summary::before{transform:rotate(90deg)}
+.pnv>summary b{font-size:16px}.pnd{font-size:12.5px;color:var(--mut)}.pnt{font-size:11px;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--bd);border-radius:999px;padding:1px 8px;color:var(--mut)}
+.pnv[open]{padding-bottom:10px}.pnv h5{margin:8px 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.pnv h5.new{color:rgb(var(--v))}.pnv h5.fix{color:rgb(var(--d))}.pnv h5.chg{color:#d4a72c}
+.pnv ul{margin:0;padding-left:20px}.pnv li{margin:3px 0;font-size:14px}.pnv li ul{margin-top:3px}.pnp{margin:0 0 6px;font-size:14px}
+.pnt2{border-collapse:collapse;font-size:13.5px;min-width:260px}.pnt2 th,.pnt2 td{border:0;border-bottom:1px solid var(--bd);padding:4px 10px;text-align:left;background:transparent!important;position:static}.pnt2 td+td,.pnt2 th+th{text-align:right;font-variant-numeric:tabular-nums}.pnt2 thead th{font-size:12px;color:var(--mut)}.pnt2 tr.sep td{color:var(--mut);font-size:12px;padding-top:10px}
+.dmg{margin:10px 0}.dmg .dgrid{padding:0}
+.dspw{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:14px;align-items:start}.dspw .wkw{max-width:260px}
+@media (max-width:640px){.dspw{grid-template-columns:1fr}.dspw .wkw{max-width:220px;margin:0 auto}}
+.dflr{display:flex;flex-wrap:wrap;gap:6px}.dflr span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--bd);border-radius:999px;padding:2px 10px 2px 6px;font-size:12.5px;font-weight:600}.dflr span::before{content:'';width:12px;height:12px;border-radius:3px;background:var(--c);border:1px solid rgba(255,255,255,.25)}
+.dbr{display:flex;flex-wrap:wrap;gap:6px;width:100%}.dbr span{font-size:12px;border:1px solid var(--bd);border-radius:999px;padding:1px 8px}
+.dmg>summary{cursor:pointer;padding:10px 14px;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.dmg>summary::-webkit-details-marker{display:none}.dmg>summary::before{content:'▸';color:var(--mut);transition:transform .15s}.dmg[open]>summary::before{transform:rotate(90deg)}
+.dmg>summary b{font-size:16px}.dsub{color:var(--mut);font-size:13px}
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0 12px 12px}
+.dpair{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:980px){.dgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.dgrid>.dcard:first-of-type+.dcard{grid-column:1/-1}}
+@media (max-width:640px){.dgrid,.dpair{grid-template-columns:1fr}.dgrid>.dcard:first-of-type+.dcard{grid-column:auto}}
+.dtab tr td,.dtab tr th{background:transparent!important}
+.dcard{border:1px solid var(--bd);border-radius:10px;padding:10px 12px;background:var(--bg)}.dcard h4{margin:0 0 6px;font-size:14px}
+.dcard.dwide{grid-column:1/-1}.dcard ul{margin:4px 0 0;padding-left:18px}.dcard li{margin:3px 0}
+.dlead{margin:0 0 8px}.dnote{margin:8px 0 0;font-size:12.5px;color:var(--mut)}
+.nt{font-weight:700;color:var(--mut)}
+.dchain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
+.dchain i{font-style:normal;color:var(--mut);font-weight:700}
+.dk{display:inline-block;border:1px solid var(--bd);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600;background:var(--card);white-space:nowrap}
+.dk.pw{border-color:#d4a72c;color:#d4a72c}.dk.fl{border-color:#8e9bb3}.dk.at{border-color:rgb(var(--v));color:rgb(var(--v))}.dk.df{border-color:rgb(var(--i));color:rgb(var(--i))}
+.drng{display:flex;flex-wrap:wrap;gap:6px 16px;margin:8px 0 0;font-size:13px}
+.dfm{margin-top:8px}.dfm summary{cursor:pointer;font-size:12.5px;color:var(--mut)}
+.dml{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;margin:0;align-items:start}.dml dd{margin:0;font-size:13.5px}
+.dtri{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 8px}.dtri i{font-style:normal;font-size:12px;color:var(--mut)}
+.dtab{border-collapse:collapse;width:100%;font-size:13px}.dtab th,.dtab td{border:0;border-bottom:1px solid var(--bd);padding:5px 6px;text-align:left;white-space:normal;background:none;position:static}
+.dtab thead th{font-size:12px;color:var(--mut);font-weight:600}
+.spc{display:inline-flex;align-items:center;gap:5px;font-weight:600}.spc::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--c)}
+.dcalc{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.dcalc label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut)}
+.dcalc input,.dcalc select{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);min-width:0}
+.dres{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}.dres .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.dres small{color:var(--mut)}
 .fm{font-family:ui-monospace,Menlo,Consolas,monospace;background:rgba(128,128,128,.15);border-radius:6px;padding:6px 10px;display:block;overflow:auto;margin:6px 0;color:var(--fg)}
 .gd{background:rgba(var(--v),.4)!important}.bd{background:rgba(var(--i),.4)!important}#wkm td,#wkm th{text-align:center;cursor:default}#wkm th{cursor:default}
 .wkc{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px;align-items:start;margin-top:10px}.wkc .fam h3{margin:0 0 4px;font-size:15px}.wkc .fam .mv{font-size:12px;border-top:1px solid var(--bd);padding:4px 0}.wkc .fam .mv b{font-size:13px}
@@ -142,9 +203,18 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 #bc .acw.hasic>input{padding-left:34px}
 .bch{font-size:12px;font-weight:600;color:var(--mut);margin:2px 0 4px}
 .bcrow{margin:6px 0}
-.bkf{display:grid;grid-template-columns:minmax(0,1fr) 70px 80px 74px 64px auto;gap:8px;align-items:end}
+.bkf{display:grid;grid-template-columns:minmax(0,1fr) 70px 80px 74px 64px auto auto;gap:8px;align-items:end}
 .bkf>div{display:flex;flex-direction:column;gap:3px;min-width:0}.bkf label,.bkt label{font-size:12px;color:var(--mut)}
-.bkf input{width:100%;box-sizing:border-box}.bkf .acw{display:block}.bkf .acw>input{width:100%;box-sizing:border-box}
+.bkf input{width:100%;box-sizing:border-box}
+.bkf .bkfrc{align-items:center}.bkf .bkfrc input{width:20px;height:20px;margin:6px 0;accent-color:#5cc8d6;cursor:pointer}
+.bkdz{border:2px dashed var(--bd);border-radius:10px;padding:16px;text-align:center;color:var(--mut);margin:8px 0;font-size:14px}.bkdz.on{border-color:#5cc8d6;color:var(--fg);background:rgba(92,200,214,.08)}
+#bkimd>summary{cursor:pointer}.bit{border-collapse:collapse;width:100%;font-size:13px}.bit th,.bit td{padding:5px 6px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top;background:transparent!important;position:static}.bit th{font-size:12px;color:var(--mut);font-weight:600}
+.bit input[type=number]{width:58px;box-sizing:border-box}.bit input[data-f=n]{width:160px;max-width:100%;box-sizing:border-box}.bit td small{display:block;margin-top:2px}
+.biq{display:inline-flex;align-items:center;gap:2px;max-width:100%}.biq input{min-width:0}.bit input[type=number]{-moz-appearance:textfield;appearance:textfield}.bit input[type=number]::-webkit-inner-spin-button,.bit input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.bia{font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;border:1px solid currentColor;white-space:nowrap}.bian{color:#2fae5e}.biau{color:#d4a72c}.bias{color:var(--mut)}.biax{color:#e0483e}
+.bit tr.bis{opacity:.6}.bic{color:#e0903a;font-size:11px;text-transform:uppercase;letter-spacing:.04em}.bit tr.bichk td:nth-child(2) input{border-color:#e0903a}
+.biop{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.biop button{font:inherit;font-size:11.5px;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:999px;padding:1px 8px;cursor:pointer}
+@media (max-width:640px){.bit thead{display:none}.bit tr{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:4px 8px;padding:8px 0;border-bottom:1px solid var(--bd)}.bit td{border:0;padding:0;min-width:0}.bit td:nth-child(2){grid-column:2/-1}.bit td:nth-child(3){grid-column:2}.bit td:nth-child(7),.bit td:nth-child(8){grid-column:2/-1}.bit td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--mut)}.bit input[type=number]{width:100%}.bit input[data-f=n]{width:100%}.biq{display:flex}.biq input{flex:1}}
+.bkbd .fr{color:#5cc8d6;border-style:dashed}.bkbd .nd{color:#e0903a;border-style:dashed}.bke .bkfrl{flex-direction:row!important;align-items:center;gap:6px}.bke .bkfrl input{width:auto!important}.bkf .acw{display:block}.bkf .acw>input{width:100%;box-sizing:border-box}
 @media (max-width:640px){.bkf{grid-template-columns:repeat(4,minmax(0,1fr))}.bkf .bkn{grid-column:1/-1}.bkf .bkadd{grid-column:1/-1;justify-self:start}}
 .bkh{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:10px}
 .bkt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.bkt input{width:150px}
@@ -310,7 +380,8 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .qshead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
 .qsbig{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
 .qtag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;border:1.5px solid currentColor}
-.qt0{color:#8b97a0}.qt1{color:#3f9b62}.qt2{color:#3b82d6}.qt3{color:#c9940f}
+.qt0{color:#e0483e}.qt1{color:#ec8a26}.qt2{color:#d9b21f}.qt3{color:#33b864}
+.qb{display:inline-flex;vertical-align:-1px;margin-right:3px}.qb rect{fill:currentColor;opacity:.22}.qb rect.on{opacity:1}.qb0{color:#e0483e}.qb1{color:#ec8a26}.qb2{color:#e5bd22}.qb3{color:#33b864}.qtag .qb{color:inherit}.qtier b .qb{margin-right:6px}
 .qsm{font-size:13px;color:var(--mut)}.qsm b{color:var(--fg);font-variant-numeric:tabular-nums}
 .qbar{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--bd)}
 .qbar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#10171c;white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
@@ -401,14 +472,16 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .dnx{max-height:420px;overflow:auto}
 </style>
 <div class="hdr"><h1>Digimon World 2 Online Tools</h1><button type="button" id="thm" class="thm" aria-label="Switch colour theme"></button></div>
-<script>window.__H0=location.hash;</script>
+<script>window.__H0=location.hash;
+window.qTier=q=>q>=95?3:q>=85?2:q>=60?1:0;
+window.qBars=q=>{if(q==null||q==='')return '';q=+q;const t=qTier(q),H=[4,6.7,9.3,12];return `<span class="qb qb${t}" title="Quality ${q}: ${['Normal','Fine','Rare','Perfect'][t]}" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12">${H.map((h,i)=>`<rect x="${i*3.7}" y="${12-h}" width="2.6" height="${h}" rx=".4"${i<=t?' class="on"':''}/>`).join('')}</svg></span>`};</script>
 <script>(function(){const R=document.documentElement,B=document.getElementById('thm'),sys=()=>window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;
 let s=null;try{s=localStorage.getItem('dw2-theme')}catch(e){}R.dataset.theme=(s==='light')?'light':'dark';
 const cur=()=>R.dataset.theme||(sys()?'dark':'light'),lab=()=>{const d=cur()==='dark';B.innerHTML=d?'<span aria-hidden="true">&#9728;</span> Light mode':'<span aria-hidden="true">&#9790;</span> Dark mode';B.setAttribute('aria-pressed',d)};
 B.onclick=()=>{const n=cur()==='dark'?'light':'dark';R.dataset.theme=n;try{localStorage.setItem('dw2-theme',n)}catch(e){}lab()};
 lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',lab)})();</script>
 <p class="tip disc">Info on these pages comes from the original Digimon World 2 (PS1), plus the balance changes and info from DW2 Online. I&rsquo;ll keep updating it as things change.</p>
-<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="bank" onclick="setTop('bank')">DigiBank</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Weaknesses</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button></div>
+<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="bank" onclick="setTop('bank')">DigiBank</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Damage Formula</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button><button data-t="pn" onclick="setTop('pn')">DW2Notes</button></div>
 <div id="pdna"><div class="how"><b>DNA Digivolve</b><ul>
 <li><b>Add parents:</b> enter two Champion, Ultimate or Mega Digimon to see what they make, or one and press <b>Possible combos</b>.</li>
 <li><b>Find combos:</b> enter the Digimon you want in <b>Result name</b>, then open it to see every pair of parents that makes it. Use <b>Parent includes</b> to show only combos that use a certain Digimon.</li>
@@ -433,8 +506,10 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 </div>
 <div id="bank" hidden><div class="how"><b>DigiBank</b><p>Keep track of the Digimon you have. Your bank is saved in this browser.</p><ul>
 <li><b>Add:</b> pick a Digimon and fill in what you know, including moves it knows. Only the name is needed.</li>
+<li><b>Import:</b> read your party and storage straight from screenshots of the in-game Digimon window. Digimon you already have are updated instead of added twice.</li>
 <li><b>DNA Chain:</b> press <b>Fill from DigiBank</b> there to use your bank. Press <b>Send to bank</b> on a Digimon there to save it here.</li>
 <li><b>Favourite:</b> tap the star on a card. Favourites show first.</li>
+<li><b>Fresh:</b> tick it for a Digimon that has never been in a battle. Only Fresh Digimon can be sold on the Digimon Marketplace.</li>
 <li><b>Teams:</b> battles are 3 v 3. Build teams below to see their type and specialty matchups.</li>
 <li><b>Move it:</b> copy your bank code to use the same bank and teams on another device.</li></ul></div>
 <div class="dsec dcs"><h4>Add a Digimon</h4><div class="bkf">
@@ -443,8 +518,13 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div><label for="bkm">Max level</label><input id="bkm" type="number" min="1" max="99" inputmode="numeric" placeholder="opt."></div>
 <div><label for="bkq">Quality</label><input id="bkq" type="number" min="0" max="100" inputmode="numeric" placeholder="opt."></div>
 <div><label for="bkd">DP</label><input id="bkd" type="number" min="0" max="99" inputmode="numeric" placeholder="0"></div>
+<div class="bkfrc"><label for="bkfr">Fresh</label><input id="bkfr" type="checkbox" title="Never been in a battle"></div>
 <button class="qbtn bkadd" id="bkadd" type="button">Add to bank</button>
 <div class="bkmv"><label for="bkmvq">Moves it knows <small>(optional)</small></label><span id="bkmvc" class="bmvs"></span><input id="bkmvq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div></div><div id="bkmsg" class="bcl" style="margin-top:6px"></div></div>
+<div class="dsec dcs"><details id="bkimd"><summary><b>Import from game screenshots</b> <span class="bcl">party, storage pages and Status</span></summary>
+<p class="bcl" style="margin:8px 0 4px">Open the Digimon window in game and take a screenshot of each storage page. Click a Digimon first to also read its Max level and DP from the Status panel. Add several screenshots at once if you like. Nothing goes into your bank until you check the list and press Add.</p>
+<div id="bkdz" class="bkdz">Drop screenshots here, paste one with Ctrl+V, or <button class="qbtn" id="bkimf" type="button">Choose screenshots</button><input type="file" id="bkimi" accept="image/*" multiple hidden></div>
+<div id="bkimr"></div></details></div>
 <div class="dsec dcs"><div class="bkh"><h4 style="margin:0">Your Digimon <span id="bkcnt" class="bcl"></span></h4>
 <div class="bkt"><input id="bks" type="search" placeholder="Name or move" aria-label="Search your bank" autocomplete="off"><button class="qbtn" id="bkfb" type="button" aria-expanded="false" aria-controls="bkfp">Filters</button><label for="bko" class="bcl">Sort</label><select id="bko"><option value="new">Newest</option><option value="name">Name</option><option value="stage">Stage</option><option value="lv">Level</option><option value="q">Quality</option><option value="dp">DP</option></select><span class="bkvw" role="group" aria-label="View"><button class="qbtn on" type="button" data-bv="g">Cards</button><button class="qbtn" type="button" data-bv="s">By stage</button></span></div></div>
 <div id="bkfp" class="bkfp" hidden><div id="bkfl" class="bkfl"></div><div class="bkfdp"><label for="bkdp">DP</label><input id="bkdp" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="Any" aria-label="Show only this DP"></div></div><div id="bksum" class="bksum"></div>
@@ -482,7 +562,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>Max levels you haven&rsquo;t entered:</b> the route works backwards from the end and shows the lowest Max level each of those Digimon (or new ones to get) needs, so every level-up in the chain is possible.</li>
 <li><b>Level limits:</b> a Digimon needs a Max level of at least 11, 21 or 31 to reach Champion, Ultimate or Mega. Max levels are only checked for Digimon you entered one for, and for lines made only from them.</li>
 <li><b>Copies:</b> each Digimon you added can be used at most once, and only if the route needs it. The route never asks you to get one you already have. If you have more than one, add each to the list.</li>
-<li><b>No route:</b> the route suggests Digimon to get, Rookies first, then Champions, then Ultimates. A Champion counts as two Rookies, and an Ultimate as five, so Ultimates only come up when they save a lot of steps. It never suggests the Digimon you want or any Mega. New Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div></div>
+<li><b>No route:</b> the route suggests Digimon to get, Rookies first, then Champions, then Ultimates. A Champion counts as two Rookies, and an Ultimate as five, so Ultimates only come up when they save a lot of steps. It never suggests the Digimon you want or any Mega. New Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div><p class="bcl qsrc">Source: DNA Max level and Quality rules posted by Wyrelade on the DW2 Online Discord, and checked in game.</p></div>
 <div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Plan a DNA Digivolve and see how strong the new Digimon will be.</p><ol>
 <li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality. You get the new Digimon&rsquo;s Quality and Max level.</li>
 <li><b>New Digimon</b>: check its Quality and Max level (filled in from step 1, or type them in yourself), then enter its starting stats.</li>
@@ -517,31 +597,214 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>Late levels:</b> later in growth, Attack and Defense only rise on the best roll. Quality 0 gets it 5 % of the time and Quality 100 gets it 50 %, so high Quality keeps growing long after low Quality stops.</li>
 <li><b>Not included:</b> stat changes from digivolving itself, DNA, items and gear. Wild Digimon don&rsquo;t show Quality; it&rsquo;s set when one joins your party.</li></ul>
 <p><b>Quality tiers and recruit odds</b> (the exact value within a tier is random)</p>
-<div class="qtiers"><div class="qtier qt0"><b>Normal</b><span>0 to 59</span><span>58.64 %</span></div><div class="qtier qt1"><b>Fine</b><span>60 to 84</span><span>35.01 %</span></div><div class="qtier qt2"><b>Rare</b><span>85 to 94</span><span>6.01 %</span></div><div class="qtier qt3"><b>Perfect</b><span>95 to 100, foil effect</span><span>0.34 %</span></div></div>
-<p><b>Tinker reroll:</b> rerolls a Digimon&rsquo;s Quality for 10,000 bits and 5 Microprocessors. Each tier above Normal is half as likely as it is on a recruit.</p></div><p class="bcl qsrc">Source: Wyrelade&rsquo;s Quality table and calculator.</p></div>
+<div class="qtiers"><div class="qtier qt0"><b><span class="qb qb0" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Normal</b><span>0 to 59</span><span>58.64 %</span></div><div class="qtier qt1"><b><span class="qb qb1" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Fine</b><span>60 to 84</span><span>35.01 %</span></div><div class="qtier qt2"><b><span class="qb qb2" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4" class="on"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4"/></svg></span>Rare</b><span>85 to 94</span><span>6.01 %</span></div><div class="qtier qt3"><b><span class="qb qb3" aria-hidden="true"><svg viewBox="0 0 14 12" width="14" height="12"><rect x="0.0" y="8" width="2.6" height="4" rx=".4" class="on"/><rect x="3.7" y="5.3" width="2.6" height="6.7" rx=".4" class="on"/><rect x="7.4" y="2.7" width="2.6" height="9.3" rx=".4" class="on"/><rect x="11.1" y="0" width="2.6" height="12" rx=".4" class="on"/></svg></span>Perfect</b><span>95 to 100, foil effect</span><span>0.34 %</span></div></div>
+<p><b>Tinker reroll:</b> rerolls a Digimon&rsquo;s Quality for 10,000 bits and 5 Microprocessors. Each tier above Normal is half as likely as it is on a recruit.</p></div><p class="bcl qsrc">Sources: Wyrelade&rsquo;s Quality table and calculator, and the DNA rules Wyrelade posted on the DW2 Online Discord.</p></div>
 <div id="mv" hidden><div class="how"><b>Digimon Moves</b><p>Every move a player Digimon can learn, with its stage, MP cost, power and side effects. Search for a move or a Digimon, filter by stage, kind or status, or tap a Digimon name in the table to see only its moves.</p>
-<p><b>When moves are learned:</b> each Digimon learns its move at EL 12 (Champion), EL 22 (Ultimate) or EL 32 (Mega). It keeps its moves when it digivolves, and DNA Digivolving passes both parents&rsquo; moves to the result.</p>
-<p><b>Damage formula</b> (approximate, because the game rounds the stats it shows):</p><code class="fm">damage = floor( floor(Type &times; Specialty &times; Power &times; MoveTile) &times; Attack &divide; floor(Defense &times; DefenderTile) )</code>
-<ul><li><b>Type:</b> 1.2 if the attacker&rsquo;s type beats the target&rsquo;s, 0.8 if it loses, otherwise 1.0. Virus beats Data, Data beats Vaccine, Vaccine beats Virus.</li>
-<li><b>Specialty:</b> 1.2, 1.0 or 0.8, from the move&rsquo;s element against the target&rsquo;s specialty. For example, a Water move on a Fire Digimon is 1.2.</li>
-<li><b>Power:</b> the move&rsquo;s listed power.</li>
-<li><b>MoveTile:</b> 1.2, 1.0 or 0.8, from the tile under the attacker against the move&rsquo;s element. For example, a Darkness move used on a Darkness tile is 1.2.</li>
-<li><b>Attack / Defense:</b> the attacker&rsquo;s Attack stat and the target&rsquo;s Defense stat.</li>
-<li><b>DefenderTile:</b> 1.2, 1.0 or 0.8, from the tile under the target against the target&rsquo;s own specialty.</li></ul><p><b>Stat-down effects</b> (Debuff moves that hit all enemies):</p><ul><li><b>Duration:</b> 3 rounds, not the whole battle.</li><li><b>No stacking:</b> lowering a stat that&rsquo;s already lowered only restarts the 3 rounds. For example, two Okuwamon using the same debuff have the same effect as one.</li><li><b>Bosses:</b> take half the effect, and their stats never drop below 75% of the original value.</li></ul></div>
-<div class="mvf"><span class="acw"><input id="mvq" placeholder="Search move or Digimon" autocomplete="off"></span><select id="mvs"><option value="">Any specialty</option><option>None</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select><button class="qbtn" onclick="mvReset()">Reset</button></div>
+<p><b>Learning moves:</b> each Digimon learns its move at <b>EL 12</b> (Champion), <b>EL 22</b> (Ultimate) or <b>EL 32</b> (Mega), keeps its moves when it digivolves, and DNA Digivolving passes <b>both parents&rsquo;</b> moves to the result. How much damage a move does is on the <b>Damage Formula</b> tab.</p></div>
+<div class="mvf"><span class="acw"><input id="mvq" placeholder="Search a move, Digimon or effect (e.g. poison)" autocomplete="off"></span><select id="mvs"><option value="">Any specialty</option><option>None</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select><button class="qbtn" onclick="mvReset()">Reset</button></div>
 <div class="mvf" id="mvst"></div><div class="mvf" id="mvk"></div><div class="mvf" id="mve"></div>
 <div id="mvc" class="note"></div><div class="wrap"><table id="mvt"></table></div>
-<details class="fam" style="margin-top:10px"><summary><b id="mvbt">Boss and wild-only moves</b></summary><p class="note" style="margin:6px 0">No player Digimon learns these. Only bosses and wild Digimon use them, so they&rsquo;re left out of the main list and the Weaknesses tab.</p><div id="mvbl"></div></details>
+<details class="fam" style="margin-top:10px"><summary><b id="mvbt">Boss and wild-only moves</b></summary><p class="note" style="margin:6px 0">No player Digimon learns these. Only bosses and wild Digimon use them, so they&rsquo;re left out of the main list and the Damage Formula tab.</p><div id="mvbl"></div></details>
 <div class="note"><p>Power shows &ldquo;&ndash;&rdquo; for moves that don&rsquo;t deal damage. Move data comes from a community skill list, and the effects are summarised in my own words.</p></div></div>
 <div id="wk" hidden>
-<div class="wkh"><div class="wkw"><svg viewBox="0 0 260 260" class="wsv" role="img" aria-label="Specialty wheel: Water beats Fire, Fire beats Nature, Nature beats Machine, Machine beats Darkness, Darkness beats Water"><defs><marker id="wah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs><line x1="151.8" y1="57.9" x2="189.4" y2="85.2" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="205.3" y1="128.5" x2="191.0" y2="172.7" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="154.7" y1="201.2" x2="108.3" y2="201.2" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="69.9" y1="175.5" x2="55.6" y2="131.3" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="68.2" y1="86.9" x2="105.7" y2="59.6" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><circle cx="130.0" cy="42.0" r="27" fill="#3b8fe0"/><text x="130.0" y="46.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Water</text><circle cx="213.7" cy="102.8" r="27" fill="#e8643a"/><text x="213.7" y="106.8" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Fire</text><circle cx="181.7" cy="201.2" r="27" fill="#3fa55b"/><text x="181.7" y="205.2" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Nature</text><circle cx="78.3" cy="201.2" r="27" fill="#8a94a6"/><text x="78.3" y="205.2" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Machine</text><circle cx="46.3" cy="102.8" r="27" fill="#8e5bd0"/><text x="46.3" y="106.8" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Darkness</text></svg></div><div class="wkt"><b style="font-size:16px">How specialties work</b>
-<p>Each arrow points from an element to the one it beats. A move does <span class="up">+20%</span> (x1.2) against the element it beats and <span class="dn">&minus;20%</span> (x0.8) against the element that beats it. Digimon and moves with no specialty always take and deal x1.0.</p>
-<p>Type works the same way: Virus beats Data, Data beats Vaccine, Vaccine beats Virus. Specialty and type bonuses multiply, so the best case is x1.2 &times; x1.2 = <b>x1.44</b>.</p>
-<div class="finder" style="margin:10px 0 0"><b>Look up a Digimon</b><br><input id="wkq" placeholder="Type a name, e.g. Devimon" autocomplete="off"><div id="wkr" class="wkr"></div></div></div></div>
+<div class="how"><b>Damage Formula</b><p>How much damage a move does, and what each Digimon is weak to. Damage is <b>fixed</b>: the same attack in the same situation always does the same damage, with no random roll.</p></div>
+<div class="dmg" id="dmgbox"><div class="dgrid">
+<section class="dcard dwide"><h4>The short version</h4>
+<p class="dlead">Damage starts from the move&rsquo;s <b>Power</b>. Type, specialty and the battle floor each make it stronger or weaker, and then your <b>Attack</b> against their <b>Defense</b> scales it.</p>
+<div class="dchain" aria-label="Damage equals Power times Type times Specialty times Floor for the move, times your Attack, divided by their Defense times Floor for the target">
+<span class="dk pw">Power</span><i>&times;</i><span class="dk">Type</span><i>&times;</i><span class="dk">Specialty</span><i>&times;</i><span class="dk fl">Floor (move)</span><i>&times;</i><span class="dk at">Your Attack</span><i>&divide;</i><span class="dk df">Their Defense &times; Floor (target)</span></div>
+<div class="drng"><span><b>Worst case</b> about <span class="dn">&times;0.51</span></span><span><b>Neutral</b> <span class="nt">&times;1.0</span></span><span><b>Best case</b> about <span class="up">&times;2.16</span></span></div>
+<p class="dnote">Best case: a type win and a specialty win, on a floor that matches your move and beats the target (1.2 &times; 1.2 &times; 1.2 &divide; 0.8). For example, a Water move on a Fire Digimon, on a Water floor. Worst case: a type loss, a specialty loss and a floor that beats your move (0.8 &times; 0.8 &times; 0.8). The game rounds down twice along the way, so results can be off by 1.</p>
+<details class="dfm"><summary>Exact formula</summary><code class="fm">damage = floor( floor(Type &times; Specialty &times; Power &times; FloorForMove) &times; Attack &divide; floor(Defense &times; FloorForTarget) )</code><p class="dnote">Attack and Defense are shown as whole numbers, but the game keeps decimals, which is why it can be off by 1.</p></details></section>
+
+<section class="dcard"><h4>The four parts</h4>
+<dl class="dml">
+<dt><span class="dk">Type</span></dt><dd>Your Digimon&rsquo;s type against theirs: <span class="up">&times;1.2</span> if yours wins, <span class="dn">&times;0.8</span> if it loses, <span class="nt">&times;1.0</span> if both are the same type.</dd>
+<dt><span class="dk">Specialty</span></dt><dd>The <b>move&rsquo;s</b> element against the <b>target&rsquo;s</b> specialty: <span class="up">&times;1.2</span>, <span class="nt">&times;1.0</span> or <span class="dn">&times;0.8</span>. No specialty is always &times;1.0.</dd>
+<dt><span class="dk fl">Floor (move)</span></dt><dd>The floor against your <b>move&rsquo;s</b> element: <span class="up">&times;1.2</span> on its own floor, <span class="dn">&times;0.8</span> on the floor that beats it. A Fire move is &times;1.2 on a Fire floor and &times;0.8 on a Water floor.</dd>
+<dt><span class="dk fl">Floor (target)</span></dt><dd>The floor against the <b>target&rsquo;s</b> specialty, applied to its Defense: <span class="up">&times;1.2</span> on its own floor (you do less), <span class="dn">&times;0.8</span> on the floor that beats it (you do more).</dd></dl>
+<p class="dnote">Floors follow the specialty wheel&rsquo;s arrows both ways. Specialty itself doesn&rsquo;t: its &times;0.8 uses a separate chain (see Specialty below). So a Fire move is &times;1.0 against a Water Digimon, but &times;0.8 on a Water floor.</p>
+<p class="dnote"><b>Some moves change their own Power</b> in certain situations, for example Transcend Sword goes from 50 to 75 against a target that&rsquo;s countering. The formula then just uses the new Power. Each move&rsquo;s description on the Digimon Moves tab says when this happens.</p></section>
+
+<section class="dcard"><h4>Type</h4>
+<div class="dtri"><span class="tchip t2">Virus</span><i>beats</i><span class="tchip t1">Data</span><i>beats</i><span class="tchip t0">Vaccine</span><i>beats</i><span class="tchip t2">Virus</span></div>
+<table class="dtab"><thead><tr><th>Your type</th><th><span class="up">&times;1.2</span> against</th><th><span class="dn">&times;0.8</span> against</th></tr></thead><tbody id="dtyp"></tbody></table>
+<p class="dnote">Type comes from the Digimon, not the move, so every move it uses gets the same type bonus.</p></section>
+
+<section class="dcard"><h4>Specialty floors</h4>
+<p class="dlead" style="margin-bottom:6px">Coloured floor in a domain. If a battle starts while your Digi-Beetle or the enemy is on one, the whole battle uses that floor.</p>
+<div class="dflr"><span style="--c:#3b8fe0">Blue = Water</span><span style="--c:#e8643a">Red = Fire</span><span style="--c:#3fa55b">Green = Nature</span><span style="--c:#d4a72c">Gold = Machine</span><span style="--c:#3a3a48">Black = Darkness</span></div>
+<p class="dnote">On its own floor, an element&rsquo;s moves hit &times;1.2 harder and Digimon with that specialty get &times;1.2 Defense. On the floor that beats it, both are &times;0.8. A Fire Digimon on a Water floor does less with Fire moves and takes more damage. A strip of coloured floor in a hallway usually means a boss is close.</p></section>
+
+<section class="dcard dwide"><h4>Specialty</h4><div class="dspw"><div class="wkw"><svg viewBox="0 0 260 260" class="wsv" role="img" aria-label="Specialty wheel: Water beats Fire, Fire beats Nature, Nature beats Machine, Machine beats Darkness, Darkness beats Water"><defs><marker id="wah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs><line x1="151.8" y1="57.9" x2="189.4" y2="85.2" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="205.3" y1="128.5" x2="191.0" y2="172.7" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="154.7" y1="201.2" x2="108.3" y2="201.2" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="69.9" y1="175.5" x2="55.6" y2="131.3" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><line x1="68.2" y1="86.9" x2="105.7" y2="59.6" stroke="currentColor" stroke-width="2" marker-end="url(#wah)" opacity=".6"/><circle cx="130.0" cy="42.0" r="27" fill="#3b8fe0"/><text x="130.0" y="46.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Water</text><circle cx="213.7" cy="102.8" r="27" fill="#e8643a"/><text x="213.7" y="106.8" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Fire</text><circle cx="181.7" cy="201.2" r="27" fill="#3fa55b"/><text x="181.7" y="205.2" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Nature</text><circle cx="78.3" cy="201.2" r="27" fill="#8a94a6"/><text x="78.3" y="205.2" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Machine</text><circle cx="46.3" cy="102.8" r="27" fill="#8e5bd0"/><text x="46.3" y="106.8" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Darkness</text></svg></div>
+<div><p class="dlead">Each arrow points to the element it beats, for <span class="up">&times;1.2</span>. The <span class="dn">&times;0.8</span> matchups are a <b>different</b> chain, not the arrows backwards: Water &rarr; Nature &rarr; Darkness &rarr; Fire &rarr; Machine &rarr; Water. So a Fire move on a Water Digimon is &times;1.0, but on a Machine Digimon it&rsquo;s &times;0.8.</p>
+<table class="dtab"><thead><tr><th>Target&rsquo;s specialty</th><th>Weak to <span class="up">&times;1.2</span></th><th>Resists <span class="dn">&times;0.8</span></th></tr></thead><tbody id="dspc"></tbody></table></div></div></section>
+
+<section class="dcard dwide"><h4>Try it</h4>
+<div class="dcalc">
+<label>Power<input id="dcp" type="number" min="0" value="100"></label>
+<label>Your Attack<input id="dca" type="number" min="0" value="200"></label>
+<label>Their Defense<input id="dcd" type="number" min="1" value="100"></label>
+<label>Your type<select id="dcyt"><option value="0">Vaccine</option><option value="1">Data</option><option value="2">Virus</option></select></label>
+<label>Their type<select id="dctt"><option value="0">Vaccine</option><option value="1">Data</option><option value="2">Virus</option></select></label>
+<label>Move element<select id="dcme"><option>None</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select></label>
+<label>Their specialty<select id="dcts"><option>None</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select></label>
+<label>Floor<select id="dcfl"><option value="">Normal floor</option><option>Fire</option><option>Water</option><option>Nature</option><option>Machine</option><option>Darkness</option></select></label>
+</div>
+<div class="dres" id="dcr" aria-live="polite"></div></section>
+
+<section class="dcard dwide"><h4>DW2 Online changes</h4><p class="dlead" style="margin:0">Stat-down skills that hit all enemies <b>last 3 rounds</b>, <b>don&rsquo;t stack</b>, and bosses take half the effect and never drop below 75%. Details and other balance changes are on the <b>DW2Notes</b> tab.</p></section>
+</div></div>
+<h3 class="fh" style="margin-top:16px">Look up a Digimon</h3><div class="finder" style="margin:0 0 6px"><input id="wkq" placeholder="Type a name, e.g. Devimon" autocomplete="off"><div id="wkr" class="wkr"></div></div>
+<h3 class="fh" style="margin-top:16px">Best moves against each specialty</h3>
 <div class="mvf" style="margin-top:12px"><b>Move filters:</b><span id="wks" class="mvf" style="margin:0"></span><button class="pill" id="wka">All-enemy moves only</button></div>
 <div class="wkc" id="wkd"></div>
 <details class="fam" id="wkx" style="margin-top:10px"><summary><b>Full matchup table</b></summary><div class="wrap" style="max-height:none;margin-top:8px"><table id="wkm"></table></div><p class="note">Rows are the attacking element and columns are the target&rsquo;s specialty. Green is x1.2, red is x0.8 and blank is x1.0.</p></details>
-<div class="note"><p>The move lists use damaging moves from the Digimon Moves tab, strongest first. Standing on a tile of the move&rsquo;s element adds another x1.2. If a Digimon isn&rsquo;t on any list, its specialty hasn&rsquo;t been confirmed yet.</p></div></div>
+<div class="note"><p>The move lists use damaging moves from the Digimon Moves tab, strongest first. Fighting on a floor of the move&rsquo;s element adds another x1.2. If a Digimon isn&rsquo;t on any list, its specialty hasn&rsquo;t been confirmed yet.</p></div><p class="bcl qsrc">Sources: <a href="https://gopherproxy.meulie.net/tilde.pink/0/~bencollver/gamefaqs/text/ps/digimon-world-2/digimon-world-2-faqs-64683.txt" target="_blank" rel="noopener" data-nolink>MetalKid&rsquo;s Digimon World 2 FAQ</a> (GameFAQs), <a href="https://www.wikimon.net/Digimon_World_2" target="_blank" rel="noopener" data-nolink>Wikimon: Digimon World 2</a>, <a href="https://strategywiki.org/wiki/Digimon_World_2/Terms" target="_blank" rel="noopener" data-nolink>StrategyWiki: Digimon World 2 Terms</a>. The floor &times;0.8 rule and the DW2 Online changes come from DW2 Online players and the patch notes.</p></div>
+<div id="pn" hidden><div class="pnsw" role="tablist"><button type="button" data-p="N" class="on">Patch Notes</button><button type="button" data-p="T">Tips</button></div><div id="pnN"><div class="how"><b>Patch Notes</b><p>DW2 Online patch notes, newest first. Hotfixes are merged into the update they fixed, so nothing is listed twice.</p></div>
+<div class="pnl">
+<details class="pnv" open><summary><b>1.1.0</b><span class="pnd">Nov 6, 2026</span><span class="pnt">Android, matchup info</span></summary>
+<h5 class="new">New</h5><ul>
+<li><b>Android version</b> with touch controls (on-screen pad, finger as mouse, drag and scroll), the phone keyboard for chat, and its own auto updater.</li>
+<li><b>Chat Digimon links:</b> Alt + click a Digimon in the Digimon window (U) to post it in chat. Others can hover the green link to see it and its model.</li>
+<li><b>New battle skill window:</b> skills sorted into tabs by kind, with full mouse and number key support. The classic window can still be picked in settings (F1).</li>
+<li><b>Battle matchup info:</b> battle plates show each Digimon&rsquo;s Specialty icon and type. When choosing a target, arrows show whether your attack has the type and Specialty advantage.</li>
+<li><b>Specialty icons in the Digimon window:</b> in the header, the Specialty row and on every skill.</li>
+<li><b>Commissions:</b> the board shows your progress to the next rank (Merit and best clear level), and the window can now be opened inside a domain (it closes when a battle starts).</li>
+<li><b>Market:</b> new Type filter to search parts by slot.</li></ul>
+<h5 class="fix">Fixes and changes</h5><ul>
+<li>Promotion missions: you can&rsquo;t join other players&rsquo; missions, only the boss win drops loot or domains, and enemies always refuse gifts.</li>
+<li>A run is no longer lost when stepping onto the exit portal or stairs at 0 EP.</li>
+<li>Market &ldquo;My listings&rdquo; shows the seller&rsquo;s side of a sale: what you get and where it goes.</li>
+<li>The Tinker Tune page shows the domain item&rsquo;s Threat under its mods.</li>
+<li>The Inventory item card follows the gamepad cursor in the bag and stash.</li>
+<li>Better performance for big battle effects (like Nova Blast) on PCs without Vulkan.</li></ul></details>
+
+<details class="pnv"><summary><b>1.0.23 &ndash; 1.0.25</b><span class="pnd">Nov 5, 2026</span><span class="pnt">400 players, Menu Wheel</span></summary>
+<h5 class="new">New</h5><ul>
+<li><b>Player cap raised to 400</b> (from 200).</li>
+<li><b>Menu Wheel:</b> open game windows from one wheel. Set it up in F1 &gt; Controls: pick its gamepad button (Circle, L3, R3 or Off) and fill 8 slots with windows or leave them Empty, with a Default Slots button to reset. It also has a keyboard keybind under Interface. Windows opened from it work fully on a gamepad, and it never opens over another window.
+<ul><li>The Emote Wheel turns off by itself if it uses the same stick button.</li><li>Old keybinds using G are kept, so the new Menu Wheel key may start unassigned.</li></ul></li>
+<li><b>Inventory stash:</b> Take all on the gamepad.</li>
+<li><b>Mastery:</b> Bonuses on Start.</li>
+<li><b>Digimon Market listings expire after 72 hours.</b> Unsold Digimon go back to the seller.</li>
+<li><b>AFK kick</b> after 30 minutes without input, with a warning 5 minutes before. PvP matches aren&rsquo;t affected.</li></ul>
+<h5 class="fix">Fixes and changes</h5><ul>
+<li>Digi-Lab: Digimon past the first page can be reached again by scrolling. Going down or scrolling past the last row moves to the next page.</li>
+<li>ClearAgumon is see-through again in the Digimon window, Digiline, station and other model pictures.</li>
+<li>Model pictures use the same lighting as battle, so fire and bright parts look right.</li>
+<li>Digimon window with a gamepad or arrow keys: moving Digimon between the party, storage and Digi-Beetle works properly.</li>
+<li>The battle log no longer shows a false &ldquo;Paralysis wore off&rdquo; when an enemy interrupts your attack.</li>
+<li>The /stop update countdown no longer covers the enemy HP plates in battle.</li>
+<li>Smoother animation, with less stretching on feet and hands.</li>
+<li>Chest opening and battle rounds no longer wait on the server, so fewer stalls on high ping.</li>
+<li>Relogging in the same session no longer causes a desync. A refused resync now says why on the login screen.</li>
+<li>Global chat slowmode raised to 10 seconds.</li></ul></details>
+
+<details class="pnv"><summary><b>1.0.22</b><span class="pnd">Nov 4, 2026</span><span class="pnt">Look Changer, Domain Tuning</span></summary>
+<h5 class="new">New</h5><ul>
+<li><b>Tamer&rsquo;s Club Look Changer:</b> a new NPC left of the Tamer&rsquo;s Club entrance. Pick from 35 tamer looks for 5,000 Bits per change. Other players see it right away.</li>
+<li><b>Tinker Domain Tuning:</b> a new Tune page next to Craft (switch with the top buttons or L1/R1). Sort domains by level or rarity.
+<ul><li><b>Reroll</b> (2 Binary Shards): rerolls all mods and the mod count on Common and Rare domains.</li><li><b>Upgrade</b> (5 Binary Shards): turns a Basic domain into Common (65%) or Rare (35%) with fresh mods.</li><li>Level and theme are kept and old mods are replaced. Glitched and unique domains (Abyss, Miasma, Sanctum, Trinity) can&rsquo;t be tuned.</li></ul></li>
+<li><b>Commissions anywhere:</b> press K or use the ESC menu to open the Commissions board anywhere in the city. Claiming and picking up still need the HQ clerk. The Domain Connector marks domains that count toward open team Commissions.</li></ul>
+<h5 class="chg">Changes</h5><ul><li><b>Reserve EXP mod</b> is much rarer and weaker: new rolls range from 2&ndash;3% up to 12&ndash;15%, capped at 15%.</li></ul>
+<h5 class="fix">Fixes</h5><ul>
+<li>Big model improvements: less polygon stretching, spikes and cracks.</li>
+<li>Ground textures no longer move under idle models.</li>
+<li>Digi-Beetle colours show correctly in domains with default 1x settings and the soft renderer.</li>
+<li>No more lingering sound effects after quickly leaving domains.</li>
+<li>The Hub vendor&rsquo;s Sell tab includes storage items.</li>
+<li>Party Digimon can&rsquo;t be swapped while the Digi-Lab is open.</li>
+<li>Linux: fixed a crash in the first battle at level 11+, and the client now writes a crash.log to your user data folder.</li></ul></details>
+
+<details class="pnv"><summary><b>Heal MP costs</b><span class="pnd">Nov 1, 2026</span><span class="pnt">balance</span></summary>
+<p class="pnp">The heal nerf went too far, so heal costs are now about halfway back to what they were before it.</p>
+<table class="pnt2"><thead><tr><th>Skill</th><th>Old MP</th><th>New MP</th></tr></thead><tbody>
+<tr><td>Small HP Cure</td><td>20</td><td>12</td></tr><tr><td>Mega Heal</td><td>50</td><td>30</td></tr><tr><td>Royal Heal</td><td>65</td><td>40</td></tr><tr><td>Full Recovery</td><td>90</td><td>55</td></tr><tr><td>HP Recovery</td><td>110</td><td>65</td></tr><tr><td>Full HP Cure</td><td>180</td><td>130</td></tr>
+<tr class="sep"><td colspan="3">Revives at full HP now cost a flat 100 MP</td></tr><tr><td>Hung On Death</td><td>20</td><td>100</td></tr><tr><td>M Flame</td><td>50</td><td>100</td></tr></tbody></table></details>
+
+<details class="pnv"><summary><b>Stat-down skills</b><span class="pnd">Oct 25, 2026</span><span class="pnt">balance</span></summary>
+<p class="pnp">Two Okuwamon in one party made most fights trivial, so stat-down skills that hit all enemies changed:</p><ul>
+<li><b>Last 3 rounds</b> instead of the whole battle.</li>
+<li><b>Don&rsquo;t stack:</b> hitting a stat that&rsquo;s already lowered only restarts the 3 rounds, so two Okuwamon do the same as one.</li>
+<li><b>Bosses</b> take half the effect, and their stats never drop below 75% of normal.</li>
+<li><b>Cost more MP:</b> Duo Scissor Claw went from 36 to 60 MP, and Tidal Wave and the other all-enemy stat-down skills went up too.</li>
+<li><b>Single-target</b> stat-down skills are unchanged.</li>
+<li><b>Enemies</b> using these skills follow the same rules.</li></ul></details>
+</div>
+<p class="note">The Digimon Moves tab already uses these MP costs. Posted by Wyrelade on the DW2 Online Discord.</p></div>
+<div id="pnT" hidden><div class="how"><b>Tips</b><p>How DW2 Online works, grouped by topic.</p></div>
+<div class="pnl">
+<details class="pnv" open><summary><b>Starting out</b><span class="pnt">Character, faction</span></summary><ul>
+<li><b>One character per account.</b></li>
+<li><b>Your starter doesn&rsquo;t lock your faction.</b> You pick the faction separately, so you can start with Agumon and still join Black Sword.</li></ul></details>
+
+<details class="pnv"><summary><b>Your faction</b><span class="pnt">HQ, Merits, gifts</span></summary>
+<p class="pnp">Leave the Main Gate and your faction&rsquo;s headquarters is on the town map.</p><ul>
+<li><b>Gifts:</b> your faction decides which type of gifts you can buy from vendors. Toy gifts can&rsquo;t be bought: they only come from chests, drops and other players on the Marketplace.</li>
+<li><b>Merits</b> are the faction currency. You earn them from Commissions and by clearing Domain Items.</li></ul>
+<h5 class="new">In the headquarters</h5><ul>
+<li><b>Commissions:</b> a quest board. You don&rsquo;t need to accept anything; a message pops up when you finish one. Hand it in at the NPC so a new one appears. Rewards are Merits.</li>
+<li><b>Quartermaster:</b> sells for Merits. Always has your faction&rsquo;s C, B and A gifts. A Glitched Domain and Digi-Beetle gear at your Tamer level change daily.</li>
+<li><b>Leaderboards:</b> faction rankings for domains cleared, highest domain level and Merits. Just for show, no rewards.</li>
+<li><b>Leader&rsquo;s Room:</b> shows your Team Rank and what you need to rank up. Your rank shows on your profile, unlocks profile icons and gives Mastery Points.</li></ul></details>
+
+<details class="pnv"><summary><b>Domains</b><span class="pnt">Domain Items, Mastery</span></summary>
+<p class="pnp">Use a Domain Item at the Domain Connector (Carol) to enter a randomly generated domain. You start with three permanent ones, one each of Vaccine, Data and Virus. Every other Domain Item is used up when you enter.</p><ul>
+<li><b>Losing a run:</b> if you run out of EP or HP, or lose a battle, you&rsquo;re sent back to the Main Gate but <b>keep all the loot</b> you found so far.</li>
+<li><b>Summary window:</b> after a run it shows your loot, battles won, EXP, Bits and Merits. You can salvage parts right there.</li></ul>
+<h5 class="new">What a Domain Item tells you</h5><ul>
+<li><b>Level:</b> the level of the wild and boss Digimon.</li>
+<li><b>Type:</b> the boss&rsquo;s type. Wild Digimon are mostly that type too, but not always.</li>
+<li><b>Rarity</b> (Basic, Common, Rare): the most affixes it can have.</li>
+<li><b>Affixes:</b> mostly negative effects on the run. They raise the Threat level.</li>
+<li><b>Threat level:</b> more Threat means more and better loot, EXP and Bits.</li></ul>
+<h5 class="new">Getting more</h5><ul>
+<li>Chests, wild Digimon, and the Marketplace.</li>
+<li>Bosses always drop at least one.</li>
+<li><b>Glitched domains</b> are boss-floor runs with extra loot and EXP. The Quartermaster sells one each day, and some Mastery nodes make them drop more often.</li></ul>
+<h5 class="new">Mastery</h5><ul>
+<li>Each Domain Item is named after its type, using names from the original game. Two items with the same name are still different domains.</li>
+<li>Your <b>first clear</b> of each Domain Item gives 1 Mastery Point, and so does its Glitched version. Cleared ones have a <b>green tick</b> in the Domain Connector.</li>
+<li>Each <b>Team Rank</b> also gives 1 Mastery Point. You can have up to 50 points in total.</li>
+<li>Open the Mastery Tree with <b>M</b>. Clusters boost things like toy drops, Glitched domains and higher level domains, or make domains never have rock walls or spores blocking the way.</li>
+<li>Your first reset is free; later ones cost resources and Bits. Plan it in the <b>Mastery Planner</b> tab.</li></ul></details>
+
+<details class="pnv"><summary><b>Weekly World Boss</b><span class="pnt">Event</span></summary><ul>
+<li>Open it with the <b>Event</b> button in the bottom left of the Domain Connector, next to Masteries.</li>
+<li>One attack per day: deal as much damage as you can in 5 turns.</li>
+<li>When the server reaches a damage goal, everyone who joined in gets the same reward, no matter how much damage they did.</li></ul></details>
+
+<details class="pnv"><summary><b>Quality and DNA</b><span class="pnt">Stats, Max level</span></summary><ul>
+<li><b>Quality</b> (0&ndash;100) decides how much your Digimon&rsquo;s stats grow, so higher is better. <b>95&ndash;100</b> have a foil shine.</li>
+<li>You can&rsquo;t see a wild Digimon&rsquo;s Quality. It&rsquo;s set the moment it joins you.</li></ul>
+<h5 class="new">DNA Digivolution</h5><ul>
+<li><b>Max level</b> = higher parent&rsquo;s level + lower parent&rsquo;s level &divide; 5, rounded down. Example: 15 and 13 &rarr; 15 + 2 = 17. Which slot each goes in doesn&rsquo;t matter.</li>
+<li><b>Quality</b> comes from the <b>higher-level</b> parent, even if the other has more. Example: Lv 15 Q66 + Lv 12 Q87 &rarr; Q66.</li>
+<li>If both are the <b>same level</b>, the higher Quality is kept: Lv 15 Q66 + Lv 15 Q87 &rarr; Q87.</li>
+<li>The <b>DNA Chain</b> tab uses these rules, and &ldquo;Prefer highest Quality&rdquo; plans around them.</li></ul></details>
+
+<details class="pnv"><summary><b>Digi-Beetle parts</b><span class="pnt">Mods, crafting</span></summary><ul>
+<li>You start with basic parts. Parts come in <b>Basic, Common and Rare</b>; rarer parts can hold more mods.</li>
+<li><b>Mods only affect the Digi-Beetle</b>, never your Digimon. &ldquo;+25% Max HP&rdquo; means the Beetle&rsquo;s HP. Mods cover things like trap and spore damage, Break Resist and rare find chance.</li>
+<li><b>Tiers:</b> T5 is the lowest and T1 the highest. Higher tiers give bigger percentages.</li></ul>
+<h5 class="new">Crafting and salvage</h5><ul>
+<li>Craft at the Digi-Beetle mechanic NPC. Crafting uses materials and rerolls a mod&rsquo;s percentage.</li>
+<li>Hold <b>Alt</b> on a part to see each mod&rsquo;s range, e.g. T5 Break Resist 23% (19&ndash;25%).</li>
+<li><b>Salvage</b> parts you don&rsquo;t want (right click &gt; Salvage) for materials based on rarity. This also works in the summary window after a run.</li>
+<li>Materials also come from chests, battles and the Marketplace.</li></ul></details>
+
+<details class="pnv"><summary><b>Marketplace</b><span class="pnt">Trading</span></summary><ul>
+<li>Sellers set their own price, and the <b>buyer pays an extra Bits fee</b> to complete the sale.</li>
+<li><b>Digimon Marketplace:</b> only <b>Fresh</b> Digimon can be listed, meaning ones that have never been used in battle. The fee goes up with the Digimon&rsquo;s stage.</li></ul></details>
+
+<details class="pnv"><summary><b>PvP</b><span class="pnt">Colosseum</span></summary><ul>
+<li>Talk to <b>Leomon</b> in the Colosseum to see listed challenges and tournaments.</li>
+<li>To make your own challenge, set the lowest and highest stage (Champion, Ultimate, Mega), a max level and your party, then wait for someone to join and accept.</li>
+<li>PvP gives no rewards, only points for show.</li></ul></details>
+</div><p class="bcl qsrc">Source: tips posted by Halfwaynoob [tSR] and Wyrelade [GunZ] on the DW2 Online Discord.</p></div>
+<script>(()=>{const sw=document.querySelector('.pnsw'),go=p=>{sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p==p));document.getElementById('pnN').hidden=p!='N';document.getElementById('pnT').hidden=p!='T';try{localStorage.setItem('dw2-pnt',p)}catch(e){}};
+sw.addEventListener('click',e=>{const b=e.target.closest('button[data-p]');if(b)go(b.dataset.p)});let p='N';try{p=localStorage.getItem('dw2-pnt')=='T'?'T':'N'}catch(e){}go(p)})()</script></div>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Chakra+Petch:wght@400;500;600&display=swap">
 <style>#mp{
   --void:#05080a; --panel:#0b1412; --panel-2:#0f1c19; --line:#1d302b;
@@ -1367,7 +1630,7 @@ document.getElementById('dt').innerHTML=RK.map(d=>{const t=dty(d.n),ks=(DE[d.n]|
 const dq=document.getElementById('dq');
 dq.oninput=()=>{const q=dq.value.trim().toLowerCase();document.querySelectorAll('#dt .fam').forEach(c=>{let h=0;c.querySelectorAll('b[data-n]').forEach(b=>{const m=q&&b.dataset.n.includes(q);b.classList.toggle('hit',!!m);if(m)h++});c.style.display=(!q||h)?'':'none';c.open=!!(q&&h)})};
 ac(dq,Object.keys({...DT,...DC}).sort().map(n=>({n:n,t:dty(n),l:''})));
-function setTop(t){CT=t;document.getElementById('bank').hidden=t!='bank';if(t=='bank'&&window.DWB)DWB.render();document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.getElementById('wk').hidden=t!='wk';document.getElementById('bc').hidden=t!='bc';document.getElementById('mp').hidden=t!='mp';if(t=='mp'&&window.mpShow)mpShow();document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
+function setTop(t){CT=t;document.getElementById('bank').hidden=t!='bank';if(t=='bank'&&window.DWB)DWB.render();document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.getElementById('wk').hidden=t!='wk';document.getElementById('bc').hidden=t!='bc';document.getElementById('mp').hidden=t!='mp';if(t=='mp'&&window.mpShow)mpShow();document.getElementById('pn').hidden=t!='pn';document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
 function showDv(){setTop('dv')}
 const qi=id=>document.getElementById(id);
 function showQv(){setTop('qv')}
@@ -1377,7 +1640,7 @@ function qcalc(){const out=qi('qout'),f=[['qla','Level A',1,1e9],['qqa','Quality
   const x=Number(raw);if(!Number.isInteger(x)||x<lo||x>hi){out.innerHTML=`<div class="qr"><small>${nm} must be a whole number from ${lo} to ${hi==1e9?'any size':hi}.</small></div>`;return}v[id]=x}
  const la=v.qla,qa=v.qqa,lb=v.qlb,qb=v.qqb,hi=Math.max(la,lb),lo=Math.min(la,lb),mx=hi+Math.floor(lo/5);
  let q,why;if(la>lb){q=qa;why=`Digimon A has the higher level (${la} vs ${lb}), so the new Digimon inherits A&rsquo;s Quality.`}else if(lb>la){q=qb;why=`Digimon B has the higher level (${lb} vs ${la}), so the new Digimon inherits B&rsquo;s Quality.`}else{q=Math.max(qa,qb);why=`Both are level ${la}, so the new Digimon inherits the higher Quality (${q}).`}
- out.innerHTML=`<div class="qr"><div class="big">Quality ${q} ${q>=95?'<span class="foil">FOIL</span>':''}</div><div>${why}${q>=95?' 95 and above has the foil effect.':''}</div>
+ out.innerHTML=`<div class="qr"><div class="big">${qBars(q)}Quality ${q} ${q>=95?'<span class="foil">FOIL</span>':''}</div><div>${why}${q>=95?' 95 and above has the foil effect.':''}</div>
  <div class="big" style="margin-top:8px">Max level ${mx}</div><div>The higher level (${hi}) is the base, plus the lower level (${lo}) &divide; 5, rounded down (${Math.floor(lo/5)}), = ${mx}. It doesn&rsquo;t matter which slot each Digimon is in.</div><button class="qbtn" type="button" style="margin-top:8px" onclick="qsUse(${q},${mx})">Use Quality ${q} and Max level ${mx} in the stat projection</button></div>`}
 function combine(a,b){let x=a,y=b,st=[];while(x.lv>y.lv)x=down(x,st);while(y.lv>x.lv)y=down(y,st);const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2);return{nm:LV[x.lv].res[code]||code,code:code,lv:x.lv}}
 function combos(){const out=document.getElementById('qc'),A=fa.value.trim(),B=fb.value.trim(),msg=t=>{out.innerHTML='<div class="rec"><small>'+t+'</small></div>'};
@@ -1400,28 +1663,51 @@ const MR=['Rookie','Champion','Ultimate','Mega'],MA={'V-Myotismon':'VenomMyotism
 const isBoss=r=>!r[7].length||r[7].every(n=>n=='Kimeramon'),MVP=MVD.filter(r=>!isBoss(r)),MVB=MVD.filter(isBoss);
 const mvt=n=>{const a=MA[n]||n,v=dty(a);return v==null?'':'t'+v};
 const MS={r:new Set(),k:new Set(),e:new Set(),q:'',s:'',d:'',sort:'r',dir:1};
+// filters and sort are remembered in this browser
+try{const o=JSON.parse(localStorage.getItem('dw2-mvf')||'null');if(o){['r','k','e'].forEach(k=>(o[k]||[]).forEach(v=>MS[k].add(v)));['q','s','d','sort'].forEach(k=>{if(typeof o[k]=='string')MS[k]=o[k]});if(o.dir===1||o.dir===-1)MS.dir=o.dir}}catch(e){}
+const mvSave=()=>{try{localStorage.setItem('dw2-mvf',JSON.stringify({r:[...MS.r],k:[...MS.k],e:[...MS.e],q:MS.q,s:MS.s,d:MS.d,sort:MS.sort,dir:MS.dir}))}catch(e){}};
 const EL=[['poison','Poison'],['confuse','Confusion'],['stun','Stun'],['paralyze','Paralysis'],['debuff','Debuff'],['buff','Buff'],['heal','Heal'],['cure','Cure status']];
 function mvBtns(id,arr,set){const b=document.getElementById(id);b.innerHTML=arr.map(a=>`<button class="pill${set.has(a[0])?' on':''}" data-v="${a[0]}">${a[1]}</button>`).join('');b.onclick=e=>{const v=e.target.dataset&&e.target.dataset.v;if(!v)return;set.has(v)?set.delete(v):set.add(v);mvRender()}}
 function mvRender(){
  mvBtns('mvst',MR.map(x=>[x,x]),MS.r);mvBtns('mvk',['Attack','Counter','Interrupt','Assist'].map(x=>[x,x]),MS.k);mvBtns('mve',EL,MS.e);
  const q=MS.q.toLowerCase();
- let rows=MVD.filter(r=>!isBoss(r)&&(!MS.r.size||MS.r.has(r[1]))&&(!MS.k.size||MS.k.has(r[3]))&&(!MS.s||r[2]==MS.s)&&(!MS.d||r[7].includes(MS.d))&&(!MS.e.size||[...MS.e].some(t=>r[9].split(',').includes(t)))&&(!q||r[0].toLowerCase().includes(q)||r[7].some(n=>n.toLowerCase().includes(q))));
- const key={r:r=>MR.indexOf(r[1]),m:r=>r[0].toLowerCase(),p:r=>r[6]==null?-1:r[6],c:r=>r[5]};
+ let rows=MVD.filter(r=>!isBoss(r)&&(!MS.r.size||MS.r.has(r[1]))&&(!MS.k.size||MS.k.has(r[3]))&&(!MS.s||r[2]==MS.s)&&(!MS.d||r[7].includes(MS.d))&&(!MS.e.size||[...MS.e].some(t=>r[9].split(',').includes(t)))&&(!q||[r[0],r[2],r[3],r[4],r[8]||'',...r[7],...r[9].split(',').map(t=>(EL.find(x=>x[0]==t)||[0,''])[1])].some(x=>x&&String(x).toLowerCase().includes(q))));
+ const KO=['Attack','Counter','Interrupt','Assist'],SO=['Fire','Water','Nature','Machine','Darkness','None'];
+ const key={r:r=>MR.indexOf(r[1]),m:r=>r[0].toLowerCase(),p:r=>r[6]==null?-1:r[6],c:r=>r[5],k:r=>KO.indexOf(r[3]),s:r=>SO.indexOf(r[2]),t:r=>r[4],l:r=>(r[7][0]||'~').toLowerCase(),e:r=>(r[8]||'~~').toLowerCase()};
  const f=key[MS.sort];rows=rows.slice().sort((a,b)=>{const x=f(a),y=f(b);return (x<y?-1:x>y?1:(MR.indexOf(a[1])-MR.indexOf(b[1])||a[0].localeCompare(b[0])))*MS.dir});
- const H=[['m','Move'],['r','Stage'],[0,'Kind'],[0,'Specialty'],[0,'Target'],['c','MP'],['p','Power'],[0,'Learned by'],[0,'Special effect']];
- const ar=k=>MS.sort==k?(MS.dir>0?' \u25B2':' \u25BC'):'';
+ const H=[['m','Move'],['r','Stage'],['k','Kind'],['s','Specialty'],['t','Target'],['c','MP'],['p','Power'],['l','Learned by'],['e','Special effect']];
+ const ar=k=>`<span class="sar">${MS.sort==k?(MS.dir>0?'\u25B2':'\u25BC'):'\u21C5'}</span>`;
  const tg={poison:'Poison',confuse:'Confusion',stun:'Stun',paralyze:'Paralysis'};
- document.getElementById('mvt').innerHTML='<thead><tr>'+H.map(h=>`<th${h[0]?` data-s="${h[0]}"`:''}>${h[1]}${h[0]?ar(h[0]):''}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>{
+ document.getElementById('mvt').innerHTML='<thead><tr>'+H.map(h=>`<th data-s="${h[0]}" class="${MS.sort==h[0]?'on':''}" title="Sort by ${h[1]}">${h[1]}${ar(h[0])}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>{
   const lr=r[7].length?r[7].map(n=>`<span class="${mvt(n)}" data-d="${n}">${n}</span>`).join(', '):'<small>Unknown (boss/wild only)</small>';
   const tags=r[9].split(',').filter(t=>tg[t]).map(t=>`<span class="tag">${tg[t]}</span>`).join('');
-  return `<tr><td class="n">${r[0]}</td><td class="c">${r[1]}</td><td class="c">${r[3]}</td><td class="c">${r[2]}</td><td class="c">${r[4]}</td><td class="c">${r[5]}</td><td class="c">${r[6]==null?'&ndash;':r[6]}</td><td class="ln">${lr}</td><td>${r[8]||'<small>Plain damage</small>'}${tags}</td></tr>`}).join('')+'</tbody>';
- document.getElementById('mvc').innerHTML=`${rows.length} of ${MVP.length} moves`+(MS.d?` &middot; showing moves of <b class="${mvt(MS.d)}">${MS.d}</b> <button class="qbtn" onclick="MS.d='';mvRender()">Clear</button>`:''); 
+  const spc=r[2]&&r[2]!='None'?`<span class="spc" style="--c:${EC[r[2]]}">${r[2]}</span>`:'<span class="mnone">None</span>';
+  return `<tr><td class="n" data-l="Move">${r[0]}</td><td class="c" data-l="Stage"><span class="stg s${MR.indexOf(r[1])}">${r[1]}</span></td><td class="c" data-l="Kind"><span class="kd k${KO.indexOf(r[3])}">${r[3]}</span></td><td class="c" data-l="Specialty">${spc}</td><td class="c" data-l="Target">${r[4]}</td><td class="c" data-l="MP">${r[5]}</td><td class="c" data-l="Power">${r[6]==null?'&ndash;':'<b>'+r[6]+'</b>'}</td><td class="ln" data-l="Learned by">${lr}</td><td class="fx" data-l="Effect">${r[8]||'<small>Plain damage</small>'}${tags}</td></tr>`}).join('')+'</tbody>';
+ const act=[...[...MS.r].map(v=>['r',v,v]),...[...MS.k].map(v=>['k',v,v]),...[...MS.e].map(v=>['e',v,(EL.find(x=>x[0]==v)||[0,v])[1]]),...(MS.s?[['s',MS.s,MS.s+' moves']]:[]),...(MS.q?[['q',MS.q,'“'+MS.q+'”']]:[]),...(MS.d?[['d',MS.d,'Learned by '+MS.d]]:[])];
+ document.getElementById('mvc').innerHTML=`<span class="mvn"><b>${rows.length}</b> of ${MVP.length} moves</span>`+(act.length?act.map(a=>`<button type="button" class="mvx" data-x="${a[0]}" data-v="${a[1].replace(/"/g,'&quot;')}" aria-label="Remove filter ${a[2].replace(/"/g,'&quot;')}">${a[2]} <span aria-hidden="true">✕</span></button>`).join('')+'<button type="button" class="mvx clr" data-x="all">Clear all</button>':'');
+ mvSave();
  document.getElementById('mvbt').textContent='Boss and wild-only moves ('+MVB.length+')';
  document.getElementById('mvbl').innerHTML=MVB.slice().sort((a,b)=>MR.indexOf(a[1])-MR.indexOf(b[1])||a[0].localeCompare(b[0])).map(r=>`<div class="mvbr"><b>${r[0]}</b> <span class="dp">${r[1]}</span> <span class="dp">${r[3]}</span> ${r[2]!='None'?'<span class="dp">'+r[2]+'</span> ':''}<span class="m">${r[5]} MP &middot; ${r[6]==null?'no listed power':r[6]+' power'} &middot; ${r[4]}</span>${r[8]?'<br><small>'+r[8]+'</small>':''}</div>`).join('');
 }
-document.getElementById('mvt').onclick=e=>{const t=e.target;if(t.dataset&&t.dataset.s){if(MS.sort==t.dataset.s)MS.dir=-MS.dir;else{MS.sort=t.dataset.s;MS.dir=t.dataset.s=='r'||t.dataset.s=='m'?1:-1}mvRender()}else if(t.dataset&&t.dataset.d){MS.d=t.dataset.d;mvRender()}};
-const mvq=document.getElementById('mvq');mvq.oninput=()=>{MS.q=mvq.value.trim();mvRender()};
+document.getElementById('mvt').onclick=e=>{const t=e.target.closest('th[data-s]')||e.target;if(t.dataset&&t.dataset.s){if(MS.sort==t.dataset.s)MS.dir=-MS.dir;else{MS.sort=t.dataset.s;MS.dir=['r','m','k','s','t','l','e'].includes(t.dataset.s)?1:-1}mvRender()}else if(t.dataset&&t.dataset.d){MS.d=t.dataset.d;mvRender()}};
+document.getElementById('mvc').onclick=e=>{const b=e.target.closest('button[data-x]');if(!b)return;const x=b.dataset.x,v=b.dataset.v;
+ if(x=='all'){mvReset();return}if(x=='r'||x=='k'||x=='e')MS[x].delete(v);if(x=='s'){MS.s='';document.getElementById('mvs').value=''}if(x=='q'){MS.q='';mvq.value=''}if(x=='d')MS.d='';mvRender()};
+const mvq=document.getElementById('mvq');mvq.value=MS.q;mvq.oninput=()=>{MS.q=mvq.value.trim();mvRender()};setTimeout(()=>{document.getElementById('mvs').value=MS.s},0);
 document.getElementById('mvs').onchange=e=>{MS.s=e.target.value;mvRender()};
+/* ---- Damage Formula tab: tables and calculator (runs once the specialty data below has loaded) ---- */
+setTimeout(()=>{try{const T=['Vaccine','Data','Virus'],tc=t=>`<span class="tchip t${t}">${T[t]}</span>`;
+ const BEAT=[2,0,1],LOSE=[1,2,0];// type t beats BEAT[t] and loses to LOSE[t]
+ document.getElementById('dtyp').innerHTML=[0,1,2].map(t=>`<tr><td>${tc(t)}</td><td>${tc(BEAT[t])}</td><td>${tc(LOSE[t])}</td></tr>`).join('');
+ const sp=n=>`<span class="spc" style="--c:${EC[n]}">${n}</span>`;
+ document.getElementById('dspc').innerHTML=['Fire','Water','Nature','Machine','Darkness'].map(n=>`<tr><td>${sp(n)}</td><td>${sp(SWK[n])} moves</td><td>${sp(SRS[n])} moves</td></tr>`).join('')+'<tr><td><span class="spc" style="--c:var(--mut)">None</span></td><td colspan="2">Takes &times;1.0 from every element</td></tr>';
+ const g=id=>document.getElementById(id),num=(id,d)=>{const v=parseFloat(g(id).value);return isFinite(v)&&v>=0?v:d};
+ const f2=m=>`<b class="${m>1.0001?'up':m<0.9999?'dn':'nt'}">&times;${(Math.round(m*100)/100).toFixed(2)}</b>`;
+ const calc=()=>{const P=num('dcp',0),A=num('dca',0),D=Math.max(1,num('dcd',1)),yt=+g('dcyt').value,tt=+g('dctt').value,me=g('dcme').value,ts=g('dcts').value,fl=g('dcfl').value;
+  const ty=BEAT[yt]===tt?1.2:BEAT[tt]===yt?0.8:1,sv=(me=='None'||ts=='None')?1:SWK[ts]===me?1.2:SRS[ts]===me?0.8:1,flm=e=>!fl||e=='None'?1:fl===e?1.2:SWK[e]===fl?0.8:1,fm=flm(me),ft=flm(ts);
+  const dmg=Math.floor(Math.floor(ty*sv*P*fm)*A/Math.max(1,Math.floor(D*ft))),base=Math.floor(Math.floor(P)*A/Math.max(1,Math.floor(D))),m=ty*sv*fm/ft;
+  g('dcr').innerHTML=`<span><span class="big">${dmg.toLocaleString()}</span> damage</span><small>${base?`Neutral would be ${base.toLocaleString()}, so this is ${f2(m)}`:'Enter a Power and Attack to see the result'}</small><div class="dbr"><span>Type ${f2(ty)}</span><span>Specialty ${f2(sv)}</span><span>Floor (move) ${f2(fm)}</span><span>Floor (target) Defense ${f2(ft)}</span></div>`};
+ document.querySelectorAll('#dmgbox .dcalc input,#dmgbox .dcalc select').forEach(e=>e.addEventListener('input',calc));calc();
+}catch(e){console.error('damage formula',e)}},0);
 function mvReset(){MS.r.clear();MS.k.clear();MS.e.clear();MS.q='';MS.s='';MS.d='';MS.sort='r';MS.dir=1;mvq.value='';document.getElementById('mvs').value='';mvRender()}
 function showMv(){setTop('mv');mvRender()}
 const SPC=['Fire','Water','Nature','Machine','Darkness'],EC={"Fire": "#e8643a", "Water": "#3b8fe0", "Nature": "#3fa55b", "Machine": "#8a94a6", "Darkness": "#8e5bd0"};
@@ -1458,7 +1744,7 @@ document.getElementById('wkq').oninput=wkLook;ac(document.getElementById('wkq'),
 function showWk(){setTop('wk');wkRender()}
 /* ---- Digimon info cards + clickable names ---- */
 let CT='dna';
-const TYPN=['Vaccine','Data','Virus'],STN=['Rookie','Champion','Ultimate','Mega'],TABN={dna:'DNA Digivolve',dv:'Digipedia',qv:'DNA Level/Quality Calc',mv:'Digimon Moves',wk:'Weaknesses',bc:'DNA Chain'};
+const TYPN=['Vaccine','Data','Virus'],STN=['Rookie','Champion','Ultimate','Mega'],TABN={dna:'DNA Digivolve',dv:'Digipedia',qv:'DNA Level/Quality Calc',mv:'Digimon Moves',wk:'Damage Formula',bc:'DNA Chain',pn:'DW2Notes'};
 const NAMES=new Set(),PROP0={},NRMK={},FZC=new Map();
 // names are found even with different spaces, hyphens or capitals, or one small typo
 const NRM=x=>String(x).toLowerCase().replace(/[\s\-_.'’:]/g,'');
@@ -1618,7 +1904,7 @@ dnRender();
  function sum(c,q){const rnd=rng(11),all=[[],[],[],[],[]];for(let i=0;i<RUNS;i++){const s=run(c,q,rnd);for(let k=0;k<5;k++)all[k].push(s[k])}
   return all.map(a=>{a.sort((x,y)=>x-y);let t=0;for(const v of a)t+=v;return{avg:t/a.length,lo:a[Math.floor(a.length*.1)],hi:a[Math.floor(a.length*.9)]}})}
  const $=id=>document.getElementById(id),num=(id,lo,hi)=>{const v=$(id).value.trim();if(v==='')return null;const n=parseInt(v,10);return isNaN(n)?null:Math.max(lo,Math.min(hi,n))};
- const f=v=>Math.round(v).toLocaleString('en-US'),pct=v=>(Math.round(v*100)/100).toString()+' %',tier=q=>q>=95?3:q>=85?2:q>=60?1:0,tag=q=>`<span class="qtag qt${tier(q)}">${TN[tier(q)]}</span>`;
+ const f=v=>Math.round(v).toLocaleString('en-US'),pct=v=>(Math.round(v*100)/100).toString()+' %',tier=q=>q>=95?3:q>=85?2:q>=60?1:0,tag=q=>`<span class="qtag qt${tier(q)}">${qBars(q)}${TN[tier(q)]}</span>`;
  let auto={q:null,l:null},tmr=null;
  function parents(){const la=num('qxla',1,99),qa=num('qxqa',0,100),lb=num('qxlb',1,99),qb=num('qxqb',0,100),o=$('qxp');
   if([la,qa,lb,qb].every(v=>v==null)){o.innerHTML='<div class="bcl">Skip this step if you already know the new Digimon&rsquo;s Quality and Max level.</div>';return null}
@@ -1665,8 +1951,8 @@ dnRender();
   if(k=='lv'&&l&&l.k=='lv'&&l.id===id&&now-l.at<6e5){l.t=t;l.at=now}else H.unshift({k,t,id,at:now});H.length=Math.min(H.length,200);st(HK,H);if(!$('bank').hidden)renderH()};
  const canon=v=>{const n=PROP[(v||'').trim().toLowerCase()];return n||null};
  const num=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
- const add=e=>{const n=canon(e.n);if(!n)return null;const o={id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),n,lv:num(e.lv,1,99),ml:num(e.ml,1,99),q:num(e.q,0,100),dp:num(e.dp,0,99)||0,mv:e.mv||[],use:e.use!==false,fav:!!e.fav,at:Date.now()};get().push(o);log('add',`Added ${n}${o.lv?' (Lv '+o.lv+')':''}`,o.id);save();return o};
- const upd=(id,p)=>{const o=get().find(x=>x.id===id);if(!o)return null;const n0=o.n,l0=o.lv;if(p.n!=null){const n=canon(p.n);if(n)o.n=n}['lv','ml'].forEach(k=>{if(k in p)o[k]=num(p[k],1,99)});if('q' in p)o.q=num(p.q,0,100);if('dp' in p)o.dp=num(p.dp,0,99)||0;if(p.mv)o.mv=p.mv;if('use' in p)o.use=!!p.use;if('fav' in p)o.fav=!!p.fav;
+ const add=e=>{const n=canon(e.n);if(!n)return null;const o={id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),n,lv:num(e.lv,1,99),ml:num(e.ml,1,99),q:num(e.q,0,100),dp:num(e.dp,0,99)||0,mv:e.mv||[],use:e.use!==false,fav:!!e.fav,fr:!!e.fr,...(e.mlu?{mlu:1}:{}),...(e.dpu?{dpu:1}:{}),at:Date.now()};get().push(o);log('add',`Added ${n}${o.lv?' (Lv '+o.lv+')':''}`,o.id);save();return o};
+ const upd=(id,p)=>{const o=get().find(x=>x.id===id);if(!o)return null;const n0=o.n,l0=o.lv;if(p.n!=null){const n=canon(p.n);if(n)o.n=n}['lv','ml'].forEach(k=>{if(k in p)o[k]=num(p[k],1,99)});if('q' in p)o.q=num(p.q,0,100);if('dp' in p)o.dp=num(p.dp,0,99)||0;if(o.ml!=null)delete o.mlu;if('dp' in p&&p.dp!==''&&p.dp!=null)delete o.dpu;if(p.ok){delete o.mlu;delete o.dpu}if(p.mv)o.mv=p.mv;if('use' in p)o.use=!!p.use;if('fav' in p)o.fav=!!p.fav;if('fr' in p)o.fr=!!p.fr;
   if(o.n!==n0)log('evo',sti(o.n)>sti(n0)&&sti(o.n)<9?`${n0} digivolved to ${o.n}`:`${n0} is now ${o.n}`,id);
   else if(o.lv!==l0&&o.lv!=null&&l0!=null)log('lv',`${o.n} Lv ${l0} → ${o.lv}`,id);
   save();return o};
@@ -1687,7 +1973,7 @@ dnRender();
  $('bkmvq').addEventListener('acpick',addMvF);$('bkmvq').addEventListener('keydown',e=>{if(e.key=='Enter')addMvF()});
  /* view + filters (remembered per browser) */
  const UI=Object.assign({v:'g',st:[],ty:[],x:[],dp:null},ld(UK,{}));if(typeof UI.dp!='number')UI.dp=null;UI.x=(UI.x||[]).filter(k=>k!='dp2');const saveUI=()=>st(UK,UI);
- const FX=[['fav','★ Favourites'],['team','In a team'],['max','Maxed'],['nomax','Not maxed']];
+ const FX=[['fav','★ Favourites'],['team','In a team'],['max','Maxed'],['nomax','Not maxed'],['fresh','Fresh'],['used','Not fresh'],['need','Needs details']];
  const inTeam=id=>teams().filter(t=>t.m.includes(id)).map(t=>t.n);
  function renderF(){const nf=UI.st.length+UI.ty.length+UI.x.length+(UI.dp!=null?1:0),fb=$('bkfb'),op=!$('bkfp').hidden;fb.innerHTML='Filters'+(nf?`<span class="n">${nf}</span>`:'');fb.classList.toggle('on',op);fb.setAttribute('aria-expanded',op);const di=$('bkdp');if(document.activeElement!==di)di.value=UI.dp==null?'':UI.dp;const on=(g,v)=>UI[g].includes(v)?' on':'';
   $('bkfl').innerHTML=STN.map((n,i)=>`<button type="button" data-g="st" data-v="${i}" class="${on('st',i)}">${n}</button>`).join('')+'<span class="sep"></span>'+
@@ -1707,11 +1993,11 @@ dnRender();
  function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id),fo=x.q!=null&&x.q>=95;
   return `<div class="bkc${fo?' foilc':''}" data-id="${x.id}" style="${tcs(x.n)}">${p?`<img class="bki" src="${p}" alt="">`:'<span class="bki"></span>'}<div class="bknm"><span class="dg" data-dg="${x.n}">${x.n}</span></div>
    <button type="button" class="bkstar${x.fav?' on':''}" data-a="fav" aria-pressed="${!!x.fav}" aria-label="${x.fav?'Remove from favourites':'Add to favourites'}" title="${x.fav?'Favourite':'Add to favourites'}">${x.fav?'★':'☆'}</button>
-   <div class="bkbd">${stg(x.n)?`<span class="sg">${stg(x.n)}</span>`:''}${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?`<span style="color:${EC[sp]}">${sp}</span>`:''}${tn.map(n=>`<span class="tm">${esc(n)}</span>`).join('')}</div>
-   <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${isMax(x)?' ✓':''}</span><span class="${isMax(x)?'mx':''}">Max ${x.ml??'?'}</span>${fo?`<span class="foil">Q ${x.q}</span>`:`<span class="${x.q!=null&&x.q<40?'lowq':''}">Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
+   <div class="bkbd">${stg(x.n)?`<span class="sg">${stg(x.n)}</span>`:''}${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?`<span style="color:${EC[sp]}">${sp}</span>`:''}${x.fr?'<span class="fr" title="Never been in a battle">Fresh</span>':''}${x.mlu||x.dpu?`<span class="nd" title="Imported from a screenshot: ${[x.mlu&&'Max level',x.dpu&&'DP'].filter(Boolean).join(' and ')} not filled in yet">Needs ${[x.mlu&&'Max level',x.dpu&&'DP'].filter(Boolean).join(' + ')}</span>`:''}${tn.map(n=>`<span class="tm">${esc(n)}</span>`).join('')}</div>
+   <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${isMax(x)?' ✓':''}</span><span class="${isMax(x)?'mx':''}">Max ${x.ml??'?'}</span>${fo?`<span class="foil">${qBars(x.q)}Q ${x.q}</span>`:`<span>${x.q!=null?qBars(x.q):''}Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
    (!ed&&(x.mv||[]).length?`<div class="bkmvs">${x.mv.map(m=>`<span>${esc(m)}</span>`).join('')}</div>`:'')+
    (ed?`<div class="bkmve">${(x.mv||[]).map((m,i)=>`<span class="bchip">${esc(m)}<button type="button" data-mi="${i}" aria-label="Remove ${esc(m)}">&times;</button></span>`).join('')}<input class="bkmvi" placeholder="Add a move it knows" autocomplete="off" aria-label="Add a move it knows"></div>`:'')+
-   (ed?`<div class="bke"><label>Level<input data-f="lv" type="number" min="1" max="99" value="${x.lv??''}"></label><label>Max level<input data-f="ml" type="number" min="1" max="99" value="${x.ml??''}"></label><label>Quality<input data-f="q" type="number" min="0" max="100" value="${x.q??''}"></label><label>DP<input data-f="dp" type="number" min="0" max="99" value="${x.dp}"></label></div>`:'')+
+   (ed?`<div class="bke"><label>Level<input data-f="lv" type="number" min="1" max="99" value="${x.lv??''}"></label><label>Max level<input data-f="ml" type="number" min="1" max="99" value="${x.ml??''}"></label><label>Quality<input data-f="q" type="number" min="0" max="100" value="${x.q??''}"></label><label>DP<input data-f="dp" type="number" min="0" max="99" value="${x.dp}"></label><label class="bkfrl"><input type="checkbox" data-a="fr"${x.fr?' checked':''}> Fresh</label>${x.mlu||x.dpu?'<button class="qbtn" type="button" data-a="ok" title="The values shown are right">Details are right</button>':''}</div>`:'')+
    `<div class="bka"><label><input type="checkbox" data-a="use"${x.use===false?'':' checked'}> Use in chain</label><button class="qbtn" type="button" data-a="ed">${ed?'Done':'Edit'}</button><button class="qbtn" type="button" data-a="rm">Remove</button></div></div>`}
  let editing=null;
  function render(){const g=$('bkg'),q=$('bks').value.trim().toLowerCase(),o=$('bko').value;let L=get().slice();
@@ -1719,7 +2005,7 @@ dnRender();
   if(q)L=L.filter(x=>x.n.toLowerCase().includes(q)||(x.mv||[]).some(m=>m.toLowerCase().includes(q)));
   if(UI.st.length)L=L.filter(x=>UI.st.includes(sti(x.n)));
   if(UI.ty.length)L=L.filter(x=>UI.ty.includes(tyi(x.n)));if(UI.dp!=null)L=L.filter(x=>(x.dp||0)===UI.dp);
-  const XF={fav:x=>x.fav,team:x=>inTeam(x.id).length,max:isMax,nomax:x=>!isMax(x)};UI.x.forEach(k=>{if(XF[k])L=L.filter(XF[k])});
+  const XF={fav:x=>x.fav,team:x=>inTeam(x.id).length,max:isMax,nomax:x=>!isMax(x),fresh:x=>x.fr,used:x=>!x.fr,need:x=>x.mlu||x.dpu};UI.x.forEach(k=>{if(XF[k])L=L.filter(XF[k])});
   const c={name:(a,b)=>a.n.localeCompare(b.n),stage:(a,b)=>sti(b.n)-sti(a.n)||a.n.localeCompare(b.n),lv:(a,b)=>(b.lv||0)-(a.lv||0),q:(a,b)=>(b.q??-1)-(a.q??-1),dp:(a,b)=>b.dp-a.dp,new:(a,b)=>b.at-a.at}[o];L.sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||c(a,b));
   if(!get().length){g.innerHTML='<div class="bkempty">Your bank is empty. Add a Digimon above, or press Send to bank on a Digimon in the DNA Chain.</div>';return}
   if(!L.length){g.innerHTML='<div class="bkempty">No Digimon match your search or filters.</div>';return}
@@ -1728,10 +2014,10 @@ dnRender();
   else g.innerHTML=`<div class="bkg">${L.map(x=>card(x,editing===x.id)).join('')}</div>`;
   const ei=g.querySelector('.bkmvi');if(ei){ac(ei,MVL);const id=ei.closest('.bkc').dataset.id,go=()=>{const m=mvOK(ei.value);if(!m)return;const o=get().find(z=>z.id===id);if(o&&!(o.mv||[]).includes(m)){upd(id,{mv:[...(o.mv||[]),m]})}render();const n=$('bkg').querySelector('.bkmvi');if(n)n.focus()};ei.addEventListener('acpick',go);ei.addEventListener('keydown',e=>{if(e.key=='Enter')go()})}}
  $('bkg').addEventListener('click',e=>{const mb=e.target.closest('button[data-mi]');if(mb){const id=mb.closest('.bkc').dataset.id,o=get().find(z=>z.id===id);if(o){const mv=(o.mv||[]).slice();mv.splice(+mb.dataset.mi,1);upd(id,{mv})}return}const b=e.target.closest('button[data-a]');if(!b)return;const id=b.closest('.bkc').dataset.id;
-  if(b.dataset.a=='fav'){const o=get().find(z=>z.id===id);if(o)upd(id,{fav:!o.fav})}
+  if(b.dataset.a=='fav'){const o=get().find(z=>z.id===id);if(o)upd(id,{fav:!o.fav})}if(b.dataset.a=='ok'){upd(id,{ok:1});render()}
   if(b.dataset.a=='ed'){editing=editing===id?null:id;render()}
   if(b.dataset.a=='rm'){if(b.dataset.sure){if(editing===id)editing=null;del(id,{undo:1})}else{b.dataset.sure=1;b.textContent='Tap again to remove'}}});
- $('bkg').addEventListener('change',e=>{const c=e.target;const id=c.closest('.bkc')&&c.closest('.bkc').dataset.id;if(!id)return;if(c.dataset.a=='use')upd(id,{use:c.checked});else if(c.dataset.f)upd(id,{[c.dataset.f]:c.value})});
+ $('bkg').addEventListener('change',e=>{const c=e.target;const id=c.closest('.bkc')&&c.closest('.bkc').dataset.id;if(!id)return;if(c.dataset.a=='use')upd(id,{use:c.checked});else if(c.dataset.a=='fr'){upd(id,{fr:c.checked});render()}else if(c.dataset.f){upd(id,{[c.dataset.f]:c.value});if((c.dataset.f=='ml'||c.dataset.f=='dp')&&document.querySelector('#bkg .bkc[data-id="'+id+'"] .nd'))render()}});
  $('bkfb').onclick=()=>{$('bkfp').hidden=!$('bkfp').hidden;renderF()};$('bks').addEventListener('input',render);$('bkdp').addEventListener('input',()=>{const v=String($('bkdp').value).trim(),x=parseInt(v);UI.dp=v===''||isNaN(x)?null:Math.max(0,x);saveUI();render()});$('bko').addEventListener('change',render);
  /* teams */
  const mini=x=>{const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n);return `${p?`<img src="${p}" alt="">`:''}<b>${x.n}</b><small>${stg(x.n)}${x.lv?' · Lv '+x.lv:''}</small><small>${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?` · <span style="color:${EC[sp]}">${sp}</span>`:''}</small>`};
@@ -1768,12 +2054,12 @@ dnRender();
  $('bkhx').onclick=()=>{const b=$('bkhx');if(b.dataset.sure){HI=[];st(HK,HI);delete b.dataset.sure;b.textContent='Clear history';renderH()}else{b.dataset.sure=1;b.textContent='Tap again to clear'}};
  ac($('bkn'),STL);
  const msg=m=>{$('bkmsg').textContent=m};
- const doAdd=()=>{const n=canon($('bkn').value);if(!n){msg('Pick a Digimon from the list.');return}add({n,lv:$('bkl').value,ml:$('bkm').value,q:$('bkq').value,dp:$('bkd').value,mv:ADDMV.slice()});ADDMV=[];chipsAdd();['bkn','bkl','bkm','bkq','bkd'].forEach(i=>$(i).value='');$('bkn').dispatchEvent(new Event('input'));const sg=$('bkn').parentNode.querySelector('.sug');if(sg)sg.style.display='none';msg(`Added ${n}.`);render()};
+ const doAdd=()=>{const n=canon($('bkn').value);if(!n){msg('Pick a Digimon from the list.');return}add({n,lv:$('bkl').value,ml:$('bkm').value,q:$('bkq').value,dp:$('bkd').value,fr:$('bkfr').checked,mv:ADDMV.slice()});$('bkfr').checked=false;ADDMV=[];chipsAdd();['bkn','bkl','bkm','bkq','bkd'].forEach(i=>$(i).value='');$('bkn').dispatchEvent(new Event('input'));const sg=$('bkn').parentNode.querySelector('.sug');if(sg)sg.style.display='none';msg(`Added ${n}.`);render()};
  $('bkadd').onclick=doAdd;
  ['bkn','bkl','bkm','bkq','bkd'].forEach((id,i,a)=>$(id).addEventListener('keydown',e=>{if(e.key!='Enter')return;e.preventDefault();if(id=='bkn'){const sg=$('bkn').parentNode.querySelector('.sug');const f=sg&&sg.style.display!='none'&&sg.querySelector('div[data-n]');if(f&&!canon($('bkn').value)){$('bkn').value=f.dataset.n;$('bkn').dispatchEvent(new Event('input'))}if(sg)sg.style.display='none'}if(i<a.length-1)$(a[i+1]).focus();else doAdd()}));
  $('bkmvq').addEventListener('keydown',e=>{if(e.key=='Enter'&&!$('bkmvq').value.trim()){e.preventDefault();doAdd()}});
  const enc=o=>'k1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec=c=>{try{c=c.trim();if(!c.startsWith('k1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
- $('bkcopy').onclick=()=>{const B=get(),ix=Object.fromEntries(B.map((x,i)=>[x.id,i])),T=teams().map(t=>({n:t.n,m:t.m.map(id=>id in ix?ix[id]:null)}));const c=enc({b:B.map(({n,lv,ml,q,dp,mv,use,fav})=>({n,lv,ml,q,dp,mv,use,fav})),t:T});const f=()=>{$('bkcode').value=c;$('bkcode').select();msg('Press Ctrl+C to copy the selected code.')};if(navigator.clipboard)navigator.clipboard.writeText(c).then(()=>msg('Bank code copied. Paste it on another device with “Load code”.')).catch(f);else f()};
+ $('bkcopy').onclick=()=>{const B=get(),ix=Object.fromEntries(B.map((x,i)=>[x.id,i])),T=teams().map(t=>({n:t.n,m:t.m.map(id=>id in ix?ix[id]:null)}));const c=enc({b:B.map(({n,lv,ml,q,dp,mv,use,fav,fr,mlu,dpu})=>({n,lv,ml,q,dp,mv,use,fav,...(fr?{fr:1}:{}),...(mlu?{mlu:1}:{}),...(dpu?{dpu:1}:{})})),t:T});const f=()=>{$('bkcode').value=c;$('bkcode').select();msg('Press Ctrl+C to copy the selected code.')};if(navigator.clipboard)navigator.clipboard.writeText(c).then(()=>msg('Bank code copied. Paste it on another device with “Load code”.')).catch(f);else f()};
  $('bkload').onclick=()=>{const D=dec($('bkcode').value),L=Array.isArray(D)?D:D&&Array.isArray(D.b)?D.b:null;if(!L){msg('That code didn’t work. Bank codes start with k1-.');return}hush(3000);let n=0;const map=L.map(e=>{const o=add(e);if(o)n++;return o?o.id:null});
   let tn=0;if(D&&Array.isArray(D.t)){const T=teams();D.t.forEach(t=>{if(T.length>=12||!t)return;let nm=String(t.n||'Team').slice(0,30);if(T.some(x=>x.n===nm)){let k=2;while(T.some(x=>x.n===nm+' ('+k+')'))k++;nm=nm+' ('+k+')'}const m=[0,1,2].map(i=>{const j=(t.m||[])[i];return j!=null&&map[j]?map[j]:null});T.push({n:nm,m});tn++});saveT()}
   log('code',`Loaded ${n} Digimon${tn?' and '+tn+' team'+(tn>1?'s':''):''} from a bank code`);$('bkcode').value='';msg(`Added ${n} Digimon${tn?' and '+tn+' team'+(tn>1?'s':''):''} from the code.`);render()};
@@ -2006,7 +2292,7 @@ dnRender();
   const mvl=b=>SEL.filter((x,i)=>b&(1<<i)),lrnTxt=(k,m)=>(LRN[k]||[]).filter(([i,l])=>m>=l).map(([i,l])=>`learns ${SEL[i]} at EL ${l}`).join(', ');
   const mon=(s,res)=>{const [k,d,m,,skv]=P(s),h=have[s],c=how[s]&&how[s].t=='catch',v=mlr(s),kn=mvl(+skv||0),lt=(res===1||h||c)?lrnTxt(k,+m):'';
    const note=(res?'':unk(s)?(c?'Get it, then train it to its Max level':h&&h.lv?`Train it from EL ${h.lv} to its Max level`:'Train it to its Max level'):h&&h.lv&&h.lv<h.ml?`Train from EL ${h.lv} to its Max level, EL ${h.ml}`:`Train to its Max level, EL ${mlt(v)}`)+(lt?`${res?'':' ('}${res?lt.charAt(0).toUpperCase()+lt.slice(1):lt}${res?'':')'}`:'');
-   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${qOf(s)!=null?' &middot; Quality '+qOf(s):''}</div>${kn.length?`<div class="bkn">Knows ${kn.join(', ')}</div>`:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px"><b>Needs Max EL ${rq(s)}</b>${QCAP[s]!=null?' &middot; keeps your Quality':h?' &middot; check it in game':' &middot; get one this high'}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
+   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${qOf(s)!=null?' &middot; '+qBars(qOf(s))+'Quality '+qOf(s):''}</div>${kn.length?`<div class="bkn">Knows ${kn.join(', ')}</div>`:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px"><b>Needs Max EL ${rq(s)}</b>${QCAP[s]!=null?' &middot; keeps your Quality':h?' &middot; check it in game':' &middot; get one this high'}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
   const DN=[];let first=true;const doneBtn=s=>{if(!first)return '';first=false;DN.push(s);return `<button class="qbtn bdone" type="button" data-s="${s}">Done, update my Digimon</button>`};
   order.forEach(s=>{const h=how[s],[k,d,m]=P(s),n=need[s],tag=n>1?` &times;${n}`:'';
    if(h.t=='catch'){{const ci=cat.length;cat.push(`<div class="bcatch" data-n="${DISP(k)}"><div class="bcn"><b>Get ${n>1?n:/^[AEIOU]/i.test(DISP(k))?'an':'a'}</b> ${dn(k)} <small>(${STN[ST[k]]})</small>${QCAP[s]!=null?`<div class="bcl"><b>Needs a Max level of ${rq(s).replace('&ndash;',' to ')}</b> for this chain, so your Quality carries on.</div>`:reqN(s)?`<div class="bcl"><b>Needs a Max level of ${reqN(s)} or more</b> for this chain.</div>`:''}</div><label for="bcc${ci}l">Level</label><input id="bcc${ci}l" class="bccl" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 9"><label for="bcc${ci}m">Max level</label><input id="bcc${ci}m" class="bccm" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 24"><label for="bcc${ci}q">Quality</label><input id="bcc${ci}q" class="bccq" type="number" min="0" max="100" inputmode="numeric" placeholder="optional"><button class="qbtn bcca" type="button">I got it, add to my Digimon</button></div>`)};return}
@@ -2029,7 +2315,7 @@ dnRender();
   const gq=qOf(goal),tgtTxt=tgt?(unk(goal)?` <span class="bdpb">Max EL target ${tgt}: depends on Max levels you haven&rsquo;t entered</span>`:` <span class="bdpb">Max EL target ${tgt} reached</span>`):'',qTxt=gq!=null?` <span class="bdpb">Quality ${gq}</span>`:'';
   const icoK=k=>PIC[k]?`<img class="bxico" src="${PIC[k]}" alt="">`:'';
   const tnode=s=>{const h=how[s],[k,d]=P(s),hv=have[s],c=h.t=='catch',q=qOf(s),n=need[s];const kids=h.t=='dna'?[h.a,h.b]:h.t=='evo'?[h.from]:[];
-   return `<div class="bxn"><div class="bxcard${s==goal?' bxgoal':''}">${icoK(k)}<div>${dn(k)}${hv?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${n>1&&s!=goal?` <small>&times;${n}</small>`:''}<div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${q!=null?' &middot; Q '+q:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?` &middot; <span style="color:#d08a00">${c?'get one with':'needs'} ${rq(s)}</span>`:''}</div></div></div>`+
+   return `<div class="bxn"><div class="bxcard${s==goal?' bxgoal':''}">${icoK(k)}<div>${dn(k)}${hv?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${n>1&&s!=goal?` <small>&times;${n}</small>`:''}<div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${q!=null?' &middot; '+qBars(q)+'Q '+q:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?` &middot; <span style="color:#d08a00">${c?'get one with':'needs'} ${rq(s)}</span>`:''}</div></div></div>`+
     (kids.length?`<div class="bxlab">${h.t=='dna'?'DNA Digivolve':'Level up at EL '+EVL[ST[P(h.from)[0]]]}</div><div class="bxkids">${kids.map(tnode).join('')}</div>`:'')+'</div>'};
   const treeH=steps.length?`<div class="bxtree"><p class="bxcap">The Digimon you want is at the top. Follow the lines down to see what each one is made from.${Object.values(EX).length&&order.some(x=>unk(x)&&!isLeafU(x))?' A Max EL like <b>29+</b> means at least that, as long as each Digimon you get has the Max level shown on it.':''}</p><div class="bxroot">${tnode(goal)}</div></div>`:'';
   out.innerHTML=!steps.length?`<div class="bcsum"><b>You already have ${dn(gk)}.</b> Train it to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}.</div>`:
@@ -2098,11 +2384,196 @@ dnRender();
 })();
 
 
+/* DW2 Online screenshot reader: finds the game's pixel-font text and reads it with glyph templates */
+window.DWOCR=(()=>{
+const INK=135;
+function segment(img){const {width:W,height:H,data:D}=img,N=W*H,M=new Uint8Array(N),C=new Uint8Array(N);
+ for(let i=0,p=0;i<N;i++,p+=4){const r=D[p],g=D[p+1],b=D[p+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b);if(mx>=INK){M[i]=1;C[i]=(mx-mn>=60)?1:0}}
+ // connected components (8-way)
+ const L=new Int32Array(N).fill(-1),comps=[],st=new Int32Array(N);
+ for(let i=0;i<N;i++){if(!M[i]||L[i]>=0)continue;let sp=0;st[sp++]=i;L[i]=comps.length;let x0=W,y0=H,x1=0,y1=0,n=0,col=0;
+  while(sp){const j=st[--sp],x=j%W,y=(j/W)|0;n++;col+=C[j];if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+   for(let dy=-1;dy<=1;dy++){const yy=y+dy;if(yy<0||yy>=H)continue;for(let dx=-1;dx<=1;dx++){const xx=x+dx;if(xx<0||xx>=W)continue;const k=yy*W+xx;if(M[k]&&L[k]<0){L[k]=comps.length;st[sp++]=k}}}}
+  comps.push({x0,y0,x1,y1,n,col:col/n,id:comps.length})}
+ return {W,H,M,C,L,comps}}
+function scaleOf(S){const {W,M,comps}=S,runs=[];
+ for(const c of comps){const h=c.y1-c.y0+1,w=c.x1-c.x0+1;if(h<5||h>90||w>120||c.n<6)continue;
+  for(let y=c.y0;y<=c.y1;y++){let r=0,v=M[y*W+c.x0];for(let x=c.x0;x<=c.x1+1;x++){const m=x<=c.x1?M[y*W+x]:2;if(m===v)r++;else{runs.push(r);r=1;v=m}}}
+  for(let x=c.x0;x<=c.x1;x++){let r=0,v=M[c.y0*W+x];for(let y=c.y0;y<=c.y1+1;y++){const m=y<=c.y1?M[y*W+x]:2;if(m===v)r++;else{runs.push(r);r=1;v=m}}}}
+ if(!runs.length)return 0;const h={};runs.forEach(r=>h[r]=(h[r]||0)+1);const tot=runs.length;
+ let mn=Infinity;for(const k in h)if(h[k]>=tot*0.04&&+k<mn)mn=+k;
+ const sel=runs.filter(r=>r>=mn&&r<mn*1.6);return sel.reduce((a,b)=>a+b,0)/sel.length}
+function glyphs(S,s){const {W,M,comps}=S;
+ let cs=comps.filter(c=>{const h=c.y1-c.y0+1,w=c.x1-c.x0+1;return w<=9.5*s&&h<=16*s&&c.n>=s*s*0.8});
+ // merge pieces stacked closely in the same column (i, j, :, ;)
+ cs.sort((a,b)=>a.x0-b.x0||a.y0-b.y0);const used=new Set(),G=[];
+ for(const a of cs){if(used.has(a))continue;const g={x0:a.x0,y0:a.y0,x1:a.x1,y1:a.y1,n:a.n,col:a.col*a.n,parts:[a]};used.add(a);
+  let grow=true;while(grow){grow=false;for(const b of cs){if(used.has(b))continue;if(b.x0>g.x1+0.5*s)break;const ox=Math.min(g.x1,b.x1)-Math.max(g.x0,b.x0);
+   const gap=Math.max(b.y0-g.y1,g.y0-b.y1);if(ox>=0&&gap<=3.2*s&&gap>0){g.x0=Math.min(g.x0,b.x0);g.x1=Math.max(g.x1,b.x1);g.y0=Math.min(g.y0,b.y0);g.y1=Math.max(g.y1,b.y1);g.n+=b.n;g.col+=b.col*b.n;g.parts.push(b);used.add(b);grow=true}}}
+  g.col/=g.n;if(g.y1-g.y0+1<=16*s)G.push(g)}
+ // runs: chain each glyph to the run just left of it that sits at the same height
+ G.sort((a,b)=>a.x0-b.x0||a.y0-b.y0);const out=[];
+ for(const g of G){const h=g.y1-g.y0+1,big=h>=6*s;let best=null;
+  for(const r of out){if(r.x1<g.x0-7.5*s||r.x1>g.x0+s)continue;const ov=Math.min(r.b1,g.y1)-Math.max(r.b0,g.y0)+1;if(ov>=Math.min(h,r.b1-r.b0+1)*0.5&&(!best||ov>best.ov))best={r,ov}}
+  if(best){const r=best.r;r.g.push(g);r.x1=Math.max(r.x1,g.x1);if(!r.big&&big){r.b0=g.y0;r.b1=g.y1;r.big=true}}
+  else out.push({g:[g],x0:g.x0,x1:g.x1,b0:g.y0,b1:g.y1,big})}
+ for(const r of out){const bt={};r.g.forEach(g=>bt[g.y1]=(bt[g.y1]||0)+1);
+  // baseline: the most common bottom (rounded to font pixels)
+  let base=null,bc=-1;for(const k in bt){let c=0;for(const j in bt)if(Math.abs(j-k)<=s*0.6)c+=bt[j];if(c>bc||(c==bc&&+k<base)){bc=c;base=+k}}r.base=base;
+  r.y0=Math.min(...r.g.map(g=>g.y0));r.y1=Math.max(...r.g.map(g=>g.y1));
+  for(const g of r.g){const fw=Math.max(1,Math.round((g.x1-g.x0+1)/s)),fh=Math.max(1,Math.round((g.y1-g.y0+1)/s)),cw=(g.x1-g.x0+1)/fw,ch=(g.y1-g.y0+1)/fh;let bits='';
+   for(let y=0;y<fh;y++)for(let x=0;x<fw;x++){// share of ink in the middle of each font pixel
+    const ax=g.x0+x*cw+cw*0.2,bx=g.x0+(x+1)*cw-cw*0.2,ay=g.y0+y*ch+ch*0.2,by=g.y0+(y+1)*ch-ch*0.2;let n=0,k=0;
+    for(let py=Math.floor(ay);py<=Math.min(g.y1,Math.ceil(by)-1);py++)for(let px=Math.floor(ax);px<=Math.min(g.x1,Math.ceil(bx)-1);px++){k++;n+=M[py*W+px]}
+    if(!k){const px=Math.min(g.x1,Math.floor(g.x0+(x+0.5)*cw)),py=Math.min(g.y1,Math.floor(g.y0+(y+0.5)*ch));k=1;n=M[py*W+px]}
+    bits+=n*2>=k?'1':'0'}
+   g.fw=fw;g.fh=fh;g.dy=Math.round((g.y1-base)/s);g.bits=bits;g.key=fw+'x'+fh+':'+g.dy+':'+bits;
+   g.bar=g.col>0.5&&bits.indexOf('0')<0&&fw<=2}}
+ return out}
+return {segment,scaleOf,glyphs}})();
+
+window.DWOCR.TPL={"6x11:0:011111111111110000110000110000110000110000110000110000111111011111":"C","6x8:0:111110111111000011011111111111110011111111011111":"a","6x8:0:110111111111111000110000110000110000110000110000":"r","2x11:0:1111001111111111111111":"i","6x8:0:011110111111110011111111111111110000111111011111":"e","6x11:0:000011000011000011011111111111110011110011110011110011111111011111":"d","6x11:0:011110111111110011000011001110001111000011000011110011111111011110":"3","6x11:0:111110111111110011110011110011111111111110110000110000110000110000":"P","6x11:0:011000011000011000111111111111011000011000011000011000011111001111":"t","6x11:3:110011110011110011110011110011110011111111011111000011111111111110":"y","6x11:0:011111111111110000110000110111110111110011110011110011111111011110":"G","6x8:0:011110111111110011110011110011110011111111011110":"o","6x11:0:110000110000110000111110111111110011110011110011110011111111111110":"b","6x8:0:110011110011110011110011110011110011111111011110":"u","8x8:0:1111111011111111110110111101101111011011110110111101101111011011":"m","6x8:0:111110111111110011110011110011110011110011110011":"n","6x8:0:111111111111000111001110011100111000111111111111":"z","6x11:0:111110111111110011110011110011110011110011110011110011111111111110":"D","6x11:0:110000110000110000111110111111110011111111111110110111110011110011":"k","6x11:0:110011110011110011110111111110111100111110110111110011110011110011":"K","6x11:0:110000110000110000110000110000110000110000110000110000111111011111":"L","6x8:0:110011110011110011110011110011111111011110001100":"v","2x2:0:1111":".","6x11:0:011110111111110011110011110011111111011111000011110011111111011110":"9","8x11:0:1111111011111111110110111101101111011011110110111101101111011011110110111100001111000011":"M","2x11:0:1111111111111111111111":"l","6x11:0:011110111111110011000011000011000111001110011100111000111111111111":"2","6x11:0:111111111111110000110000111110111111000011000011000011111111111110":"5","6x11:0:011111111111110000110000111110011111000011000011000011111111111110":"S","6x11:3:011110111111110011110011110011110011111111011111000011111111111110":"g","6x11:0:011110111111110011110011110011110011110011110011110011111111011110":"0","6x11:0:000011000011000111000110001110001100011100011000111000110000110000":"/","6x11:0:001100111100111100001100001100001100001100001100001100111111111111":"1","6x11:0:011110111111110011110000111110111111110011110011110011111111011110":"6","6x11:0:111111111111000011000011000111000110001110001100001100001100001100":"7","6x11:0:011110111111110011110011011110111111110011110011110011111111011110":"8","6x11:0:110011110011110011110011110011110011110011110011111111011110001100":"V","6x8:0:011111111111110000111110011111000011111111111110":"s","6x11:0:011110111111110011110011110011111111111111110011110011110011110011":"A","6x8:0:011111111111110000110000110000110000111111011111":"c","6x11:0:111110111111110011110011110011110011110011110011110011110011110011":"N","6x11:0:111110111111110011110011111111111110110111110011110011110011110011":"R","6x11:0:110000110000110000111110111111110011110011110011110011110011110011":"h","6x11:3:011110111111110011110011110011110011111111111110110000110000110000":"p","6x11:0:111111111111001100001100001100001100001100001100001100111111111111":"I","6x11:0:110011110011110011110011111111111111110011110011110011110011110011":"H","6x11:0:001111011111011000111110111110011000011000011000011000011000011000":"f","6x11:0:011111111111110000110000111110111110110000110000110000111111011111":"E","7x11:0:11000111100011110001111101110111110001110001111101110111110001111000111100011":"X","7x8:0:11000111110111011111000111000011100011111011101111100011":"x","8x8:0:1100001111011011110110111101101111011011110110111111111101111110":"w","6x11:0:110011110011110011110011110011111111011111000011000011000011000011":"4","6x11:0:111110111111110011110011111111111110110011110011110011111111111110":"B","4x14:3:00110011000000110011001100110011001100110011001111111110":"j","6x11:0:110011110011110011110011110011110011110011110011110011111111011110":"U","6x11:0:111111111111001100001100001100001100001100001100001100001100001100":"T","6x2:-4:111111111111":"-"};
+
+/* reading: glyphs -> text runs -> Digimon entries */
+(()=>{const O=window.DWOCR;let LEARN={};try{LEARN=JSON.parse(localStorage.getItem('dw2-ocrfont')||'{}')}catch(e){}
+const TPL=()=>Object.assign({},O.TPL,LEARN);
+let IDX=null;const idx=()=>{if(IDX)return IDX;IDX=Object.entries(TPL()).map(([k,c])=>{const [sz,dy,bits]=k.split(':'),[w,h]=sz.split('x').map(Number);return {k,c,w,h,dy:+dy,bits}});return IDX};
+function cmp(g,t){let bad=0;for(let y=0;y<g.fh;y++)for(let x=0;x<g.fw;x++){const tx=Math.min(t.w-1,Math.floor((x+0.5)*t.w/g.fw)),ty=Math.min(t.h-1,Math.floor((y+0.5)*t.h/g.fh));if(g.bits[y*g.fw+x]!==t.bits[ty*t.w+tx])bad++}return bad/(g.fw*g.fh)}
+function charOf(g){const T=TPL();g.fz=false;if(T[g.key])return T[g.key];let best=null;for(const t of idx()){if(Math.abs(t.w-g.fw)>1||Math.abs(t.h-g.fh)>1||Math.abs(t.dy-g.dy)>1)continue;const d=cmp(g,t);if(!best||d<best.d)best={d,c:t.c}}if(best&&best.d<=0.07){g.fz=best.d>0.02;return best.c}return null}
+function score(R){let ok=0;for(const r of R)for(const g of r.g)if(!(g.col>0.5)&&charOf(g)!=null)ok+=g.fz?0.2:1;return ok}
+function runs(img){const S=O.segment(img),s0=O.scaleOf(S);
+ // try the measured scale and a few from glyph heights (capitals are 11 font pixels, lowercase 8), keep whichever reads the most letters
+ const hs={};for(const c of S.comps){const h=c.y1-c.y0+1;if(h>=6&&h<=70&&c.n>=6)hs[h]=(hs[h]||0)+1}
+ const top=Object.entries(hs).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>+x[0]),cand=new Set();if(s0)cand.add(+s0.toFixed(2));
+ for(const h of top)for(const f of [11,8,10])cand.add(+(h/f).toFixed(2));
+ let best=null;for(const c of cand){if(!(c>=0.9&&c<=8))continue;const R=O.glyphs(S,c),sc=score(R);if(!best||sc>best.sc)best={s:c,R,sc}}
+ if(!best)return {s:0,R:[]};const s=best.s,R=best.R;
+ for(const r of R){let t='',unk=[];let gs=r.g.filter(g=>!(g.col>0.5));while(gs.length&&gs[0].fw<=2&&gs[0].fh>=4&&gs[0].fh<=8&&gs[0].bits.indexOf("0")>=0)gs=gs.slice(1);
+  for(const g of gs){const c=charOf(g);if(c==null){t+='?';unk.push(g.key)}else t+=c}
+  r.text=t;r.unk=unk;r.fz=gs.some(g=>g.fz);r.keys=gs.map(g=>g.key);r.y=r.base;r.h=Math.max(...r.g.map(g=>g.y1-g.y0+1));r.bars=r.g.some(g=>g.col>0.5)}
+ return {s,R}}
+// names
+const EQ=c=>({'0':'o','1':'l','i':'l','I':'l','5':'s'}[c]||c.toLowerCase());
+let NAMES=null;const names=()=>NAMES||(NAMES=[...new Set(Object.values(typeof PROP0!=='undefined'?PROP0:{}))]);
+function nameOf(raw,force){let t=raw.replace(/^[^A-Za-z0-9?]+/,'');const cut=force||/\.$/.test(t);t=t.replace(/\.+$/,'');if(t.length<3)return null;
+ const qn=(t.match(/\?/g)||[]).length;if(qn>t.length/2)return null;const res=[];
+ const sub=(a,b)=>a==='?'?0.3:a===b?0:EQ(a)===EQ(b)?0.2:3;
+ const dist=(t,n)=>{const m=t.length,k=n.length;let pr=new Array(k+1);for(let j=0;j<=k;j++)pr[j]=j*2.5;
+  for(let i=1;i<=m;i++){const cu=[i*2.5];for(let j=1;j<=k;j++)cu[j]=Math.min(pr[j-1]+sub(t[i-1],n[j-1]),pr[j]+2.5,cu[j-1]+2.5);pr=cu}
+  return cut?Math.min(...pr.slice(Math.max(0,m-1))):pr[k]};
+ for(const n of names()){if(Math.abs((cut?Math.min(n.length,t.length):n.length)-t.length)>1)continue;const sc=dist(t,n)+(cut?0.1:0);if(sc<=4)res.push({n,sc})}
+ res.sort((a,b)=>a.sc-b.sc);if(!res.length){if(!cut&&t.length>=7){const c=nameOf(raw+'.',1);if(c&&c.n)return c}return {raw:t,n:null,opts:[]}}
+ const top=res[0],gap=res.length>1?res[1].sc-top.sc:9,sure=(top.sc<1.5&&gap>=0.9)||(top.sc<=2.6&&gap>=2);const o={raw:t,n:sure?top.n:null,guess:top.n,opts:res.slice(0,6).map(x=>x.n),sc:top.sc};if(!o.n&&!cut&&t.length>=7){const c=nameOf(raw+'.',1);if(c&&c.n)return c}return o}
+// layout
+// signal bars: their colour gives the Quality tier (red, orange, yellow, green)
+function barTier(img,r){const {width:W,data:D}=img;let n=0,R=0,G=0,B=0;for(const g of r.g){if(!(g.col>0.5))continue;for(let y=g.y0;y<=g.y1;y++)for(let x=g.x0;x<=g.x1;x++){const p=(y*W+x)*4,a=D[p],b=D[p+1],c=D[p+2];if(Math.max(a,b,c)-Math.min(a,b,c)<60||Math.max(a,b,c)<135)continue;n++;R+=a;G+=b;B+=c}}
+ if(n<4)return null;R/=n;G/=n;B/=n;if(G>R*1.08)return 3;const k=G/R;return k<0.42?0:k<0.78?1:2}
+function parse(img){const {s,R}=runs(img);const BR=R.filter(r=>!r.text&&r.bars);const qt=q=>q>=95?3:q>=85?2:q>=60?1:0;
+ const barsBetween=(a,b)=>BR.find(x=>Math.abs(x.base-a.y)<=4*s&&x.x0>=a.x1-s&&x.x1<=b.x0+s);
+ const chkQ=(e,a,b)=>{const br=barsBetween(a,b);if(!br)return;const t=barTier(img,br);if(t!=null&&t!==qt(e.q)){e.fz=true;e.qbar=t}};const T=R.filter(r=>r.text);const near=(a,b,dy)=>Math.abs(a.y-b.y)<=dy;
+ const out={s,party:[],storage:[],status:null,page:null,unk:{}};
+ const pg=T.find(r=>/^Page(\d+)\/(\d+)$/.test(r.text));if(pg)out.page=+pg.text.match(/^Page(\d+)/)[1];out.list=T.some(r=>/^Digi-?Beetle\d+\/\d+$/.test(r.text))?'Digi-Beetle':'Storage';
+ // storage rows: "<Q>Lv.<L>" with the name to the left on the same line
+ const left=r=>T.filter(x=>x!==r&&near(x,r,2*s)&&x.x1<r.x0&&r.x0-x.x1<=11*s).sort((a,b)=>b.x1-a.x1)[0];
+ for(const r of T){let m=r.text.match(/^(\d{1,3})Lv\.(\d{1,2})$/);if(!m){const l=/^Lv\.(\d{1,2})$/.test(r.text)&&left(r);if(l&&/^\d{1,3}$/.test(l.text)){m=[0,l.text,r.text.slice(3)];r.st=1;l.used=1}}if(!m)continue;r.st=1;
+  const nm=T.filter(x=>x!==r&&near(x,r,2*s)&&x.x1<r.x0&&/[A-Za-z?]{3}/.test(x.text)).sort((a,b)=>b.x1-a.x1)[0];
+  const e={q:+m[1],lv:+m[2],nr:nm,y:r.y,fz:!!(r.fz||(r.st&&left(r)&&left(r).fz))};if(nm)chkQ(e,nm,r.st?left(r)||r:r);out.storage.push(e)}
+ out.storage.sort((a,b)=>a.y-b.y).forEach((e,i)=>e.row=i);
+ // party rows: "Lv.<L>" then "<Q>", with the name just above
+ for(const r of T){const m=r.text.match(/^Lv\.(\d{1,2})$/);if(!m||r.st)continue;
+  const qr=T.filter(x=>near(x,r,2*s)&&x.x0>r.x1&&x.x0-r.x1<70*s&&/^\d{1,3}$/.test(x.text)).sort((a,b)=>a.x0-b.x0)[0];if(!qr)continue;
+  const nm=T.filter(x=>x.y<r.y-6*s&&x.y>r.y-26*s&&Math.abs(x.x0-r.x0)<=4*s&&/[A-Za-z?]{3}/.test(x.text)).sort((a,b)=>b.y-a.y)[0];
+  const e={q:+qr.text,lv:+m[1],nr:nm,y:r.y,fz:!!(r.fz||qr.fz)};chkQ(e,r,qr);out.party.push(e)}
+ // status panel: "Lv.<L>/<Max>" with the Quality to the left; DP, type and stage nearby
+ const sr=T.find(r=>/^Lv\.(\d{1,2})\/(\d{1,2})$/.test(r.text));
+ if(sr){const m=sr.text.match(/^Lv\.(\d+)\/(\d+)$/),qr=T.filter(x=>near(x,sr,2*s)&&x.x1<sr.x0&&/^\d{1,3}$/.test(x.text)).sort((a,b)=>b.x1-a.x1)[0];
+  const dr=T.find(r=>/^DP\d{0,2}$/.test(r.text)),dn=dr&&dr.text=='DP'?T.find(x=>near(x,dr,2*s)&&x.x0>dr.x1&&x.x0-dr.x1<=14*s&&/^\d{1,2}$/.test(x.text)):null,dp=dr&&(dn?{text:'DP'+dn.text}:dr.text!='DP'?dr:null),ty=T.find(r=>/^(Vaccine|Data|Virus)$/.test(r.text)),stg=T.find(r=>/^(Rookie|Champion|Ultimate|Mega)$/.test(r.text));
+  out.status={fz:!!(sr.fz||(qr&&qr.fz)),lv:+m[1],ml:+m[2],q:qr?+qr.text:null,dp:dp?+dp.text.slice(2):null,type:ty?ty.text:null,stage:stg?stg.text:null}}
+ for(const e of [...out.party,...out.storage]){const nr=e.nr;e.name=nr?nameOf(nr.text):null;if(nr){e.raw=nr.text;e.keys=nr.keys.slice(nr.keys.length-nr.text.length)}delete e.nr}
+ return out}
+function learn(raw,keys,name){if(!raw||!keys||!name)return;let t=raw.replace(/\.+$/,'');const off=keys.length-raw.length;let ch=0;
+ for(let i=0;i<t.length;i++){if(t[i]==='?'&&name[i]){const k=keys[i+Math.max(0,off)];if(k){LEARN[k]=name[i];ch++}}}
+ if(ch){IDX=null;try{localStorage.setItem('dw2-ocrfont',JSON.stringify(LEARN))}catch(e){}}}
+O.parse=parse;O.runs=runs;O.learn=learn;O.nameOf=nameOf})();
+
+/* DigiBank: import Digimon from game screenshots */
+(()=>{try{const $=id=>document.getElementById(id),box=$('bkimr'),dz=$('bkdz'),fi=$('bkimi');if(!box||!window.DWB)return;
+const NAMES=[...new Set(Object.values(PROP0))].sort();
+const dl=document.createElement('datalist');dl.id='bkimdl';dl.innerHTML=NAMES.map(n=>`<option value="${n}">`).join('');document.body.appendChild(dl);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let ROWS=[],SHOTS=0,BUSY=false,NOTE=[];
+const canonN=v=>{v=String(v||'').trim();return PROP0[v.toLowerCase()]||PROP[v]||null};
+const num=(v,lo,hi)=>{if(v===''||v==null)return null;const n=parseInt(v);return isNaN(n)?null:Math.max(lo,Math.min(hi,n))};
+const imgData=f=>new Promise((ok,bad)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0);URL.revokeObjectURL(u);try{ok(x.getImageData(0,0,c.width,c.height))}catch(e){bad(e)}};im.onerror=()=>{URL.revokeObjectURL(u);bad(new Error('not an image'))};im.src=u});
+const typeOk=(n,st)=>{if(!st||!n)return true;try{const t=dty(n);if(st.type&&t!=null&&['Vaccine','Data','Virus'][+t]!==st.type)return false;const s=ST[KEY(n)];if(st.stage&&s!=null&&STN[s]!==st.stage)return false}catch(e){}return true};
+
+async function read(files){files=[...files].filter(f=>/^image\//.test(f.type));if(!files.length||BUSY)return;BUSY=true;box.innerHTML='<p class="bcl">Reading '+files.length+' screenshot'+(files.length>1?'s':'')+'…</p>';
+ await new Promise(r=>setTimeout(r,30));const seen=new Set(ROWS.map(r=>r.key));let bad=0;
+ for(const f of files){let P;try{P=DWOCR.parse(await imgData(f))}catch(e){bad++;continue}
+  const ents=[...P.party.map(e=>({...e,src:'Party'})),...P.storage.map(e=>({...e,src:P.list=='Digi-Beetle'?'Digi-Beetle':P.page?'Storage p'+P.page:'Storage'}))];
+  if(!ents.length&&!P.status){bad++;continue}SHOTS++;const mine=[];
+  for(const e of ents){const key=e.src=='Party'?'p|'+(e.name&&(e.name.n||e.name.guess))+'|'+e.q+'|'+e.lv:(P.list=='Digi-Beetle'?'b':P.page?'s'+P.page:'x'+SHOTS)+'|'+(e.name&&(e.name.n||e.name.guess)||e.row)+'|'+e.q+'|'+e.lv;
+   let r=ROWS.find(x=>x.key===key);if(!r){r={key,n:e.name&&e.name.n||'',guess:e.name&&!e.name.n?e.name.guess||'':'',opts:e.name?e.name.opts:[],raw:e.raw,keys:e.keys,q:e.q,lv:e.lv,ml:null,dp:null,src:e.src,chk:!!(e.fz),on:true};ROWS.push(r)}mine.push(r)}
+  const st=P.status;if(st&&st.q!=null){// the Digimon shown in the Status panel is the one in this screenshot with the same Quality and level
+   let m=mine.filter(r=>r.q===st.q&&r.lv===st.lv&&typeOk(r.n||r.guess,st));if(m.length>1){const p=m.filter(r=>r.src=='Party');if(p.length==1)m=p}
+   if(m.length===1){m[0].ml=st.ml;if(st.dp!=null)m[0].dp=st.dp;m[0].stat=true;if(st.fz)m[0].chk=true}
+   else{const key='st|'+st.q+'|'+st.lv+'|'+st.ml;if(!ROWS.some(x=>x.key===key))ROWS.push({key,n:'',guess:'',opts:[],q:st.q,lv:st.lv,ml:st.ml,dp:st.dp,src:'Status',stat:true,chk:!!st.fz,on:true,need:st})}}}
+ if(bad)NOTE.push(bad+' image'+(bad>1?'s':'')+' had no Digimon list I could read. Use screenshots of the Digimon window at its normal size.');
+ BUSY=false;match();draw()}
+
+// match each row to the bank: same Digimon and Quality means it's one you already have
+function match(){const B=DWB.get(),taken=new Set();
+ for(const r of ROWS){r.act=null;r.bid=null;
+  if(r.src=='Status'&&!r.n){// a Status panel on its own: find the one Digimon in the bank with that Quality and level
+   const c=B.filter(x=>x.q===r.q&&x.lv===r.lv&&typeOk(x.n,r.need));if(c.length===1){r.n=c[0].n;r.auto=1}else if(c.length>1)r.opts=[...new Set(c.map(x=>x.n))]}
+  const n=canonN(r.n);if(!n||r.q==null){r.act='name';continue}
+  if(r.src=='Status'&&!r.n){r.act='name';continue}
+  const c=B.filter(x=>x.n===n&&x.q===r.q&&!taken.has(x.id)).sort((a,b)=>{const da=(a.lv||0)<=r.lv?r.lv-(a.lv||0):99+(a.lv||0)-r.lv,db=(b.lv||0)<=r.lv?r.lv-(b.lv||0):99+(b.lv||0)-r.lv;return da-db})[0];
+  if(!c){r.act='new';continue}taken.add(c.id);r.bid=c.id;const ch=[];
+  if(r.lv!=null&&c.lv!==r.lv)ch.push(`Lv ${c.lv??'?'} → ${r.lv}`);if(r.ml!=null&&c.ml!==r.ml)ch.push(`Max ${c.ml??'?'} → ${r.ml}`);if(r.dp!=null&&(c.dp||0)!==r.dp||(r.dp!=null&&c.dpu))ch.push(`DP ${c.dpu?'?':c.dp||0} → ${r.dp}`);
+  r.ch=ch;r.act=ch.length?'upd':'same'}}
+function draw(){if(!ROWS.length){box.innerHTML=(NOTE.length?`<p class="bwarn">${NOTE.join(' ')}</p>`:'');NOTE=[];return}
+ const nN=ROWS.filter(r=>r.on&&r.act=='new').length,nU=ROWS.filter(r=>r.on&&r.act=='upd').length,nX=ROWS.filter(r=>r.act=='name').length,nS=ROWS.filter(r=>r.act=='same').length;
+ const lab={new:'<span class="bia bian">New</span>',upd:r=>`<span class="bia biau">Update</span> <small>${r.ch.join(', ')}</small>`,same:'<span class="bia bias">Already in bank</span>',name:'<span class="bia biax">Pick the Digimon</span>'};
+ box.innerHTML=(NOTE.length?`<p class="bwarn">${NOTE.join(' ')}</p>`:'')+
+ `<p class="bcl" style="margin:8px 0">Read ${SHOTS} screenshot${SHOTS==1?'':'s'}. Check the list, fix anything that&rsquo;s wrong, then add. Rows marked <b class="bic">check</b> were hard to read.</p>`+
+ `<div class="wrap"><table class="bit"><thead><tr><th><input type="checkbox" id="bimall" aria-label="Select all" ${ROWS.every(r=>r.on||r.act=='same')?'checked':''}></th><th>Digimon</th><th>Lv</th><th>Quality</th><th>Max level</th><th>DP</th><th>From</th><th>In your bank</th></tr></thead><tbody>`+
+ ROWS.map((r,i)=>`<tr data-i="${i}" class="${r.act=='same'?'bis':''}${r.chk?' bichk':''}"><td><input type="checkbox" data-f="on" ${r.on&&r.act!='same'?'checked':''} ${r.act=='same'?'disabled':''} aria-label="Import this row"></td>`+
+  `<td><input data-f="n" list="bkimdl" value="${esc(r.n)}" placeholder="${esc(r.guess||'Pick a Digimon')}" autocomplete="off" aria-label="Digimon">${!r.n&&r.opts&&r.opts.length?`<div class="biop">${r.opts.slice(0,4).map(o=>`<button type="button" data-pick="${esc(o)}">${esc(o)}</button>`).join('')}</div>`:''}${r.raw&&r.n&&r.raw.replace(/\.$/,'')!==r.n?`<small class="bcl">read &ldquo;${esc(r.raw)}&rdquo;</small>`:''}</td>`+
+  `<td data-l="Lv"><input data-f="lv" type="number" min="1" max="99" value="${r.lv??''}" aria-label="Level"></td>`+
+  `<td data-l="Quality"><span class="biq">${qBars(r.q)}<input data-f="q" type="number" min="0" max="100" value="${r.q??''}" aria-label="Quality"></span></td>`+
+  `<td data-l="Max level"><input data-f="ml" type="number" min="1" max="99" value="${r.ml??''}" placeholder="?" aria-label="Max level"></td>`+
+  `<td data-l="DP"><input data-f="dp" type="number" min="0" max="99" value="${r.dp??''}" placeholder="?" aria-label="DP"></td>`+
+  `<td class="bcl">${r.src}${r.stat&&r.src!='Status'?' + Status':''}${r.chk?' <b class="bic">check</b>':''}</td><td>${typeof lab[r.act]=='function'?lab[r.act](r):lab[r.act]||''}</td></tr>`).join('')+
+ `</tbody></table></div><div class="bct" style="margin-top:8px"><button class="qbtn bkadd" id="bimgo" type="button" ${nN+nU?'':'disabled'}>${nN+nU?`Add ${nN} new${nU?` and update ${nU}`:''}`:'Nothing to add'}</button><button class="qbtn" id="bimx" type="button">Clear list</button>`+
+ `<span class="bcl">${[nS&&nS+' already in your bank',nX&&nX+' need a Digimon picked'].filter(Boolean).join(' &middot; ')}</span></div>`;NOTE=[]}
+box.addEventListener('input',e=>{const t=e.target,tr=t.closest('tr[data-i]');if(!tr)return;const r=ROWS[+tr.dataset.i],f=t.dataset.f;if(!f||f=='on')return;
+ if(f=='n')r.n=canonN(t.value)||t.value;else r[f]=num(t.value,f=='q'||f=='dp'?0:1,f=='q'?100:99);});
+box.addEventListener('change',e=>{const t=e.target;if(t.id=='bimall'){ROWS.forEach(r=>{if(r.act!='same')r.on=t.checked});draw();return}const tr=t.closest('tr[data-i]');if(!tr)return;const r=ROWS[+tr.dataset.i];
+ if(t.dataset.f=='on'){r.on=t.checked;draw();return}if(t.dataset.f=='n'){const c=canonN(t.value);if(c){r.n=c;r.chk=false}}match();draw()});
+box.addEventListener('click',e=>{const p=e.target.closest('[data-pick]');if(p){const r=ROWS[+p.closest('tr').dataset.i];r.n=p.dataset.pick;match();draw();return}
+ if(e.target.id=='bimx'){ROWS=[];SHOTS=0;draw();return}
+ if(e.target.id=='bimgo'){let a=0,u=0;DWB.hush(3000);
+  for(const r of ROWS){if(!r.on||(r.act!='new'&&r.act!='upd'))continue;const n=canonN(r.n);if(!n)continue;
+   if(r.act=='new'){if(DWB.add({n,lv:r.lv,ml:r.ml,q:r.q,dp:r.dp??0,mlu:r.ml==null,dpu:r.dp==null}))a++}
+   else{const p={lv:r.lv};if(r.ml!=null)p.ml=r.ml;if(r.dp!=null)p.dp=r.dp;DWB.upd(r.bid,p);u++}
+   if(r.raw&&/\?/.test(r.raw))DWOCR.learn(r.raw,r.keys,n)}
+  DWB.log('code',`Imported from screenshots: ${a} added${u?', '+u+' updated':''}`);ROWS=[];SHOTS=0;
+  box.innerHTML=`<p class="bdone">Added ${a} Digimon${u?` and updated ${u}`:''}. ${a?'New ones without a Max level or DP are marked <b>Needs details</b>; use the Filters to find them.':''}</p>`;DWB.render()}});
+// ways in: choose, drop, paste
+$('bkimf').onclick=()=>fi.click();fi.onchange=()=>{read(fi.files);fi.value=''};
+['dragenter','dragover'].forEach(k=>dz.addEventListener(k,e=>{e.preventDefault();dz.classList.add('on')}));['dragleave','drop'].forEach(k=>dz.addEventListener(k,e=>{e.preventDefault();dz.classList.remove('on')}));
+dz.addEventListener('drop',e=>{read(e.dataTransfer.files);$('bkimd').open=true});
+document.addEventListener('paste',e=>{if(CT!='bank')return;const fs=[...(e.clipboardData&&e.clipboardData.files||[])].filter(f=>/^image\//.test(f.type));if(!fs.length)return;e.preventDefault();$('bkimd').open=true;read(fs)});
+DWB.on(()=>{if(ROWS.length){match();draw()}});
+}catch(e){console.error('screenshot import failed to start',e)}})();
+
 /* ===== quality of life ===== */
 (()=>{try{
 const $=id=>document.getElementById(id);
 const css=document.createElement('style');css.textContent=`
-#top{position:sticky;top:0;z-index:60;background:var(--bg);padding:6px 0;margin:4px 0 10px;transition:padding .15s}
+html,body{overflow-anchor:none}
+#top{position:sticky;top:0;z-index:60;background:var(--bg);padding:6px 0;margin:4px 0 10px}
 #top.stuck{padding:4px 0;box-shadow:0 6px 12px -8px rgba(0,0,0,.45)}
 #top.stuck button{padding:3px 10px;font-size:13px}
 .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;background:var(--fg);color:var(--bg);border-radius:10px;padding:8px 10px 8px 14px;display:flex;gap:12px;align-items:center;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:calc(100vw - 32px)}
@@ -2154,7 +2625,14 @@ window.addEventListener('popstate',e=>{const s=e.state||{t:'dv',dg:null};BUSY=tr
 window.__navReady=()=>{try{history.replaceState(cur(),'',urlOf(cur()))}catch(e){}BUSY=false};
 
 /* --- tabs stay at the top, smaller once you scroll --- */
-const TOP=$('top');const stick=()=>{const r=TOP.getBoundingClientRect(),was=TOP.classList.contains('stuck'),now=r.top<=0&&window.scrollY>40;TOP.classList.toggle('stuck',now);if(now&&!was){const on=TOP.querySelector('button.on');if(on&&TOP.scrollWidth>TOP.clientWidth)TOP.scrollLeft=Math.max(0,on.offsetLeft-12)}};
+// a marker just above the tabs decides when they're stuck (the tabs themselves always sit at the top once stuck, so they can't be used to measure);
+// when they shrink, the space they took stays reserved so nothing below them jumps
+const TOP=$('top'),SEN=document.createElement('div');SEN.style.cssText='height:0;margin:0;padding:0';TOP.parentNode.insertBefore(SEN,TOP);
+const stick=()=>{const was=TOP.classList.contains('stuck'),now=SEN.getBoundingClientRect().top<-2;if(now===was)return;
+ if(now){const h0=TOP.offsetHeight;TOP.classList.add('stuck');const h1=TOP.offsetHeight;TOP.style.marginBottom=(10+Math.max(0,h0-h1))+'px';
+  const on=TOP.querySelector('button.on');if(on&&TOP.scrollWidth>TOP.clientWidth)TOP.scrollLeft=Math.max(0,on.offsetLeft-12)}
+ else{TOP.classList.remove('stuck');TOP.style.marginBottom=''}};
+window.addEventListener('resize',()=>{if(TOP.classList.contains('stuck')){TOP.classList.remove('stuck');TOP.style.marginBottom='';stick()}});
 
 /* --- back to top --- */
 const tt=document.createElement('button');tt.id='totop';tt.type='button';tt.hidden=true;tt.textContent='↑ Top';tt.setAttribute('aria-label','Back to top');tt.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});document.body.appendChild(tt);
@@ -2191,3 +2669,6 @@ if(/^#b-/.test(window.__H0||''))try{history.replaceState(null,'',location.pathna
 if(OD&&PROP[OD.toLowerCase()])openDg(OD);else{let lt=null;try{lt=localStorage.getItem('dw2-tab')}catch(e){}const lb=lt&&lt!='dv'&&document.querySelector('#top button[data-t="'+lt+'"]');if(lb)lb.click();else showDv()}
 if(window.__navReady)__navReady();
 </script>
+</head><body>
+
+</body></html>

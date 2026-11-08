@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Digimon World 2 Online Tools</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
@@ -145,6 +142,87 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 #bc .acw.hasic>input{padding-left:34px}
 .bch{font-size:12px;font-weight:600;color:var(--mut);margin:2px 0 4px}
 .bcrow{margin:6px 0}
+.bkf{display:grid;grid-template-columns:minmax(0,1fr) 70px 80px 74px 64px auto;gap:8px;align-items:end}
+.bkf>div{display:flex;flex-direction:column;gap:3px;min-width:0}.bkf label,.bkt label{font-size:12px;color:var(--mut)}
+.bkf input{width:100%;box-sizing:border-box}.bkf .acw{display:block}.bkf .acw>input{width:100%;box-sizing:border-box}
+@media (max-width:640px){.bkf{grid-template-columns:repeat(4,minmax(0,1fr))}.bkf .bkn{grid-column:1/-1}.bkf .bkadd{grid-column:1/-1;justify-self:start}}
+.bkh{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.bkt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.bkt input{width:150px}
+.bkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.bkc{--tc:150,150,160;position:relative;border:1px solid var(--bd);border-radius:12px;background:linear-gradient(135deg,rgba(var(--tc),.16),var(--card) 62%);box-shadow:inset 4px 0 rgb(var(--tc));padding:10px 10px 8px 14px;display:grid;grid-template-columns:60px minmax(0,1fr);gap:4px 10px;align-items:center}
+.bkc.off{opacity:.55}
+.bkc.foilc{border:2px solid transparent;background:linear-gradient(135deg,rgba(var(--tc),.16),var(--card) 62%) padding-box,linear-gradient(100deg,#f5c542,#ff7ac6,#6ecbff,#f5c542) border-box;background-size:auto,300% 100%;animation:bkfoil 6s linear infinite}
+@keyframes bkfoil{to{background-position:0 0,300% 0}}
+@media (prefers-reduced-motion:reduce){.bkc.foilc{animation:none}}
+.bkc .bki{width:60px;height:60px;image-rendering:pixelated;grid-row:span 3;object-fit:contain;align-self:start;border-radius:8px;background:rgba(var(--tc),.10)}
+.bkc .bknm{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:30px;font-size:15px}.bkc .bknm .dgi{display:none}
+.bkstar{position:absolute;top:6px;right:6px;border:0;background:none;cursor:pointer;font-size:22px;line-height:1;padding:2px 4px;color:var(--mut);opacity:.55}
+.bkstar:hover{opacity:1}.bkstar.on{color:#f5c542;opacity:1;text-shadow:0 0 6px rgba(245,197,66,.5)}
+.bkbd{display:flex;flex-wrap:wrap;gap:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.bkbd span{border-radius:999px;padding:1px 7px;border:1px solid currentColor}
+.bkbd .sg{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.bkbd .tm{color:#f5a742}
+.bkc .bkst .foil{border:0;padding:0 8px}.bkc .bkst .lowq{opacity:.55}.bkc .bkst .mx{color:#2fae5e;border-color:#2fae5e;font-weight:700}
+.bksum{display:flex;flex-wrap:wrap;gap:2px 0;margin:0 0 10px;font-size:12px;color:var(--mut)}
+.bksum span{white-space:nowrap}.bksum span+span::before{content:"·";margin:0 7px;color:var(--bd)}.bksum b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+.bkfp{border:1px solid var(--bd);border-radius:10px;padding:10px;margin:0 0 10px;background:var(--bg)}
+.bkfp .bkfl{margin:0}.bkfdp{display:flex;gap:6px;align-items:center;margin-top:8px;font-size:12px;color:var(--mut)}#bank .bkfdp input{width:74px;padding:3px 8px}
+#bkfb .n{display:inline-block;margin-left:5px;background:var(--fg);color:var(--bg);border-radius:999px;padding:0 6px;font-size:11px}#bkfb.on .n{background:var(--bg);color:var(--fg)}
+.bkfl{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px;align-items:center}
+.bkfl button{font:inherit;font-size:12px;border:1px solid var(--bd);border-radius:999px;padding:2px 10px;background:var(--card);color:var(--fg);cursor:pointer}
+.bkfl button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.bkfl .sep{width:1px;height:18px;background:var(--bd);margin:0 3px}
+.bkfl .clr{border-style:dashed;color:var(--mut)}
+.bkgh{margin:12px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);display:flex;gap:8px;align-items:center}
+.bkgh:first-child{margin-top:0}.bkgh span{border:1px solid var(--bd);border-radius:999px;padding:0 8px;font-size:11px}
+.bkvw{display:inline-flex;gap:0}.bkvw .qbtn{border-radius:0}.bkvw .qbtn:first-child{border-radius:8px 0 0 8px}.bkvw .qbtn:last-child{border-radius:0 8px 8px 0;margin-left:-1px}
+.tmg{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px}
+.tmsl .dgi,.bkhl .dgi{display:none}
+.tmc{border:1px solid var(--bd);border-radius:12px;background:var(--card);padding:10px}
+.tmc .tmh{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.tmc .tmh input{flex:1;min-width:0;font-weight:700}
+.tmc .tmh .qbtn{padding:2px 9px;font-size:12px}
+.tms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tmsl{--tc:150,150,160;border:1px dashed var(--bd);border-radius:10px;min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 4px;text-align:center;position:relative;font-size:12px}
+.tmsl.f{border-style:solid;background:linear-gradient(160deg,rgba(var(--tc),.18),transparent 70%);box-shadow:inset 0 -3px rgb(var(--tc))}
+.tmsl img{width:44px;height:44px;image-rendering:pixelated;object-fit:contain}
+.tmsl b{font-size:12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tmsl small{color:var(--mut);font-size:10.5px}
+.tmsl .x{position:absolute;top:2px;right:2px;border:0;background:none;color:var(--mut);cursor:pointer;font-size:15px;line-height:1;padding:2px 5px}
+#bank .tmsl select{width:100%;font-size:12px;padding:4px 4px}
+.tma{margin-top:8px;font-size:12px;display:flex;flex-direction:column;gap:4px}
+.tma div{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.tma .lb{color:var(--mut);min-width:86px}
+.tma .p{border:1px solid currentColor;border-radius:999px;padding:0 7px;font-weight:600}
+.tma .warn{color:#e0603a}
+.bkhl{list-style:none;margin:8px 0 0;padding:0;max-height:320px;overflow:auto;font-size:13px}
+.bkhl li{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--bd)}
+.bkhl time{color:var(--mut);font-size:11.5px;min-width:112px;font-variant-numeric:tabular-nums}
+.bkhl .k{font-size:10px;font-weight:700;text-transform:uppercase;border-radius:999px;padding:1px 6px;align-self:center;border:1px solid currentColor}
+.bkhl .k.dna{color:#b066e8}.bkhl .k.add{color:#2fae5e}.bkhl .k.rm{color:#e0603a}.bkhl .k.lv,.bkhl .k.evo{color:#3b8fe0}.bkhl .k.tm{color:#f5a742}
+#bkhd summary{cursor:pointer;font-weight:700}
+@media (max-width:640px){.tmg{grid-template-columns:1fr}.bkc{grid-template-columns:52px minmax(0,1fr)}.bkc .bki{width:52px;height:52px}}
+.bkc .bkst{display:flex;flex-wrap:wrap;gap:4px;font-size:12px}
+.bkc .bkst span{border:1px solid var(--bd);border-radius:999px;padding:0 7px;font-variant-numeric:tabular-nums}
+.bkc .bksg{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-left:4px;font-weight:600}
+.bkc .bka{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;margin-top:2px}
+.bkc .bka .qbtn{padding:2px 9px;font-size:12px}
+.bkc .bka label{display:inline-flex;gap:4px;align-items:center;color:var(--mut);margin-right:auto}
+.bke{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:4px}
+.bke label{font-size:11px;color:var(--mut);display:flex;flex-direction:column;gap:2px}.bke input{width:100%;box-sizing:border-box;padding:3px 6px}
+.bkempty{color:var(--mut);font-size:13px;padding:6px 0}
+#bank input:not([type=checkbox]),#bank select{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%;box-sizing:border-box}
+#bank .bke input{padding:3px 6px}
+#bank .acw.hasic>input{padding-left:34px}
+
+.bkmv{grid-column:1/-1;display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:6px!important}
+.bkmv .bmvs{margin:0}.bkmv .acw{flex:1 1 220px;min-width:0;display:block}
+.bkc .bkmvs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px}
+.bkc .bkmvs span{font-size:11px;border:1px solid var(--bd);border-radius:6px;padding:1px 6px;background:var(--bg)}
+.bkc .bkmve{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bkc .bkmve .acw{flex:1 1 160px;min-width:0;display:block}
+.bkc .bkmve .bchip{font-size:12px}
+.bcsy{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px;margin-top:6px}
+
 .bcopt2{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:8px;font-size:13px}
 .bcopt2 input[type=number]{width:70px}
 .bcvw{display:flex;gap:6px;align-items:center;margin-top:10px;font-size:13px;color:var(--mut)}
@@ -321,7 +399,7 @@ const cur=()=>R.dataset.theme||(sys()?'dark':'light'),lab=()=>{const d=cur()==='
 B.onclick=()=>{const n=cur()==='dark'?'light':'dark';R.dataset.theme=n;try{localStorage.setItem('dw2-theme',n)}catch(e){}lab()};
 lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventListener('change',lab)})();</script>
 <p class="tip disc">Info on these pages comes from the original Digimon World 2 (PS1), plus the balance changes and info from DW2 Online. I&rsquo;ll keep updating it as things change.</p>
-<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Weaknesses</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button></div>
+<div class="tabs top" id="top"><button data-t="dv" onclick="showDv()">Digipedia</button><button data-t="dna" onclick="show()">DNA Digivolve</button><button data-t="bc" onclick="setTop('bc')">DNA Chain</button><button data-t="bank" onclick="setTop('bank')">DigiBank</button><button data-t="qv" onclick="showQv()">DNA Level/Quality Calc</button><button data-t="mv" onclick="showMv()">Digimon Moves</button><button data-t="wk" onclick="showWk()">Weaknesses</button><button data-t="mp" onclick="setTop('mp')">Mastery Planner</button></div>
 <div id="pdna"><div class="how"><b>DNA Digivolve</b><ul>
 <li><b>Add parents:</b> enter two Champion, Ultimate or Mega Digimon to see what they make, or one and press <b>Possible combos</b>.</li>
 <li><b>Find combos:</b> enter the Digimon you want in <b>Result name</b>, then open it to see every pair of parents that makes it. Use <b>Parent includes</b> to show only combos that use a certain Digimon.</li>
@@ -344,6 +422,27 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>DP (Digivolve Points):</b> where a tree branches, the game picks the branch whose <b>DP badge</b> matches your Digimon&rsquo;s DP. &ldquo;any DP&rdquo; means there is only one branch. DP goes up by 1 each time you DNA Digivolve.</li></ul></div>
 <div class="stl"><b>Stages, left to right as it grows:</b> <span class="stg s0">Rookie</span> &rarr; <span class="stg s1">Champion</span> &rarr; <span class="stg s2">Ultimate</span> &rarr; <span class="stg s3">Mega</span></div><div class="finder"><b>Find a Digimon:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dd" class="tg" hidden></div><h3 class="fh">All family trees</h3><div id="dt" class="tg"></div>
 </div>
+<div id="bank" hidden><div class="how"><b>DigiBank</b><p>Keep track of the Digimon you have. Your bank is saved in this browser.</p><ul>
+<li><b>Add:</b> pick a Digimon and fill in what you know, including moves it knows. Only the name is needed.</li>
+<li><b>DNA Chain:</b> press <b>Fill from DigiBank</b> there to use your bank. Digimon you add, catch or make in the DNA Chain are saved here too.</li>
+<li><b>Favourite:</b> tap the star on a card. Favourites show first.</li>
+<li><b>Teams:</b> battles are 3 v 3. Build teams below to see their type and specialty matchups.</li>
+<li><b>Move it:</b> copy your bank code to use the same bank and teams on another device.</li></ul></div>
+<div class="dsec dcs"><h4>Add a Digimon</h4><div class="bkf">
+<div class="bkn"><label for="bkn">Digimon</label><input id="bkn" placeholder="e.g. Greymon" autocomplete="off"></div>
+<div><label for="bkl">Level</label><input id="bkl" type="number" min="1" max="99" inputmode="numeric" placeholder="8"></div>
+<div><label for="bkm">Max level</label><input id="bkm" type="number" min="1" max="99" inputmode="numeric" placeholder="opt."></div>
+<div><label for="bkq">Quality</label><input id="bkq" type="number" min="0" max="100" inputmode="numeric" placeholder="opt."></div>
+<div><label for="bkd">DP</label><input id="bkd" type="number" min="0" max="99" inputmode="numeric" placeholder="0"></div>
+<button class="qbtn bkadd" id="bkadd" type="button">Add to bank</button>
+<div class="bkmv"><label for="bkmvq">Moves it knows <small>(optional)</small></label><span id="bkmvc" class="bmvs"></span><input id="bkmvq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div></div><div id="bkmsg" class="bcl" style="margin-top:6px"></div></div>
+<div class="dsec dcs"><div class="bkh"><h4 style="margin:0">Your Digimon <span id="bkcnt" class="bcl"></span></h4>
+<div class="bkt"><input id="bks" type="search" placeholder="Name or move" aria-label="Search your bank" autocomplete="off"><button class="qbtn" id="bkfb" type="button" aria-expanded="false" aria-controls="bkfp">Filters</button><label for="bko" class="bcl">Sort</label><select id="bko"><option value="new">Newest</option><option value="name">Name</option><option value="stage">Stage</option><option value="lv">Level</option><option value="q">Quality</option><option value="dp">DP</option></select><span class="bkvw" role="group" aria-label="View"><button class="qbtn on" type="button" data-bv="g">Cards</button><button class="qbtn" type="button" data-bv="s">By stage</button></span></div></div>
+<div id="bkfp" class="bkfp" hidden><div id="bkfl" class="bkfl"></div><div class="bkfdp"><label for="bkdp">DP</label><input id="bkdp" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="Any" aria-label="Show only this DP"></div></div><div id="bksum" class="bksum"></div>
+<div id="bkg"></div>
+<div class="bct" style="margin-top:12px"><button class="qbtn" id="bkcopy" type="button">Copy bank code</button><input id="bkcode" placeholder="Paste a bank code" autocomplete="off" aria-label="Bank code"><button class="qbtn" id="bkload" type="button">Load code</button></div></div>
+<div class="dsec dcs"><div class="bkh"><h4 style="margin:0">Teams</h4><button class="qbtn" id="tmadd" type="button">+ New team</button></div><p class="bcl" style="margin:0 0 8px">Pick 3 Digimon from your bank. Type: Virus beats Data, Data beats Vaccine, Vaccine beats Virus.</p><div id="tmg" class="tmg"></div></div>
+<div class="dsec dcs"><details id="bkhd"><summary>History <span id="bkhc" class="bcl"></span></summary><ul id="bkhl" class="bkhl"></ul><button class="qbtn" id="bkhx" type="button" style="margin-top:8px">Clear history</button></details></div></div>
 <div id="bc" hidden><div class="how"><b>DNA Chain</b><p>Finds the shortest chain of DNA Digivolves and level-ups from the Digimon you have to the one you want, with the moves you choose.</p><ol>
 <li>Add the Digimon you have, with their DP. Max level, Quality and known moves are optional.</li>
 <li>Pick the Digimon you want and any moves it should end up with.</li>
@@ -354,7 +453,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="bct" style="margin-top:6px"><input id="bcpc" placeholder="Paste a chain code" autocomplete="off" aria-label="Chain code"><button class="qbtn" id="bcpi" type="button">Load code</button></div><div id="bcpm" class="bcl" style="margin-top:4px"></div></div>
 <div class="dsec dcs"><h4>Digimon you have</h4><p class="bcl" style="margin:0 0 8px"><b>Must use in chain:</b> tick this to make the route include that Digimon, for example to pass its moves down. <b>Moves it knows:</b> add moves a Digimon already has, so the route can count them. <b>Max level:</b> leave it blank if you don&rsquo;t know it, and the route won&rsquo;t limit that Digimon by level.</p>
 <div class="bch" aria-hidden="true"><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Must use in chain</span><span></span></div>
-<div id="bcown"></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button></div></div>
+<div id="bcown"></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div class="bcsy"><label class="bck" style="margin:0"><input type="checkbox" id="bcsync" checked> Save Digimon I add or make here to my DigiBank</label><span id="bcfm" class="bcl"></span></div></div>
 <div class="dsec dcs"><h4>Digimon you want</h4><div class="bcr bct"><input id="bct" placeholder="e.g. SkullGreymon" autocomplete="off"><button class="qbtn" id="bcgo" type="button">Find shortest route</button></div>
 <div class="fl" style="margin-top:10px"><span>Moves it should know by the end</span><div id="bcmv" class="bmvs"></div><div class="bct"><input id="bcmq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div><div class="bcl">Both parents pass every move they know to the DNA result. For each move, the route includes a Digimon that learns it and has it reach the learning level: EL 12 for a Champion move, EL 22 for Ultimate, EL 32 for Mega.</div></div>
 <label class="bck"><input type="checkbox" id="bcsk" checked> The final Digimon must be able to learn its own new move (EL 12 Champion, EL 22 Ultimate, EL 32 Mega)</label>
@@ -1255,7 +1354,7 @@ document.getElementById('dt').innerHTML=RK.map(d=>{const t=dty(d.n),ks=(DE[d.n]|
 const dq=document.getElementById('dq');
 dq.oninput=()=>{const q=dq.value.trim().toLowerCase();document.querySelectorAll('#dt .fam').forEach(c=>{let h=0;c.querySelectorAll('b[data-n]').forEach(b=>{const m=q&&b.dataset.n.includes(q);b.classList.toggle('hit',!!m);if(m)h++});c.style.display=(!q||h)?'':'none';c.open=!!(q&&h)})};
 ac(dq,Object.keys({...DT,...DC}).sort().map(n=>({n:n,t:dty(n),l:''})));
-function setTop(t){CT=t;document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.getElementById('wk').hidden=t!='wk';document.getElementById('bc').hidden=t!='bc';document.getElementById('mp').hidden=t!='mp';if(t=='mp'&&window.mpShow)mpShow();document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
+function setTop(t){CT=t;document.getElementById('bank').hidden=t!='bank';if(t=='bank'&&window.DWB)DWB.render();document.getElementById('pdna').hidden=t!='dna';document.getElementById('dv').hidden=t!='dv';document.getElementById('qv').hidden=t!='qv';document.getElementById('mv').hidden=t!='mv';document.getElementById('wk').hidden=t!='wk';document.getElementById('bc').hidden=t!='bc';document.getElementById('mp').hidden=t!='mp';if(t=='mp'&&window.mpShow)mpShow();document.querySelectorAll('#top button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
 function showDv(){setTop('dv')}
 const qi=id=>document.getElementById(id);
 function showQv(){setTop('qv')}
@@ -1443,7 +1542,7 @@ function lk(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),l
 function dgIc(root){const els=root.matches&&root.matches('.dg')?[root]:[];if(root.querySelectorAll)els.push(...root.querySelectorAll('.dg'));
  for(const el of els){if(el.dataset.ic)continue;el.dataset.ic=1;const n=el.dataset.dg;if(!n)continue;const p=PIC[KEY(PROP[n.toLowerCase()]||n)];if(!p)continue;const im=document.createElement('img');im.className='dgi';im.src=p;im.alt='';const b=el.firstElementChild&&el.firstElementChild.tagName=='B'?el.firstElementChild:el;b.insertBefore(im,b.firstChild)}}
 lk(document.body);dgIc(document.body);
-const LKO=new MutationObserver(recs=>{for(const r of recs)r.addedNodes.forEach(n=>{if(n.nodeType==1){if(!n.closest(SKIP))lk(n);if(!n.closest('.dg'))dgIc(n)}else if(n.nodeType==3&&n.parentElement&&!n.parentElement.closest(SKIP)&&n.nodeValue.length>3){lk(n.parentElement);dgIc(n.parentElement)}});LKO.takeRecords()});
+const LKO=new MutationObserver(recs=>{for(const r of recs)r.addedNodes.forEach(n=>{if(n.nodeType==1){if(!n.closest(SKIP))lk(n);if(!n.closest('.dg'))dgIc(n)}else if(n.nodeType==3&&n.parentElement&&!n.parentElement.closest(SKIP)&&n.nodeValue.length>3){const pe=n.parentElement;lk(pe);dgIc(pe)}});LKO.takeRecords()});
 LKO.observe(document.body,{childList:true,subtree:true});
 /* ---- DNA calculator: Find combos ---- */
 const DS={st:new Set(),ty:new Set(),sp:new Set(),pt:new Set()};
@@ -1523,6 +1622,131 @@ dnRender();
  render();
 })();
 
+/* ---- DigiBank ---- */
+(()=>{
+ const $=id=>document.getElementById(id),BK='dw2-bank',TK='dw2-teams',HK='dw2-bankh',UK='dw2-bankui';let MEM=null,TM=null,HI=null,subs=[],HUSH=0;
+ const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k)||'null');return v==null?d:v}catch(e){return d}},st=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+ const get=()=>{if(MEM)return MEM;MEM=ld(BK,[]);if(!Array.isArray(MEM))MEM=[];return MEM};
+ const teams=()=>{if(TM)return TM;TM=ld(TK,[]);if(!Array.isArray(TM))TM=[];return TM};
+ const hist=()=>{if(HI)return HI;HI=ld(HK,[]);if(!Array.isArray(HI))HI=[];return HI};
+ const saveT=()=>{st(TK,TM)};
+ const save=()=>{st(BK,MEM);subs.forEach(f=>{try{f()}catch(e){}});if(!$('bank').hidden)render()};
+ const quiet=()=>Date.now()<HUSH,hush=ms=>{HUSH=Date.now()+(ms||1500)};
+ const log=(k,t,id)=>{if(quiet()&&k!='dna'&&k!='code')return;const H=hist(),now=Date.now(),l=H[0];
+  if(k=='lv'&&l&&l.k=='lv'&&l.id===id&&now-l.at<6e5){l.t=t;l.at=now}else H.unshift({k,t,id,at:now});H.length=Math.min(H.length,200);st(HK,H);if(!$('bank').hidden)renderH()};
+ const canon=v=>{const n=PROP[(v||'').trim().toLowerCase()];return n||null};
+ const num=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
+ const add=e=>{const n=canon(e.n);if(!n)return null;const o={id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),n,lv:num(e.lv,1,99),ml:num(e.ml,1,99),q:num(e.q,0,100),dp:num(e.dp,0,99)||0,mv:e.mv||[],use:e.use!==false,fav:!!e.fav,at:Date.now()};get().push(o);log('add',`Added ${n}${o.lv?' (Lv '+o.lv+')':''}`,o.id);save();return o};
+ const upd=(id,p)=>{const o=get().find(x=>x.id===id);if(!o)return null;const n0=o.n,l0=o.lv;if(p.n!=null){const n=canon(p.n);if(n)o.n=n}['lv','ml'].forEach(k=>{if(k in p)o[k]=num(p[k],1,99)});if('q' in p)o.q=num(p.q,0,100);if('dp' in p)o.dp=num(p.dp,0,99)||0;if(p.mv)o.mv=p.mv;if('use' in p)o.use=!!p.use;if('fav' in p)o.fav=!!p.fav;
+  if(o.n!==n0)log('evo',sti(o.n)>sti(n0)&&sti(o.n)<9?`${n0} digivolved to ${o.n}`:`${n0} is now ${o.n}`,id);
+  else if(o.lv!==l0&&o.lv!=null&&l0!=null)log('lv',`${o.n} Lv ${l0} → ${o.lv}`,id);
+  save();return o};
+ const del=id=>{const L=get(),i=L.findIndex(x=>x.id===id);if(i>=0){const n=L[i].n;L.splice(i,1);let ch=0;teams().forEach(t=>t.m=t.m.map(m=>m===id?(ch=1,null):m));if(ch)saveT();log('rm',`Removed ${n}`,id);save()}};
+ const STL=[...RK.map(d=>({n:d.n,t:dty(d.n),l:'Rookie'})),...PL,...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>KEY(e.n)==KEY(d.n))==i);
+ const stg=n=>{const s=ST[KEY(n)];return s==null?'':STN[s]},sti=n=>{const s=ST[KEY(n)];return s==null?9:s};
+ const TYP=['Vaccine','Data','Virus'],TCV=['--v','--d','--i'],BEAT=[2,0,1],WEAK=[1,2,0];
+ const tyi=n=>{const t=dty(n);return t==null?null:+t},spc=n=>{const r=SPO[(n||'').toLowerCase()];return r?r[1]:null};
+ const tcs=n=>{const t=tyi(n);return t==null?'':`--tc:var(${TCV[t]})`};
+ const isMax=x=>x.lv!=null&&x.ml!=null&&x.lv>=x.ml;
+ const MVN={};MVD.forEach(r=>{if(r[7]&&r[7].length)MVN[r[0].toLowerCase()]=r});
+ const SOM={Rookie:0,Champion:1,Ultimate:2,Mega:3},MVL=Object.values(MVN).sort((a,b)=>SOM[a[1]]-SOM[b[1]]||a[0].localeCompare(b[0])).map(r=>({n:r[0],t:null,p:r[7][0],q:r[0]+' '+r[7].join(' ')+' '+r[1],l:`${r[1]} move &middot; ${r[7].join(', ')}`}));
+ const mvOK=v=>{const r=MVN[(v||'').trim().toLowerCase()];return r?r[0]:null},esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ let ADDMV=[];const chipsAdd=()=>{$('bkmvc').innerHTML=ADDMV.map((m,i)=>`<span class="bchip">${esc(m)}<button type="button" data-i="${i}" aria-label="Remove ${esc(m)}">&times;</button></span>`).join('')};
+ $('bkmvc').onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;ADDMV.splice(+b.dataset.i,1);chipsAdd()};
+ ac($('bkmvq'),MVL);const addMvF=()=>{const m=mvOK($('bkmvq').value);if(!m)return;if(!ADDMV.includes(m))ADDMV.push(m);$('bkmvq').value='';$('bkmvq').dispatchEvent(new Event('input'));const sg=$('bkmvq').parentNode.querySelector('.sug');if(sg)sg.style.display='none';chipsAdd()};
+ $('bkmvq').addEventListener('acpick',addMvF);$('bkmvq').addEventListener('keydown',e=>{if(e.key=='Enter')addMvF()});
+ /* view + filters (remembered per browser) */
+ const UI=Object.assign({v:'g',st:[],ty:[],x:[],dp:null},ld(UK,{}));if(typeof UI.dp!='number')UI.dp=null;UI.x=(UI.x||[]).filter(k=>k!='dp2');const saveUI=()=>st(UK,UI);
+ const FX=[['fav','★ Favourites'],['team','In a team'],['max','Maxed'],['nomax','Not maxed']];
+ const inTeam=id=>teams().filter(t=>t.m.includes(id)).map(t=>t.n);
+ function renderF(){const nf=UI.st.length+UI.ty.length+UI.x.length+(UI.dp!=null?1:0),fb=$('bkfb'),op=!$('bkfp').hidden;fb.innerHTML='Filters'+(nf?`<span class="n">${nf}</span>`:'');fb.classList.toggle('on',op);fb.setAttribute('aria-expanded',op);const di=$('bkdp');if(document.activeElement!==di)di.value=UI.dp==null?'':UI.dp;const on=(g,v)=>UI[g].includes(v)?' on':'';
+  $('bkfl').innerHTML=STN.map((n,i)=>`<button type="button" data-g="st" data-v="${i}" class="${on('st',i)}">${n}</button>`).join('')+'<span class="sep"></span>'+
+   TYP.map((n,i)=>`<button type="button" data-g="ty" data-v="${i}" class="${on('ty',i)}" style="color:${UI.ty.includes(i)?'':'rgb(var('+TCV[i]+'))'}">${n}</button>`).join('')+'<span class="sep"></span>'+
+   FX.map(([k,n])=>`<button type="button" data-g="x" data-v="${k}" class="${on('x',k)}">${n}</button>`).join('')+
+   (UI.st.length||UI.ty.length||UI.x.length||UI.dp!=null?'<button type="button" class="clr" data-g="clr">Clear filters</button>':'');
+  document.querySelectorAll('#bank [data-bv]').forEach(b=>b.classList.toggle('on',b.dataset.bv===UI.v))}
+ $('bkfl').addEventListener('click',e=>{const b=e.target.closest('button[data-g]');if(!b)return;const g=b.dataset.g;
+  if(g=='clr'){UI.st=[];UI.ty=[];UI.x=[];UI.dp=null}else{const v=g=='x'?b.dataset.v:+b.dataset.v,a=UI[g],i=a.indexOf(v);if(i>=0)a.splice(i,1);else{a.push(v);if(g=='x'){if(v=='max')UI.x=UI.x.filter(z=>z!='nomax');if(v=='nomax')UI.x=UI.x.filter(z=>z!='max')}}}
+  saveUI();render()});
+ document.querySelectorAll('#bank [data-bv]').forEach(b=>b.onclick=()=>{UI.v=b.dataset.bv;saveUI();render()});
+ function renderS(){const L=get(),sc=[0,0,0,0],tc=[0,0,0];let qs=0,qn=0,mx=0,fv=0;
+  L.forEach(x=>{const s=sti(x.n);if(s<4)sc[s]++;const t=tyi(x.n);if(t!=null)tc[t]++;if(x.q!=null){qs+=x.q;qn++}if(isMax(x))mx++;if(x.fav)fv++});
+  if(!L.length){$('bksum').innerHTML='';return}
+  const T=(v,l,c)=>`<span><b${c?` style="color:rgb(var(${c}))"`:''}>${v}</b> ${l}</span>`;
+  $('bksum').innerHTML=T(L.length,'Digimon')+STN.map((n,i)=>sc[i]?T(sc[i],n):'').join('')+TYP.map((n,i)=>tc[i]?T(tc[i],n,TCV[i]):'').join('')+(qn?T(Math.round(qs/qn),'avg Quality'):'')+(mx?T(mx,'maxed'):'')+(fv?T(fv,'★'):'')}
+ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id),fo=x.q!=null&&x.q>=95;
+  return `<div class="bkc${fo?' foilc':''}" data-id="${x.id}" style="${tcs(x.n)}">${p?`<img class="bki" src="${p}" alt="">`:'<span class="bki"></span>'}<div class="bknm"><span class="dg" data-dg="${x.n}">${x.n}</span></div>
+   <button type="button" class="bkstar${x.fav?' on':''}" data-a="fav" aria-pressed="${!!x.fav}" aria-label="${x.fav?'Remove from favourites':'Add to favourites'}" title="${x.fav?'Favourite':'Add to favourites'}">${x.fav?'★':'☆'}</button>
+   <div class="bkbd">${stg(x.n)?`<span class="sg">${stg(x.n)}</span>`:''}${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?`<span style="color:${EC[sp]}">${sp}</span>`:''}${tn.map(n=>`<span class="tm">${esc(n)}</span>`).join('')}</div>
+   <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${x.ml?' / '+x.ml:''}${isMax(x)?' ✓':''}</span>${fo?`<span class="foil">Q ${x.q}</span>`:`<span class="${x.q!=null&&x.q<40?'lowq':''}">Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
+   (!ed&&(x.mv||[]).length?`<div class="bkmvs">${x.mv.map(m=>`<span>${esc(m)}</span>`).join('')}</div>`:'')+
+   (ed?`<div class="bkmve">${(x.mv||[]).map((m,i)=>`<span class="bchip">${esc(m)}<button type="button" data-mi="${i}" aria-label="Remove ${esc(m)}">&times;</button></span>`).join('')}<input class="bkmvi" placeholder="Add a move it knows" autocomplete="off" aria-label="Add a move it knows"></div>`:'')+
+   (ed?`<div class="bke"><label>Level<input data-f="lv" type="number" min="1" max="99" value="${x.lv??''}"></label><label>Max level<input data-f="ml" type="number" min="1" max="99" value="${x.ml??''}"></label><label>Quality<input data-f="q" type="number" min="0" max="100" value="${x.q??''}"></label><label>DP<input data-f="dp" type="number" min="0" max="99" value="${x.dp}"></label></div>`:'')+
+   `<div class="bka"><label><input type="checkbox" data-a="use"${x.use===false?'':' checked'}> Use in chain</label><button class="qbtn" type="button" data-a="ed">${ed?'Done':'Edit'}</button><button class="qbtn" type="button" data-a="rm">Remove</button></div></div>`}
+ let editing=null;
+ function render(){const g=$('bkg'),q=$('bks').value.trim().toLowerCase(),o=$('bko').value;let L=get().slice();
+  $('bkcnt').textContent=L.length?`(${L.length})`:'';renderF();renderS();renderT();renderH();
+  if(q)L=L.filter(x=>x.n.toLowerCase().includes(q)||(x.mv||[]).some(m=>m.toLowerCase().includes(q)));
+  if(UI.st.length)L=L.filter(x=>UI.st.includes(sti(x.n)));
+  if(UI.ty.length)L=L.filter(x=>UI.ty.includes(tyi(x.n)));if(UI.dp!=null)L=L.filter(x=>(x.dp||0)===UI.dp);
+  const XF={fav:x=>x.fav,team:x=>inTeam(x.id).length,max:isMax,nomax:x=>!isMax(x)};UI.x.forEach(k=>{if(XF[k])L=L.filter(XF[k])});
+  const c={name:(a,b)=>a.n.localeCompare(b.n),stage:(a,b)=>sti(b.n)-sti(a.n)||a.n.localeCompare(b.n),lv:(a,b)=>(b.lv||0)-(a.lv||0),q:(a,b)=>(b.q??-1)-(a.q??-1),dp:(a,b)=>b.dp-a.dp,new:(a,b)=>b.at-a.at}[o];L.sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||c(a,b));
+  if(!get().length){g.innerHTML='<div class="bkempty">Your bank is empty. Add a Digimon above, or add them in the DNA Chain and they show up here.</div>';return}
+  if(!L.length){g.innerHTML='<div class="bkempty">No Digimon match your search or filters.</div>';return}
+  if(UI.v=='s'){const G={};L.forEach(x=>{const s=sti(x.n);(G[s]=G[s]||[]).push(x)});
+   g.innerHTML=Object.keys(G).map(Number).sort((a,b)=>(b==9?-1:b)-(a==9?-1:a)).map(s=>`<h5 class="bkgh">${s==9?'Other':STN[s]}<span>${G[s].length}</span></h5><div class="bkg">${G[s].map(x=>card(x,editing===x.id)).join('')}</div>`).join('')}
+  else g.innerHTML=`<div class="bkg">${L.map(x=>card(x,editing===x.id)).join('')}</div>`;
+  const ei=g.querySelector('.bkmvi');if(ei){ac(ei,MVL);const id=ei.closest('.bkc').dataset.id,go=()=>{const m=mvOK(ei.value);if(!m)return;const o=get().find(z=>z.id===id);if(o&&!(o.mv||[]).includes(m)){upd(id,{mv:[...(o.mv||[]),m]})}render();const n=$('bkg').querySelector('.bkmvi');if(n)n.focus()};ei.addEventListener('acpick',go);ei.addEventListener('keydown',e=>{if(e.key=='Enter')go()})}}
+ $('bkg').addEventListener('click',e=>{const mb=e.target.closest('button[data-mi]');if(mb){const id=mb.closest('.bkc').dataset.id,o=get().find(z=>z.id===id);if(o){const mv=(o.mv||[]).slice();mv.splice(+mb.dataset.mi,1);upd(id,{mv})}return}const b=e.target.closest('button[data-a]');if(!b)return;const id=b.closest('.bkc').dataset.id;
+  if(b.dataset.a=='fav'){const o=get().find(z=>z.id===id);if(o)upd(id,{fav:!o.fav})}
+  if(b.dataset.a=='ed'){editing=editing===id?null:id;render()}
+  if(b.dataset.a=='rm'){if(b.dataset.sure){if(editing===id)editing=null;del(id)}else{b.dataset.sure=1;b.textContent='Tap again to remove'}}});
+ $('bkg').addEventListener('change',e=>{const c=e.target;const id=c.closest('.bkc')&&c.closest('.bkc').dataset.id;if(!id)return;if(c.dataset.a=='use')upd(id,{use:c.checked});else if(c.dataset.f)upd(id,{[c.dataset.f]:c.value})});
+ $('bkfb').onclick=()=>{$('bkfp').hidden=!$('bkfp').hidden;renderF()};$('bks').addEventListener('input',render);$('bkdp').addEventListener('input',()=>{const v=String($('bkdp').value).trim(),x=parseInt(v);UI.dp=v===''||isNaN(x)?null:Math.max(0,x);saveUI();render()});$('bko').addEventListener('change',render);
+ /* teams */
+ const mini=x=>{const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n);return `${p?`<img src="${p}" alt="">`:''}<b>${x.n}</b><small>${stg(x.n)}${x.lv?' · Lv '+x.lv:''}</small><small>${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?` · <span style="color:${EC[sp]}">${sp}</span>`:''}</small>`};
+ function anal(M){if(!M.length)return '';const tys=M.map(x=>tyi(x.n)).filter(t=>t!=null),sps=M.map(x=>spc(x.n)).filter(s=>s&&s!='None');
+  const P=(n,col)=>`<span class="p" style="color:${col}">${n}</span>`,TC=i=>`rgb(var(${TCV[i]}))`;
+  const cnt=a=>a.reduce((o,k)=>(o[k]=(o[k]||0)+1,o),{});
+  const tStr=[...new Set(tys.map(t=>BEAT[t]))],tW=cnt(tys.map(t=>WEAK[t]));
+  const SST=s=>Object.keys(SWK).filter(k=>SWK[k]===s);
+  const sStr=[...new Set(sps.flatMap(SST))],sW=cnt(sps.map(s=>SWK[s]));
+  const wk=(o,f)=>Object.keys(o).sort((a,b)=>o[b]-o[a]).map(k=>f(k,o[k])).join('')||'<span class="bcl">nothing</span>';
+  const thin=[];if(M.length==3&&new Set(tys).size==1)thin.push(`All three are ${TYP[tys[0]]}.`);Object.entries(tW).forEach(([k,v])=>{if(v>=2)thin.push(`${v} of ${M.length} are weak to ${TYP[k]}.`)});Object.entries(sW).forEach(([k,v])=>{if(v>=2)thin.push(`${v} of ${M.length} are weak to ${k}.`)});
+  return `<div class="tma"><div><span class="lb">Strong vs</span>${tStr.map(t=>P(TYP[t],TC(t))).join('')}${sStr.map(s=>P(s,EC[s])).join('')||(tStr.length?'':'<span class="bcl">nothing</span>')}</div>
+   <div><span class="lb">Weak to</span>${wk(tW,(k,v)=>P(TYP[k]+(v>1?' ×'+v:''),TC(k)))}${Object.keys(sW).map(k=>P(k+(sW[k]>1?' ×'+sW[k]:''),EC[k])).join('')}</div>
+   ${thin.length?`<div class="warn">⚠ ${thin.join(' ')}</div>`:''}${M.length<3?`<div class="bcl">${3-M.length} slot${M.length==2?'':'s'} left.</div>`:''}</div>`}
+ function renderT(){const T=teams(),B=get(),byId=Object.fromEntries(B.map(x=>[x.id,x]));
+  if(!T.length){$('tmg').innerHTML=`<div class="bkempty">No teams yet. Press <b>+ New team</b>${B.length?'':' after adding Digimon to your bank'}.</div>`;return}
+  const opts=B.slice().sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||sti(b.n)-sti(a.n)||a.n.localeCompare(b.n));
+  $('tmg').innerHTML=T.map((t,ti)=>{const M=t.m.map(id=>byId[id]).filter(Boolean);
+   return `<div class="tmc" data-t="${ti}"><div class="tmh"><input value="${esc(t.n)}" aria-label="Team name" data-tn maxlength="30"><button class="qbtn" type="button" data-ta="rm">Delete</button></div><div class="tms">`+
+    [0,1,2].map(i=>{const x=byId[t.m[i]];if(x)return `<div class="tmsl f" style="${tcs(x.n)}"><button class="x" type="button" data-ta="out" data-i="${i}" aria-label="Take ${x.n} out">&times;</button>${mini(x)}</div>`;
+     const av=opts.filter(o=>!t.m.includes(o.id));return `<div class="tmsl"><select data-i="${i}" aria-label="Pick slot ${i+1}"><option value="">${av.length?'+ Pick':'Bank is empty'}</option>${av.map(o=>`<option value="${o.id}">${o.fav?'★ ':''}${o.n}${o.lv?' · Lv '+o.lv:''}${o.q!=null?' · Q '+o.q:''}</option>`).join('')}</select></div>`}).join('')+`</div>${anal(M)}</div>`}).join('')}
+ $('tmadd').onclick=()=>{const T=teams();if(T.length>=12)return;let k=T.length+1;while(T.some(t=>t.n=='Team '+k))k++;T.push({n:'Team '+k,m:[null,null,null]});saveT();log('tm',`Made Team ${k}`);render()};
+ $('tmg').addEventListener('change',e=>{const c=e.target,tc=c.closest('.tmc');if(!tc)return;const t=teams()[+tc.dataset.t];if(!t)return;
+  if(c.matches('select')&&c.value){t.m[+c.dataset.i]=c.value;saveT();const x=get().find(z=>z.id===c.value);if(x)log('tm',`${x.n} joined ${t.n}`);render()}
+  if(c.matches('[data-tn]')){const n=c.value.trim().slice(0,30)||t.n;if(n!==t.n){log('tm',`Renamed ${t.n} to ${n}`);t.n=n;saveT();render()}}});
+ $('tmg').addEventListener('click',e=>{const b=e.target.closest('button[data-ta]');if(!b)return;const ti=+b.closest('.tmc').dataset.t,T=teams(),t=T[ti];if(!t)return;
+  if(b.dataset.ta=='out'){t.m[+b.dataset.i]=null;saveT();render()}
+  if(b.dataset.ta=='rm'){if(b.dataset.sure){T.splice(ti,1);saveT();log('tm',`Deleted ${t.n}`);render()}else{b.dataset.sure=1;b.textContent='Tap again'}}});
+ /* history */
+ const KN={dna:'DNA',add:'Added',rm:'Removed',lv:'Level',evo:'Evolve',tm:'Team',code:'Code'};
+ const fmt=t=>{const d=new Date(t);try{return d.toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}catch(e){return d.toISOString().slice(0,16)}};
+ function renderH(){const H=hist();$('bkhc').textContent=H.length?`(${H.length})`:'';$('bkhx').hidden=!H.length;
+  $('bkhl').innerHTML=H.length?H.slice(0,100).map(h=>`<li><time>${fmt(h.at)}</time><span class="k ${h.k}">${KN[h.k]||h.k}</span><span>${esc(h.t)}</span></li>`).join(''):'<li class="bcl">Nothing yet. Adding, DNA Digivolving, levelling and team changes show up here.</li>'}
+ $('bkhx').onclick=()=>{const b=$('bkhx');if(b.dataset.sure){HI=[];st(HK,HI);delete b.dataset.sure;b.textContent='Clear history';renderH()}else{b.dataset.sure=1;b.textContent='Tap again to clear'}};
+ ac($('bkn'),STL);
+ const msg=m=>{$('bkmsg').textContent=m};
+ const doAdd=()=>{const n=canon($('bkn').value);if(!n){msg('Pick a Digimon from the list.');return}add({n,lv:$('bkl').value,ml:$('bkm').value,q:$('bkq').value,dp:$('bkd').value,mv:ADDMV.slice()});ADDMV=[];chipsAdd();['bkn','bkl','bkm','bkq','bkd'].forEach(i=>$(i).value='');$('bkn').dispatchEvent(new Event('input'));const sg=$('bkn').parentNode.querySelector('.sug');if(sg)sg.style.display='none';msg(`Added ${n}.`);render()};
+ $('bkadd').onclick=doAdd;$('bkn').addEventListener('keydown',e=>{if(e.key=='Enter')doAdd()});
+ const enc=o=>'k1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec=c=>{try{c=c.trim();if(!c.startsWith('k1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
+ $('bkcopy').onclick=()=>{const B=get(),ix=Object.fromEntries(B.map((x,i)=>[x.id,i])),T=teams().map(t=>({n:t.n,m:t.m.map(id=>id in ix?ix[id]:null)}));const c=enc({b:B.map(({n,lv,ml,q,dp,mv,use,fav})=>({n,lv,ml,q,dp,mv,use,fav})),t:T});const f=()=>{$('bkcode').value=c;$('bkcode').select();msg('Press Ctrl+C to copy the selected code.')};if(navigator.clipboard)navigator.clipboard.writeText(c).then(()=>msg('Bank code copied. Paste it on another device with “Load code”.')).catch(f);else f()};
+ $('bkload').onclick=()=>{const D=dec($('bkcode').value),L=Array.isArray(D)?D:D&&Array.isArray(D.b)?D.b:null;if(!L){msg('That code didn’t work. Bank codes start with k1-.');return}hush(3000);let n=0;const map=L.map(e=>{const o=add(e);if(o)n++;return o?o.id:null});
+  let tn=0;if(D&&Array.isArray(D.t)){const T=teams();D.t.forEach(t=>{if(T.length>=12||!t)return;let nm=String(t.n||'Team').slice(0,30);if(T.some(x=>x.n===nm)){let k=2;while(T.some(x=>x.n===nm+' ('+k+')'))k++;nm=nm+' ('+k+')'}const m=[0,1,2].map(i=>{const j=(t.m||[])[i];return j!=null&&map[j]?map[j]:null});T.push({n:nm,m});tn++});saveT()}
+  log('code',`Loaded ${n} Digimon${tn?' and '+tn+' team'+(tn>1?'s':''):''} from a bank code`);$('bkcode').value='';msg(`Added ${n} Digimon${tn?' and '+tn+' team'+(tn>1?'s':''):''} from the code.`);render()};
+ window.DWB={get,add,upd,del,render,on:f=>subs.push(f),log,hush};
+})();
 /* ---- DNA Chain ---- */
 (()=>{
  const ALLK={};ALL.forEach(d=>{ALLK[KEY(d.n)]=d});
@@ -1545,8 +1769,13 @@ dnRender();
  const addMv=()=>{const q=MQ.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==q);if(!mv)return;if(!MSEL.includes(mv)){if(MSEL.length>=4){out.innerHTML='<div class="bcw">Pick up to 4 moves at a time, so the search stays fast.</div>';return}MSEL.push(mv)}MQ.value='';MQ.dispatchEvent(new Event('input'));mvRen()};
  MQ.addEventListener('acpick',addMv);MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
  let saved=null;try{saved=JSON.parse(localStorage.getItem('dw2-bc2')||'null')}catch(e){}
- const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value])),t:T.value,sk:SK.checked,cu:CU.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
- const store=()=>{try{localStorage.setItem('dw2-bc2',JSON.stringify(snap()))}catch(e){}};
+ const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
+ let SYNC=true;try{SYNC=localStorage.getItem('dw2-bcsync')!=='0'}catch(e){}
+ // keep the DigiBank in step with the Digimon you have here
+ const bankSync=()=>{if(!SYNC||!window.DWB)return;own.querySelectorAll('.bcrow').forEach(r=>{const nm=r.querySelector('.bnm').value;if(!nm.trim()||!PROP[nm.trim().toLowerCase()])return;
+  const v={n:nm,lv:r.querySelector('.blv').value,ml:r.querySelector('.bml').value,q:r.querySelector('.bqy').value,dp:r.querySelector('.bdp').value,mv:r._mv||[]};
+  if(r._bid&&DWB.get().some(x=>x.id===r._bid))DWB.upd(r._bid,v);else{const o=DWB.add(v);if(o)r._bid=o.id}})};
+ let syncT=null;const store=()=>{try{localStorage.setItem('dw2-bc2',JSON.stringify(snap()))}catch(e){}clearTimeout(syncT);syncT=setTimeout(bankSync,400)};
  let rid=0;
  function addRow(v){v=v||['','0','',''];const r=document.createElement('div');r.className='bcrow';const id=++rid;
   r.innerHTML=`<input class="bnm" id="bcn${id}" placeholder="Digimon you have" autocomplete="off" aria-label="Digimon">`+
@@ -1556,7 +1785,7 @@ dnRender();
    `<div><label for="bcq${id}">Quality</label><input class="bqy" id="bcq${id}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="opt." aria-label="Quality"></div>`+
    `<div class="bmuw"><label for="bcu${id}">Must use in chain</label><input class="bmu" id="bcu${id}" type="checkbox" aria-label="Must use in chain"></div><button class="qbtn brm" type="button">Remove</button>`+
    `<div class="bkm"><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"></div>`;
-  own.appendChild(r);r._mv=Array.isArray(v[5])?v[5].filter(m=>MVI[m]):[];
+  own.appendChild(r);r._mv=Array.isArray(v[5])?v[5].filter(m=>MVI[m]):[];r._bid=v[7]||null;
   const kc=r.querySelector('.bkc'),kq=r.querySelector('.bkq'),kren=()=>{kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');store()};
   kc.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;r._mv.splice(+b.dataset.i,1);kren()};
   const kadd=()=>{const t=kq.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==t);if(!mv)return;if(!r._mv.includes(mv))r._mv.push(mv);kq.value='';kq.dispatchEvent(new Event('input'));kren()};
@@ -1739,12 +1968,20 @@ dnRender();
  document.getElementById('bcps').onclick=()=>{const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap()};pjSet(P0);ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
  document.getElementById('bcpi').onclick=()=>{const o=dec64(document.getElementById('bcpc').value);if(!o||!o.rows){pmsg('That code didn’t work. Chain codes start with c1-.');return}applySnap(o);document.getElementById('bcpc').value='';pmsg('Chain loaded. Save it to keep it in your list.')};
  pjRen();
+ const SY=document.getElementById('bcsync');SY.checked=SYNC;SY.onchange=()=>{SYNC=SY.checked;try{localStorage.setItem('dw2-bcsync',SYNC?'1':'0')}catch(e){}if(SYNC)bankSync()};
+ document.getElementById('bcfill').onclick=()=>{const fm=document.getElementById('bcfm');if(!window.DWB)return;const L=DWB.get().filter(x=>x.use!==false);
+  if(!L.length){fm.textContent='Your DigiBank has no Digimon ticked “Use in DNA Chain”.';return}
+  const pick=L.slice().sort((a,b)=>(b.dp-a.dp)||((b.ml||b.lv||0)-(a.ml||a.lv||0))).slice(0,20);own.innerHTML='';
+  pick.forEach(x=>addRow([x.n,String(x.dp||0),x.lv!=null?String(x.lv):'',x.ml!=null?String(x.ml):'',false,x.mv||[],x.q!=null?String(x.q):'',x.id]));store();
+  fm.textContent=`Filled with ${pick.length} Digimon from your DigiBank`+(L.length>20?` (the 20 with the highest DP and Max level; untick some in the bank to choose).`:'.')};
+ if(window.DWB)DWB.on(()=>{own.querySelectorAll('.bcrow').forEach(r=>{if(!r._bid)return;const o=DWB.get().find(x=>x.id===r._bid);if(!o){r._bid=null;return}if(r.contains(document.activeElement))return;
+  const s=(c,v)=>{const el=r.querySelector(c);if(el.value!==v)el.value=v};s('.bnm',o.n);s('.bdp',String(o.dp||0));s('.blv',o.lv!=null?String(o.lv):'');s('.bml',o.ml!=null?String(o.ml):'');s('.bqy',o.q!=null?String(o.q):'')})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bdone');if(!b||!LAST)return;const {how,have,mvl,mlr,unk,P,qOf}=LAST,s=b.dataset.s,h=how[s],[k,d,m,,sk]=P(s);
   const take=x=>{const hv=have[x];if(!hv){const c=how[x]&&how[x].t=='catch';out.insertAdjacentHTML('afterbegin',`<div class="bcw">First add the ${c?'caught ':''}${DISP(P(x)[0])} to your Digimon${c?' with &ldquo;I caught it&rdquo;':''}.</div>`);return null}const r=hv.rows.find(r=>r.isConnected);if(!r){out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(x)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return null}return r};
   const mvOf=r=>r._mv||[];
   if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input'));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el)lv.value=el;r._mv=[...new Set([...mvOf(r),...mvl(+sk)])]}
   if(h.t=='dna'){const ra=take(h.a);if(!ra)return;ra.dataset.used=1;const rb=take(h.b)&&have[h.b].rows.find(r=>r.isConnected&&!r.dataset.used);delete ra.dataset.used;if(!rb){if(have[h.b])out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(h.b)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return}
-   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
+   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(SYNC&&window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
   store();solve();out.scrollIntoView({block:'start'})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bcca');if(!b)return;const w=b.closest('.bcatch'),lv=w.querySelector('.bccl').value,ml=w.querySelector('.bccm').value;if(!ml){w.querySelector('.bccm').focus();w.querySelector('.bccm').placeholder='Enter it';return}addRow([w.dataset.n,'0',lv,ml,false,[],w.querySelector('.bccq').value]);store();solve();own.lastElementChild.scrollIntoView({block:'nearest'})});T.addEventListener('acpick',solve);T.addEventListener('keydown',e=>{if(e.key=='Enter')solve()});
 })();
@@ -1752,6 +1989,3 @@ dnRender();
 
 if(/^#b-/.test(location.hash))setTop('mp');else showDv();
 </script>
-</head><body>
-
-</body></html>

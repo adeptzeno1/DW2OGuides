@@ -372,7 +372,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>Train to Max level:</b> always level each Digimon to its Max level before you DNA Digivolve it. It ends up with better stats, and the result gets a higher Max level.</li>
 <li><b>Max levels you haven&rsquo;t entered:</b> the route works backwards from the end and shows the lowest Max level each of those Digimon (or catches) needs, so every level-up in the chain is possible.</li>
 <li><b>Level limits:</b> a Digimon needs a Max level of at least 11, 21 or 31 to reach Champion, Ultimate or Mega. Max levels are only checked for Digimon you entered one for, and for lines made only from them.</li>
-<li><b>Copies:</b> each Digimon you added is used once, and the route never asks you to catch one you already have. If you have more than one, add each to the list.</li>
+<li><b>Copies:</b> each Digimon you added can be used at most once, and only if the route needs it. The route never asks you to catch one you already have. If you have more than one, add each to the list.</li>
 <li><b>No route:</b> the route suggests wild Digimon to catch, Rookies first, then Champions. A Champion counts as two Rookie catches. It never suggests the Digimon you want or any Mega. Ultimates are only suggested if you allow them, and only when one saves at least five Rookie catches. Caught Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div></div>
 <div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Plan a DNA Digivolve and see how strong the new Digimon will be.</p><ol>
 <li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality. You get the new Digimon&rsquo;s Quality and Max level.</li>
@@ -1572,22 +1572,25 @@ dnRender();
  const H=[],hp=(c,s)=>{H.push([c,s]);let i=H.length-1;while(i){const p=(i-1)>>1;if(H[p][0]<=H[i][0])break;[H[p],H[i]]=[H[i],H[p]];i=p}},
   hpop=()=>{const t=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){const a=2*i+1,b=a+1;let m=i;if(a<H.length&&H[a][0]<H[m][0])m=a;if(b<H.length&&H[b][0]<H[m][0])m=b;if(m==i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return t};
  function solve(mode){
-  const have={},bad=[],errs=[];
+  let have={},bad=[],errs=[];
   const SEL=MSEL.slice(),SFULL=(1<<SEL.length)-1,LRN={};
   SEL.forEach((mv,i)=>{const r=MVI[mv];r[7].forEach(n=>{const k=KEY(PROP[n.toLowerCase()]||n);(LRN[k]=LRN[k]||[]).push([i,MLV[r[1]]])})});
   const learn=(k,m)=>{let b=0;(LRN[k]||[]).forEach(([i,l])=>{if(m>=l)b|=1<<i});return b};
-  let nb=0;own.querySelectorAll('.bcrow').forEach(r=>{const v=r.querySelector('.bnm').value;if(!v.trim())return;const k=key(v);if(!k||ST[k]==null){bad.push(v);return}
+  let nb=0,MB=2,FULL=0,rowsN=0;
+  // each Digimon you added can be used at most once. To keep the search fast, rows only get their own 'used' bit when needed (must-use, or a route tried to reuse them).
+  const build=BITS=>{have={};bad=[];errs=[];nb=0;rowsN=0;let ri=0;own.querySelectorAll('.bcrow').forEach(r=>{r._ri=ri++;const v=r.querySelector('.bnm').value;if(!v.trim())return;const k=key(v);if(!k||ST[k]==null){bad.push(v);return}
    const d=Math.min(CAP,Math.max(0,parseInt(r.querySelector('.bdp').value)||0)),lv=parseInt(r.querySelector('.blv').value)||0,ml=parseInt(r.querySelector('.bml').value)||null;
    if(ml&&lv&&lv>ml)errs.push(`${DISP(k)}'s Level (${lv}) is above its Max level (${ml}).`);const qr=r.querySelector('.bqy').value.trim(),qv=qr===''?null:parseInt(qr);if(qr!==''&&!(qv>=0&&qv<=100))errs.push(`${DISP(k)}'s Quality must be a whole number from 0 to 100.`);
-   const mu=r.querySelector('.bmu').checked,mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),s=k+'|'+d+'|'+mc+'|'+(1<<nb++)+'|'+(learn(k,mc)|kb)+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,rows:[],q:null};have[s].n++;have[s].rows.push(r);if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
-  const MB=Math.max(2,1<<nb);let FULL=0;Object.keys(have).forEach(x=>{if(have[x].mu)FULL|=+x.split('|')[3]});
+   const mu=r.querySelector('.bmu').checked,mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),s=k+'|'+d+'|'+mc+'|'+((mu||BITS.has(r._ri))?1<<nb++:0)+'|'+(learn(k,mc)|kb)+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,rows:[],q:null};have[s].n++;have[s].rows.push(r);rowsN++;if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
+  MB=Math.max(2,2**nb);FULL=0;Object.keys(have).forEach(x=>{if(have[x].mu)FULL|=+x.split('|')[3]})};
+  build(new Set());if(mode==='make'&&rowsN<=12)build(new Set([...Array(rowsN).keys()]));
   const tk=key(T.value),warn=m=>out.innerHTML=`<div class="bcw">${m}</div>`;
   if(bad.length)return warn(`I don't recognise ${bad.map(b=>'"'+b+'"').join(', ')}. Pick names from the dropdown.`);
   if(errs.length)return warn(errs.join('<br>'));
   if(!Object.keys(have).length)return warn('Add at least one Digimon you have.');
   const anyT=ANY.checked&&mode!=='make';if(anyT&&!SEL.length)return warn('Pick at least one move for &ldquo;Any Digimon is fine&rdquo;, or untick it.');
   if(!tk&&!anyT&&mode!=='make')return warn('Pick the Digimon you want from the dropdown.');
-  if(nb>10)return warn('Add up to 10 Digimon at a time, so the search stays fast.');
+  if(rowsN>20)return warn('Add up to 20 Digimon at a time, so the search stays fast.');
   const tgt=Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
   const run=(seeds,o={})=>{const RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
    const KS=Object.keys(ST),N=KS.length,KI={};KS.forEach((k,i)=>KI[k]=i);const D1=CAP+1,M1=ML+1;
@@ -1616,7 +1619,7 @@ dnRender();
     const o={t:h.t,dp:h.dp};if(h.t=='evo')o.from=str(h.from);if(h.t=='dna'){o.a=str(h.a);o.b=str(h.b)}H2[sid]=o;return sid};
    return {goal:str(goal),how:H2,KS}};
   const CW=[100000,200000,500000,1000000],mkCatch=maxSt=>Object.keys(ST).filter(k=>k!=tk&&ST[k]<=maxSt&&(ST[k]==0||ALLK[k])).map(k=>[k+'|0|'+ML+'|0|'+learn(k,ML)+'|1',CW[ST[k]],{t:'catch'}]).filter(x=>!Object.keys(have).some(s=>s.split('|')[0]==x[0].split('|')[0]));
-  const seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);
+  let seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);
   if(mode==='make'){const RCH={},R0=run(seeds,{reach:RCH,mu:0,sk:0,n0:0}),KS=Object.keys(ST),ownK=new Set(Object.keys(have).map(x=>P(x)[0]));
    const by=[[],[],[],[]];Object.keys(RCH).forEach(i=>{const k=KS[i],c=RCH[i];if(!c||ownK.has(k))return;by[ST[k]].push([k,c])});
    const stp=c=>{const dd=Math.floor(c/1000),ev=c%1000;return [dd?dd+' DNA':'',ev?ev+' level-up'+(ev>1?'s':''):''].filter(Boolean).join(' + ')};
@@ -1630,11 +1633,16 @@ dnRender();
    const visit=s=>{if(seen.has(s))return;seen.add(s);const h=how[s];if(h.t=='evo')visit(h.from);if(h.t=='dna'){visit(h.a);visit(h.b)}order.push(s)};visit(R.goal);
    need[R.goal]=1;for(let i=order.length-1;i>=0;i--){const s=order[i],h=how[s],n=need[s]||0;if(h.t=='evo')need[h.from]=(need[h.from]||0)+n;if(h.t=='dna'){need[h.a]=(need[h.a]||0)+n;need[h.b]=(need[h.b]||0)+n}}
    let acq=0,dna=0;order.forEach(s=>{const h=how[s];if(h.t=='catch')acq+=need[s];if(h.t=='have')acq+=Math.max(0,need[s]-have[s].n);if(h.t=='dna')dna+=need[s]});return {goal:R.goal,how,need,order,acq,dna}};
-  let R=run(seeds),PL0=null;
-  if(!R.goal)R=run(seeds.concat(mkCatch(CU.checked?2:1)));
-  if(R.goal){PL0=plan(R);
-   if(PL0.acq>0){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]);const R3=run(pen.concat(mkCatch(CU.checked?2:1)));
-    if(R3.goal){const p3=plan(R3);if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna))PL0=p3}}}
+  let R,PL0=null;const BITS=new Set();
+  for(let it=0;it<10;it++){
+   R=run(seeds);PL0=null;
+   if(!R.goal)R=run(seeds.concat(mkCatch(CU.checked?2:1)));
+   if(R.goal){PL0=plan(R);
+    if(PL0.acq>0){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]);const R3=run(pen.concat(mkCatch(CU.checked?2:1)));
+     if(R3.goal){const p3=plan(R3);if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna))PL0=p3}}}
+   if(!PL0)break;
+   const over=Object.keys(have).filter(s=>have[s]&&(PL0.need[s]||0)>have[s].n);if(!over.length)break;
+   over.forEach(s=>have[s].rows.forEach(r=>BITS.add(r._ri)));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}])}
   if(!PL0){
    const tries=[],cs3=mkCatch(2),base=seeds.concat(mkCatch(CU.checked?2:1));
    if(!CU.checked&&run(seeds.concat(cs3)).goal)tries.push('tick &ldquo;If a catch is needed, allow suggesting Ultimates&rdquo;');

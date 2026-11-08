@@ -429,7 +429,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div id="dv" hidden><div class="leg"><span class="pill t0">Vaccine (green)</span><span class="pill t1">Data (blue)</span><span class="pill t2">Virus (red)</span></div><div class="how"><b>Digipedia</b><p>Every Digimon&rsquo;s family tree, from Rookie to Mega. Tap a name to open its info card, which shows its type, specialty, weaknesses, moves and digivolutions.</p><ul>
 <li><b>Levels:</b> a Digimon digivolves at EL 11 (Rookie to Champion), EL 21 (Champion to Ultimate) and EL 31 (Ultimate to Mega).</li>
 <li><b>DP (Digivolve Points):</b> where a tree branches, the game picks the branch whose <b>DP badge</b> matches your Digimon&rsquo;s DP. &ldquo;any DP&rdquo; means there is only one branch. DP goes up by 1 each time you DNA Digivolve.</li></ul></div>
-<div class="stl"><b>Stages, left to right as it grows:</b> <span class="stg s0">Rookie</span> &rarr; <span class="stg s1">Champion</span> &rarr; <span class="stg s2">Ultimate</span> &rarr; <span class="stg s3">Mega</span></div><div class="finder"><b>Find a Digimon:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dd" class="tg" hidden></div><h3 class="fh">All family trees</h3><div id="dt" class="tg"></div>
+<div class="stl"><b>Stages, left to right as it grows:</b> <span class="stg s0">Rookie</span> &rarr; <span class="stg s1">Champion</span> &rarr; <span class="stg s2">Ultimate</span> &rarr; <span class="stg s3">Mega</span></div><div class="finder"><b>Find a Digimon:</b> <input id="dq" placeholder="Type a name, e.g. Greymon" autocomplete="off"></div><div id="dgrec" class="dgrec" hidden></div><div id="dd" class="tg" hidden></div><h3 class="fh">All family trees</h3><div id="dt" class="tg"></div>
 </div>
 <div id="bank" hidden><div class="how"><b>DigiBank</b><p>Keep track of the Digimon you have. Your bank is saved in this browser.</p><ul>
 <li><b>Add:</b> pick a Digimon and fill in what you know, including moves it knows. Only the name is needed.</li>
@@ -1200,9 +1200,10 @@ const RES=[...RK.map(d=>({n:d.n,lv:0,t:rt(d.c),l:'Rookie'})),...CH.map(d=>({n:d.
 function ac(inp,list){const w=document.createElement('span');w.className='acw';inp.parentNode.insertBefore(w,inp);w.appendChild(inp);const box=document.createElement('div');box.className='sug';w.appendChild(box);
  const ic=document.createElement('img');ic.className='aci';ic.alt='';ic.hidden=true;w.insertBefore(ic,inp);
  const pic=n=>PIC[KEY(PROP[n.toLowerCase()]||n)];
- const sync=()=>{const q=inp.value.trim().toLowerCase(),d=q&&list.find(d=>d.n.toLowerCase()==q),p=d&&pic(d.n);if(p){ic.src=p;ic.hidden=false;w.classList.add('hasic')}else{ic.hidden=true;w.classList.remove('hasic')}};
+ const sync=()=>{const q=NRM(inp.value.trim()),d=q&&list.find(d=>NRM(d.n)==q),p=d&&pic(d.n);if(p){ic.src=p;ic.hidden=false;w.classList.add('hasic')}else{ic.hidden=true;w.classList.remove('hasic')}};
  inp.addEventListener('input',sync);setTimeout(sync,0);
- const render=()=>{const q=inp.value.trim().toLowerCase();let m=list.filter(d=>d.n.toLowerCase().startsWith(q));if(q)m=m.concat(list.filter(d=>!d.n.toLowerCase().startsWith(q)&&(d.q||d.n).toLowerCase().includes(q)));
+ const render=()=>{const q=NRM(inp.value.trim());let m=list.filter(d=>NRM(d.n).startsWith(q));if(q)m=m.concat(list.filter(d=>!NRM(d.n).startsWith(q)&&NRM(d.q||d.n).includes(q)));
+  if(!m.length&&q.length>=4){m=list.map(d=>[d,EDL(q,NRM(d.n).slice(0,Math.max(q.length,NRM(d.n).length)),2)]).filter(x=>x[1]<=2).sort((a,b)=>a[1]-b[1]).slice(0,6).map(x=>x[0])}
   box.innerHTML=m.map(d=>{const p=pic(d.p||d.n);return `<div data-n="${d.n}">${p?`<img class="sgi" src="${p}" alt="">`:'<span class="sgi"></span>'}<span class="${d.t!=null?'t'+d.t:''}">${d.t!=null?IC[d.t]:''}${d.n}</span> <small>${d.l}</small></div>`}).join('');box.style.display=m.length?'block':'none'};
  inp.addEventListener('input',render);inp.addEventListener('focus',render);inp.addEventListener('blur',()=>{box.style.display='none'});
  inp.addEventListener('keydown',e=>{if(e.key=='Escape')box.style.display='none'});
@@ -1458,10 +1459,15 @@ function showWk(){setTop('wk');wkRender()}
 /* ---- Digimon info cards + clickable names ---- */
 let CT='dna';
 const TYPN=['Vaccine','Data','Virus'],STN=['Rookie','Champion','Ultimate','Mega'],TABN={dna:'DNA Digivolve',dv:'Digipedia',qv:'DNA Level/Quality Calc',mv:'Digimon Moves',wk:'Weaknesses',bc:'DNA Chain'};
-const NAMES=new Set(),PROP={};
+const NAMES=new Set(),PROP0={},NRMK={},FZC=new Map();
+// names are found even with different spaces, hyphens or capitals, or one small typo
+const NRM=x=>String(x).toLowerCase().replace(/[\s\-_.'’:]/g,'');
+const EDL=(a,b,mx)=>{if(Math.abs(a.length-b.length)>mx)return mx+1;let p=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){const c=[i];let lo=i;for(let j=1;j<=b.length;j++){c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));if(c[j]<lo)lo=c[j]}if(lo>mx)return mx+1;p=c}return p[b.length]};
+const FZ=k=>{const n=NRM(k);if(n.length<5)return undefined;if(FZC.has(n))return FZC.get(n);const mx=n.length>=10?2:1;let best=null,bd=mx+1,tie=false;for(const z in NRMK){const d=EDL(n,z,mx);if(d<bd){bd=d;best=NRMK[z];tie=false}else if(d===bd&&NRMK[z]!==best)tie=true}const r=bd<=mx&&!tie?best:undefined;FZC.set(n,r);return r};
+const PROP=new Proxy(PROP0,{get(t,k){if(typeof k!=='string'||k in t)return t[k];const z=NRMK[NRM(k)];return z!==undefined?z:FZ(k)}});
 [...Object.keys(DT),...Object.keys(DC),...ALL.map(d=>d.n),...RK.map(d=>d.n),...Object.keys(AL),...Object.keys(MA)].forEach(n=>NAMES.add(n));
 Object.values(SPD).forEach(l=>l.forEach(n=>NAMES.add(n)));MVD.forEach(r=>r[7].forEach(n=>NAMES.add(n)));
-NAMES.forEach(n=>PROP[n.toLowerCase()]=n);
+NAMES.forEach(n=>{PROP[n.toLowerCase()]=n;const z=NRM(n);if(!(z in NRMK))NRMK[z]=n});
 const CAN=n=>{const c=MA[n]||n;return AL[c]||c},KEY=n=>CAN(n).toLowerCase();
 const TNAME={},CNAME={},ST={},PAR={},MVBY={},SPK={};
 [...Object.keys(DT),...Object.keys(DC)].forEach(n=>{TNAME[KEY(n)]=n});
@@ -1505,7 +1511,7 @@ function renderDg(raw){
  const sec=(t,cnt,body,cls)=>`<div class="dsec${cls?' '+cls:''}"><div class="dsh"><h4>${t}</h4>${cnt!=null?`<span class="cnt">${cnt}</span>`:''}</div>${body}</div>`;
  const pic=PIC[key],top=`<div class="dgtop"><div class="dghd">${pic?`<img class="dgpic" src="${pic}" alt="${name}" width="103" height="109">`:`<img class="dgpic lp" hidden alt="" data-nm="${name}">`}<div><div class="dgt"><span class="${ty!=null?'t'+ty:''}" data-nolink>${ty!=null?IC[ty]+' ':''}${name}</span></div>
  <div class="dgchips">${st!=null?`<span class="stg s${st}">${STN[st]}</span>`:'<span class="stg s0">Boss / special</span>'}${ty!=null?tch(ty):''}${sp&&sp!='None'?chip(sp):sp=='None'?'<span class="tchip">No specialty</span>':'<span class="tchip">Specialty not listed</span>'}</div></div></div>
- <div class="dgbtn">${DG.stack.length?`<button class="qbtn" onclick="dgBack()">${dgBackLabel()}</button>`:''}<button class="qbtn" onclick="closeDg()">Close \u2715</button></div></div>`;
+ <div class="dgbtn">${DG.stack.length?`<button class="qbtn" onclick="dgBack()">${dgBackLabel()}</button>`:''}<button class="qbtn" type="button" onclick="dgCopy()" title="Copy a link to this page">Copy link</button><button class="qbtn" onclick="closeDg()">Close \u2715</button></div></div>`;
  /* weaknesses */
  const wr=(lab,w,r)=>`<div class="wl">${lab}</div><div>${w}</div><div>${r}</div>`;
  let wk='',best='';
@@ -1534,7 +1540,7 @@ function renderDg(raw){
 }
 function openDg(raw){const n=PROP[raw.toLowerCase()]||raw,v={t:CT,n:CT=='dv'?DG.cur:null,y:window.scrollY};
  if(!(CT=='dv'&&DG.cur&&KEY(DG.cur)==KEY(n)))DG.stack.push(v);
- DG.cur=n;setTop('dv');renderDg(n);document.getElementById('dd').scrollIntoView({block:'start'})}
+ DG.cur=n;setTop('dv');renderDg(n);if(window.dgRecent)dgRecent(n);document.getElementById('dd').scrollIntoView({block:'start'})}
 function dgBack(){const v=DG.stack.pop();if(!v){closeDg();return}
  if(v.t=='dv'&&v.n){DG.cur=v.n;setTop('dv');renderDg(v.n)}else{if(v.t=='dv')closeDg();setTop(v.t)}
  window.scrollTo(0,v.y)}
@@ -1664,7 +1670,8 @@ dnRender();
   if(o.n!==n0)log('evo',sti(o.n)>sti(n0)&&sti(o.n)<9?`${n0} digivolved to ${o.n}`:`${n0} is now ${o.n}`,id);
   else if(o.lv!==l0&&o.lv!=null&&l0!=null)log('lv',`${o.n} Lv ${l0} → ${o.lv}`,id);
   save();return o};
- const del=id=>{const L=get(),i=L.findIndex(x=>x.id===id);if(i>=0){const n=L[i].n;L.splice(i,1);let ch=0;teams().forEach(t=>t.m=t.m.map(m=>m===id?(ch=1,null):m));if(ch)saveT();log('rm',`Removed ${n}`,id);save()}};
+ const del=(id,o={})=>{const L=get(),i=L.findIndex(x=>x.id===id);if(i>=0){const x=L[i],n=x.n,slots=[];L.splice(i,1);let ch=0;teams().forEach((t,ti)=>t.m=t.m.map((m,si)=>m===id?(ch=1,slots.push([ti,si]),null):m));if(ch)saveT();log('rm',`Removed ${n}`,id);save();
+  if(o.undo&&window.toast)toast(`Removed ${n} from your bank.`,()=>{get().splice(Math.min(i,get().length),0,x);const T=teams();slots.forEach(([ti,si])=>{if(T[ti]&&!T[ti].m[si])T[ti].m[si]=id});saveT();const H=hist();if(H[0]&&H[0].k=='rm'&&H[0].id===id){H.shift();st(HK,H)}save()})}};
  const STL=[...RK.map(d=>({n:d.n,t:dty(d.n),l:'Rookie'})),...PL,...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>KEY(e.n)==KEY(d.n))==i);
  const stg=n=>{const s=ST[KEY(n)];return s==null?'':STN[s]},sti=n=>{const s=ST[KEY(n)];return s==null?9:s};
  const TYP=['Vaccine','Data','Virus'],TCV=['--v','--d','--i'],BEAT=[2,0,1],WEAK=[1,2,0];
@@ -1723,7 +1730,7 @@ dnRender();
  $('bkg').addEventListener('click',e=>{const mb=e.target.closest('button[data-mi]');if(mb){const id=mb.closest('.bkc').dataset.id,o=get().find(z=>z.id===id);if(o){const mv=(o.mv||[]).slice();mv.splice(+mb.dataset.mi,1);upd(id,{mv})}return}const b=e.target.closest('button[data-a]');if(!b)return;const id=b.closest('.bkc').dataset.id;
   if(b.dataset.a=='fav'){const o=get().find(z=>z.id===id);if(o)upd(id,{fav:!o.fav})}
   if(b.dataset.a=='ed'){editing=editing===id?null:id;render()}
-  if(b.dataset.a=='rm'){if(b.dataset.sure){if(editing===id)editing=null;del(id)}else{b.dataset.sure=1;b.textContent='Tap again to remove'}}});
+  if(b.dataset.a=='rm'){if(b.dataset.sure){if(editing===id)editing=null;del(id,{undo:1})}else{b.dataset.sure=1;b.textContent='Tap again to remove'}}});
  $('bkg').addEventListener('change',e=>{const c=e.target;const id=c.closest('.bkc')&&c.closest('.bkc').dataset.id;if(!id)return;if(c.dataset.a=='use')upd(id,{use:c.checked});else if(c.dataset.f)upd(id,{[c.dataset.f]:c.value})});
  $('bkfb').onclick=()=>{$('bkfp').hidden=!$('bkfp').hidden;renderF()};$('bks').addEventListener('input',render);$('bkdp').addEventListener('input',()=>{const v=String($('bkdp').value).trim(),x=parseInt(v);UI.dp=v===''||isNaN(x)?null:Math.max(0,x);saveUI();render()});$('bko').addEventListener('change',render);
  /* teams */
@@ -1752,7 +1759,7 @@ dnRender();
   if(c.matches('[data-tn]')){const n=c.value.trim().slice(0,30)||t.n;if(n!==t.n){log('tm',`Renamed ${t.n} to ${n}`);t.n=n;saveT();render()}}});
  $('tmg').addEventListener('click',e=>{const b=e.target.closest('button[data-ta]');if(!b)return;const ti=+b.closest('.tmc').dataset.t,T=teams(),t=T[ti];if(!t)return;
   if(b.dataset.ta=='out'){t.m[+b.dataset.i]=null;saveT();render()}
-  if(b.dataset.ta=='rm'){if(b.dataset.sure){T.splice(ti,1);saveT();log('tm',`Deleted ${t.n}`);render()}else{b.dataset.sure=1;b.textContent='Tap again'}}});
+  if(b.dataset.ta=='rm'){if(b.dataset.sure){T.splice(ti,1);saveT();log('tm',`Deleted ${t.n}`);render();if(window.toast)toast(`Deleted ${t.n}.`,()=>{teams().splice(Math.min(ti,teams().length),0,t);saveT();render()})}else{b.dataset.sure=1;b.textContent='Tap again'}}});
  /* history */
  const KN={dna:'DNA',add:'Added',rm:'Removed',lv:'Level',evo:'Evolve',tm:'Team',code:'Code'};
  const fmt=t=>{const d=new Date(t);try{return d.toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}catch(e){return d.toISOString().slice(0,16)}};
@@ -1762,7 +1769,9 @@ dnRender();
  ac($('bkn'),STL);
  const msg=m=>{$('bkmsg').textContent=m};
  const doAdd=()=>{const n=canon($('bkn').value);if(!n){msg('Pick a Digimon from the list.');return}add({n,lv:$('bkl').value,ml:$('bkm').value,q:$('bkq').value,dp:$('bkd').value,mv:ADDMV.slice()});ADDMV=[];chipsAdd();['bkn','bkl','bkm','bkq','bkd'].forEach(i=>$(i).value='');$('bkn').dispatchEvent(new Event('input'));const sg=$('bkn').parentNode.querySelector('.sug');if(sg)sg.style.display='none';msg(`Added ${n}.`);render()};
- $('bkadd').onclick=doAdd;$('bkn').addEventListener('keydown',e=>{if(e.key=='Enter')doAdd()});
+ $('bkadd').onclick=doAdd;
+ ['bkn','bkl','bkm','bkq','bkd'].forEach((id,i,a)=>$(id).addEventListener('keydown',e=>{if(e.key!='Enter')return;e.preventDefault();if(id=='bkn'){const sg=$('bkn').parentNode.querySelector('.sug');const f=sg&&sg.style.display!='none'&&sg.querySelector('div[data-n]');if(f&&!canon($('bkn').value)){$('bkn').value=f.dataset.n;$('bkn').dispatchEvent(new Event('input'))}if(sg)sg.style.display='none'}if(i<a.length-1)$(a[i+1]).focus();else doAdd()}));
+ $('bkmvq').addEventListener('keydown',e=>{if(e.key=='Enter'&&!$('bkmvq').value.trim()){e.preventDefault();doAdd()}});
  const enc=o=>'k1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec=c=>{try{c=c.trim();if(!c.startsWith('k1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
  $('bkcopy').onclick=()=>{const B=get(),ix=Object.fromEntries(B.map((x,i)=>[x.id,i])),T=teams().map(t=>({n:t.n,m:t.m.map(id=>id in ix?ix[id]:null)}));const c=enc({b:B.map(({n,lv,ml,q,dp,mv,use,fav})=>({n,lv,ml,q,dp,mv,use,fav})),t:T});const f=()=>{$('bkcode').value=c;$('bkcode').select();msg('Press Ctrl+C to copy the selected code.')};if(navigator.clipboard)navigator.clipboard.writeText(c).then(()=>msg('Bank code copied. Paste it on another device with “Load code”.')).catch(f);else f()};
  $('bkload').onclick=()=>{const D=dec($('bkcode').value),L=Array.isArray(D)?D:D&&Array.isArray(D.b)?D.b:null;if(!L){msg('That code didn’t work. Bank codes start with k1-.');return}hush(3000);let n=0;const map=L.map(e=>{const o=add(e);if(o)n++;return o?o.id:null});
@@ -1816,7 +1825,7 @@ dnRender();
   kc.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;r._mv.splice(+b.dataset.i,1);kren()};
   const kadd=()=>{const t=kq.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==t);if(!mv)return;if(!r._mv.includes(mv))r._mv.push(mv);kq.value='';kq.dispatchEvent(new Event('input'));kren()};
   kq.addEventListener('acpick',kadd);kq.addEventListener('keydown',e=>{if(e.key=='Enter')kadd()});const q=c=>r.querySelector(c);q('.bnm').value=v[0];q('.bdp').value=v[1];q('.blv').value=v[2];q('.bml').value=v[3];q('.bqy').value=v[6]!=null?v[6]:'';q('.bmu').checked=v[4]===true;ac(q('.bnm'),OWNL);ac(kq,MOVL);kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');
-  r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{r.remove();store()};
+  r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{const nx=r.nextSibling,nm=r.querySelector('.bnm').value.trim()||'that Digimon';r.remove();store();if(window.toast)toast(`Removed ${nm}.`,()=>{own.insertBefore(r,nx&&nx.parentNode===own?nx:null);store()})};
   q('.bsend').onclick=()=>{const b=q('.bsend'),res=toBank(r),M={add:'Sent ✓',upd:'Updated ✓',dup:'Already in bank',bad:'Pick a Digimon first',none:'Bank not available'};b.textContent=M[res];b.classList.toggle('ok',res=='add'||res=='upd');store();clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent='Send to bank';b.classList.remove('ok')},2200)};return r}
  if(saved&&saved.rows&&saved.rows.length)saved.rows.forEach(addRow);else addRow(['','','','']);
  T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);HQ.addEventListener('change',store);if(saved&&saved.hq)HQ.checked=true;if(saved&&Array.isArray(saved.mv)){MSEL=saved.mv.filter(m=>MVI[m]).slice(0,4);mvRen()}CU.addEventListener('change',store);
@@ -2046,7 +2055,7 @@ dnRender();
    r.onclick=e=>{const b=e.target.closest('button');if(!b)return;const a=b.dataset.a;
     if(a=='l'){applySnap(o.d);pmsg(`Loaded “${n}”.`)}
     if(a=='c'){const c=enc64(o.d);const done=()=>pmsg('Chain code copied. Paste it into “Paste a chain code” to load it.');if(navigator.clipboard)navigator.clipboard.writeText(c).then(done).catch(()=>{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')});else{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')}}
-    if(a=='d'){if(b.dataset.sure){const P1=pjGet();delete P1[n];pjSet(P1);pjRen();pmsg(`Deleted “${n}”.`)}else{b.dataset.sure=1;b.textContent='Tap again to delete'}}};PLs.appendChild(r)});
+    if(a=='d'){if(b.dataset.sure){const P1=pjGet(),old=P1[n];delete P1[n];pjSet(P1);pjRen();pmsg(`Deleted “${n}”.`);if(window.toast)toast(`Deleted “${n}”.`,()=>{const P2=pjGet();P2[n]=old;pjSet(P2);pjRen();pmsg(`Put back “${n}”.`)})}else{b.dataset.sure=1;b.textContent='Tap again to delete'}}};PLs.appendChild(r)});
   if(!ks.length)PLs.innerHTML='<div class="bcl">No saved chains yet.</div>'};
  document.getElementById('bcps').onclick=()=>{const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap()};pjSet(P0);ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
  document.getElementById('bcpi').onclick=()=>{const o=dec64(document.getElementById('bcpc').value);if(!o||!o.rows){pmsg('That code didn’t work. Chain codes start with c1-.');return}applySnap(o);document.getElementById('bcpc').value='';pmsg('Chain loaded. Save it to keep it in your list.')};
@@ -2089,6 +2098,90 @@ dnRender();
 })();
 
 
+/* ===== quality of life ===== */
+(()=>{try{
+const $=id=>document.getElementById(id);
+const css=document.createElement('style');css.textContent=`
+#top{position:sticky;top:0;z-index:60;background:var(--bg);padding:6px 0;margin:4px 0 10px;transition:padding .15s}
+#top.stuck{padding:4px 0;box-shadow:0 6px 12px -8px rgba(0,0,0,.45)}
+#top.stuck button{padding:3px 10px;font-size:13px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;background:var(--fg);color:var(--bg);border-radius:10px;padding:8px 10px 8px 14px;display:flex;gap:12px;align-items:center;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:calc(100vw - 32px)}
+.toast button{font:inherit;font-weight:700;border:0;border-radius:7px;padding:4px 10px;cursor:pointer;background:var(--bg);color:var(--fg)}
+.toast .x{background:none;color:inherit;opacity:.7;padding:4px 6px}
+#totop{position:fixed;right:16px;bottom:18px;z-index:250;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+#totop[hidden]{display:none}
+.dgrec{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px;font-size:12.5px}
+.dgrec>small{color:var(--mut);margin-right:2px}
+.dgrec .dg{border:1px solid var(--bd);border-radius:999px;padding:2px 10px 2px 4px;background:var(--card);cursor:pointer;display:inline-flex;align-items:center;gap:4px;text-decoration:none}
+.dgrec .dg img{width:22px;height:22px;object-fit:contain;image-rendering:pixelated}
+.dgrec .clr{border:0;background:none;color:var(--mut);cursor:pointer;font:inherit;font-size:12px;text-decoration:underline}
+@media (max-width:640px){#top.stuck{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}#top.stuck::-webkit-scrollbar{display:none}#top.stuck button{flex:0 0 auto;padding:3px 9px;font-size:12px}.toast{bottom:12px}}`;
+document.head.appendChild(css);
+
+/* --- undo message --- */
+let TT=null;
+window.toast=(msg,undo)=>{let t=document.querySelector('.toast');if(!t){t=document.createElement('div');t.className='toast';t.setAttribute('role','status');document.body.appendChild(t)}
+ t.innerHTML='';const sp=document.createElement('span');sp.textContent=msg;t.appendChild(sp);
+ if(undo){const b=document.createElement('button');b.type='button';b.textContent='Undo';b.onclick=()=>{clearTimeout(TT);t.remove();undo()};t.appendChild(b)}
+ const x=document.createElement('button');x.type='button';x.className='x';x.setAttribute('aria-label','Dismiss');x.textContent='✕';x.onclick=()=>{clearTimeout(TT);t.remove()};t.appendChild(x);
+ clearTimeout(TT);TT=setTimeout(()=>t.remove(),7000)};
+
+/* --- copy link to a Digipedia page --- */
+const pageBase=()=>{let base=location.href.split('#')[0],framed=false;try{framed=window.self!==window.top}catch(e){framed=true}
+ const ref=(document.referrer||'').split('#')[0];if((framed||!/^(https?|file):/.test(base))&&/^https?:\/\/[^/]+\/./.test(ref))base=ref;return base};
+window.dgCopy=()=>{if(!DG.cur)return;const u=pageBase()+'#dg='+encodeURIComponent(DG.cur);
+ const ok=()=>toast(`Link to ${DG.cur} copied.`),bad=()=>{window.prompt('Copy this link:',u)};
+ if(navigator.clipboard)navigator.clipboard.writeText(u).then(ok).catch(bad);else bad()};
+
+/* --- recently viewed --- */
+const RK2='dw2-recent';const rld=()=>{try{const v=JSON.parse(localStorage.getItem(RK2)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}};
+const recRender=()=>{const box=$('dgrec');if(!box)return;const L=rld().filter(n=>PROP[n.toLowerCase()]);box.hidden=!L.length;
+ box.innerHTML=L.length?'<small>Recently viewed:</small>'+L.map(n=>{const p=PIC[KEY(n)];return `<span class="dg" data-dg="${n}" data-nolink>${p?`<img src="${p}" alt="">`:''}${n}</span>`}).join('')+'<button type="button" class="clr">Clear</button>':''};
+window.dgRecent=n=>{n=PROP[n.toLowerCase()]||n;const L=rld().filter(x=>x!==n);L.unshift(n);L.length=Math.min(L.length,10);try{localStorage.setItem(RK2,JSON.stringify(L))}catch(e){}recRender()};
+$('dgrec').addEventListener('click',e=>{if(e.target.closest('.clr')){try{localStorage.removeItem(RK2)}catch(x){}recRender()}});
+recRender();
+
+/* --- Back / Forward buttons move between tabs and Digipedia pages --- */
+let BUSY=true;const cur=()=>({t:CT,dg:CT=='dv'&&DG.cur?DG.cur:null});
+const urlOf=st=>st.dg?'#dg='+encodeURIComponent(st.dg):location.pathname+location.search;
+const note=()=>{if(BUSY)return;const s=cur(),h=history.state;if(h&&h.t===s.t&&h.dg===s.dg)return;try{history.pushState(s,'',urlOf(s))}catch(e){}};
+const _setTop=setTop;setTop=function(t){_setTop(t);note()};
+const _closeDg=closeDg;closeDg=function(){_closeDg();note()};
+window.addEventListener('popstate',e=>{const s=e.state||{t:'dv',dg:null};BUSY=true;try{
+ if(s.dg&&PROP[s.dg.toLowerCase()]){DG.cur=s.dg;_setTop('dv');renderDg(s.dg);const d=$('dd');if(d)d.scrollIntoView({block:'start'})}
+ else{if(s.t=='dv'&&DG.cur)_closeDg();_setTop(s.t||'dv')}
+ try{localStorage.setItem('dw2-tab',s.t||'dv')}catch(x){}}finally{BUSY=false}});
+window.__navReady=()=>{try{history.replaceState(cur(),'',urlOf(cur()))}catch(e){}BUSY=false};
+
+/* --- tabs stay at the top, smaller once you scroll --- */
+const TOP=$('top');const stick=()=>{const r=TOP.getBoundingClientRect(),was=TOP.classList.contains('stuck'),now=r.top<=0&&window.scrollY>40;TOP.classList.toggle('stuck',now);if(now&&!was){const on=TOP.querySelector('button.on');if(on&&TOP.scrollWidth>TOP.clientWidth)TOP.scrollLeft=Math.max(0,on.offsetLeft-12)}};
+
+/* --- back to top --- */
+const tt=document.createElement('button');tt.id='totop';tt.type='button';tt.hidden=true;tt.textContent='↑ Top';tt.setAttribute('aria-label','Back to top');tt.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});document.body.appendChild(tt);
+const onScroll=()=>{stick();tt.hidden=!(window.scrollY>500&&CT!='mp');hideP()};
+window.addEventListener('scroll',onScroll,{passive:true});
+
+function hideP(){}
+onScroll();
+
+/* --- keyboard: / or Ctrl+K jumps to the search box, Esc closes things --- */
+const SEARCH={dv:'dq',bank:'bks',bc:'bct',mv:'mvq',wk:'wkq',dna:'fa',mp:'mp-search'};
+document.addEventListener('keydown',e=>{const tg=e.target,typing=tg&&(tg.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName));
+ if(((e.key=='/'&&!typing)||(e.key.toLowerCase()=='k'&&(e.ctrlKey||e.metaKey)))&&!e.altKey){const id=SEARCH[CT];let el=id&&$(id);if(!el||!el.offsetParent){const pane=$(CT=='dna'?'pdna':CT);el=pane&&[...pane.querySelectorAll('input[type=text],input:not([type]),input[type=search]')].find(x=>x.offsetParent)}
+  if(el){e.preventDefault();el.focus();el.select&&el.select()}return}
+ if(e.key=='Escape'){hideP();const t=document.querySelector('.toast');if(t&&!typing){t.remove();return}
+  if(typing){tg.blur();return}
+  if(CT=='dv'&&DG.cur){closeDg();return}}});
+
+/* --- Enter moves to the next box in a DNA Chain row; a typo'd name is tidied up --- */
+const ORD=['bnm','bdp','blv','bml','bqy'];
+$('bcown').addEventListener('keydown',e=>{if(e.key!='Enter')return;const inp=e.target,row=inp.closest('.bcrow');if(!row)return;const k=ORD.findIndex(c=>inp.classList.contains(c));if(k<0)return;e.preventDefault();
+ if(k==0){const sg=inp.parentNode.querySelector('.sug'),f=sg&&sg.style.display!='none'&&sg.querySelector('div[data-n]');if(f&&!PROP0[inp.value.trim().toLowerCase()]){inp.value=f.dataset.n;inp.dispatchEvent(new Event('input',{bubbles:true}))}if(sg)sg.style.display='none'}
+ if(k<ORD.length-1){row.querySelector('.'+ORD[k+1]).focus();return}
+ const nx=row.nextElementSibling;if(nx&&nx.classList.contains('bcrow'))nx.querySelector('.bnm').focus();else{const ad=$('bcadd');if(ad&&!ad.disabled){ad.click();const rs=$('bcown').querySelectorAll('.bcrow');const last=rs[rs.length-1];if(last&&last!==row)last.querySelector('.bnm').focus()}}});
+document.addEventListener('change',e=>{const t=e.target;if(!t.matches||!t.matches('.bnm,#bkn,#bct,#fa,#fb,#dq'))return;const v=t.value.trim();if(!v)return;const n=PROP[v];if(n&&n!==v){t.value=n;t.dispatchEvent(new Event('input',{bubbles:true}))}},true);
+}catch(e){console.error('quality-of-life features failed to start',e)}})();
+
 // remember the last tab this browser was on (first visit opens Digipedia)
 document.getElementById('top').addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b)try{localStorage.setItem('dw2-tab',b.dataset.t)}catch(x){}});
 let OD=null;try{const o=JSON.parse(localStorage.getItem('dw2-open')||'null');if(o&&Date.now()-o.t<20000)OD=o.n;localStorage.removeItem('dw2-open')}catch(e){}
@@ -2096,4 +2189,5 @@ if(/^#dg=/.test(window.__H0||'')){try{OD=decodeURIComponent(window.__H0.slice(4)
 // old links with a build code in them: tidy the address, but never load or jump to the planner from it
 if(/^#b-/.test(window.__H0||''))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
 if(OD&&PROP[OD.toLowerCase()])openDg(OD);else{let lt=null;try{lt=localStorage.getItem('dw2-tab')}catch(e){}const lb=lt&&lt!='dv'&&document.querySelector('#top button[data-t="'+lt+'"]');if(lb)lb.click();else showDv()}
+if(window.__navReady)__navReady();
 </script>

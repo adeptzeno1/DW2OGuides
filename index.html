@@ -261,6 +261,7 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 #bc .bcabp .abh input{padding:3px 8px;font-size:13px;width:170px}
 .bcabp .bml2{max-height:260px;overflow:auto}
 .bcabp .bmkc.fv{border-color:#f5c542}.bcabp .bmkc .st{color:#f5c542}
+.bhq{border:1px solid #d4a72c;border-left-width:4px;border-radius:8px;padding:6px 10px;margin:8px 0;font-size:13px;background:rgba(212,167,44,.08)}
 .bwait{padding:10px 0;animation:mp-pulse 1.2s ease-in-out infinite}
 .bcpl{display:grid;gap:4px;margin-top:6px}
 .bcpr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 0;border-top:1px solid var(--bd);font-size:13px}
@@ -466,12 +467,13 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <label class="bck"><input type="checkbox" id="bcsk" checked> The final Digimon must be able to learn its own new move (EL 12 Champion, EL 22 Ultimate, EL 32 Mega)</label>
 <input type="checkbox" id="bccu" checked hidden>
 <label class="bck"><input type="checkbox" id="bcany"> Any Digimon is fine, I just want the moves above</label>
+<label class="bck"><input type="checkbox" id="bchq"> Prefer the highest Quality at the end, using the Quality of the Digimon you added (can take more steps)</label>
 <div class="bcopt2"><label for="bctm">Final Max level at least</label><input id="bctm" type="number" min="1" max="40" step="1" inputmode="numeric" placeholder="optional"></div>
 <div class="bcvw" id="bcvw" hidden><span>Show as</span><button class="qbtn on" type="button" data-v="l">Steps</button><button class="qbtn" type="button" data-v="d">Diagram</button></div>
 <div id="bcout"></div></div>
 <div class="note"><p><b>Rules the route follows</b></p><ul>
 <li><b>Shortest:</b> the fewest DNA Digivolves first, then the fewest level-ups.</li>
-<li><b>Quality:</b> a DNA result takes the Quality of the higher-level parent, or the higher Quality if both are the same level. Shown when you enter Quality.</li>
+<li><b>Quality:</b> a DNA result takes the Quality of the parent with the higher <b>Level</b> when you DNA Digivolve, or the higher Quality if both Levels are the same. The route has you train each parent to its <b>Max level</b> first, so it compares their Max levels. Shown when you enter Quality. With <b>Prefer the highest Quality</b> ticked, the route tries to carry your highest-Quality Digimon through to the end, even if that takes more steps.</li>
 <li><b>DP:</b> a DNA result gets the higher parent&rsquo;s DP + 1. Level-ups keep DP the same.</li>
 <li><b>Max level:</b> a DNA result&rsquo;s Max level is the higher parent&rsquo;s level + (the lower parent&rsquo;s level &divide; 5), rounded down. The route assumes you train each parent to its Max level first.</li>
 <li><b>Digivolve as far as it can:</b> a Digimon trained to its Max level digivolves every time it can, so the route always uses its highest form as a DNA parent (when its Max level is known). This matters most for your main Digimon with DP 2 or more.</li>
@@ -1685,7 +1687,7 @@ dnRender();
   return `<div class="bkc${fo?' foilc':''}" data-id="${x.id}" style="${tcs(x.n)}">${p?`<img class="bki" src="${p}" alt="">`:'<span class="bki"></span>'}<div class="bknm"><span class="dg" data-dg="${x.n}">${x.n}</span></div>
    <button type="button" class="bkstar${x.fav?' on':''}" data-a="fav" aria-pressed="${!!x.fav}" aria-label="${x.fav?'Remove from favourites':'Add to favourites'}" title="${x.fav?'Favourite':'Add to favourites'}">${x.fav?'★':'☆'}</button>
    <div class="bkbd">${stg(x.n)?`<span class="sg">${stg(x.n)}</span>`:''}${t!=null?`<span style="color:rgb(var(${TCV[t]}))">${TYP[t]}</span>`:''}${sp&&sp!='None'?`<span style="color:${EC[sp]}">${sp}</span>`:''}${tn.map(n=>`<span class="tm">${esc(n)}</span>`).join('')}</div>
-   <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${x.ml?' / '+x.ml:''}${isMax(x)?' ✓':''}</span>${fo?`<span class="foil">Q ${x.q}</span>`:`<span class="${x.q!=null&&x.q<40?'lowq':''}">Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
+   <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${isMax(x)?' ✓':''}</span><span class="${isMax(x)?'mx':''}">Max ${x.ml??'?'}</span>${fo?`<span class="foil">Q ${x.q}</span>`:`<span class="${x.q!=null&&x.q<40?'lowq':''}">Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
    (!ed&&(x.mv||[]).length?`<div class="bkmvs">${x.mv.map(m=>`<span>${esc(m)}</span>`).join('')}</div>`:'')+
    (ed?`<div class="bkmve">${(x.mv||[]).map((m,i)=>`<span class="bchip">${esc(m)}<button type="button" data-mi="${i}" aria-label="Remove ${esc(m)}">&times;</button></span>`).join('')}<input class="bkmvi" placeholder="Add a move it knows" autocomplete="off" aria-label="Add a move it knows"></div>`:'')+
    (ed?`<div class="bke"><label>Level<input data-f="lv" type="number" min="1" max="99" value="${x.lv??''}"></label><label>Max level<input data-f="ml" type="number" min="1" max="99" value="${x.ml??''}"></label><label>Quality<input data-f="q" type="number" min="0" max="100" value="${x.q??''}"></label><label>DP<input data-f="dp" type="number" min="0" max="99" value="${x.dp}"></label></div>`:'')+
@@ -1765,7 +1767,7 @@ dnRender();
  dnaK.forEach(a=>{RT[a]={};dnaK.forEach(b=>{let x=ALLK[a],y=ALLK[b];while(x&&y&&x.lv>y.lv)x=red(x);while(x&&y&&y.lv>x.lv)y=red(y);if(!x||!y)return;
   const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2),nm=LV[x.lv].res[code];if(!nm)return;const r=KEY(nm);if(ST[r]==null)return;RT[a][b]=r})});
  const OWNL=[...RK.map(d=>({n:d.n,t:dty(d.n),l:'Rookie'})),...PL];
- const CU=document.getElementById('bccu'),own=document.getElementById('bcown'),T=document.getElementById('bct'),SK=document.getElementById('bcsk'),out=document.getElementById('bcout'),TM=document.getElementById('bctm'),ANY=document.getElementById('bcany'),VW=document.getElementById('bcvw');let DONE=new Set(),VIEW='l';try{VIEW=localStorage.getItem('dw2-bcview')||'l'}catch(e){}
+ const HQ=document.getElementById('bchq'),CU=document.getElementById('bccu'),own=document.getElementById('bcown'),T=document.getElementById('bct'),SK=document.getElementById('bcsk'),out=document.getElementById('bcout'),TM=document.getElementById('bctm'),ANY=document.getElementById('bcany'),VW=document.getElementById('bcvw');let DONE=new Set(),VIEW='l';try{VIEW=localStorage.getItem('dw2-bcview')||'l'}catch(e){}
 
  const MVI={},MLV={Rookie:1,Champion:12,Ultimate:22,Mega:32};MVD.forEach(r=>{if(r[7].length)MVI[r[0]]=r});let MSEL=[];
  const MQ=document.getElementById('bcmq'),MB=document.getElementById('bcmv');
@@ -1776,7 +1778,7 @@ dnRender();
  const addMv=()=>{const q=MQ.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==q);if(!mv)return;if(!MSEL.includes(mv)){if(MSEL.length>=4){out.innerHTML='<div class="bcw">Pick up to 4 moves at a time, so the search stays fast.</div>';return}MSEL.push(mv)}MQ.value='';MQ.dispatchEvent(new Event('input'));mvRen()};
  MQ.addEventListener('acpick',addMv);MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
  let saved=null;try{saved=JSON.parse(localStorage.getItem('dw2-bc2')||'null')}catch(e){}
- const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
+ const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,hq:HQ.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
  // send one Digimon to the DigiBank (only when the button is pressed)
  const nrm=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
  const toBank=r=>{if(!window.DWB)return 'none';const nm=r.querySelector('.bnm').value.trim(),n=PROP[nm.toLowerCase()];if(!n)return 'bad';
@@ -1803,7 +1805,7 @@ dnRender();
   r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{r.remove();store()};
   q('.bsend').onclick=()=>{const b=q('.bsend'),res=toBank(r),M={add:'Sent ✓',upd:'Updated ✓',dup:'Already in bank',bad:'Pick a Digimon first',none:'Bank not available'};b.textContent=M[res];b.classList.toggle('ok',res=='add'||res=='upd');store();clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent='Send to bank';b.classList.remove('ok')},2200)};return r}
  if(saved&&saved.rows&&saved.rows.length)saved.rows.forEach(addRow);else addRow(['','','','']);
- T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);if(saved&&Array.isArray(saved.mv)){MSEL=saved.mv.filter(m=>MVI[m]).slice(0,4);mvRen()}CU.addEventListener('change',store);
+ T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);HQ.addEventListener('change',store);if(saved&&saved.hq)HQ.checked=true;if(saved&&Array.isArray(saved.mv)){MSEL=saved.mv.filter(m=>MVI[m]).slice(0,4);mvRen()}CU.addEventListener('change',store);
  ac(T,[...OWNL,...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>KEY(e.n)==KEY(d.n))==i));T.addEventListener('input',store);SK.addEventListener('change',store);
  document.getElementById('bcadd').onclick=()=>{addRow().querySelector('.bnm').focus();store()};
  const key=v=>{const n=PROP[v.trim().toLowerCase()];return n?KEY(n):null};
@@ -1812,9 +1814,10 @@ dnRender();
  const H=[],hp=(c,s)=>{H.push([c,s]);let i=H.length-1;while(i){const p=(i-1)>>1;if(H[p][0]<=H[i][0])break;[H[p],H[i]]=[H[i],H[p]];i=p}},
   hpop=()=>{const t=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){const a=2*i+1,b=a+1;let m=i;if(a<H.length&&H[a][0]<H[m][0])m=a;if(b<H.length&&H[b][0]<H[m][0])m=b;if(m==i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return t};
  // show a message first so the page never looks frozen while a long search runs
- function solve(mode){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';solve._t=setTimeout(()=>{try{solveNow(mode)}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
+ function solve(mode){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';solve._t=setTimeout(()=>{try{solveNow(mode);if(QNOTE){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend',QNOTE)}}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
+ let QNOTE='';
  function solveNow(mode){
-  const HARD=performance.now()+3000;let TO=false;
+  const HARD=performance.now()+3000;let TO=false,FORCE=new Set();QNOTE='';
   let have={},bad=[],errs=[];
   const SEL=MSEL.slice(),SFULL=(1<<SEL.length)-1,LRN={};
   SEL.forEach((mv,i)=>{const r=MVI[mv];r[7].forEach(n=>{const k=KEY(PROP[n.toLowerCase()]||n);(LRN[k]=LRN[k]||[]).push([i,MLV[r[1]]])})});
@@ -1824,8 +1827,8 @@ dnRender();
   const build=BITS=>{have={};bad=[];errs=[];nb=0;rowsN=0;let ri=0;own.querySelectorAll('.bcrow').forEach(r=>{r._ri=ri++;const v=r.querySelector('.bnm').value;if(!v.trim())return;const k=key(v);if(!k||ST[k]==null){bad.push(v);return}
    const d=Math.min(CAP,Math.max(0,parseInt(r.querySelector('.bdp').value)||0)),lv=parseInt(r.querySelector('.blv').value)||0,ml=parseInt(r.querySelector('.bml').value)||null;
    if(ml&&lv&&lv>ml)errs.push(`${DISP(k)}'s Level (${lv}) is above its Max level (${ml}).`);const qr=r.querySelector('.bqy').value.trim(),qv=qr===''?null:parseInt(qr);if(qr!==''&&!(qv>=0&&qv<=100))errs.push(`${DISP(k)}'s Quality must be a whole number from 0 to 100.`);
-   const mu=r.querySelector('.bmu').checked,mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),s=k+'|'+d+'|'+mc+'|'+((mu||BITS.has(r._ri))?1<<nb++:0)+'|'+(learn(k,mc)|kb)+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,rows:[],q:null};have[s].n++;have[s].rows.push(r);rowsN++;if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
-  MB=Math.max(2,2**nb);FULL=0;Object.keys(have).forEach(x=>{if(have[x].mu)FULL|=+x.split('|')[3]})};
+   const mu=r.querySelector('.bmu').checked,fz=FORCE.has(r._ri),mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),s=k+'|'+d+'|'+mc+'|'+((mu||fz||BITS.has(r._ri))?1<<nb++:0)+'|'+(learn(k,mc)|kb)+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,fz:fz,rows:[],q:null};have[s].n++;have[s].rows.push(r);rowsN++;if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
+  MB=Math.max(2,2**nb);FULL=0;Object.keys(have).forEach(x=>{if(have[x].mu||have[x].fz)FULL|=+x.split('|')[3]})};
   build(new Set());if(mode==='make'&&rowsN<=12)build(new Set([...Array(rowsN).keys()]));
   const tk=key(T.value),warn=m=>out.innerHTML=`<div class="bcw">${m}</div>`;
   if(bad.length)return warn(`I don't recognise ${bad.map(b=>'"'+b+'"').join(', ')}. Pick names from the dropdown.`);
@@ -1835,32 +1838,37 @@ dnRender();
   if(!tk&&!anyT&&mode!=='make')return warn('Pick the Digimon you want from the dropdown.');
   if(rowsN>20)return warn('Add up to 20 Digimon at a time, so the search stays fast.');
   const tgt=Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
-  const run=(seeds,o={})=>{const DL=Math.min(o.dl||Infinity,HARD),RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
+  const run=(seeds,o={})=>{const QM=o.qc||null,DL=Math.min(o.dl||Infinity,HARD),RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
    const KS=Object.keys(ST),N=KS.length,KI={};KS.forEach((k,i)=>KI[k]=i);const D1=CAP+1,M1=ML+1;
-   const enc=(ki,d,m,mk,sk,u)=>((((ki*D1+d)*M1+m)*MB+mk)*16+sk)*2+u;
-   const dec=id=>{const u=id%2;id=(id-u)/2;const sk=id%16;id=(id-sk)/16;const mk=id%MB;id=(id-mk)/MB;const m=id%M1;id=(id-m)/M1;const d=id%D1;return [(id-d)/D1,d,m,mk,sk,u]};
+   const enc=(ki,d,m,mk,sk,u,qc)=>(((((ki*D1+d)*M1+m)*MB+mk)*16+sk)*2+u)*2+(qc?1:0);
+   const dec=id=>{const qc=id%2;id=(id-qc)/2;const u=id%2;id=(id-u)/2;const sk=id%16;id=(id-sk)/16;const mk=id%MB;id=(id-mk)/MB;const m=id%M1;id=(id-m)/M1;const d=id%D1;return [(id-d)/D1,d,m,mk,sk,u,qc]};
    const RTi=new Int16Array(N*N).fill(-1),isD=KS.map(k=>!!ALLK[k]);KS.forEach((a,i)=>{if(!isD[i])return;KS.forEach((b,j)=>{const r=RT[a]&&RT[a][b];if(r&&KI[r]!=null)RTi[i*N+j]=KI[r]})});
    const EV=KS.map(k=>(DEK[k]||[]).filter(e=>KI[e.k]!=null).map(e=>({j:KI[e.k],lo:e.lo,hi:e.hi,dp:e.dp})));
    const LA=KS.map(k=>{const a=new Uint8Array(M1);for(let m=0;m<M1;m++)a[m]=learn(k,m);return a});
    const best=new Map(),how=new Map(),top=new Map();H.length=0;
    const push=(id,c,h)=>{const b=best.get(id);if(b!=null&&b<=c)return;best.set(id,c);how.set(id,h);hp(c,id)};
-   seeds.forEach(x=>{const [k,d,m,mk,sk,u]=x[0].split('|');push(enc(KI[k],+d,+m,+mk,+sk,+u),x[1],Object.assign({sid:x[0]},x[2]))});
-   const CAPF=200005,fI=new Float64Array(CAPF),fC=new Float64Array(CAPF),fD=new Int8Array(CAPF),fM=new Int8Array(CAPF),fMk=new Int32Array(CAPF),fSk=new Int8Array(CAPF),fU=new Int8Array(CAPF);let nF=0;
-   const BYK=KS.map(()=>[]),PK=KS.map((a,i)=>{if(!isD[i])return [];const L=[];for(let j=0;j<N;j++)if(isD[j]&&(RTi[i*N+j]>=0||RTi[j*N+i]>=0))L.push(j);return L});let goal=null,pops=0;const tki=tk?KI[tk]:-1,RCH=o.reach;
-   while(H.length){const [c,id]=hpop();const h=how.get(id);if(best.get(id)!==c||h.done)continue;const [ki,d,m,mk,sk,u]=dec(id),base=(((ki*D1+d)*MB+mk)*16);
-    let dom=false;for(let s2=sk;s2<16;s2=(s2+1)|sk){const t=top.get(base+s2);if(t!=null&&t>=m){dom=true;break}}if(dom)continue;
-    top.set(base+sk,m);h.done=1;if(++pops>200000)break;if((pops&255)==0&&performance.now()>DL){if(DL===HARD)TO=true;break}
+   seeds.forEach(x=>{const [k,d,m,mk,sk,u]=x[0].split('|');push(enc(KI[k],+d,+m,+mk,+sk,+u,QM&&x[0]===QM),x[1],Object.assign({sid:x[0]},x[2]))});
+   const CAPF=200005,fI=new Float64Array(CAPF),fC=new Float64Array(CAPF),fD=new Int8Array(CAPF),fM=new Int8Array(CAPF),fMk=new Int32Array(CAPF),fSk=new Int8Array(CAPF),fU=new Int8Array(CAPF),fQ=new Int8Array(CAPF);let nF=0;
+   const BYK=KS.map(()=>[]),BYQ=KS.map(()=>[]),PK=KS.map((a,i)=>{if(!isD[i])return [];const L=[];for(let j=0;j<N;j++)if(isD[j]&&(RTi[i*N+j]>=0||RTi[j*N+i]>=0))L.push(j);return L});let goal=null,pops=0;const tki=tk?KI[tk]:-1,RCH=o.reach;
+   while(H.length){const [c,id]=hpop();const h=how.get(id);if(best.get(id)!==c||h.done)continue;const [ki,d,m,mk,sk,u,qc]=dec(id),base=(((ki*D1+d)*MB+mk)*16);
+    let dom=false;for(let s2=sk;s2<16;s2=(s2+1)|sk){const t=top.get((base+s2)*2+qc);if(t!=null&&t>=m){dom=true;break}}if(dom)continue;
+    top.set((base+sk)*2+qc,m);h.done=1;if(++pops>200000)break;if((pops&255)==0&&performance.now()>DL){if(DL===HARD)TO=true;break}
     if(RCH){if(c>3999)break;if(RCH[ki]==null||c<RCH[ki])RCH[ki]=c}
-    else if((anyT||ki==tki)&&m>=N0&&(mk&RQM)==RQM&&(sk&RQS)==RQS){goal=id;break}
-    const st=ST[KS[ki]];let evd=false;if(st<3&&m>=EVL[st])for(const e of EV[ki])if(d>=e.lo&&d<=e.hi){evd=true;push(enc(e.j,d,m,mk,sk|LA[e.j][m],u),c+1,{t:'evo',from:id,dp:e.dp})}
+    else if((anyT||ki==tki)&&m>=N0&&(mk&RQM)==RQM&&(sk&RQS)==RQS&&(!QM||qc)){goal=id;break}
+    const st=ST[KS[ki]];let evd=false;if(st<3&&m>=EVL[st])for(const e of EV[ki])if(d>=e.lo&&d<=e.hi){evd=true;push(enc(e.j,d,m,mk,sk|LA[e.j][m],u,qc),c+1,{t:'evo',from:id,dp:e.dp})}
     // trained to its Max level, a Digimon that can digivolve will: only its final form can be a DNA parent (when its Max level is known)
-    if(isD[ki]&&!(evd&&!u)){const f=nF++;fI[f]=id;fC[f]=c;fD[f]=d;fM[f]=m;fMk[f]=mk;fSk[f]=sk;fU[f]=u;BYK[ki].push(f);
-     const pk=PK[ki];for(let pi=0;pi<pk.length;pi++){const k2=pk[pi],L=BYK[k2],r1=RTi[ki*N+k2],r2=k2!=ki?RTi[k2*N+ki]:-1;
+    if(isD[ki]&&!(evd&&!u)){const f=nF++;fI[f]=id;fC[f]=c;fD[f]=d;fM[f]=m;fMk[f]=mk;fSk[f]=sk;fU[f]=u;fQ[f]=qc;BYK[ki].push(f);if(qc)BYQ[ki].push(f);
+     const pk=PK[ki];for(let pi=0;pi<pk.length;pi++){const k2=pk[pi],L=QM&&!qc?BYQ[k2]:BYK[k2],r1=RTi[ki*N+k2],r2=k2!=ki?RTi[k2*N+ki]:-1;
       for(let li=0;li<L.length;li++){const q=L[li],mk2=fMk[q];if(mk&mk2)continue;
-      const m2=fM[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),hi=m>m2?m:m2,lo=m>m2?m2:m,nm=Math.min(ML,hi+Math.floor(lo/5)),ns=sk|fSk[q],nmk=mk|mk2,nu=u|fU[q],cc=c+fC[q]+1000;
-      if(r1>=0)push(enc(r1,nd,nm,nmk,ns|LA[r1][nm],nu),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0)push(enc(r2,nd,nm,nmk,ns|LA[r2][nm],nu),cc,{t:'dna',a:fI[q],b:id})}}}}
+      const m2=fM[q],u2=fU[q],q2=fQ[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),ns=sk|fSk[q],nmk=mk|mk2,cc=c+fC[q]+1000;let hi=m>m2?m:m2,lo=m>m2?m2:m,nu=u|u2,nq=0;
+      if(QM&&(qc||q2)){
+       // keep the Quality line on top: a partner whose Max level isn't known is taken at the lowest Max level its stage allows (no higher than the line, so the line passes on its Quality)
+       if(u!==u2){const km=u?m2:m,kq=u?q2:qc,su=ST[KS[u?ki:k2]],pm=su>0?EVL[su-1]:1;if(kq){if(km<pm)continue;hi=km;lo=pm;nu=0;nq=1}}
+       else if(!u){nq=m>m2?qc:m2>m?q2:(qc||q2)}else nq=0}
+      const nm=Math.min(ML,hi+Math.floor(lo/5));
+      if(r1>=0)push(enc(r1,nd,nm,nmk,ns|LA[r1][nm],nu,nq),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0)push(enc(r2,nd,nm,nmk,ns|LA[r2][nm],nu,nq),cc,{t:'dna',a:fI[q],b:id})}}}}
    if(goal==null)return {goal:null};
-   const H2={},str=id=>{const h=how.get(id);if(h.sid){H2[h.sid]={t:h.t};return h.sid}const [ki,d,m,mk,sk,u]=dec(id),sid=[KS[ki],d,m,mk,sk,u].join('|');if(H2[sid])return sid;
+   const H2={},str=id=>{const h=how.get(id);if(h.sid){H2[h.sid]={t:h.t};return h.sid}const [ki,d,m,mk,sk,u,qc]=dec(id),sid=[KS[ki],d,m,mk,sk,u].join('|')+(qc?'|q':'');if(H2[sid])return sid;
     const o={t:h.t,dp:h.dp};if(h.t=='evo')o.from=str(h.from);if(h.t=='dna'){o.a=str(h.a);o.b=str(h.b)}H2[sid]=o;return sid};
    return {goal:str(goal),how:H2,KS}};
   const CW=[100000,200000,500000,1000000],mkCatch=maxSt=>Object.keys(ST).filter(k=>k!=tk&&ST[k]<=maxSt&&(ST[k]==0||ALLK[k])).map(k=>[k+'|0|'+ML+'|0|'+learn(k,ML)+'|1',CW[ST[k]],{t:'catch'}]).filter(x=>!Object.keys(have).some(s=>s.split('|')[0]==x[0].split('|')[0]));
@@ -1896,6 +1904,30 @@ dnRender();
   const DL=Math.max(performance.now()+250,T0+1200);if(PL0&&PL0.acq>0&&performance.now()-T0<900){for(let it=0;it<10&&performance.now()<DL;it++){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]),R3=run(pen.concat(mkCatch(CU.checked?2:1)),{dl:DL});if(!R3.goal)break;const p3=plan(R3),over=overOf(p3);
     if(!over.length){if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna))PL0=p3;break}grow(over)}
    if(overOf(PL0).length){for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}}}
+  if(PL0&&HQ.checked&&!anyT){
+   // [Quality, sure]. A DNA with a Digimon whose Max level isn't known assumes yours is the higher-level parent (not sure).
+   let QA=null;const qG=(how,s)=>{const h=how[s],hv=have[s];if(hv)return [hv.q,P(s)[5]!=='1'];if(!h||h.t=='catch')return [null,false];if(h.t=='evo')return qG(how,h.from);
+    const A=qG(how,h.a),B=qG(how,h.b),ua=P(h.a)[5]==='1'&&!/\|q$/.test(h.a),ub=P(h.b)[5]==='1'&&!/\|q$/.test(h.b),ml=x=>have[x]&&have[x].ml?have[x].ml:+P(x)[2];
+    if(!ua&&!ub){if(A[0]==null||B[0]==null)return [null,false];const va=ml(h.a),vb=ml(h.b);return [va>vb?A[0]:vb>va?B[0]:Math.max(A[0],B[0]),A[1]&&B[1]]}
+    if(ua&&ub)return [null,false];
+    const kn=ua?h.b:h.a,KQ=ua?B:A,un=ua?h.a:h.b;if(KQ[0]==null)return [null,false];
+    // the unknown one must be a fresh Digimon (no DNA in its line) whose stage needs no more Max level than the known parent has
+    let x=un;while(how[x]&&how[x].t=='evo')x=how[x].from;const fresh=!how[x]||how[x].t=='catch'||how[x].t=='have',su=ST[P(un)[0]],need=su>0?EVL[su-1]:0;
+    if(!fresh||ml(kn)<need)return [null,false];return [KQ[0],false]};
+   const qF=(how,s)=>{const r=qG(how,s);QA=r;return r[0]};
+   const snapS=()=>({have,nb,MB,FULL,seeds,B:[...BITS]}),restS=o=>{have=o.have;nb=o.nb;MB=o.MB;FULL=o.FULL;seeds=o.seeds;BITS.clear();o.B.forEach(x=>BITS.add(x))};
+   const base=snapS(),q0=qF(PL0.how,PL0.goal),s0=QA[1],d0=PL0.dna;let best={pl:PL0,q:q0==null?-1:q0,sure:s0,st:base},left=false;
+   const cand=[...own.querySelectorAll('.bcrow')].map(r=>({ri:r._ri,q:parseInt(r.querySelector('.bqy').value)})).filter(x=>x.q>=0&&x.q<=100).sort((a,b)=>b.q-a.q);
+   const QMIN=q0==null?50:q0+1,noML=[];for(const c of cand){if(c.q<=best.q||c.q<QMIN)break;{const rr=own.querySelectorAll('.bcrow')[c.ri];if(rr&&!rr.querySelector('.bml').value.trim()){noML.push(`${rr.querySelector('.bnm').value.trim()} (Quality ${c.q})`);continue}}if(performance.now()>HARD-200){left=true;break}
+    restS(base);FORCE=new Set([c.ri]);BITS.add(c.ri);build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);let pl=null;
+    for(let it=0;it<10;it++){const qk=Object.keys(have).find(x=>have[x].fz);const R2=run(seeds.concat(mkCatch(2)),{qc:qk});pl=R2.goal?plan(R2):null;if(!pl)break;const over=overOf(pl);if(!over.length)break;grow(over)}
+    if(pl&&!overOf(pl).length){const q=qF(pl.how,pl.goal),su=QA[1];if(q!=null&&q>best.q)best={pl,q,sure:su,st:snapS()}}}
+   FORCE=new Set();restS(best.st);PL0=best.pl;TO=false;
+   const qtx=q=>q==null||q<0?'unknown':q,nm2=noML.length?` <br>${noML.join(', ')} ${noML.length>1?'have':'has'} no Max level entered, so the route can&rsquo;t plan around ${noML.length>1?'them':'it'}. Enter it to include ${noML.length>1?'them':'it'}.`:'';
+   const cav=best.sure?'':' <br>To keep it: in each DNA step with a Digimon you get, pick one whose <b>Max level is no higher</b> than the other parent&rsquo;s Max level shown in that step. The parent with the higher Level passes on its Quality, and a tie passes on the higher Quality.';
+   QNOTE=best.pl!==base.pl&&best.q>(q0==null?-1:q0)?`<div class="bhq"><b>Highest Quality:</b> this route ends at <b>Quality ${best.q}</b>. ${best.pl.dna>d0?`The shortest route has ${best.pl.dna-d0} fewer DNA Digivolve${best.pl.dna-d0==1?'':'s'} but `:'The shortest route '}${q0==null?'has no Quality that can be worked out':'ends at Quality '+q0}.${cav}</div>`
+    :best.q>=0?`<div class="bhq"><b>Highest Quality:</b> this route already ends at the best Quality I could find, <b>Quality ${best.q}</b>.${cav}${left?' (Ran out of time before checking every option.)':''}${nm2}</div>`
+    :`<div class="bhq"><b>Highest Quality:</b> ${cand.length?'none of your Digimon could pass on a Quality of 50 or more here, so this is the shortest route. Its final Quality depends on the Digimon you get.':'enter the Quality of your Digimon to use this.'}${nm2}</div>`}
   if(!PL0&&TO)return toMsg();
   if(!PL0){
    const tries=[],cs3=mkCatch(2),base=seeds.concat(mkCatch(CU.checked?2:1));
@@ -1914,7 +1946,7 @@ dnRender();
   let nD=0,nE=0,nU=0;const steps=[],short=[],cat=[];
   const lvTxt=s=>{const [k,,m]=P(s),h=have[s];if(how[s]&&how[s].t=='catch')return `new, train to EL ${+m>=ML?ML+'+':m}`;return h&&h.lv&&h.lv<h.ml?`train from EL ${h.lv} to ${h.ml}`:`at EL ${h?h.ml:(+m>=ML?ML+'+':m)}`};
   const LB={},lb=s=>{if(LB[s]!=null)return LB[s];const h=how[s],hv=have[s];let v=0;if(hv)v=hv.ml||hv.lv||0;else if(h.t=='evo')v=lb(h.from);else if(h.t=='dna'){const a=lb(h.a),b=lb(h.b);v=Math.min(ML,Math.max(a,b)+Math.floor(Math.min(a,b)/5))}return LB[s]=v};
-  const unk=s=>P(s)[5]==='1',mlr=s=>{const h=have[s];return h&&h.ml?h.ml:+P(s)[2]},mlt=v=>v>=ML?ML+'+':v,mls=s=>unk(s)?(lb(s)>1?'at least '+mlt(lb(s)):'not set'):mlt(mlr(s));
+  const unk=s=>P(s)[5]==='1',mlr=s=>{const h=have[s];return h&&h.ml?h.ml:+P(s)[2]},mlt=v=>v>=ML?ML+'+':v;let mls=s=>unk(s)?'not set':mlt(mlr(s));
   // minimum Max level each unknown Digimon needs so every level-up in the chain is possible
   const REQ={},fML=(a,b)=>Math.max(a,b)+Math.floor(Math.min(a,b)/5),minX=(k,r)=>{for(let x=1;x<=99;x++)if(fML(k,x)>=r)return x;return 99},minS=r=>{for(let x=1;x<=99;x++)if(x+Math.floor(x/5)>=r)return x;return 99};
   REQ[goal]=Math.max(skN,tgt);
@@ -1924,8 +1956,20 @@ dnRender();
     if(ka!=null&&kb==null)REQ[h.b]=Math.max(REQ[h.b]||0,ka>=r?0:minX(ka,r));
     else if(kb!=null&&ka==null)REQ[h.a]=Math.max(REQ[h.a]||0,kb>=r?0:minX(kb,r));
     else if(ka==null&&kb==null){const x=minS(r);REQ[h.a]=Math.max(REQ[h.a]||0,x);REQ[h.b]=Math.max(REQ[h.b]||0,x)}}}
-  const reqN=s=>unk(s)&&REQ[s]>0?REQ[s]:0;
-  const QS={},qOf=s=>{if(s in QS)return QS[s];const h=how[s],hv=have[s];let v=null;if(hv)v=hv.q;else if(h.t=='evo')v=qOf(h.from);else if(h.t=='dna'&&!unk(h.a)&&!unk(h.b)){const qa=qOf(h.a),qb=qOf(h.b),va=mlr(h.a),vb=mlr(h.b);if(qa!=null&&qb!=null)v=va>vb?qa:vb>va?qb:Math.max(qa,qb)}return QS[s]=v};
+  // the only unknowns are the Digimon you get (or listed without a Max level): show what they need, and what everything above them reaches when they have it
+  const isLeafU=s=>unk(s)&&!!(have[s]||(how[s]&&how[s].t=='catch'));
+  // on a Quality route, a partner with no Max level is planned at the lowest Max level its stage allows
+  if(Object.keys(how).some(x=>/\|q$/.test(x)))order.forEach(s=>{if(!isLeafU(s))return;let top=s;Object.keys(how).forEach(r=>{const h=how[r];if(h.t=='evo'&&h.from===top)top=r});const st=ST[P(s)[0]];if(st>0)REQ[s]=Math.max(REQ[s]||0,EVL[st-1])});
+  const EX={};order.forEach(s=>{const h=how[s],hv=have[s];let v=0;if(hv)v=hv.ml||REQ[s]||0;else if(h.t=='catch')v=REQ[s]||0;else if(h.t=='evo')v=Math.max(EX[h.from]||0,REQ[s]||0);else if(h.t=='dna')v=Math.min(ML,fML(EX[h.a]||0,EX[h.b]||0));EX[s]=v});
+  const qPlus={};order.forEach(s=>{const h=how[s];qPlus[s]=!!h&&(h.t=='evo'?qPlus[h.from]:h.t=='dna'?(qPlus[h.a]||qPlus[h.b]||isLeafU(h.a)||isLeafU(h.b)||(unk(h.a)!==unk(h.b))):false)});
+  mls=s=>!unk(s)?(qPlus[s]&&/\|q$/.test(s)?(mlr(s)>=ML?ML+'+':mlr(s)+'+'):mlt(mlr(s))):isLeafU(s)||!(EX[s]>0)?'not set':(EX[s]>=ML?ML+'+':EX[s]+'+');
+  const leaves=s=>{const o=[],seen=new Set(),w=x=>{if(seen.has(x))return;seen.add(x);if(isLeafU(x)&&REQ[x]>0){o.push(x);return}const h=how[x];if(!h)return;if(h.t=='evo')w(h.from);if(h.t=='dna'){w(h.a);w(h.b)}};w(s);return o};
+  const reqN=s=>isLeafU(s)&&REQ[s]>0?REQ[s]:0;
+  const QS={},qL=x=>/\|q$/.test(x)||(have[x]&&have[x].fz),qOf=s=>{if(s in QS)return QS[s];const h=how[s],hv=have[s];let v=null;if(hv)v=hv.q;else if(h.t=='evo')v=qOf(h.from);else if(h.t=='dna'&&qL(s)&&(qL(h.a)||qL(h.b)))v=qOf(qL(h.a)?h.a:h.b);else if(h.t=='dna'&&!unk(h.a)&&!unk(h.b)){const qa=qOf(h.a),qb=qOf(h.b),va=mlr(h.a),vb=mlr(h.b);if(qa!=null&&qb!=null)v=va>vb?qa:vb>va?qb:Math.max(qa,qb)}return QS[s]=v};
+  // on a Quality route, a new partner must not have a higher Max level than the Quality line it joins
+  const QCAP={};Object.keys(how).forEach(r=>{const h=how[r];if(h.t!='dna'||!qL(r))return;const la=qL(h.a),lb=qL(h.b);if(la===lb)return;const line=la?h.a:h.b,cap=mlr(line);let x=la?h.b:h.a;
+   for(;;){if(unk(x))QCAP[x]=Math.min(QCAP[x]??99,cap);const hx=how[x];if(!hx||hx.t!='evo')break;x=hx.from}});
+  const rq=s=>{const lo=reqN(s),hi=QCAP[s];return hi!=null?(lo?(lo>=hi?`${hi}`:`${lo}&ndash;${hi}`):`${hi} or lower`):`${lo}+`};
   const anyQ=Object.keys(have).some(x=>have[x].q!=null);
   const ownK=new Set(Object.keys(have).map(x=>P(x)[0])),catchable=x=>x!==tk&&ALLK[x]&&(ST[x]==1||(CU.checked&&ST[x]==2));
   const mkSame=(x,y,k)=>(RT[x]&&RT[x][y]==k)||(RT[y]&&RT[y][x]==k);
@@ -1939,13 +1983,13 @@ dnRender();
   const mvl=b=>SEL.filter((x,i)=>b&(1<<i)),lrnTxt=(k,m)=>(LRN[k]||[]).filter(([i,l])=>m>=l).map(([i,l])=>`learns ${SEL[i]} at EL ${l}`).join(', ');
   const mon=(s,res)=>{const [k,d,m,,skv]=P(s),h=have[s],c=how[s]&&how[s].t=='catch',v=mlr(s),kn=mvl(+skv||0),lt=(res===1||h||c)?lrnTxt(k,+m):'';
    const note=(res?'':unk(s)?(c?'Get it, then train it to its Max level':h&&h.lv?`Train it from EL ${h.lv} to its Max level`:'Train it to its Max level'):h&&h.lv&&h.lv<h.ml?`Train from EL ${h.lv} to its Max level, EL ${h.ml}`:`Train to its Max level, EL ${mlt(v)}`)+(lt?`${res?'':' ('}${res?lt.charAt(0).toUpperCase()+lt.slice(1):lt}${res?'':')'}`:'');
-   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${qOf(s)!=null?' &middot; Quality '+qOf(s):''}</div>${kn.length?`<div class="bkn">Knows ${kn.join(', ')}</div>`:''}${reqN(s)&&(h||(how[s]&&how[s].t=='catch'))?`<div class="bwarn" style="margin-top:4px;padding:3px 8px"><b>Needs Max EL ${reqN(s)}+</b>${h?' &middot; check it in game':' &middot; get one this high'}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
+   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${qOf(s)!=null?' &middot; Quality '+qOf(s):''}</div>${kn.length?`<div class="bkn">Knows ${kn.join(', ')}</div>`:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px"><b>Needs Max EL ${rq(s)}</b>${QCAP[s]!=null?' &middot; keeps your Quality':h?' &middot; check it in game':' &middot; get one this high'}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
   const DN=[];let first=true;const doneBtn=s=>{if(!first)return '';first=false;DN.push(s);return `<button class="qbtn bdone" type="button" data-s="${s}">Done, update my Digimon</button>`};
   order.forEach(s=>{const h=how[s],[k,d,m]=P(s),n=need[s],tag=n>1?` &times;${n}`:'';
-   if(h.t=='catch'){{const ci=cat.length;cat.push(`<div class="bcatch" data-n="${DISP(k)}"><div class="bcn"><b>Get ${n>1?n:/^[AEIOU]/i.test(DISP(k))?'an':'a'}</b> ${dn(k)} <small>(${STN[ST[k]]})</small>${reqN(s)?`<div class="bcl"><b>Needs a Max level of ${reqN(s)} or more</b> for this chain.</div>`:''}</div><label for="bcc${ci}l">Level</label><input id="bcc${ci}l" class="bccl" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 9"><label for="bcc${ci}m">Max level</label><input id="bcc${ci}m" class="bccm" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 24"><label for="bcc${ci}q">Quality</label><input id="bcc${ci}q" class="bccq" type="number" min="0" max="100" inputmode="numeric" placeholder="optional"><button class="qbtn bcca" type="button">I got it, add to my Digimon</button></div>`)};return}
+   if(h.t=='catch'){{const ci=cat.length;cat.push(`<div class="bcatch" data-n="${DISP(k)}"><div class="bcn"><b>Get ${n>1?n:/^[AEIOU]/i.test(DISP(k))?'an':'a'}</b> ${dn(k)} <small>(${STN[ST[k]]})</small>${QCAP[s]!=null?`<div class="bcl"><b>Needs a Max level of ${rq(s).replace('&ndash;',' to ')}</b> for this chain, so your Quality carries on.</div>`:reqN(s)?`<div class="bcl"><b>Needs a Max level of ${reqN(s)} or more</b> for this chain.</div>`:''}</div><label for="bcc${ci}l">Level</label><input id="bcc${ci}l" class="bccl" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 9"><label for="bcc${ci}m">Max level</label><input id="bcc${ci}m" class="bccm" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 24"><label for="bcc${ci}q">Quality</label><input id="bcc${ci}q" class="bccq" type="number" min="0" max="100" inputmode="numeric" placeholder="optional"><button class="qbtn bcca" type="button">I got it, add to my Digimon</button></div>`)};return}
    if(h.t=='have'){if(n>have[s].n)short.push(`${dn(k)} ${dpb(+d)}${have[s].ml?' '+mlb(have[s].ml):''}: you need ${n}, you listed ${have[s].n}`);return}
    if(h.t=='dna'){nD+=n;const da=+P(h.a)[1],db=+P(h.b)[1],va=mlr(h.a),vb=mlr(h.b),hi=Math.max(va,vb),lo=Math.min(va,vb),capd=(va>=ML&&!have[h.a])||(vb>=ML&&!have[h.b]);
-    const rq=[h.a,h.b].filter((x,i,a)=>reqN(x)&&a.indexOf(x)==i).map(x=>`${DISP(P(x)[0])} needs Max EL <b>${reqN(x)}</b> or more`),mx=unk(s)?(reqN(s)?`Max EL: needs to reach <b>${reqN(s)}</b> for the rest of the chain, so ${rq.join(' and ')||'its parents need high Max levels'}.`:'Max EL: not worked out, because a parent in this line has no Max level set'):capd?`Max EL: the higher parent is already at EL ${ML}+, so the new Max EL is ${ML}+`:`Max EL: higher parent ${hi} + (lower parent ${lo} &divide; 5 = ${Math.floor(lo/5)}) = <b>${hi+Math.floor(lo/5)}</b>`;
+    const rq=[h.a,h.b].filter((x,i,a)=>reqN(x)&&a.indexOf(x)==i).map(x=>`${DISP(P(x)[0])} needs Max EL <b>${reqN(x)}</b> or more`),mx=(!unk(s)&&unk(h.a)!==unk(h.b))?(()=>{const kn=unk(h.a)?h.b:h.a,un=unk(h.a)?h.a:h.b,km=mlr(kn),pm=EX[un]||0;return `Max EL: ${DISP(P(kn)[0])} ${km} + (the ${DISP(P(un)[0])}, Max EL ${pm} or more, &divide; 5 = ${Math.floor(pm/5)}) = <b>${mls(s)}</b>`})():unk(s)?(EX[s]>0&&leaves(s).length?`Max EL: <b>${mls(s)}</b>, as long as ${leaves(s).map(x=>`the ${DISP(P(x)[0])}${how[x].t=='catch'?' you get':''} has Max EL ${reqN(x)} or more`).join(' and ')}.`:'Max EL: not worked out, because a parent in this line has no Max level set'):capd?`Max EL: the higher parent is already at EL ${ML}+, so the new Max EL is ${ML}+`:`Max EL: higher parent ${hi} + (lower parent ${lo} &divide; 5 = ${Math.floor(lo/5)}) = <b>${hi+Math.floor(lo/5)}</b>`;
     const qa=qOf(h.a),qb=qOf(h.b);let qt='',tip='';
     if(anyQ&&!unk(h.a)&&!unk(h.b)){if(qa!=null&&qb!=null){const na=DISP(P(h.a)[0]),nb2=DISP(P(h.b)[0]);
       if(va==vb)qt=`<br>Quality: both parents EL ${va}, so the higher one = <b>${Math.max(qa,qb)}</b>`;
@@ -1957,14 +2001,14 @@ dnRender();
      `<div class="bmath">DP: higher parent ${Math.max(da,db)} + 1 = <b>${+d>=CAP?d+'+':d}</b><br>${mx}${qt}</div>${tip}${swaps(h,k)}${doneBtn(s)}</div></li>`)}
    if(h.t=='evo'){nE+=n;const kf=P(h.from)[0],el=EVL[ST[kf]],v=mlr(h.from);
     steps.push(`<li${DONE.has(s)?' class="isdone"':''}><div class="bstep"><label class="bdn"><input type="checkbox" class="bdck" data-s="${s}"${DONE.has(s)?' checked':''}> Mark as done</label><span class="k">Level up${tag}</span><div class="bdna">${mon(h.from,2)}<span class="bop ar">&rarr;</span>${mon(s,1)}</div>`+
-     `<div class="bmath">${DISP(kf)} digivolves into ${DISP(k)} at EL ${el}. ${h.dp=='0+'?'Any DP works':`DP ${+d>=CAP?d+'+':d} is in the ${h.dp} range`}.${unk(h.from)?'':` Its Max EL stays ${mlt(v)}.`}</div>${unk(h.from)&&lb(h.from)<el?(nU++,`<div class="bwarn"><b>Needs a Max level of ${el} or more.</b> ${DISP(kf)}&rsquo;s Max level isn&rsquo;t known${lb(h.from)>1?` (it&rsquo;s at least ${lb(h.from)})`:''}, so check it in game before you start. If it&rsquo;s below ${el}, it can&rsquo;t digivolve: add it to your Digimon with its real Max level and find the route again.</div>`):''}${doneBtn(s)}</div></li>`)}});
+     `<div class="bmath">${DISP(kf)} digivolves into ${DISP(k)} at EL ${el}. ${h.dp=='0+'?'Any DP works':`DP ${+d>=CAP?d+'+':d} is in the ${h.dp} range`}.${unk(h.from)?'':` Its Max EL stays ${mlt(v)}.`}</div>${unk(h.from)&&lb(h.from)<el?(nU++,`<div class="bwarn"><b>Needs a Max level of ${el} or more.</b> ${DISP(kf)}&rsquo;s Max level isn&rsquo;t known, so check it in game before you start. If it&rsquo;s below ${el}, it can&rsquo;t digivolve: add it to your Digimon with its real Max level and find the route again.</div>`):''}${doneBtn(s)}</div></li>`)}});
   const [gk,gd,gm]=P(goal),fin2=`<li><div><span class="k">Train</span>${dn(gk)} to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}.</div></li>`;
   const gq=qOf(goal),tgtTxt=tgt?(unk(goal)?` <span class="bdpb">Max EL target ${tgt}: depends on Max levels you haven&rsquo;t entered</span>`:` <span class="bdpb">Max EL target ${tgt} reached</span>`):'',qTxt=gq!=null?` <span class="bdpb">Quality ${gq}</span>`:'';
   const icoK=k=>PIC[k]?`<img class="bxico" src="${PIC[k]}" alt="">`:'';
   const tnode=s=>{const h=how[s],[k,d]=P(s),hv=have[s],c=h.t=='catch',q=qOf(s),n=need[s];const kids=h.t=='dna'?[h.a,h.b]:h.t=='evo'?[h.from]:[];
-   return `<div class="bxn"><div class="bxcard${s==goal?' bxgoal':''}">${icoK(k)}<div>${dn(k)}${hv?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${n>1&&s!=goal?` <small>&times;${n}</small>`:''}<div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${q!=null?' &middot; Q '+q:''}${reqN(s)?` &middot; <span style="color:#d08a00">needs ${reqN(s)}+</span>`:''}</div></div></div>`+
+   return `<div class="bxn"><div class="bxcard${s==goal?' bxgoal':''}">${icoK(k)}<div>${dn(k)}${hv?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${n>1&&s!=goal?` <small>&times;${n}</small>`:''}<div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${q!=null?' &middot; Q '+q:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?` &middot; <span style="color:#d08a00">${c?'get one with':'needs'} ${rq(s)}</span>`:''}</div></div></div>`+
     (kids.length?`<div class="bxlab">${h.t=='dna'?'DNA Digivolve':'Level up at EL '+EVL[ST[P(h.from)[0]]]}</div><div class="bxkids">${kids.map(tnode).join('')}</div>`:'')+'</div>'};
-  const treeH=steps.length?`<div class="bxtree"><p class="bxcap">The Digimon you want is at the top. Follow the lines down to see what each one is made from.</p><div class="bxroot">${tnode(goal)}</div></div>`:'';
+  const treeH=steps.length?`<div class="bxtree"><p class="bxcap">The Digimon you want is at the top. Follow the lines down to see what each one is made from.${Object.values(EX).length&&order.some(x=>unk(x)&&!isLeafU(x))?' A Max EL like <b>29+</b> means at least that, as long as each Digimon you get has the Max level shown on it.':''}</p><div class="bxroot">${tnode(goal)}</div></div>`:'';
   out.innerHTML=!steps.length?`<div class="bcsum"><b>You already have ${dn(gk)}.</b> Train it to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}.</div>`:
    `<div class="bcsum"><b>${nD} DNA Digivolve${nD==1?'':'s'}</b> and <b>${nE} level-up${nE==1?'':'s'}</b> to reach ${dn(gk)} ${dpb(+gd)}${unk(goal)?'':' '+mlb(+gm)}${qTxt}${tgtTxt}${SEL.length?` knowing ${SEL.join(', ')}`:''}.</div>`+
    (nU?`<div class="bcw bwarn"><b>${nU} level-up${nU>1?'s depend':' depends'} on a Max level you haven&rsquo;t entered.</b> A Digimon needs a Max level of at least 11 to reach Champion, 21 for Ultimate and 31 for Mega. Those steps are marked below, so check them before you start.</div>`:'')+(cat.length?`<div class="bcw bcc"><b>There's no route with only the Digimon you have. To make one:</b>${cat.join('')}<div class="bcl" style="margin-top:6px">Once you&rsquo;ve got one, enter its Level and Max level and press <b>I got it</b>. It moves to your Digimon and the route is worked out again, now with real Max levels for that line.</div></div>`:'')+(short.length?`<div class="bcw"><b>You'll need extra copies:</b><br>${short.join('<br>')}</div>`:'')+`<ol class="bcs">${steps.join('')}${fin2}</ol>`+treeH;
@@ -1981,7 +2025,7 @@ dnRender();
  let PJM={};const PJK='dw2-bc-proj',pjGet=()=>{try{return JSON.parse(localStorage.getItem(PJK)||'{}')||{}}catch(e){return PJM}},pjSet=o=>{PJM=o;try{localStorage.setItem(PJK,JSON.stringify(o))}catch(e){}};
  const PM=document.getElementById('bcpm'),PLs=document.getElementById('bcpl'),pmsg=m=>{PM.textContent=m};
  const enc64=o=>'c1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec64=c=>{try{c=c.trim();if(!c.startsWith('c1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
- const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CU.checked=true;TM.value=o.tm||'';ANY.checked=!!o.any;MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,4);mvRen();DONE=new Set(o.done||[]);store();LAST=null;VW.hidden=true;out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
+ const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CU.checked=true;HQ.checked=!!o.hq;TM.value=o.tm||'';ANY.checked=!!o.any;MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,4);mvRen();DONE=new Set(o.done||[]);store();LAST=null;VW.hidden=true;out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
  const pjRen=()=>{const P0=pjGet(),ks=Object.keys(P0).sort((a,b)=>(P0[b].at||0)-(P0[a].at||0));PLs.innerHTML='';
   ks.forEach(n=>{const o=P0[n],r=document.createElement('div');r.className='bcpr';r.innerHTML='<b></b><small></small><button class="qbtn" data-a="l" type="button">Load</button><button class="qbtn" data-a="c" type="button">Copy code</button><button class="qbtn" data-a="d" type="button">Delete</button>';
    r.querySelector('b').textContent=n;r.querySelector('small').textContent=(o.d.any?'Any Digimon with '+(o.d.mv||[]).join(', '):(o.d.t||'no target'))+' · '+(o.d.rows||[]).filter(x=>x[0]).length+' Digimon';
@@ -2006,7 +2050,7 @@ dnRender();
   const q=ABQ.trim().toLowerCase(),L=F.filter(x=>!q||x.n.toLowerCase().includes(q)).sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||(b.dp||0)-(a.dp||0)||((b.ml||0)-(a.ml||0))||a.n.localeCompare(b.n));
   const foc=document.activeElement&&document.activeElement.id==='bcabq';
   ABP.innerHTML=`<div class="abh"><span>${F.length} not in your list yet. Tap one to add it.${room<=0?' <b>Your list is full (20).</b>':''}</span>${F.length>8?'<input id="bcabq" type="search" placeholder="Search" autocomplete="off" aria-label="Search your bank">':''}</div><div class="bml2">`+
-   (L.length?L.map(x=>{const p=PIC[KEY(x.n)];return `<button type="button" class="bmkc${x.fav?' fv':''}" data-id="${x.id}"${room<=0?' disabled':''}>${p?`<img src="${p}" alt="">`:''}${x.fav?'<span class="st">★</span>':''}${x.n} <small>Lv ${x.lv??'?'}${x.ml?' / '+x.ml:''} · DP ${x.dp||0}${x.q!=null?' · Q '+x.q:''}</small></button>`}).join(''):'<span class="bcl">No match.</span>')+'</div>';
+   (L.length?L.map(x=>{const p=PIC[KEY(x.n)];return `<button type="button" class="bmkc${x.fav?' fv':''}" data-id="${x.id}"${room<=0?' disabled':''}>${p?`<img src="${p}" alt="">`:''}${x.fav?'<span class="st">★</span>':''}${x.n} <small>Lv ${x.lv??'?'} · Max ${x.ml??'?'} · DP ${x.dp||0}${x.q!=null?' · Q '+x.q:''}</small></button>`}).join(''):'<span class="bcl">No match.</span>')+'</div>';
   const qi=document.getElementById('bcabq');if(qi){qi.value=ABQ;qi.oninput=()=>{ABQ=qi.value;abRen()};if(foc){qi.focus();qi.setSelectionRange(ABQ.length,ABQ.length)}}}
  ABB.onclick=()=>{ABP.hidden=!ABP.hidden;ABB.classList.toggle('on',!ABP.hidden);ABB.setAttribute('aria-expanded',!ABP.hidden);if(!ABP.hidden)abRen()};
  ABP.addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(!b||b.disabled)return;const x=DWB.get().find(z=>z.id===b.dataset.id);if(!x)return;

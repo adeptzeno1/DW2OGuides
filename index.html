@@ -333,11 +333,23 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bcabp .bmkc.fv{border-color:#f5c542}.bcabp .bmkc .st{color:#f5c542}
 .bhq{border:1px solid #d4a72c;border-left-width:4px;border-radius:8px;padding:6px 10px;margin:8px 0;font-size:13px;background:rgba(212,167,44,.08)}
 .bwait{padding:10px 0;animation:mp-pulse 1.2s ease-in-out infinite}
-.bcpl{display:grid;gap:4px;margin-top:6px}
-.bcpr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 0;border-top:1px solid var(--bd);font-size:13px}
-.bcpr b{flex:1 1 160px;min-width:0}
-.bcpr small{color:var(--mut)}
-.bcpr .qbtn{padding:3px 10px;font-size:12px}
+#bcsv{padding:0}#bcsv>summary{list-style:none;display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;user-select:none}#bcsv>summary::-webkit-details-marker{display:none}
+.bcsvt{font-weight:700;font-size:15px}.bcsvn{font-size:11px;font-weight:700;min-width:20px;text-align:center;border-radius:999px;padding:1px 7px;background:var(--fg);color:var(--bg)}.bcsvn:empty{display:none}
+.bcsvh{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bcsvc{color:var(--mut);transition:transform .15s;margin-left:auto}#bcsv[open] .bcsvc{transform:rotate(180deg)}
+#bcsv[open]>summary{border-bottom:1px solid var(--bd)}
+.bcsvf{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 14px 0}.bcsvg{display:flex;gap:6px;min-width:0}.bcsvg input{flex:1;min-width:0;padding:6px 10px;font-size:13.5px}.bcsvg .qbtn{padding:5px 12px;font-size:13px;white-space:nowrap}
+.bcsvp{background:var(--fg)!important;color:var(--bg)!important;border-color:var(--fg)!important;font-weight:700}
+.bcsvm{padding:4px 14px 0;min-height:0}.bcsvm:empty{display:none}
+.bcpl{display:grid;gap:6px;padding:10px 14px 12px}
+.bcpe{color:var(--mut);font-size:13px;text-align:center;padding:10px;border:1px dashed var(--bd);border-radius:10px}
+.bcpr{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto auto;gap:4px 10px;align-items:center;padding:6px 8px 6px 6px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);font-size:13px}
+.bcpr:hover{border-color:var(--mut)}
+.bcpr .bcpi{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--card)}.bcpr .bcpi img{width:30px;height:30px;object-fit:contain;image-rendering:pixelated}.bcpr .bcpi span{font-size:16px;color:var(--mut)}
+.bcpr .bcpx{min-width:0;display:flex;flex-direction:column;gap:1px}.bcpr .bcpx b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+.bcpr .bcpx small{color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bcpr .qbtn{padding:4px 12px;font-size:12.5px}.bcpr .bcpb{width:30px;height:30px;padding:0;display:inline-flex;align-items:center;justify-content:center}.bcpr .bcpb svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bcpr .bcpb.sure{width:auto;padding:0 10px;color:#e0483e;border-color:#e0483e;font-size:12px}
+@media (max-width:640px){.bcsvh{display:none}.bcsvf{grid-template-columns:1fr}.bcpr{grid-template-columns:34px minmax(0,1fr) auto auto auto;gap:4px 8px}}
 .bcrow .acw{display:block;min-width:0}.bcrow .acw>input,.bct .acw>input{width:100%;box-sizing:border-box}
 .bcrow input[type=number]{width:100%;box-sizing:border-box}
 .bcrow label{display:none;font-size:11px;color:var(--mut)}
@@ -455,7 +467,89 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bkl{font-size:12px;color:var(--mut)}.bkl small{font-size:11px}
 .bkm .bmvs{margin:0}
 .bkm .acw{flex:1 1 200px;min-width:0;display:block}
-.bkm .bsend{padding:2px 10px;font-size:12px;white-space:nowrap}.bkm .bsend.ok{color:#2fae5e;border-color:#2fae5e}#bc .bkm .acw>input{width:100%;padding-top:4px;padding-bottom:4px;font-size:13px}
+.bkm .bsend{padding:2px 10px;font-size:12px;white-space:nowrap}.bkm .bsend.ok{color:#2fae5e;border-color:#2fae5e}
+/* DNA Chain list */
+#bc .bcubl{align-items:flex-start;margin:4px 0 8px}
+#bc .bctb,#bc .bcbulk{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:6px 0}
+#bc .bctb #bcq{flex:1 1 200px;min-width:0}
+#bc .bctb select{padding:4px 8px}
+#bc .bctg{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--fg);cursor:pointer;white-space:nowrap}
+#bc .bcbulk{font-size:13px}#bc .bcbulk .qbtn{padding:3px 10px;font-size:12.5px}#bc .bcbulk .sep{flex:1}
+#bc .bcbulk .qbtn:disabled{opacity:.45;cursor:default}
+#bc .bcbox{max-height:min(62vh,560px);overflow:auto;border:1px solid var(--bd);border-radius:10px;background:var(--bg)}
+#bc .bch,#bc .bcrow{display:grid;grid-template-columns:20px minmax(130px,1fr) 54px 54px 62px 92px 84px 76px 46px;gap:6px;align-items:center}
+#bc .bcrow>.bpic{display:none}
+#bc .bch{position:sticky;top:0;z-index:3;background:var(--card);margin:0;padding:6px 10px;border-bottom:1px solid var(--bd);font-size:11.5px}
+#bcown{display:flex;flex-direction:column}
+#bc .bcrow{margin:0;padding:4px 10px;border-bottom:1px solid var(--bd)}
+#bc .bcrow.bcx{display:none!important}
+#bc .bcrow .bf>label{display:none}
+#bc .bcrow .bf{display:block;min-width:0}
+#bc .bcrow input{padding:4px 6px;font-size:13.5px}
+#bc .bcrow input[type=number]{-moz-appearance:textfield;appearance:textfield}#bc .bcrow input[type=number]::-webkit-inner-spin-button,#bc .bcrow input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#bc .bsl{display:flex;align-items:center;justify-content:center;cursor:pointer}
+#bc .bpic{width:26px;height:26px;display:flex;align-items:center;justify-content:center}#bc .bpic img{width:26px;height:26px;object-fit:contain;image-rendering:pixelated}
+#bc .bqw{display:flex;align-items:center;gap:3px}#bc .bqw .bqb:empty{display:none}#bc .bqw input{min-width:0}
+#bc .bmuw{display:flex;justify-content:flex-start}
+#bc .bpin{position:relative;display:inline-flex;align-items:center;font-size:12px;border:1px solid var(--bd);border-radius:999px;padding:2px 9px;cursor:pointer;color:var(--mut);white-space:nowrap;user-select:none}
+#bc .bpin input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+#bc .bpin:has(input:checked){background:#d08a00;border-color:#d08a00;color:#fff;font-weight:700}
+#bc .bpin:has(input:focus-visible){outline:2px solid #5cc8d6;outline-offset:2px}
+#bc .bmvt{padding:2px 8px;font-size:12px;white-space:nowrap}#bc .bmvt.on{border-color:var(--fg)}
+#bc .brm{padding:0;width:28px;height:28px;font-size:17px;line-height:1;justify-self:end}
+#bc .bbkc{justify-self:end;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#5ba3e8;border:1px dashed #5ba3e8;border-radius:999px;padding:1px 6px}
+#bc .bcrow .bkm{grid-column:2/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 4px}#bc .bcrow .bkm[hidden]{display:none}
+#bc .bkc.ro .bchip{padding-right:8px}
+#bc .bcsm,#bc .bcok{display:none}
+#bc .bcrow.bcbank{background:rgba(91,163,232,.06)}
+#bc .bcrow.bcbank input[readonly]{border-color:transparent;background:transparent;cursor:default}
+#bc .bcrow.bused{background:rgba(47,174,94,.13);box-shadow:inset 4px 0 0 #2fae5e}
+#bc .bcgh{display:flex;justify-content:space-between;align-items:center;width:100%;font:inherit;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg);background:var(--card);border:0;border-bottom:1px solid var(--bd);padding:6px 10px;cursor:pointer;text-align:left;position:sticky;top:31px;z-index:2}
+#bc .bcgh small{font-weight:400;color:var(--mut);margin-left:4px;letter-spacing:0}#bc .bcgh[hidden]{display:none}
+#bc .bcnone{padding:12px;margin:0}
+/* cards */
+#bcown.bcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;padding:8px}
+#bc .bcbox.bcards .bch{display:none}
+#bcown.bcards .bcgh{grid-column:1/-1;position:static;border:0;border-radius:8px;padding:4px 6px}
+#bcown.bcards .bcrow{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--bd);border-radius:10px;padding:8px;cursor:pointer;background:var(--card);box-shadow:none}
+#bcown.bcards .bcrow.bused{border-color:#2fae5e;box-shadow:inset 0 0 0 1px #2fae5e;background:rgba(47,174,94,.10)}
+#bcown.bcards .bcrow.bcbank{border-style:dashed;border-color:#5ba3e8}
+#bcown.bcards .bcrow>*{display:none}
+#bcown.bcards .bcrow>.bsl,#bcown.bcards .bcrow>.bpic,#bcown.bcards .bcrow>.bcsm{display:flex}#bcown.bcards .bcrow.bced>.bpic{display:none}
+#bcown.bcards .bpic,#bcown.bcards .bpic img{width:36px;height:36px}
+#bcown.bcards .bcsm{flex-direction:column;flex:1;min-width:0;font-size:12px;color:var(--mut);gap:1px}
+#bcown.bcards .bcsm b{color:var(--fg);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bcown.bcards .bcsm span{display:flex;align-items:center;gap:3px}
+#bcown.bcards .bcsm i{font-style:normal;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:1px solid currentColor;border-radius:999px;padding:0 6px;margin:3px 4px 0 0;align-self:flex-start;display:inline-block}
+#bcown.bcards .bcsm{flex-wrap:wrap}#bcown.bcards .bcsm i.bpn{color:#d08a00}#bcown.bcards .bcsm i.bbk{color:#5ba3e8}#bcown.bcards .bcsm i.bus{color:#2fae5e}
+/* the pop-up editor for a card */
+#bcbd{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:390}#bcbd[hidden]{display:none}
+#bcown.bcards .bcrow.bced{position:fixed;z-index:400;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 24px));max-height:calc(100vh - 40px);overflow:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px;cursor:default;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+#bcown.bcards .bcrow.bced>*{display:none}
+#bcown.bcards .bcrow.bced>.bnm{display:block;grid-column:1/-1;font-size:16px}
+#bcown.bcards .bcrow.bced>.acw{display:block;grid-column:1/-1}
+#bcown.bcards .bcrow.bced>.bf{display:flex;flex-direction:column;gap:3px}#bcown.bcards .bcrow.bced .bf>label{display:block;font-size:11.5px;color:var(--mut)}
+#bcown.bcards .bcrow.bced>.bmuw{display:flex;grid-column:1/3;align-items:center}
+#bcown.bcards .bcrow.bced>.bkm,#bcown.bcards .bcrow.bced>.bkm[hidden]{display:flex;grid-column:1/-1}
+#bcown.bcards .bcrow.bced>.brm{display:inline-flex;align-items:center;justify-content:center;grid-column:3;justify-self:end;width:auto;padding:4px 12px;font-size:13px}
+#bcown.bcards .bcrow.bced>.brm::after{content:'\00a0Remove'}
+#bcown.bcards .bcrow.bced>.bbkc{display:inline-block;grid-column:3;align-self:center}
+#bcown.bcards .bcrow.bced>.bcok{display:inline-block;grid-column:4;justify-self:end}
+#bcown.bcards .bcrow.bced.bcbank::before{content:'From your DigiBank: change it on the DigiBank tab. Must use still works here.';grid-column:1/-1;font-size:12px;color:var(--mut);order:-1}
+@media (max-width:640px){
+ #bc .bch{display:none}
+ #bcown:not(.bcards) .bcrow{grid-template-columns:20px repeat(6,minmax(0,1fr)) 30px;padding:8px 8px 10px;gap:4px 5px}
+ #bcown:not(.bcards) .bcrow>.bsl{grid-row:1;grid-column:1}#bcown:not(.bcards) .bcrow>.acw,#bcown:not(.bcards) .bcrow>.bnm{grid-row:1;grid-column:2/7}#bcown:not(.bcards) .bcrow>.brm,#bcown:not(.bcards) .bcrow>.bbkc{grid-row:1;grid-column:8}
+ #bcown:not(.bcards) .bcrow>.bf{grid-row:2}#bcown:not(.bcards) .bcrow .bf>label{display:block;font-size:10.5px;color:var(--mut);line-height:1.2;white-space:nowrap}#bcown:not(.bcards) .bcrow .bf>label[for^=bcm]{font-size:0}#bcown:not(.bcards) .bcrow .bf>label[for^=bcm]::after{content:'Max';font-size:10.5px}
+ #bcown:not(.bcards) .bcrow>.bf:has(.bdp){grid-column:2}#bcown:not(.bcards) .bcrow>.bf:has(.blv){grid-column:3}#bcown:not(.bcards) .bcrow>.bf:has(.bml){grid-column:4}#bcown:not(.bcards) .bcrow>.bf:has(.bqy){grid-column:5/7}
+ #bcown:not(.bcards) .bcrow>.bmuw{grid-row:2;grid-column:7/9;align-self:end;flex-direction:column;gap:3px}#bcown:not(.bcards) .bcrow>.bmvt{grid-row:1;grid-column:7;justify-self:stretch}
+ #bc .bpin{padding:3px 7px;font-size:11px}#bc .bmvt{font-size:11px;padding:2px 6px}
+ #bcown:not(.bcards) .bcrow .bkm{grid-column:1/-1}
+ #bcown.bcards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));padding:6px;gap:6px}
+ #bcown.bcards .bcrow.bced{grid-template-columns:repeat(2,minmax(0,1fr))}#bcown.bcards .bcrow.bced>.bmuw{grid-column:1/-1}#bcown.bcards .bcrow.bced>.brm,#bcown.bcards .bcrow.bced>.bbkc{grid-column:1}#bcown.bcards .bcrow.bced>.bcok{grid-column:2}
+}
+#bcres:not(:has(#bcout>*)){display:none}
+#bc .bkm .acw>input{width:100%;padding-top:4px;padding-bottom:4px;font-size:13px}
 @media (max-width:560px){.bdna{flex-direction:column}.bmon{flex:none}.bop{text-align:center;line-height:1}.bop.ar{transform:rotate(90deg)}}
 .bcs{list-style:none;margin:10px 0 0;padding:0;counter-reset:bc}
 .bcs li{counter-increment:bc;display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--bd)}
@@ -536,13 +630,9 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li>Add the Digimon you have, with their DP. Max level, Quality and known moves are optional.</li>
 <li>Pick the Digimon you want and any moves it should end up with.</li>
 <li>Press <b>Find shortest route</b>. Each step shows what to combine or level up, and the DP, Max level and Quality that result.</li></ol><p>Not sure what to aim for? Press <b>What can I make right now?</b> Save a setup under <b>Saved chains</b> to come back to it or share it.</p></div>
-<div class="dsec dcs"><h4>Saved chains</h4><p class="tip" style="margin:2px 0 6px">Save this setup to come back to later, or share it as a code.</p>
-<div class="bct"><input id="bcpn" placeholder="Name, e.g. SkullGreymon plan" autocomplete="off" aria-label="Chain name"><button class="qbtn" id="bcps" type="button">Save chain</button></div>
-<div id="bcpl" class="bcpl"></div>
-<div class="bct" style="margin-top:6px"><input id="bcpc" placeholder="Paste a chain code" autocomplete="off" aria-label="Chain code"><button class="qbtn" id="bcpi" type="button">Load code</button></div><div id="bcpm" class="bcl" style="margin-top:4px"></div></div>
-<div class="dsec dcs"><h4>Digimon you have</h4><p class="bcl" style="margin:0 0 8px"><b>Must use in chain:</b> tick this to make the route include that Digimon, for example to pass its moves down. <b>Moves it knows:</b> add moves a Digimon already has, so the route can count them. <b>Max level:</b> leave it blank if you don&rsquo;t know it, and the route won&rsquo;t limit that Digimon by level.</p>
-<div class="bch" aria-hidden="true"><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Must use in chain</span><span></span></div>
-<div id="bcown"></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcab" type="button" aria-expanded="false" aria-controls="bcabp">Add from bank</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div id="bcabp" class="bcabp" hidden></div><div class="bcsy"><span id="bcfm" class="bcl"></span></div></div>
+<details class="dsec dcs bcsv" id="bcsv"><summary><span class="bcsvt">Saved chains</span><span class="bcsvn" id="bcsvn"></span><span class="bcl bcsvh">Save this setup, or share it as a code</span><span class="bcsvc" aria-hidden="true">▾</span></summary>
+<div class="bcsvf"><div class="bcsvg"><input id="bcpn" placeholder="Name this setup, e.g. SkullGreymon plan" autocomplete="off" aria-label="Chain name"><button class="qbtn bcsvp" id="bcps" type="button">Save</button></div><div class="bcsvg"><input id="bcpc" placeholder="Paste a chain code (c1-…)" autocomplete="off" aria-label="Chain code"><button class="qbtn" id="bcpi" type="button">Load code</button></div></div>
+<div id="bcpm" class="bcl bcsvm" role="status"></div><div id="bcpl" class="bcpl"></div></details>
 <div class="dsec dcs"><h4>Digimon you want</h4><div class="bcr bct"><input id="bct" placeholder="e.g. SkullGreymon" autocomplete="off"><button class="qbtn" id="bcgo" type="button">Find shortest route</button></div>
 <div class="fl" style="margin-top:10px"><span>Moves it should know by the end</span><div id="bcmv" class="bmvs"></div><div class="bct"><input id="bcmq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div><div class="bcl">Both parents pass every move they know to the DNA result. For each move, the route includes a Digimon that learns it and has it reach the learning level: EL 12 for a Champion move, EL 22 for Ultimate, EL 32 for Mega.</div></div>
 <label class="bck"><input type="checkbox" id="bcsk" checked> The final Digimon must be able to learn its own new move (EL 12 Champion, EL 22 Ultimate, EL 32 Mega)</label>
@@ -550,7 +640,14 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <label class="bck"><input type="checkbox" id="bcany"> Any Digimon is fine, I just want the moves above</label>
 <label class="bck"><input type="checkbox" id="bchq"> Prefer the highest Quality at the end, using the Quality of the Digimon you added (can take more steps)</label>
 <div class="bcopt2"><label for="bctm">Final Max level at least</label><input id="bctm" type="number" min="1" max="40" step="1" inputmode="numeric" placeholder="optional"></div>
-<div class="bcvw" id="bcvw" hidden><span>Show as</span><button class="qbtn on" type="button" data-v="l">Steps</button><button class="qbtn" type="button" data-v="d">Diagram</button></div>
+</div>
+<div class="dsec dcs"><h4>Digimon you have <span id="bccnt" class="bcl"></span></h4><p class="bcl" style="margin:0 0 8px"><b>Must use:</b> the route has to include that Digimon, for example to pass its moves down. <b>Moves:</b> add moves a Digimon already knows, so the route can count them. <b>Max level:</b> leave it blank if you don&rsquo;t know it, and the route won&rsquo;t limit that Digimon by level.</p>
+<label class="bck bcubl"><input type="checkbox" id="bcub"> <span><b>Use my DigiBank</b>: include every Digimon ticked &ldquo;Use in chain&rdquo; there, kept up to date automatically. <span id="bcubn" class="bcl"></span></span></label>
+<div class="bctb"><input id="bcq" type="search" placeholder="Search your Digimon" autocomplete="off" aria-label="Search your Digimon"><label for="bcso" class="bcl">Sort</label><select id="bcso"><option value="add">Order added</option><option value="name">Name</option><option value="stage">Stage</option><option value="dp">DP</option><option value="ml">Max level</option><option value="q">Quality</option></select><label class="bctg"><input type="checkbox" id="bcgs"> By stage</label><span class="bkvw" role="group" aria-label="View"><button class="qbtn on" type="button" data-cv="l">List</button><button class="qbtn" type="button" data-cv="c">Cards</button></span><label class="bctg" id="bcuol" hidden><input type="checkbox" id="bcuo"> Only ones the route uses</label></div>
+<div class="bcbulk"><label class="bctg"><input type="checkbox" id="bcsa"> Select all</label><span id="bcsn" class="bcl"></span><button class="qbtn" id="bcbmu" type="button" disabled>Must use</button><button class="qbtn" id="bcbrm" type="button" disabled>Remove</button><span class="sep"></span><button class="qbtn" id="bcdup" type="button">Remove duplicates</button><button class="qbtn" id="bcclr" type="button">Clear all</button></div>
+<div class="bcbox" id="bcbox"><div class="bch" aria-hidden="true"><span></span><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Must use</span><span></span><span></span></div>
+<div id="bcown"></div><p class="bcl bcnone" id="bcnone" hidden>No Digimon match.</p></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcab" type="button" aria-expanded="false" aria-controls="bcabp">Add from bank</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div id="bcabp" class="bcabp" hidden></div><div class="bcsy"><span id="bcfm" class="bcl"></span></div></div>
+<div class="dsec dcs" id="bcres"><div class="bcvw" id="bcvw" hidden><span>Show as</span><button class="qbtn on" type="button" data-v="l">Steps</button><button class="qbtn" type="button" data-v="d">Diagram</button></div>
 <div id="bcout"></div></div>
 <div class="note"><p><b>Rules the route follows</b></p><ul>
 <li><b>Shortest:</b> the fewest DNA Digivolves first, then the fewest level-ups.</li>
@@ -2087,7 +2184,7 @@ dnRender();
  const addMv=()=>{const q=MQ.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==q);if(!mv)return;if(!MSEL.includes(mv)){if(MSEL.length>=4){out.innerHTML='<div class="bcw">Pick up to 4 moves at a time, so the search stays fast.</div>';return}MSEL.push(mv)}MQ.value='';MQ.dispatchEvent(new Event('input'));mvRen()};
  MQ.addEventListener('acpick',addMv);MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
  let saved=null;try{saved=JSON.parse(localStorage.getItem('dw2-bc2')||'null')}catch(e){}
- const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,hq:HQ.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
+ const snap=()=>({ub:!!(document.getElementById('bcub')||{}).checked,pins:[...own.querySelectorAll('.bcrow')].filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid),rows:[...own.querySelectorAll('.bcrow')].filter(r=>!r._bk).map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,hq:HQ.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
  // send one Digimon to the DigiBank (only when the button is pressed)
  const nrm=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
  const toBank=r=>{if(!window.DWB)return 'none';const nm=r.querySelector('.bnm').value.trim(),n=PROP[nm.toLowerCase()];if(!n)return 'bad';
@@ -2099,13 +2196,16 @@ dnRender();
  let syncT=null;const store=()=>{try{localStorage.setItem('dw2-bc2',JSON.stringify(snap()))}catch(e){}if(typeof abRen=='function'&&!document.getElementById('bcabp').hidden)abRen()};
  let rid=0;
  function addRow(v){v=v||['','0','',''];const r=document.createElement('div');r.className='bcrow';const id=++rid;
-  r.innerHTML=`<input class="bnm" id="bcn${id}" placeholder="Digimon you have" autocomplete="off" aria-label="Digimon">`+
-   `<div><label for="bcd${id}">DP</label><input class="bdp" id="bcd${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="DP"></div>`+
-   `<div><label for="bcl${id}">Level</label><input class="blv" id="bcl${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="8" aria-label="Level"></div>`+
-   `<div><label for="bcm${id}">Max level</label><input class="bml" id="bcm${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="opt." aria-label="Max level"></div>`+
-   `<div><label for="bcq${id}">Quality</label><input class="bqy" id="bcq${id}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="opt." aria-label="Quality"></div>`+
-   `<div class="bmuw"><label for="bcu${id}">Must use in chain</label><input class="bmu" id="bcu${id}" type="checkbox" aria-label="Must use in chain"></div><button class="qbtn brm" type="button">Remove</button>`+
-   `<div class="bkm"><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"><button class="qbtn bsend" type="button" title="Save this Digimon to your DigiBank">Send to bank</button></div>`;
+  r.innerHTML=`<label class="bsl" title="Select"><input type="checkbox" class="bsel" aria-label="Select this Digimon"></label><span class="bpic"></span>`+
+   `<input class="bnm" id="bcn${id}" placeholder="Digimon you have" autocomplete="off" aria-label="Digimon"><div class="bcsm"></div>`+
+   `<div class="bf"><label for="bcd${id}">DP</label><input class="bdp" id="bcd${id}" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="DP"></div>`+
+   `<div class="bf"><label for="bcl${id}">Level</label><input class="blv" id="bcl${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="8" aria-label="Level"></div>`+
+   `<div class="bf"><label for="bcm${id}">Max level</label><input class="bml" id="bcm${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="opt." aria-label="Max level"></div>`+
+   `<div class="bf bfq"><label for="bcq${id}">Quality</label><span class="bqw"><span class="bqb"></span><input class="bqy" id="bcq${id}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="opt." aria-label="Quality"></span></div>`+
+   `<div class="bmuw"><label class="bpin" title="Must use in chain: the route has to include this Digimon"><input class="bmu" id="bcu${id}" type="checkbox" aria-label="Must use in chain"><span>Must use</span></label></div>`+
+   `<button class="qbtn bmvt" type="button" aria-expanded="false" title="Moves it knows, and Send to bank">Moves</button><button class="qbtn brm" type="button" aria-label="Remove" title="Remove">&times;</button>`+
+   `<div class="bkm" hidden><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"><button class="qbtn bsend" type="button" title="Save this Digimon to your DigiBank">Send to bank</button></div>`+
+   `<button class="qbtn bcok" type="button">Done</button>`;
   own.appendChild(r);r._mv=Array.isArray(v[5])?v[5].filter(m=>MVI[m]):[];r._bid=v[7]||null;
   const kc=r.querySelector('.bkc'),kq=r.querySelector('.bkq'),kren=()=>{kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');store()};
   kc.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;r._mv.splice(+b.dataset.i,1);kren()};
@@ -2123,7 +2223,7 @@ dnRender();
  const H=[],hp=(c,s)=>{H.push([c,s]);let i=H.length-1;while(i){const p=(i-1)>>1;if(H[p][0]<=H[i][0])break;[H[p],H[i]]=[H[i],H[p]];i=p}},
   hpop=()=>{const t=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){const a=2*i+1,b=a+1;let m=i;if(a<H.length&&H[a][0]<H[m][0])m=a;if(b<H.length&&H[b][0]<H[m][0])m=b;if(m==i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return t};
  // show a message first so the page never looks frozen while a long search runs
- function solve(mode){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';solve._t=setTimeout(()=>{try{solveNow(mode);if(QNOTE){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend',QNOTE)}}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
+ function solve(mode){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';if(window.__bcUsed)__bcUsed(null);if(window.__bcStart)__bcStart();solve._t=setTimeout(()=>{try{solveNow(mode);if(QNOTE){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend',QNOTE)}}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
  let QNOTE='';
  function solveNow(mode){
   const HARD=performance.now()+3000;let TO=false,FORCE=new Set();QNOTE='';
@@ -2145,7 +2245,7 @@ dnRender();
   if(!Object.keys(have).length)return warn('Add at least one Digimon you have.');
   const anyT=ANY.checked&&mode!=='make';if(anyT&&!SEL.length)return warn('Pick at least one move for &ldquo;Any Digimon is fine&rdquo;, or untick it.');
   if(!tk&&!anyT&&mode!=='make')return warn('Pick the Digimon you want from the dropdown.');
-  if(rowsN>20)return warn('Add up to 20 Digimon at a time, so the search stays fast.');
+  if(rowsN>150)return warn('Find route works with up to 150 Digimon at a time. Remove some, or untick &ldquo;Use in chain&rdquo; on some in your DigiBank.');
   const tgt=Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
   const run=(seeds,o={})=>{const QM=o.qc||null,DL=Math.min(o.dl||Infinity,HARD),RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
    const KS=Object.keys(ST),N=KS.length,KI={};KS.forEach((k,i)=>KI[k]=i);const D1=CAP+1,M1=ML+1;
@@ -2294,9 +2394,9 @@ dnRender();
    const note=(res?'':unk(s)?(c?'Get it, then train it to its Max level':h&&h.lv?`Train it from EL ${h.lv} to its Max level`:'Train it to its Max level'):h&&h.lv&&h.lv<h.ml?`Train from EL ${h.lv} to its Max level, EL ${h.ml}`:`Train to its Max level, EL ${mlt(v)}`)+(lt?`${res?'':' ('}${res?lt.charAt(0).toUpperCase()+lt.slice(1):lt}${res?'':')'}`:'');
    return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; Max EL ${mls(s)}${qOf(s)!=null?' &middot; '+qBars(qOf(s))+'Quality '+qOf(s):''}</div>${kn.length?`<div class="bkn">Knows ${kn.join(', ')}</div>`:''}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px"><b>Needs Max EL ${rq(s)}</b>${QCAP[s]!=null?' &middot; keeps your Quality':h?' &middot; check it in game':' &middot; get one this high'}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
   const DN=[];let first=true;const doneBtn=s=>{if(!first)return '';first=false;DN.push(s);return `<button class="qbtn bdone" type="button" data-s="${s}">Done, update my Digimon</button>`};
-  order.forEach(s=>{const h=how[s],[k,d,m]=P(s),n=need[s],tag=n>1?` &times;${n}`:'';
+  const USED=[];order.forEach(s=>{const h=how[s],[k,d,m]=P(s),n=need[s],tag=n>1?` &times;${n}`:'';
    if(h.t=='catch'){{const ci=cat.length;cat.push(`<div class="bcatch" data-n="${DISP(k)}"><div class="bcn"><b>Get ${n>1?n:/^[AEIOU]/i.test(DISP(k))?'an':'a'}</b> ${dn(k)} <small>(${STN[ST[k]]})</small>${QCAP[s]!=null?`<div class="bcl"><b>Needs a Max level of ${rq(s).replace('&ndash;',' to ')}</b> for this chain, so your Quality carries on.</div>`:reqN(s)?`<div class="bcl"><b>Needs a Max level of ${reqN(s)} or more</b> for this chain.</div>`:''}</div><label for="bcc${ci}l">Level</label><input id="bcc${ci}l" class="bccl" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 9"><label for="bcc${ci}m">Max level</label><input id="bcc${ci}m" class="bccm" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 24"><label for="bcc${ci}q">Quality</label><input id="bcc${ci}q" class="bccq" type="number" min="0" max="100" inputmode="numeric" placeholder="optional"><button class="qbtn bcca" type="button">I got it, add to my Digimon</button></div>`)};return}
-   if(h.t=='have'){if(n>have[s].n)short.push(`${dn(k)} ${dpb(+d)}${have[s].ml?' '+mlb(have[s].ml):''}: you need ${n}, you listed ${have[s].n}`);return}
+   if(h.t=='have'){USED.push(...have[s].rows.slice(0,n));if(n>have[s].n)short.push(`${dn(k)} ${dpb(+d)}${have[s].ml?' '+mlb(have[s].ml):''}: you need ${n}, you listed ${have[s].n}`);return}
    if(h.t=='dna'){nD+=n;const da=+P(h.a)[1],db=+P(h.b)[1],va=mlr(h.a),vb=mlr(h.b),hi=Math.max(va,vb),lo=Math.min(va,vb),capd=(va>=ML&&!have[h.a])||(vb>=ML&&!have[h.b]);
     const rq=[h.a,h.b].filter((x,i,a)=>reqN(x)&&a.indexOf(x)==i).map(x=>`${DISP(P(x)[0])} needs Max EL <b>${reqN(x)}</b> or more`),mx=(!unk(s)&&unk(h.a)!==unk(h.b))?(()=>{const kn=unk(h.a)?h.b:h.a,un=unk(h.a)?h.a:h.b,km=mlr(kn),pm=EX[un]||0;return `Max EL: ${DISP(P(kn)[0])} ${km} + (the ${DISP(P(un)[0])}, Max EL ${pm} or more, &divide; 5 = ${Math.floor(pm/5)}) = <b>${mls(s)}</b>`})():unk(s)?(EX[s]>0&&leaves(s).length?`Max EL: <b>${mls(s)}</b>, as long as ${leaves(s).map(x=>`the ${DISP(P(x)[0])}${how[x].t=='catch'?' you get':''} has Max EL ${reqN(x)} or more`).join(' and ')}.`:'Max EL: not worked out, because a parent in this line has no Max level set'):capd?`Max EL: the higher parent is already at EL ${ML}+, so the new Max EL is ${ML}+`:`Max EL: higher parent ${hi} + (lower parent ${lo} &divide; 5 = ${Math.floor(lo/5)}) = <b>${hi+Math.floor(lo/5)}</b>`;
     const qa=qOf(h.a),qb=qOf(h.b);let qt='',tip='';
@@ -2322,7 +2422,7 @@ dnRender();
    `<div class="bcsum"><b>${nD} DNA Digivolve${nD==1?'':'s'}</b> and <b>${nE} level-up${nE==1?'':'s'}</b> to reach ${dn(gk)} ${dpb(+gd)}${unk(goal)?'':' '+mlb(+gm)}${qTxt}${tgtTxt}${SEL.length?` knowing ${SEL.join(', ')}`:''}.</div>`+
    (nU?`<div class="bcw bwarn"><b>${nU} level-up${nU>1?'s depend':' depends'} on a Max level you haven&rsquo;t entered.</b> A Digimon needs a Max level of at least 11 to reach Champion, 21 for Ultimate and 31 for Mega. Those steps are marked below, so check them before you start.</div>`:'')+(cat.length?`<div class="bcw bcc"><b>There's no route with only the Digimon you have. To make one:</b>${cat.join('')}<div class="bcl" style="margin-top:6px">Once you&rsquo;ve got one, enter its Level and Max level and press <b>I got it</b>. It moves to your Digimon and the route is worked out again, now with real Max levels for that line.</div></div>`:'')+(short.length?`<div class="bcw"><b>You'll need extra copies:</b><br>${short.join('<br>')}</div>`:'')+`<ol class="bcs">${steps.join('')}${fin2}</ol>`+treeH;
   VW.hidden=!steps.length;out.dataset.v=VIEW;
-  LAST={how,have,mvl,mlr,unk,P,qOf};}
+  LAST={how,have,mvl,mlr,unk,P,qOf};if(window.__bcUsed)__bcUsed(USED);}
  let LAST=null;
  document.getElementById('bcgo').onclick=()=>solve();
  document.getElementById('bcmk').onclick=()=>{solve('make');out.scrollIntoView({block:'nearest'})};
@@ -2332,20 +2432,26 @@ dnRender();
  out.addEventListener('change',e=>{const c=e.target.closest('.bdck');if(!c)return;if(c.checked)DONE.add(c.dataset.s);else DONE.delete(c.dataset.s);c.closest('li').classList.toggle('isdone',c.checked);store()});
  // saved chains
  let PJM={};const PJK='dw2-bc-proj',pjGet=()=>{try{return JSON.parse(localStorage.getItem(PJK)||'{}')||{}}catch(e){return PJM}},pjSet=o=>{PJM=o;try{localStorage.setItem(PJK,JSON.stringify(o))}catch(e){}};
- const PM=document.getElementById('bcpm'),PLs=document.getElementById('bcpl'),pmsg=m=>{PM.textContent=m};
+ const PM=document.getElementById('bcpm'),PLs=document.getElementById('bcpl'),pmsg=m=>{PM.textContent=m;clearTimeout(PM._t);PM._t=setTimeout(()=>{PM.textContent=""},6000)};
  const enc64=o=>'c1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec64=c=>{try{c=c.trim();if(!c.startsWith('c1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
- const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CU.checked=true;HQ.checked=!!o.hq;TM.value=o.tm||'';ANY.checked=!!o.any;MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,4);mvRen();DONE=new Set(o.done||[]);store();LAST=null;VW.hidden=true;out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
+ const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CU.checked=true;HQ.checked=!!o.hq;TM.value=o.tm||'';ANY.checked=!!o.any;MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,4);mvRen();DONE=new Set(o.done||[]);if(window.__bcLoad)__bcLoad(o);store();LAST=null;VW.hidden=true;if(window.__bcUsed)__bcUsed(null);out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
  const pjRen=()=>{const P0=pjGet(),ks=Object.keys(P0).sort((a,b)=>(P0[b].at||0)-(P0[a].at||0));PLs.innerHTML='';
-  ks.forEach(n=>{const o=P0[n],r=document.createElement('div');r.className='bcpr';r.innerHTML='<b></b><small></small><button class="qbtn" data-a="l" type="button">Load</button><button class="qbtn" data-a="c" type="button">Copy code</button><button class="qbtn" data-a="d" type="button">Delete</button>';
-   r.querySelector('b').textContent=n;r.querySelector('small').textContent=(o.d.any?'Any Digimon with '+(o.d.mv||[]).join(', '):(o.d.t||'no target'))+' · '+(o.d.rows||[]).filter(x=>x[0]).length+' Digimon';
+  const IC={c:'<svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',d:'<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>'};
+  const ago=t=>{if(!t)return '';const d=new Date(t),now=new Date();return d.toDateString()===now.toDateString()?'today':d.toLocaleDateString(undefined,{month:'short',day:'numeric'})};
+  document.getElementById('bcsvn').textContent=ks.length||'';
+  ks.forEach(n=>{const o=P0[n],r=document.createElement('div');r.className='bcpr';const tk=o.d.t&&PROP[String(o.d.t).trim().toLowerCase()],pic=tk&&PIC[KEY(tk)],cnt=(o.d.rows||[]).filter(x=>x[0]).length;
+   r.innerHTML=`<span class="bcpi">${pic?`<img src="${pic}" alt="">`:'<span>⛓</span>'}</span><span class="bcpx" data-nolink><b></b><small></small></span><button class="qbtn" data-a="l" type="button">Load</button><button class="qbtn bcpb" data-a="c" type="button" title="Copy chain code" aria-label="Copy chain code">${IC.c}</button><button class="qbtn bcpb" data-a="d" type="button" title="Delete" aria-label="Delete">${IC.d}</button>`;
+   r.querySelector('b').textContent=n;r.querySelector('small').textContent=[o.d.any?'Any Digimon with '+(o.d.mv||[]).join(', '):(tk||o.d.t||'No target'),(cnt?cnt+' Digimon':'')+(o.d.ub?(cnt?' + ':'')+'DigiBank':''),ago(o.at)].filter(Boolean).join(' · ');
    r.onclick=e=>{const b=e.target.closest('button');if(!b)return;const a=b.dataset.a;
     if(a=='l'){applySnap(o.d);pmsg(`Loaded “${n}”.`)}
     if(a=='c'){const c=enc64(o.d);const done=()=>pmsg('Chain code copied. Paste it into “Paste a chain code” to load it.');if(navigator.clipboard)navigator.clipboard.writeText(c).then(done).catch(()=>{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')});else{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')}}
-    if(a=='d'){if(b.dataset.sure){const P1=pjGet(),old=P1[n];delete P1[n];pjSet(P1);pjRen();pmsg(`Deleted “${n}”.`);if(window.toast)toast(`Deleted “${n}”.`,()=>{const P2=pjGet();P2[n]=old;pjSet(P2);pjRen();pmsg(`Put back “${n}”.`)})}else{b.dataset.sure=1;b.textContent='Tap again to delete'}}};PLs.appendChild(r)});
-  if(!ks.length)PLs.innerHTML='<div class="bcl">No saved chains yet.</div>'};
+    if(a=='d'){if(b.dataset.sure){const P1=pjGet(),old=P1[n];delete P1[n];pjSet(P1);pjRen();pmsg(`Deleted “${n}”.`);if(window.toast)toast(`Deleted “${n}”.`,()=>{const P2=pjGet();P2[n]=old;pjSet(P2);pjRen();pmsg(`Put back “${n}”.`)})}else{b.dataset.sure=1;b.classList.add('sure');b.textContent='Delete?';setTimeout(()=>{if(b.isConnected&&b.dataset.sure){delete b.dataset.sure;b.classList.remove('sure');b.innerHTML=IC.d}},3000)}}};PLs.appendChild(r)});
+  if(!ks.length)PLs.innerHTML='<div class="bcpe">No saved chains yet. Name your setup above and press Save.</div>'};
  document.getElementById('bcps').onclick=()=>{const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap()};pjSet(P0);ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
  document.getElementById('bcpi').onclick=()=>{const o=dec64(document.getElementById('bcpc').value);if(!o||!o.rows){pmsg('That code didn’t work. Chain codes start with c1-.');return}applySnap(o);document.getElementById('bcpc').value='';pmsg('Chain loaded. Save it to keep it in your list.')};
  pjRen();
+ {const sv=document.getElementById('bcsv');try{if(localStorage.getItem('dw2-bcsv')==='1')sv.open=true}catch(e){}sv.addEventListener('toggle',()=>{try{localStorage.setItem('dw2-bcsv',sv.open?'1':'0')}catch(e){}});
+  document.getElementById('bcpn').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('bcps').click()});document.getElementById('bcpc').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('bcpi').click()})}
  
  // Add from bank: only bank Digimon that aren't already in your list
  const ABP=document.getElementById('bcabp'),ABB=document.getElementById('bcab');let ABQ='';
@@ -2353,24 +2459,24 @@ dnRender();
  function abFree(){if(!window.DWB)return [];const rows=[...own.querySelectorAll('.bcrow')],ids=new Set(rows.map(r=>r._bid).filter(Boolean));
   const loose=rows.filter(r=>!r._bid||!ids.has(r._bid)).map(r=>{const q=c=>r.querySelector(c).value;return {n:(PROP[q('.bnm').trim().toLowerCase()]||''),lv:abNum(q('.blv')),ml:abNum(q('.bml')),q:abNum(q('.bqy')),dp:abNum(q('.bdp'))||0}});
   return DWB.get().filter(x=>{if(ids.has(x.id))return false;const i=loose.findIndex(l=>l.n===x.n&&l.lv===x.lv&&l.ml===x.ml&&l.q===x.q&&l.dp===(x.dp||0));if(i>=0){loose.splice(i,1);return false}return true})}
- function abRen(){const F=abFree(),n=own.querySelectorAll('.bcrow').length,blank=[...own.querySelectorAll('.bcrow')].filter(r=>!r.querySelector('.bnm').value.trim()).length,room=20-n+blank;
+ function abRen(){const F=abFree(),n=own.querySelectorAll('.bcrow').length,blank=[...own.querySelectorAll('.bcrow')].filter(r=>!r.querySelector('.bnm').value.trim()).length,room=150-n+blank;
   if(!window.DWB||!DWB.get().length){ABP.innerHTML='<div class="bcl">Your DigiBank is empty. Add Digimon on the DigiBank tab first.</div>';return}
   if(!F.length){ABP.innerHTML='<div class="bcl">Every Digimon in your bank is already in your list.</div>';return}
   const q=ABQ.trim().toLowerCase(),L=F.filter(x=>!q||x.n.toLowerCase().includes(q)).sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||(b.dp||0)-(a.dp||0)||((b.ml||0)-(a.ml||0))||a.n.localeCompare(b.n));
   const foc=document.activeElement&&document.activeElement.id==='bcabq';
-  ABP.innerHTML=`<div class="abh"><span>${F.length} not in your list yet. Tap one to add it.${room<=0?' <b>Your list is full (20).</b>':''}</span>${F.length>8?'<input id="bcabq" type="search" placeholder="Search" autocomplete="off" aria-label="Search your bank">':''}</div><div class="bml2">`+
+  ABP.innerHTML=`<div class="abh"><span>${F.length} not in your list yet. Tap one to add it.${room<=0?' <b>Your list is full (150).</b>':''}</span>${F.length>8?'<input id="bcabq" type="search" placeholder="Search" autocomplete="off" aria-label="Search your bank">':''}</div><div class="bml2">`+
    (L.length?L.map(x=>{const p=PIC[KEY(x.n)];return `<button type="button" class="bmkc${x.fav?' fv':''}" data-id="${x.id}"${room<=0?' disabled':''}>${p?`<img src="${p}" alt="">`:''}${x.fav?'<span class="st">★</span>':''}${x.n} <small>Lv ${x.lv??'?'} · Max ${x.ml??'?'} · DP ${x.dp||0}${x.q!=null?' · Q '+x.q:''}</small></button>`}).join(''):'<span class="bcl">No match.</span>')+'</div>';
   const qi=document.getElementById('bcabq');if(qi){qi.value=ABQ;qi.oninput=()=>{ABQ=qi.value;abRen()};if(foc){qi.focus();qi.setSelectionRange(ABQ.length,ABQ.length)}}}
  ABB.onclick=()=>{ABP.hidden=!ABP.hidden;ABB.classList.toggle('on',!ABP.hidden);ABB.setAttribute('aria-expanded',!ABP.hidden);if(!ABP.hidden)abRen()};
  ABP.addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(!b||b.disabled)return;const x=DWB.get().find(z=>z.id===b.dataset.id);if(!x)return;
   const blank=[...own.querySelectorAll('.bcrow')].find(r=>!r.querySelector('.bnm').value.trim());if(blank)blank.remove();
-  if(own.querySelectorAll('.bcrow').length>=20)return;addRow([x.n,String(x.dp||0),x.lv!=null?String(x.lv):'',x.ml!=null?String(x.ml):'',false,x.mv||[],x.q!=null?String(x.q):'',x.id]);store();abRen()});
+  if(own.querySelectorAll('.bcrow').length>=150)return;addRow([x.n,String(x.dp||0),x.lv!=null?String(x.lv):'',x.ml!=null?String(x.ml):'',false,x.mv||[],x.q!=null?String(x.q):'',x.id]);store();abRen()});
  if(window.DWB)DWB.on(()=>{if(!ABP.hidden)abRen()});
  document.getElementById('bcfill').onclick=()=>{const fm=document.getElementById('bcfm');if(!window.DWB)return;const L=DWB.get().filter(x=>x.use!==false);
   if(!L.length){fm.textContent='Your DigiBank has no Digimon ticked “Use in DNA Chain”.';return}
-  const pick=L.slice().sort((a,b)=>(b.dp-a.dp)||((b.ml||b.lv||0)-(a.ml||a.lv||0))).slice(0,20);own.innerHTML='';
+  const pick=L.slice().sort((a,b)=>(b.dp-a.dp)||((b.ml||b.lv||0)-(a.ml||a.lv||0))).slice(0,150);[...own.querySelectorAll('.bcrow')].forEach(r=>{if(!r._bk)r.remove()});
   pick.forEach(x=>addRow([x.n,String(x.dp||0),x.lv!=null?String(x.lv):'',x.ml!=null?String(x.ml):'',false,x.mv||[],x.q!=null?String(x.q):'',x.id]));store();
-  fm.textContent=`Filled with ${pick.length} Digimon from your DigiBank`+(L.length>20?` (the 20 with the highest DP and Max level; untick some in the bank to choose).`:'.')};
+  fm.textContent=`Filled with ${pick.length} Digimon from your DigiBank`+(L.length>150?` (the 150 with the highest DP and Max level; untick some in the bank to choose).`:'.')};
  if(window.DWB)DWB.on(()=>{own.querySelectorAll('.bcrow').forEach(r=>{if(!r._bid)return;const o=DWB.get().find(x=>x.id===r._bid);if(!o){r._bid=null;return}if(r.contains(document.activeElement))return;
   const s=(c,v)=>{const el=r.querySelector(c);if(el.value!==v)el.value=v};s('.bnm',o.n);s('.bdp',String(o.dp||0));s('.blv',o.lv!=null?String(o.lv):'');s('.bml',o.ml!=null?String(o.ml):'');s('.bqy',o.q!=null?String(o.q):'')})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bdone');if(!b||!LAST)return;const {how,have,mvl,mlr,unk,P,qOf}=LAST,s=b.dataset.s,h=how[s],[k,d,m,,sk]=P(s);
@@ -2381,6 +2487,101 @@ dnRender();
    const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
   store();solve();out.scrollIntoView({block:'start'})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bcca');if(!b)return;const w=b.closest('.bcatch'),lv=w.querySelector('.bccl').value,ml=w.querySelector('.bccm').value;if(!ml){w.querySelector('.bccm').focus();w.querySelector('.bccm').placeholder='Enter it';return}addRow([w.dataset.n,'0',lv,ml,false,[],w.querySelector('.bccq').value]);store();solve();own.lastElementChild.scrollIntoView({block:'nearest'})});
+
+ /* ---- tidy list: compact rows or cards, search, sort, stage groups, bulk actions, DigiBank link, route highlight ---- */
+ (()=>{try{const $=id=>document.getElementById(id),Q=$('bcq'),SOr=$('bcso'),GS=$('bcgs'),UB=$('bcub'),UO=$('bcuo'),SA=$('bcsa'),CNT=$('bccnt'),NONE=$('bcnone'),FILL=$('bcfill');
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let U={};try{U=JSON.parse(localStorage.getItem('dw2-bcui')||'{}')||{}}catch(e){}
+  let CV=U.cv==='c'?'c':'l';SOr.value=U.so||'add';if(!SOr.value)SOr.value='add';GS.checked=!!U.gs;const COL=new Set(U.col||[]);
+  const saveUI=()=>{try{localStorage.setItem('dw2-bcui',JSON.stringify({cv:CV,so:SOr.value,gs:GS.checked,col:[...COL]}))}catch(e){}};
+  const rows=()=>[...own.querySelectorAll('.bcrow')];
+  const val=(r,c)=>r.querySelector(c).value.trim(),num=(r,c)=>{const v=parseInt(val(r,c));return isNaN(v)?null:v};
+  const nmOf=r=>{const v=val(r,'.bnm');return v?PROP[v.toLowerCase()]||null:null};
+  const stOf=r=>{const n=nmOf(r);if(!n)return 4;const s=ST[KEY(n)];return s==null?4:s};
+  const MAXMU=6;
+  // what each row shows: its sprite, its Quality bars, and a summary for the card view
+  const sum=r=>{const n=nmOf(r),p=n&&PIC[KEY(n)],pi=r.querySelector('.bpic'),ph=p?`<img src="${p}" alt="">`:'';if(pi._p!==ph){pi.innerHTML=ph;pi._p=ph}
+   const q=num(r,'.bqy'),ok=q!=null&&q>=0&&q<=100;r.querySelector('.bqb').innerHTML=ok?qBars(q):'';
+   const lv=num(r,'.blv'),ml=num(r,'.bml'),dp=num(r,'.bdp')||0,mv=(r._mv||[]).length,st=stOf(r);
+   r.querySelector('.bcsm').innerHTML=`<b data-nolink>${esc(val(r,'.bnm')||'New Digimon')}</b><span>${st<4?STN[st]+' &middot; ':''}DP ${dp} &middot; Lv ${lv??'?'} / ${ml??'?'}</span><span>${ok?qBars(q)+'Quality '+q:'Quality ?'}</span>`+
+    `${r.querySelector('.bmu').checked?'<i class="bpn">Must use</i>':''}${mv?`<i>${mv} move${mv>1?'s':''}</i>`:''}${r._bk?'<i class="bbk">DigiBank</i>':''}${r.classList.contains('bused')?'<i class="bus">Used</i>':''}`;
+   r.querySelector('.bmvt').textContent=mv?`Moves (${mv})`:'Moves'};
+  let AT=null;const later=()=>{clearTimeout(AT);AT=setTimeout(arrange,60)};
+  const openEd=r=>{if(CV!=='c')return;closeEd();r.classList.add('bced');r.querySelector('.bkm').hidden=false;let bd=$('bcbd');if(!bd){bd=document.createElement('div');bd.id='bcbd';bd.onclick=closeEd;document.body.appendChild(bd)}bd.hidden=false;const f=r.querySelector('.bcok');if(f)f.focus({preventScroll:true})};
+  const closeEd=()=>{const e=own.querySelector('.bced');if(e){e.classList.remove('bced');e.querySelector('.bkm').hidden=true;const mb=e.querySelector('.bmvt');mb.classList.remove('on');mb.setAttribute('aria-expanded','false');sum(e)}const bd=$('bcbd');if(bd)bd.hidden=true;later()};
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&own.querySelector('.bced')){closeEd();e.stopPropagation()}},true);
+  const bankLook=r=>{r.classList.add('bcbank');['.bnm','.bdp','.blv','.bml','.bqy'].forEach(c=>{r.querySelector(c).readOnly=true});r.title='From your DigiBank. Change it on the DigiBank tab.';
+   r.querySelector('.bkq').hidden=true;r.querySelector('.bsend').hidden=true;r.querySelector('.bkc').classList.add('ro');const b=r.querySelector('.brm');b.hidden=true;
+   if(!r.querySelector('.bbkc'))b.insertAdjacentHTML('afterend','<span class="bbkc" title="From your DigiBank. Change it on the DigiBank tab.">Bank</span>')};
+  const plainLook=r=>{r.classList.remove('bcbank');r.title='';['.bnm','.bdp','.blv','.bml','.bqy'].forEach(c=>{r.querySelector(c).readOnly=false});r.querySelector('.bkq').hidden=false;r.querySelector('.bsend').hidden=false;r.querySelector('.bkc').classList.remove('ro');r.querySelector('.brm').hidden=false;const k=r.querySelector('.bbkc');if(k)k.remove()};
+  const prep=r=>{if(r._prep)return;r._prep=1;
+   r.addEventListener('input',e=>{if(e.target.classList.contains('bsel'))return;sum(r);later()});r.addEventListener('change',e=>{if(e.target.classList.contains('bsel')){bulkState();return}if(e.target.classList.contains('bmu')){if(e.target.checked&&rows().filter(x=>x.querySelector('.bmu').checked).length>MAXMU){e.target.checked=false;if(window.toast)toast(`Up to ${MAXMU} Digimon can be marked Must use, so the search stays fast.`)}sum(r);store()}});
+   const mv=r.querySelector('.bmvt'),km=r.querySelector('.bkm');mv.onclick=e=>{e.stopPropagation();km.hidden=!km.hidden;mv.setAttribute('aria-expanded',!km.hidden);mv.classList.toggle('on',!km.hidden)};
+   r.querySelector('.bkc').addEventListener('click',()=>setTimeout(()=>sum(r),0));r.querySelector('.bkq').addEventListener('keydown',()=>setTimeout(()=>sum(r),0));r.querySelector('.bkq').addEventListener('acpick',()=>setTimeout(()=>sum(r),0));
+   r.querySelector('.bcok').onclick=e=>{e.stopPropagation();closeEd()};
+   r.addEventListener('click',e=>{if(CV!=='c'||r.classList.contains('bced'))return;if(e.target.closest('.bsl,button,input,a,.dg'))return;openEd(r)});
+   const rm=r.querySelector('.brm');rm.addEventListener('click',()=>{if(r.classList.contains('bced')){const bd=$('bcbd');if(bd)bd.hidden=true;r.classList.remove('bced')}later()});
+   if(r._bk)bankLook(r);sum(r)};
+  const _add=addRow;addRow=function(v){const r=_add(v);prep(r);later();return r};
+  // headers for the stage groups live in the list too; CSS order puts everything in place without moving rows around
+  const GN=['Rookie','Champion','Ultimate','Mega','Not picked yet'];
+  const hdr=g=>{let h=own.querySelector(`.bcgh[data-g="${g}"]`);if(!h){h=document.createElement('button');h.type='button';h.className='bcgh';h.dataset.g=g;own.appendChild(h)}return h};
+  own.addEventListener('click',e=>{const h=e.target.closest('.bcgh');if(!h)return;const g=+h.dataset.g;if(COL.has(g))COL.delete(g);else COL.add(g);saveUI();arrange()});
+  const CMP={name:(a,b)=>val(a,'.bnm').localeCompare(val(b,'.bnm')),stage:(a,b)=>stOf(a)-stOf(b)||val(a,'.bnm').localeCompare(val(b,'.bnm')),dp:(a,b)=>(num(b,'.bdp')||0)-(num(a,'.bdp')||0),ml:(a,b)=>(num(b,'.bml')??-1)-(num(a,'.bml')??-1),q:(a,b)=>(num(b,'.bqy')??-1)-(num(a,'.bqy')??-1)};
+  function arrange(){const R=rows(),q=Q.value.trim().toLowerCase(),uo=UO.checked&&!$('bcuol').hidden,grp=GS.checked;
+   R.forEach((r,i)=>r._i=i);let L=R.slice();const c=CMP[SOr.value];if(c)L.sort((a,b)=>c(a,b)||a._i-b._i);
+   const blank=r=>!val(r,'.bnm');L.sort((a,b)=>(blank(a)?1:0)-(blank(b)?1:0));
+   const cnt=[0,0,0,0,0],vis=[0,0,0,0,0];let shown=0;
+   L.forEach((r,i)=>{if(blank(r)){const h=!!(q||uo);r.classList.toggle('bcx',h);r.style.order=9000+i;return}const g=grp?stOf(r):0,hit=blank(r)?!q&&!uo:(!q||val(r,'.bnm').toLowerCase().includes(q)||(r._mv||[]).some(m=>m.toLowerCase().includes(q)))&&(!uo||r.classList.contains('bused'));
+    if(!blank(r))cnt[g]++;if(hit)vis[g]++;const hide=!hit||(grp&&COL.has(g)&&!blank(r));r.classList.toggle('bcx',hide);if(!hide&&!blank(r))shown++;r.style.order=(grp?g*1000+1:0)+i});
+   own.querySelectorAll('.bcgh').forEach(h=>{if(!grp)h.hidden=true});
+   if(grp)for(let g=0;g<5;g++){const h=hdr(g);h.hidden=!vis[g];h.style.order=g*1000;h.classList.toggle('shut',COL.has(g));h.innerHTML=`<span>${GN[g]} <small>${vis[g]}${vis[g]!==cnt[g]?' of '+cnt[g]:''}</small></span><span aria-hidden="true">${COL.has(g)?'▸':'▾'}</span>`;h.setAttribute('aria-expanded',!COL.has(g))}
+   const named=R.filter(r=>!blank(r)),bk=named.filter(r=>r._bk).length;
+   CNT.textContent=named.length?`(${named.length}${named.length>150?' of 150 max':''}${bk?`, ${bk} from DigiBank`:''})`:'';
+   NONE.hidden=!(named.length&&!shown&&(q||uo));bulkState()}
+  const sel=()=>rows().filter(r=>r.querySelector('.bsel').checked&&!r.classList.contains('bcx'));
+  function bulkState(){const S=sel(),vis=rows().filter(r=>!r.classList.contains('bcx')&&val(r,'.bnm'));$('bcsn').textContent=S.length?`${S.length} selected`:'';$('bcbmu').disabled=$('bcbrm').disabled=!S.length;
+   SA.checked=vis.length>0&&S.length===vis.length;SA.indeterminate=S.length>0&&S.length<vis.length}
+  SA.onchange=()=>{rows().forEach(r=>{if(!r.classList.contains('bcx')&&val(r,'.bnm'))r.querySelector('.bsel').checked=SA.checked});bulkState()};
+  const clearSel=()=>{rows().forEach(r=>{r.querySelector('.bsel').checked=false});bulkState()};
+  // remove rows with an Undo that puts each back where it was
+  const removeRows=(L,msg)=>{if(!L.length)return;const back=L.map(r=>({r,nx:r.nextSibling}));L.forEach(r=>r.remove());const auto=rows().length?null:addRow(['','','','']);store();arrange();
+   if(window.toast)toast(msg,()=>{back.reverse().forEach(({r,nx})=>own.insertBefore(r,nx&&nx.parentNode===own?nx:null));if(auto&&!val(auto,'.bnm'))auto.remove();store();arrange()})};
+  $('bcbmu').onclick=()=>{const S=sel();if(!S.length)return;const on=!S.every(r=>r.querySelector('.bmu').checked);
+   if(on){const now=rows().filter(r=>r.querySelector('.bmu').checked&&!S.includes(r)).length;if(now+S.length>MAXMU){if(window.toast)toast(`Up to ${MAXMU} Digimon can be marked Must use, so the search stays fast. That would make ${now+S.length}; select fewer.`);return}}
+   S.forEach(r=>{r.querySelector('.bmu').checked=on;sum(r)});store();clearSel()};
+  $('bcbrm').onclick=()=>{const S=sel(),man=S.filter(r=>!r._bk),bk=S.length-man.length;
+   if(bk&&window.toast&&!man.length){toast('Digimon from your DigiBank stay in the list. Untick “Use in chain” on the DigiBank tab to leave them out.');return}
+   removeRows(man,`Removed ${man.length} Digimon.${bk?` ${bk} from your DigiBank stayed.`:''}`);clearSel()};
+  const sig=r=>[nmOf(r)||val(r,'.bnm').toLowerCase(),num(r,'.bdp')||0,num(r,'.blv'),num(r,'.bml'),num(r,'.bqy'),(r._mv||[]).slice().sort().join('|')].join('~');
+  $('bcdup').onclick=()=>{const seen=new Set(),D=[];rows().filter(r=>r._bk&&val(r,'.bnm')).forEach(r=>seen.add(sig(r)));
+   rows().forEach(r=>{if(r._bk||!val(r,'.bnm'))return;const k=sig(r);if(seen.has(k))D.push(r);else seen.add(k)});
+   if(!D.length){if(window.toast)toast('No duplicates: every Digimon in the list is different.');return}removeRows(D,`Removed ${D.length} duplicate${D.length>1?'s':''}.`)};
+  $('bcclr').onclick=()=>{const L=rows().filter(r=>!r._bk&&val(r,'.bnm'));if(!L.length)return;removeRows(L,`Cleared ${L.length} Digimon.${UB.checked?' Your DigiBank Digimon stayed.':''}`)};
+  Q.addEventListener('input',arrange);SOr.addEventListener('change',()=>{saveUI();arrange()});GS.addEventListener('change',()=>{saveUI();arrange()});UO.addEventListener('change',arrange);
+  const vw=document.querySelectorAll('[data-cv]'),setV=v=>{CV=v;own.classList.toggle('bcards',v==='c');$('bcbox').classList.toggle('bcards',v==='c');vw.forEach(b=>b.classList.toggle('on',b.dataset.cv===v));if(v!=='c')closeEd()};
+  vw.forEach(b=>b.onclick=()=>{setV(b.dataset.cv);saveUI()});setV(CV);
+  // Use my DigiBank: every bank Digimon ticked "Use in chain" is in the list, kept in step with the bank
+  let PINS=new Set(saved&&saved.pins||[]);
+  function syncBank(){const on=UB.checked&&!!window.DWB,L=on?DWB.get().filter(x=>x.use!==false):[],ids=new Set(L.map(x=>x.id));
+   $('bcubn').textContent=window.DWB?`(${DWB.get().filter(x=>x.use!==false).length} in your bank)`:'';if(FILL)FILL.hidden=on;
+   rows().forEach(r=>{if(!r._bk)return;if(on&&ids.has(r._bid))return;if(r._cp){r._bk=0;r._cp=0;plainLook(r);sum(r)}else r.remove()});
+   if(on){let added=0;L.forEach(x=>{let r=rows().find(z=>z._bid===x.id);if(r&&!r._bk){r._bk=1;r._cp=1;bankLook(r)}
+     if(!r){if(rows().length>=150)return;r=addRow([x.n,String(x.dp||0),x.lv!=null?String(x.lv):'',x.ml!=null?String(x.ml):'',PINS.has(x.id),x.mv||[],x.q!=null?String(x.q):'',x.id]);r._bk=1;bankLook(r);added++}
+     r._mv=(x.mv||[]).slice();const kc=r.querySelector('.bkc');kc.innerHTML=r._mv.map(m=>`<span class="bchip">${esc(m)}</span>`).join('');sum(r)});
+    if(L.length)rows().forEach(r=>{if(!r._bk&&!val(r,'.bnm')&&!r.contains(document.activeElement))r.remove()})}
+   if(!rows().length)addRow(['','','','']);arrange()}
+  UB.addEventListener('change',()=>{PINS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid));syncBank();store()});
+  if(window.DWB)DWB.on(()=>{if(UB.checked){PINS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid));syncBank()}else $('bcubn').textContent=`(${DWB.get().filter(x=>x.use!==false).length} in your bank)`;rows().forEach(sum);later()});
+  window.__bcLoad=o=>{UB.checked=!!o.ub;PINS=new Set(o.pins||[]);syncBank()};
+  // after a search: mark the Digimon the route uses
+  window.__bcUsed=list=>{const S=new Set(list||[]);rows().forEach(r=>{r.classList.toggle('bused',S.has(r));sum(r)});const n=S.size;$('bcuol').hidden=!n;
+   $('bcuol').lastChild.textContent=n?` Only the ${n} the route uses`:' Only ones the route uses';if(!n)UO.checked=false;arrange()};
+  window.__bcStart=()=>{const b=$('bcres');if(!b)return;const t=b.getBoundingClientRect().top;if(t>innerHeight-120||t<0)b.scrollIntoView({block:'start',behavior:'smooth'})};
+  own.addEventListener('input',e=>{if(e.target.matches('.bnm,.bdp,.blv,.bml,.bqy')&&own.querySelector('.bused')){/* the list changed, so the old route may not fit any more */}});
+  rows().forEach(prep);UB.checked=!!(saved&&saved.ub);syncBank();
+ }catch(e){console.error('DNA Chain list tools failed to start',e)}})();
+
 })();
 
 
@@ -2656,7 +2857,7 @@ const ORD=['bnm','bdp','blv','bml','bqy'];
 $('bcown').addEventListener('keydown',e=>{if(e.key!='Enter')return;const inp=e.target,row=inp.closest('.bcrow');if(!row)return;const k=ORD.findIndex(c=>inp.classList.contains(c));if(k<0)return;e.preventDefault();
  if(k==0){const sg=inp.parentNode.querySelector('.sug'),f=sg&&sg.style.display!='none'&&sg.querySelector('div[data-n]');if(f&&!PROP0[inp.value.trim().toLowerCase()]){inp.value=f.dataset.n;inp.dispatchEvent(new Event('input',{bubbles:true}))}if(sg)sg.style.display='none'}
  if(k<ORD.length-1){row.querySelector('.'+ORD[k+1]).focus();return}
- const nx=row.nextElementSibling;if(nx&&nx.classList.contains('bcrow'))nx.querySelector('.bnm').focus();else{const ad=$('bcadd');if(ad&&!ad.disabled){ad.click();const rs=$('bcown').querySelectorAll('.bcrow');const last=rs[rs.length-1];if(last&&last!==row)last.querySelector('.bnm').focus()}}});
+ let nx=row.nextElementSibling;while(nx&&(!nx.classList.contains('bcrow')||nx.classList.contains('bcx')||nx.classList.contains('bcbank')))nx=nx.nextElementSibling;if(nx)nx.querySelector('.bnm').focus();else{const ad=$('bcadd');if(ad&&!ad.disabled){ad.click();const rs=$('bcown').querySelectorAll('.bcrow');const last=rs[rs.length-1];if(last&&last!==row)last.querySelector('.bnm').focus()}}});
 document.addEventListener('change',e=>{const t=e.target;if(!t.matches||!t.matches('.bnm,#bkn,#bct,#fa,#fb,#dq'))return;const v=t.value.trim();if(!v)return;const n=PROP[v];if(n&&n!==v){t.value=n;t.dispatchEvent(new Event('input',{bubbles:true}))}},true);
 }catch(e){console.error('quality-of-life features failed to start',e)}})();
 

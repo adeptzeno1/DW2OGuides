@@ -1908,7 +1908,7 @@ dnRender();
    // [Quality, sure]. A DNA with a Digimon whose Max level isn't known assumes yours is the higher-level parent (not sure).
    let QA=null;const qG=(how,s)=>{const h=how[s],hv=have[s];if(hv)return [hv.q,P(s)[5]!=='1'];if(!h||h.t=='catch')return [null,false];if(h.t=='evo')return qG(how,h.from);
     const A=qG(how,h.a),B=qG(how,h.b),ua=P(h.a)[5]==='1'&&!/\|q$/.test(h.a),ub=P(h.b)[5]==='1'&&!/\|q$/.test(h.b),ml=x=>have[x]&&have[x].ml?have[x].ml:+P(x)[2];
-    if(!ua&&!ub){if(A[0]==null||B[0]==null)return [null,false];const va=ml(h.a),vb=ml(h.b);return [va>vb?A[0]:vb>va?B[0]:Math.max(A[0],B[0]),A[1]&&B[1]]}
+    if(!ua&&!ub){const va=ml(h.a),vb=ml(h.b);if(va>vb)return [A[0],A[1]];if(vb>va)return [B[0],B[1]];if(A[0]==null||B[0]==null)return [null,false];return [Math.max(A[0],B[0]),A[1]&&B[1]]}
     if(ua&&ub)return [null,false];
     const kn=ua?h.b:h.a,KQ=ua?B:A,un=ua?h.a:h.b;if(KQ[0]==null)return [null,false];
     // the unknown one must be a fresh Digimon (no DNA in its line) whose stage needs no more Max level than the known parent has
@@ -1965,7 +1965,7 @@ dnRender();
   mls=s=>!unk(s)?(qPlus[s]&&/\|q$/.test(s)?(mlr(s)>=ML?ML+'+':mlr(s)+'+'):mlt(mlr(s))):isLeafU(s)||!(EX[s]>0)?'not set':(EX[s]>=ML?ML+'+':EX[s]+'+');
   const leaves=s=>{const o=[],seen=new Set(),w=x=>{if(seen.has(x))return;seen.add(x);if(isLeafU(x)&&REQ[x]>0){o.push(x);return}const h=how[x];if(!h)return;if(h.t=='evo')w(h.from);if(h.t=='dna'){w(h.a);w(h.b)}};w(s);return o};
   const reqN=s=>isLeafU(s)&&REQ[s]>0?REQ[s]:0;
-  const QS={},qL=x=>/\|q$/.test(x)||(have[x]&&have[x].fz),qOf=s=>{if(s in QS)return QS[s];const h=how[s],hv=have[s];let v=null;if(hv)v=hv.q;else if(h.t=='evo')v=qOf(h.from);else if(h.t=='dna'&&qL(s)&&(qL(h.a)||qL(h.b)))v=qOf(qL(h.a)?h.a:h.b);else if(h.t=='dna'&&!unk(h.a)&&!unk(h.b)){const qa=qOf(h.a),qb=qOf(h.b),va=mlr(h.a),vb=mlr(h.b);if(qa!=null&&qb!=null)v=va>vb?qa:vb>va?qb:Math.max(qa,qb)}return QS[s]=v};
+  const QS={},qL=x=>/\|q$/.test(x)||(have[x]&&have[x].fz),qOf=s=>{if(s in QS)return QS[s];const h=how[s],hv=have[s];let v=null;if(hv)v=hv.q;else if(h.t=='evo')v=qOf(h.from);else if(h.t=='dna'&&qL(s)&&(qL(h.a)||qL(h.b)))v=qOf(qL(h.a)?h.a:h.b);else if(h.t=='dna'&&!unk(h.a)&&!unk(h.b)){const qa=qOf(h.a),qb=qOf(h.b),va=mlr(h.a),vb=mlr(h.b);v=va>vb?qa:vb>va?qb:(qa!=null&&qb!=null?Math.max(qa,qb):null)}return QS[s]=v};
   // on a Quality route, a new partner must not have a higher Max level than the Quality line it joins
   const QCAP={};Object.keys(how).forEach(r=>{const h=how[r];if(h.t!='dna'||!qL(r))return;const la=qL(h.a),lb=qL(h.b);if(la===lb)return;const line=la?h.a:h.b,cap=mlr(line);let x=la?h.b:h.a;
    for(;;){if(unk(x))QCAP[x]=Math.min(QCAP[x]??99,cap);const hx=how[x];if(!hx||hx.t!='evo')break;x=hx.from}});
@@ -1996,7 +1996,7 @@ dnRender();
       else{const aH=va>vb,hiN=aH?na:nb2,hq=aH?qa:qb,loN=aH?nb2:na,lq=aH?qb:qa,lowL=Math.min(va,vb),hiS=aH?h.a:h.b,hvh=have[hiS];
        qt=`<br>Quality: from ${hiN}, the higher-level parent = <b>${hq}</b>`;
        if(lq>hq&&!(hvh&&hvh.lv&&hvh.lv>lowL)&&!lrnTxt(P(hiS)[0],+P(hiS)[2]))tip=`<div class="bwarn"><b>Quality tip:</b> ${loN} has the better Quality (${lq}). Train ${hiN} only to EL ${lowL}, the same as ${loN}, and the result gets Quality ${lq}, with Max EL ${lowL+Math.floor(lowL/5)} instead of ${hi+Math.floor(lo/5)}.</div>`}}
-     else qt='<br>Quality: enter both parents&rsquo; Quality to work it out.'}
+     else{const hq2=va>vb?qa:vb>va?qb:null,hn=va>vb?DISP(P(h.a)[0]):DISP(P(h.b)[0]);qt=hq2!=null?`<br>Quality: ${hn} has the higher Max level (EL ${Math.max(va,vb)}), so it passes on its Quality, <b>${hq2}</b>. The other parent&rsquo;s Quality doesn&rsquo;t matter.`:'<br>Quality: enter both parents&rsquo; Quality to work it out.'}}
     steps.push(`<li${DONE.has(s)?' class="isdone"':''}><div class="bstep"><label class="bdn"><input type="checkbox" class="bdck" data-s="${s}"${DONE.has(s)?' checked':''}> Mark as done</label><span class="k">DNA Digivolve${tag}</span><div class="bdna">${mon(h.a)}<span class="bop">+</span>${mon(h.b)}<span class="bop">=</span>${mon(s,1)}</div>`+
      `<div class="bmath">DP: higher parent ${Math.max(da,db)} + 1 = <b>${+d>=CAP?d+'+':d}</b><br>${mx}${qt}</div>${tip}${swaps(h,k)}${doneBtn(s)}</div></li>`)}
    if(h.t=='evo'){nE+=n;const kf=P(h.from)[0],el=EVL[ST[kf]],v=mlr(h.from);

@@ -1541,7 +1541,13 @@ function dgBack(){const v=DG.stack.pop();if(!v){closeDg();return}
 function closeDg(){DG.cur=null;DG.stack=[];const dd=document.getElementById('dd');dd.hidden=true;dd.innerHTML='';document.querySelectorAll('#dt b.sel').forEach(b=>b.classList.remove('sel'))}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('.dg');if(!t)return;e.preventDefault();e.stopImmediatePropagation();if(e.ctrlKey||e.metaKey){dgTab(t.dataset.dg);return}openDg(t.dataset.dg)},true);
 /* middle-click (or Ctrl/Cmd+click) a Digimon name: open its Digipedia page in a new tab */
-function dgTab(raw){const n=PROP[(raw||'').toLowerCase()]||raw;if(!n)return;window.open(location.href.split('#')[0]+'#dg='+encodeURIComponent(n),'_blank','noopener')}
+function dgTab(raw){const n=PROP[(raw||'').toLowerCase()]||raw;if(!n)return;
+ // hand the name over two ways: in the address (#dg=) and in saved data, for pages shown inside a frame where the address can get lost
+ try{localStorage.setItem('dw2-open',JSON.stringify({n,t:Date.now()}))}catch(e){}
+ const h='#dg='+encodeURIComponent(n);let base=location.href.split('#')[0];
+ let framed=false;try{framed=window.self!==window.top}catch(e){framed=true}
+ const ref=(document.referrer||'').split('#')[0];if((framed||!/^(https?|file):/.test(base))&&/^https?:\/\/[^/]+\/./.test(ref))base=ref;
+ const w=window.open(base+h,'_blank');if(w)try{w.opener=null}catch(e){}}
 const DGSEL='.dg,#dt b[data-n]';
 document.addEventListener('mousedown',e=>{if(e.button===1&&e.target.closest&&e.target.closest(DGSEL))e.preventDefault()},true);
 document.addEventListener('auxclick',e=>{if(e.button!==1)return;const t=e.target.closest&&e.target.closest(DGSEL);if(!t)return;e.preventDefault();e.stopImmediatePropagation();dgTab(t.dataset.dg||t.dataset.n)},true);
@@ -2085,5 +2091,7 @@ dnRender();
 
 // remember the last tab this browser was on (first visit opens Digipedia)
 document.getElementById('top').addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b)try{localStorage.setItem('dw2-tab',b.dataset.t)}catch(x){}});
-if(/^#b-/.test(location.hash))setTop('mp');else if(/^#dg=/.test(window.__H0||'')){let dn='';try{dn=decodeURIComponent(window.__H0.slice(4))}catch(e){}if(dn&&PROP[dn.toLowerCase()])openDg(dn);else showDv()}else{let lt=null;try{lt=localStorage.getItem('dw2-tab')}catch(e){}const lb=lt&&lt!='dv'&&document.querySelector('#top button[data-t="'+lt+'"]');if(lb)lb.click();else showDv()}
+let OD=null;try{const o=JSON.parse(localStorage.getItem('dw2-open')||'null');if(o&&Date.now()-o.t<20000)OD=o.n;localStorage.removeItem('dw2-open')}catch(e){}
+if(/^#dg=/.test(window.__H0||'')){try{OD=decodeURIComponent(window.__H0.slice(4))}catch(e){}}
+if(/^#b-/.test(location.hash))setTop('mp');else if(OD&&PROP[OD.toLowerCase()])openDg(OD);else{let lt=null;try{lt=localStorage.getItem('dw2-tab')}catch(e){}const lb=lt&&lt!='dv'&&document.querySelector('#top button[data-t="'+lt+'"]');if(lb)lb.click();else showDv()}
 </script>

@@ -256,6 +256,7 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bmkc img{width:22px;height:22px;image-rendering:pixelated}
 .bmkc small{color:var(--mut);font-size:11px}
 .bmkc:hover{border-color:var(--fg)}
+.bwait{padding:10px 0;animation:mp-pulse 1.2s ease-in-out infinite}
 .bcpl{display:grid;gap:4px;margin-top:6px}
 .bcpr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 0;border-top:1px solid var(--bd);font-size:13px}
 .bcpr b{flex:1 1 160px;min-width:0}
@@ -1805,7 +1806,9 @@ dnRender();
  // binary heap
  const H=[],hp=(c,s)=>{H.push([c,s]);let i=H.length-1;while(i){const p=(i-1)>>1;if(H[p][0]<=H[i][0])break;[H[p],H[i]]=[H[i],H[p]];i=p}},
   hpop=()=>{const t=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){const a=2*i+1,b=a+1;let m=i;if(a<H.length&&H[a][0]<H[m][0])m=a;if(b<H.length&&H[b][0]<H[m][0])m=b;if(m==i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return t};
- function solve(mode){
+ // show a message first so the page never looks frozen while a long search runs
+ function solve(mode){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';solve._t=setTimeout(()=>{try{solveNow(mode)}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
+ function solveNow(mode){
   let have={},bad=[],errs=[];
   const SEL=MSEL.slice(),SFULL=(1<<SEL.length)-1,LRN={};
   SEL.forEach((mv,i)=>{const r=MVI[mv];r[7].forEach(n=>{const k=KEY(PROP[n.toLowerCase()]||n);(LRN[k]=LRN[k]||[]).push([i,MLV[r[1]]])})});
@@ -1826,7 +1829,7 @@ dnRender();
   if(!tk&&!anyT&&mode!=='make')return warn('Pick the Digimon you want from the dropdown.');
   if(rowsN>20)return warn('Add up to 20 Digimon at a time, so the search stays fast.');
   const tgt=Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
-  const run=(seeds,o={})=>{const RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
+  const run=(seeds,o={})=>{const DL=o.dl||0,RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
    const KS=Object.keys(ST),N=KS.length,KI={};KS.forEach((k,i)=>KI[k]=i);const D1=CAP+1,M1=ML+1;
    const enc=(ki,d,m,mk,sk,u)=>((((ki*D1+d)*M1+m)*MB+mk)*16+sk)*2+u;
    const dec=id=>{const u=id%2;id=(id-u)/2;const sk=id%16;id=(id-sk)/16;const mk=id%MB;id=(id-mk)/MB;const m=id%M1;id=(id-m)/M1;const d=id%D1;return [(id-d)/D1,d,m,mk,sk,u]};
@@ -1836,18 +1839,20 @@ dnRender();
    const best=new Map(),how=new Map(),top=new Map();H.length=0;
    const push=(id,c,h)=>{const b=best.get(id);if(b!=null&&b<=c)return;best.set(id,c);how.set(id,h);hp(c,id)};
    seeds.forEach(x=>{const [k,d,m,mk,sk,u]=x[0].split('|');push(enc(KI[k],+d,+m,+mk,+sk,+u),x[1],Object.assign({sid:x[0]},x[2]))});
-   const fI=[],fK=[],fD=[],fM=[],fMk=[],fSk=[],fU=[];let goal=null,pops=0;const tki=tk?KI[tk]:-1,RCH=o.reach;
+   const CAPF=200005,fI=new Float64Array(CAPF),fC=new Float64Array(CAPF),fD=new Int8Array(CAPF),fM=new Int8Array(CAPF),fMk=new Int32Array(CAPF),fSk=new Int8Array(CAPF),fU=new Int8Array(CAPF);let nF=0;
+   const BYK=KS.map(()=>[]),PK=KS.map((a,i)=>{if(!isD[i])return [];const L=[];for(let j=0;j<N;j++)if(isD[j]&&(RTi[i*N+j]>=0||RTi[j*N+i]>=0))L.push(j);return L});let goal=null,pops=0;const tki=tk?KI[tk]:-1,RCH=o.reach;
    while(H.length){const [c,id]=hpop();const h=how.get(id);if(best.get(id)!==c||h.done)continue;const [ki,d,m,mk,sk,u]=dec(id),base=(((ki*D1+d)*MB+mk)*16);
     let dom=false;for(let s2=sk;s2<16;s2=(s2+1)|sk){const t=top.get(base+s2);if(t!=null&&t>=m){dom=true;break}}if(dom)continue;
-    top.set(base+sk,m);h.done=1;if(++pops>200000)break;
+    top.set(base+sk,m);h.done=1;if(++pops>200000)break;if(DL&&(pops&255)==0&&performance.now()>DL)break;
     if(RCH){if(c>3999)break;if(RCH[ki]==null||c<RCH[ki])RCH[ki]=c}
     else if((anyT||ki==tki)&&m>=N0&&(mk&RQM)==RQM&&(sk&RQS)==RQS){goal=id;break}
     const st=ST[KS[ki]];let evd=false;if(st<3&&m>=EVL[st])for(const e of EV[ki])if(d>=e.lo&&d<=e.hi){evd=true;push(enc(e.j,d,m,mk,sk|LA[e.j][m],u),c+1,{t:'evo',from:id,dp:e.dp})}
     // trained to its Max level, a Digimon that can digivolve will: only its final form can be a DNA parent (when its Max level is known)
-    if(isD[ki]&&!(evd&&!u)){fI.push(id);fK.push(ki);fD.push(d);fM.push(m);fMk.push(mk);fSk.push(sk);fU.push(u);
-     for(let q=0;q<fI.length;q++){const mk2=fMk[q];if(mk&mk2)continue;const k2=fK[q],r1=RTi[ki*N+k2],r2=RTi[k2*N+ki];if(r1<0&&r2<0)continue;
-      const m2=fM[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),hi=m>m2?m:m2,lo=m>m2?m2:m,nm=Math.min(ML,hi+Math.floor(lo/5)),ns=sk|fSk[q],nmk=mk|mk2,nu=u|fU[q],cc=c+best.get(fI[q])+1000;
-      if(r1>=0)push(enc(r1,nd,nm,nmk,ns|LA[r1][nm],nu),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0&&k2!=ki)push(enc(r2,nd,nm,nmk,ns|LA[r2][nm],nu),cc,{t:'dna',a:fI[q],b:id})}}}
+    if(isD[ki]&&!(evd&&!u)){const f=nF++;fI[f]=id;fC[f]=c;fD[f]=d;fM[f]=m;fMk[f]=mk;fSk[f]=sk;fU[f]=u;BYK[ki].push(f);
+     const pk=PK[ki];for(let pi=0;pi<pk.length;pi++){const k2=pk[pi],L=BYK[k2],r1=RTi[ki*N+k2],r2=k2!=ki?RTi[k2*N+ki]:-1;
+      for(let li=0;li<L.length;li++){const q=L[li],mk2=fMk[q];if(mk&mk2)continue;
+      const m2=fM[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),hi=m>m2?m:m2,lo=m>m2?m2:m,nm=Math.min(ML,hi+Math.floor(lo/5)),ns=sk|fSk[q],nmk=mk|mk2,nu=u|fU[q],cc=c+fC[q]+1000;
+      if(r1>=0)push(enc(r1,nd,nm,nmk,ns|LA[r1][nm],nu),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0)push(enc(r2,nd,nm,nmk,ns|LA[r2][nm],nu),cc,{t:'dna',a:fI[q],b:id})}}}}
    if(goal==null)return {goal:null};
    const H2={},str=id=>{const h=how.get(id);if(h.sid){H2[h.sid]={t:h.t};return h.sid}const [ki,d,m,mk,sk,u]=dec(id),sid=[KS[ki],d,m,mk,sk,u].join('|');if(H2[sid])return sid;
     const o={t:h.t,dp:h.dp};if(h.t=='evo')o.from=str(h.from);if(h.t=='dna'){o.a=str(h.a);o.b=str(h.b)}H2[sid]=o;return sid};
@@ -1867,16 +1872,14 @@ dnRender();
    const visit=s=>{if(seen.has(s))return;seen.add(s);const h=how[s];if(h.t=='evo')visit(h.from);if(h.t=='dna'){visit(h.a);visit(h.b)}order.push(s)};visit(R.goal);
    need[R.goal]=1;for(let i=order.length-1;i>=0;i--){const s=order[i],h=how[s],n=need[s]||0;if(h.t=='evo')need[h.from]=(need[h.from]||0)+n;if(h.t=='dna'){need[h.a]=(need[h.a]||0)+n;need[h.b]=(need[h.b]||0)+n}}
    let acq=0,dna=0;order.forEach(s=>{const h=how[s];if(h.t=='catch')acq+=need[s];if(h.t=='have')acq+=Math.max(0,need[s]-have[s].n);if(h.t=='dna')dna+=need[s]});return {goal:R.goal,how,need,order,acq,dna}};
-  let R,PL0=null;const BITS=new Set();
-  for(let it=0;it<10;it++){
-   R=run(seeds);PL0=null;
-   if(!R.goal)R=run(seeds.concat(mkCatch(CU.checked?2:1)));
-   if(R.goal){PL0=plan(R);
-    if(PL0.acq>0){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]);const R3=run(pen.concat(mkCatch(CU.checked?2:1)));
-     if(R3.goal){const p3=plan(R3);if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna))PL0=p3}}}
-   if(!PL0)break;
-   const over=Object.keys(have).filter(s=>have[s]&&(PL0.need[s]||0)>have[s].n);if(!over.length)break;
-   over.forEach(s=>have[s].rows.forEach(r=>BITS.add(r._ri)));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}])}
+  let R,PL0=null;const BITS=new Set(),T0=performance.now();
+  const overOf=pl=>Object.keys(have).filter(s=>have[s]&&(pl.need[s]||0)>have[s].n),grow=over=>{over.forEach(s=>have[s].rows.forEach(r=>BITS.add(r._ri)));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}])};
+  // catches cost far more than anything you own, so one search finds the no-catch route first when there is one
+  for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}
+  // if catches are needed, check once whether a route with fewer catches exists
+  const DL=Math.max(performance.now()+250,T0+1200);if(PL0&&PL0.acq>0&&performance.now()-T0<900){for(let it=0;it<10&&performance.now()<DL;it++){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]),R3=run(pen.concat(mkCatch(CU.checked?2:1)),{dl:DL});if(!R3.goal)break;const p3=plan(R3),over=overOf(p3);
+    if(!over.length){if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna))PL0=p3;break}grow(over)}
+   if(overOf(PL0).length){for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}}}
   if(!PL0){
    const tries=[],cs3=mkCatch(2),base=seeds.concat(mkCatch(CU.checked?2:1));
    if(!CU.checked&&run(seeds.concat(cs3)).goal)tries.push('tick &ldquo;If a catch is needed, allow suggesting Ultimates&rdquo;');

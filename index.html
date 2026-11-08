@@ -376,7 +376,8 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bkm{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 4px}
 .bkl{font-size:12px;color:var(--mut)}.bkl small{font-size:11px}
 .bkm .bmvs{margin:0}
-.bkm .acw{flex:1 1 200px;min-width:0;display:block}#bc .bkm .acw>input{width:100%;padding-top:4px;padding-bottom:4px;font-size:13px}
+.bkm .acw{flex:1 1 200px;min-width:0;display:block}
+.bkm .bsend{padding:2px 10px;font-size:12px;white-space:nowrap}.bkm .bsend.ok{color:#2fae5e;border-color:#2fae5e}#bc .bkm .acw>input{width:100%;padding-top:4px;padding-bottom:4px;font-size:13px}
 @media (max-width:560px){.bdna{flex-direction:column}.bmon{flex:none}.bop{text-align:center;line-height:1}.bop.ar{transform:rotate(90deg)}}
 .bcs{list-style:none;margin:10px 0 0;padding:0;counter-reset:bc}
 .bcs li{counter-increment:bc;display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--bd)}
@@ -424,7 +425,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 </div>
 <div id="bank" hidden><div class="how"><b>DigiBank</b><p>Keep track of the Digimon you have. Your bank is saved in this browser.</p><ul>
 <li><b>Add:</b> pick a Digimon and fill in what you know, including moves it knows. Only the name is needed.</li>
-<li><b>DNA Chain:</b> press <b>Fill from DigiBank</b> there to use your bank. Digimon you add, catch or make in the DNA Chain are saved here too.</li>
+<li><b>DNA Chain:</b> press <b>Fill from DigiBank</b> there to use your bank. Press <b>Send to bank</b> on a Digimon there to save it here.</li>
 <li><b>Favourite:</b> tap the star on a card. Favourites show first.</li>
 <li><b>Teams:</b> battles are 3 v 3. Build teams below to see their type and specialty matchups.</li>
 <li><b>Move it:</b> copy your bank code to use the same bank and teams on another device.</li></ul></div>
@@ -453,7 +454,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="bct" style="margin-top:6px"><input id="bcpc" placeholder="Paste a chain code" autocomplete="off" aria-label="Chain code"><button class="qbtn" id="bcpi" type="button">Load code</button></div><div id="bcpm" class="bcl" style="margin-top:4px"></div></div>
 <div class="dsec dcs"><h4>Digimon you have</h4><p class="bcl" style="margin:0 0 8px"><b>Must use in chain:</b> tick this to make the route include that Digimon, for example to pass its moves down. <b>Moves it knows:</b> add moves a Digimon already has, so the route can count them. <b>Max level:</b> leave it blank if you don&rsquo;t know it, and the route won&rsquo;t limit that Digimon by level.</p>
 <div class="bch" aria-hidden="true"><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Must use in chain</span><span></span></div>
-<div id="bcown"></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div class="bcsy"><label class="bck" style="margin:0"><input type="checkbox" id="bcsync" checked> Save Digimon I add or make here to my DigiBank</label><span id="bcfm" class="bcl"></span></div></div>
+<div id="bcown"></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div class="bcsy"><span id="bcfm" class="bcl"></span></div></div>
 <div class="dsec dcs"><h4>Digimon you want</h4><div class="bcr bct"><input id="bct" placeholder="e.g. SkullGreymon" autocomplete="off"><button class="qbtn" id="bcgo" type="button">Find shortest route</button></div>
 <div class="fl" style="margin-top:10px"><span>Moves it should know by the end</span><div id="bcmv" class="bmvs"></div><div class="bct"><input id="bcmq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div><div class="bcl">Both parents pass every move they know to the DNA result. For each move, the route includes a Digimon that learns it and has it reach the learning level: EL 12 for a Champion move, EL 22 for Ultimate, EL 32 for Mega.</div></div>
 <label class="bck"><input type="checkbox" id="bcsk" checked> The final Digimon must be able to learn its own new move (EL 12 Champion, EL 22 Ultimate, EL 32 Mega)</label>
@@ -1770,12 +1771,15 @@ dnRender();
  MQ.addEventListener('acpick',addMv);MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
  let saved=null;try{saved=JSON.parse(localStorage.getItem('dw2-bc2')||'null')}catch(e){}
  const snap=()=>({rows:[...own.querySelectorAll('.bcrow')].map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null])),t:T.value,sk:SK.checked,cu:CU.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE]});
- let SYNC=true;try{SYNC=localStorage.getItem('dw2-bcsync')!=='0'}catch(e){}
- // keep the DigiBank in step with the Digimon you have here
- const bankSync=()=>{if(!SYNC||!window.DWB)return;own.querySelectorAll('.bcrow').forEach(r=>{const nm=r.querySelector('.bnm').value;if(!nm.trim()||!PROP[nm.trim().toLowerCase()])return;
-  const v={n:nm,lv:r.querySelector('.blv').value,ml:r.querySelector('.bml').value,q:r.querySelector('.bqy').value,dp:r.querySelector('.bdp').value,mv:r._mv||[]};
-  if(r._bid&&DWB.get().some(x=>x.id===r._bid))DWB.upd(r._bid,v);else{const o=DWB.add(v);if(o)r._bid=o.id}})};
- let syncT=null;const store=()=>{try{localStorage.setItem('dw2-bc2',JSON.stringify(snap()))}catch(e){}clearTimeout(syncT);syncT=setTimeout(bankSync,400)};
+ // send one Digimon to the DigiBank (only when the button is pressed)
+ const nrm=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
+ const toBank=r=>{if(!window.DWB)return 'none';const nm=r.querySelector('.bnm').value.trim(),n=PROP[nm.toLowerCase()];if(!n)return 'bad';
+  const v={n,lv:r.querySelector('.blv').value,ml:r.querySelector('.bml').value,q:r.querySelector('.bqy').value,dp:r.querySelector('.bdp').value,mv:(r._mv||[]).slice()};
+  const ms=a=>(a||[]).slice().sort().join('|'),same=x=>x.n===n&&x.lv===nrm(v.lv,1,99)&&x.ml===nrm(v.ml,1,99)&&x.q===nrm(v.q,0,100)&&(x.dp||0)===(nrm(v.dp,0,99)||0)&&ms(x.mv)===ms(v.mv);
+  const B=DWB.get(),dup=B.find(x=>same(x));if(dup)return 'dup';
+  if(r._bid&&B.some(x=>x.id===r._bid)){DWB.upd(r._bid,v);return 'upd'}
+  const o=DWB.add(v);if(o){r._bid=o.id;return 'add'}return 'bad'};
+ let syncT=null;const store=()=>{try{localStorage.setItem('dw2-bc2',JSON.stringify(snap()))}catch(e){}};
  let rid=0;
  function addRow(v){v=v||['','0','',''];const r=document.createElement('div');r.className='bcrow';const id=++rid;
   r.innerHTML=`<input class="bnm" id="bcn${id}" placeholder="Digimon you have" autocomplete="off" aria-label="Digimon">`+
@@ -1784,13 +1788,14 @@ dnRender();
    `<div><label for="bcm${id}">Max level</label><input class="bml" id="bcm${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="opt." aria-label="Max level"></div>`+
    `<div><label for="bcq${id}">Quality</label><input class="bqy" id="bcq${id}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="opt." aria-label="Quality"></div>`+
    `<div class="bmuw"><label for="bcu${id}">Must use in chain</label><input class="bmu" id="bcu${id}" type="checkbox" aria-label="Must use in chain"></div><button class="qbtn brm" type="button">Remove</button>`+
-   `<div class="bkm"><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"></div>`;
+   `<div class="bkm"><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"><button class="qbtn bsend" type="button" title="Save this Digimon to your DigiBank">Send to bank</button></div>`;
   own.appendChild(r);r._mv=Array.isArray(v[5])?v[5].filter(m=>MVI[m]):[];r._bid=v[7]||null;
   const kc=r.querySelector('.bkc'),kq=r.querySelector('.bkq'),kren=()=>{kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');store()};
   kc.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;r._mv.splice(+b.dataset.i,1);kren()};
   const kadd=()=>{const t=kq.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==t);if(!mv)return;if(!r._mv.includes(mv))r._mv.push(mv);kq.value='';kq.dispatchEvent(new Event('input'));kren()};
   kq.addEventListener('acpick',kadd);kq.addEventListener('keydown',e=>{if(e.key=='Enter')kadd()});const q=c=>r.querySelector(c);q('.bnm').value=v[0];q('.bdp').value=v[1];q('.blv').value=v[2];q('.bml').value=v[3];q('.bqy').value=v[6]!=null?v[6]:'';q('.bmu').checked=v[4]===true;ac(q('.bnm'),OWNL);ac(kq,MOVL);kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');
-  r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{r.remove();store()};return r}
+  r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{r.remove();store()};
+  q('.bsend').onclick=()=>{const b=q('.bsend'),res=toBank(r),M={add:'Sent ✓',upd:'Updated ✓',dup:'Already in bank',bad:'Pick a Digimon first',none:'Bank not available'};b.textContent=M[res];b.classList.toggle('ok',res=='add'||res=='upd');store();clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent='Send to bank';b.classList.remove('ok')},2200)};return r}
  if(saved&&saved.rows&&saved.rows.length)saved.rows.forEach(addRow);else addRow(['','','','']);
  T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved&&saved.cu)CU.checked=true;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);if(saved&&Array.isArray(saved.mv)){MSEL=saved.mv.filter(m=>MVI[m]).slice(0,4);mvRen()}CU.addEventListener('change',store);
  ac(T,[...OWNL,...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>KEY(e.n)==KEY(d.n))==i));T.addEventListener('input',store);SK.addEventListener('change',store);
@@ -1968,7 +1973,7 @@ dnRender();
  document.getElementById('bcps').onclick=()=>{const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap()};pjSet(P0);ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
  document.getElementById('bcpi').onclick=()=>{const o=dec64(document.getElementById('bcpc').value);if(!o||!o.rows){pmsg('That code didn’t work. Chain codes start with c1-.');return}applySnap(o);document.getElementById('bcpc').value='';pmsg('Chain loaded. Save it to keep it in your list.')};
  pjRen();
- const SY=document.getElementById('bcsync');SY.checked=SYNC;SY.onchange=()=>{SYNC=SY.checked;try{localStorage.setItem('dw2-bcsync',SYNC?'1':'0')}catch(e){}if(SYNC)bankSync()};
+ 
  document.getElementById('bcfill').onclick=()=>{const fm=document.getElementById('bcfm');if(!window.DWB)return;const L=DWB.get().filter(x=>x.use!==false);
   if(!L.length){fm.textContent='Your DigiBank has no Digimon ticked “Use in DNA Chain”.';return}
   const pick=L.slice().sort((a,b)=>(b.dp-a.dp)||((b.ml||b.lv||0)-(a.ml||a.lv||0))).slice(0,20);own.innerHTML='';
@@ -1981,7 +1986,7 @@ dnRender();
   const mvOf=r=>r._mv||[];
   if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input'));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el)lv.value=el;r._mv=[...new Set([...mvOf(r),...mvl(+sk)])]}
   if(h.t=='dna'){const ra=take(h.a);if(!ra)return;ra.dataset.used=1;const rb=take(h.b)&&have[h.b].rows.find(r=>r.isConnected&&!r.dataset.used);delete ra.dataset.used;if(!rb){if(have[h.b])out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(h.b)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return}
-   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(SYNC&&window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
+   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
   store();solve();out.scrollIntoView({block:'start'})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bcca');if(!b)return;const w=b.closest('.bcatch'),lv=w.querySelector('.bccl').value,ml=w.querySelector('.bccm').value;if(!ml){w.querySelector('.bccm').focus();w.querySelector('.bccm').placeholder='Enter it';return}addRow([w.dataset.n,'0',lv,ml,false,[],w.querySelector('.bccq').value]);store();solve();own.lastElementChild.scrollIntoView({block:'nearest'})});T.addEventListener('acpick',solve);T.addEventListener('keydown',e=>{if(e.key=='Enter')solve()});
 })();

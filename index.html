@@ -1698,7 +1698,7 @@ dnRender();
   if(UI.ty.length)L=L.filter(x=>UI.ty.includes(tyi(x.n)));if(UI.dp!=null)L=L.filter(x=>(x.dp||0)===UI.dp);
   const XF={fav:x=>x.fav,team:x=>inTeam(x.id).length,max:isMax,nomax:x=>!isMax(x)};UI.x.forEach(k=>{if(XF[k])L=L.filter(XF[k])});
   const c={name:(a,b)=>a.n.localeCompare(b.n),stage:(a,b)=>sti(b.n)-sti(a.n)||a.n.localeCompare(b.n),lv:(a,b)=>(b.lv||0)-(a.lv||0),q:(a,b)=>(b.q??-1)-(a.q??-1),dp:(a,b)=>b.dp-a.dp,new:(a,b)=>b.at-a.at}[o];L.sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||c(a,b));
-  if(!get().length){g.innerHTML='<div class="bkempty">Your bank is empty. Add a Digimon above, or add them in the DNA Chain and they show up here.</div>';return}
+  if(!get().length){g.innerHTML='<div class="bkempty">Your bank is empty. Add a Digimon above, or press Send to bank on a Digimon in the DNA Chain.</div>';return}
   if(!L.length){g.innerHTML='<div class="bkempty">No Digimon match your search or filters.</div>';return}
   if(UI.v=='s'){const G={};L.forEach(x=>{const s=sti(x.n);(G[s]=G[s]||[]).push(x)});
    g.innerHTML=Object.keys(G).map(Number).sort((a,b)=>(b==9?-1:b)-(a==9?-1:a)).map(s=>`<h5 class="bkgh">${s==9?'Other':STN[s]}<span>${G[s].length}</span></h5><div class="bkg">${G[s].map(x=>card(x,editing===x.id)).join('')}</div>`).join('')}
@@ -2031,5 +2031,7 @@ dnRender();
 })();
 
 
-if(/^#b-/.test(location.hash))setTop('mp');else showDv();
+// remember the last tab this browser was on (first visit opens Digipedia)
+document.getElementById('top').addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b)try{localStorage.setItem('dw2-tab',b.dataset.t)}catch(x){}});
+if(/^#b-/.test(location.hash))setTop('mp');else{let lt=null;try{lt=localStorage.getItem('dw2-tab')}catch(e){}const lb=lt&&lt!='dv'&&document.querySelector('#top button[data-t="'+lt+'"]');if(lb)lb.click();else showDv()}
 </script>

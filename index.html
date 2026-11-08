@@ -383,12 +383,15 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .qsc{display:grid;gap:10px}
 .qsr{display:flex;flex-direction:column;gap:3px;min-width:0}.qsr label,.qsh{font-size:12px;color:var(--mut)}
 .qsr2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qxps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.qxps .qsh{grid-column:1/-1;font-size:12px;color:var(--mut);font-weight:600}.qxps .qsh small{font-weight:400}.qxps .qsr label{font-size:11.5px}.qxps input{min-width:0;width:100%;box-sizing:border-box}
+@media (max-width:560px){.qxps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.qxst2{border-collapse:collapse;font-size:13.5px;margin-top:4px;width:100%}.qxst2 td,.qxst2 th{border:0;border-bottom:1px solid var(--bd);padding:4px 8px;text-align:left;background:transparent!important;position:static}.qxst2 th{font-size:12px;color:var(--mut);font-weight:600}.qxst2 td.v{font-weight:700;font-size:15px;text-align:right;font-variant-numeric:tabular-nums}.qxst2 td.w{color:var(--mut);font-size:12.5px}
 .qsr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsr3 .qsh{grid-column:1/-1}
 .qst{display:grid;grid-template-columns:minmax(0,1fr) 84px 92px;gap:6px 8px;align-items:center}
 .qst>span{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
 .qst label{font-weight:600;font-size:13px}
 #qsim input,#qsim select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);width:100%;box-sizing:border-box;font-variant-numeric:tabular-nums}
-.qso{min-width:0;display:grid;gap:12px}
+.qso{min-width:0;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}#qxo{min-width:0}
 .qshead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
 .qsbig{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
 .qtag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;border:1.5px solid currentColor}
@@ -664,14 +667,16 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <li><b>Copies:</b> each Digimon you added can be used at most once, and only if the route needs it. The route never asks you to get one you already have. If you have more than one, add each to the list.</li>
 <li><b>No route:</b> the route suggests Digimon to get, Rookies first, then Champions, then Ultimates. A Champion counts as two Rookies, and an Ultimate as five, so Ultimates only come up when they save a lot of steps. It never suggests the Digimon you want or any Mega. New Digimon start at DP 0, and their Max level isn&rsquo;t tracked.</li></ul></div><p class="bcl qsrc">Source: DNA Max level and Quality rules posted by Wyrelade on the DW2 Online Discord, and checked in game.</p></div>
 <div id="qv" hidden><div class="how"><b>DNA Level/Quality Calc</b><p>Plan a DNA Digivolve and see how strong the new Digimon will be.</p><ol>
-<li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality. You get the new Digimon&rsquo;s Quality and Max level.</li>
+<li><b>Parents</b> (optional): enter both parents&rsquo; Level and Quality to get the new Digimon&rsquo;s Quality and Max level. Add their stage and stats to also get its starting stats.</li>
 <li><b>New Digimon</b>: check its Quality and Max level (filled in from step 1, or type them in yourself), then enter its starting stats.</li>
 <li><b>Result</b>: its stats at Max level, next to what Quality 0, Quality 100 and the original game would give.</li></ol></div>
 <div class="dsec dcs"><h4><span class="qn">1</span>Parents <small class="qopt">optional</small></h4>
-<div class="qxpar"><div class="qxpc"><b>Parent A</b><div class="qsr2"><div class="qsr"><label for="qxla">Level</label><input id="qxla" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 15"></div><div class="qsr"><label for="qxqa">Quality</label><input id="qxqa" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div></div>
+<div class="qxpar"><div class="qxpc"><b>Parent A</b><div class="qsr2"><div class="qsr"><label for="qxla">Level</label><input id="qxla" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 15"></div><div class="qsr"><label for="qxqa">Quality</label><input id="qxqa" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div><div class="qsr qxstg"><label for="qxsa">Stage</label><select id="qxsa"><option value="">Pick</option><option value="1">Champion</option><option value="2">Ultimate</option><option value="3">Mega</option></select></div>
+<div class="qxps"><span class="qsh">Stats <small>(optional, to work out the new Digimon&rsquo;s starting stats)</small></span><div class="qsr"><label for="qxpa0">HP</label><input id="qxpa0" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 296"></div><div class="qsr"><label for="qxpa1">MP</label><input id="qxpa1" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 295"></div><div class="qsr"><label for="qxpa2">Attack</label><input id="qxpa2" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 138"></div><div class="qsr"><label for="qxpa3">Defense</label><input id="qxpa3" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 125"></div><div class="qsr"><label for="qxpa4">Speed</label><input id="qxpa4" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 74"></div></div></div>
 <span class="qxplus">+</span>
-<div class="qxpc"><b>Parent B</b><div class="qsr2"><div class="qsr"><label for="qxlb">Level</label><input id="qxlb" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 13"></div><div class="qsr"><label for="qxqb">Quality</label><input id="qxqb" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div></div></div>
-<div id="qxp" class="qxp"></div></div>
+<div class="qxpc"><b>Parent B</b><div class="qsr2"><div class="qsr"><label for="qxlb">Level</label><input id="qxlb" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 13"></div><div class="qsr"><label for="qxqb">Quality</label><input id="qxqb" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"></div></div><div class="qsr qxstg"><label for="qxsb">Stage</label><select id="qxsb"><option value="">Pick</option><option value="1">Champion</option><option value="2">Ultimate</option><option value="3">Mega</option></select></div>
+<div class="qxps"><span class="qsh">Stats <small>(optional, to work out the new Digimon&rsquo;s starting stats)</small></span><div class="qsr"><label for="qxpb0">HP</label><input id="qxpb0" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 296"></div><div class="qsr"><label for="qxpb1">MP</label><input id="qxpb1" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 295"></div><div class="qsr"><label for="qxpb2">Attack</label><input id="qxpb2" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 138"></div><div class="qsr"><label for="qxpb3">Defense</label><input id="qxpb3" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 125"></div><div class="qsr"><label for="qxpb4">Speed</label><input id="qxpb4" type="number" min="0" max="999" inputmode="numeric" placeholder="e.g. 74"></div></div></div></div>
+<div id="qxp" class="qxp"></div><div id="qxps" class="qxp"></div></div>
 <div class="dsec dcs"><h4><span class="qn">2</span>New Digimon</h4>
 <div class="qsg"><div class="qsc">
  <div class="qsr3b"><div class="qsr"><label for="qxq">Quality</label><input id="qxq" type="number" min="0" max="100" inputmode="numeric" placeholder="0 to 100"><span class="qfrom" id="qxqf"></span></div>
@@ -2014,8 +2019,26 @@ dnRender();
   o.innerHTML=`<div class="qxres"><span class="qsm">New Digimon</span><span class="qsbig">Quality ${q}</span>${tag(q)}<span class="qsbig">Max level ${mx}</span></div>`+
    `<div class="bcl">${why} Max level = ${hi} + (${lo} &divide; 5 = ${Math.floor(lo/5)}) = ${mx}. Both values are filled in below.</div>`;
   return {q,mx}}
+ // DNA starting stats: which formula depends on the parents' stages (Champion 1, Ultimate 2, Mega 3); every result is rounded down
+ const SF={0:{n:'Rookie',hm:10,ah:40,al:30,sp:30,ok:1},1:{n:'Champion',hm:34,ah:50,al:30,sp:45},2:{n:'Ultimate',hm:45,ah:50,al:40,sp:50}};
+ let autoS=null;
+ function pstats(){const sa=num('qxsa',1,3),sb=num('qxsb',1,3),A=[0,1,2,3,4].map(i=>num('qxpa'+i,0,999)),B=[0,1,2,3,4].map(i=>num('qxpb'+i,0,999)),o=$('qxps');
+  const anyS=[...A,...B].some(v=>v!=null);if(!anyS&&sa==null&&sb==null){o.innerHTML='';return null}
+  if(sa==null||sb==null){o.innerHTML='<div class="bcl">Pick both parents&rsquo; stage to work out the starting stats.</div>';return null}
+  const rs=Math.min(sa,sb)===1?0:(sa===3&&sb===3)?2:1,F=SF[rs],nm=['HP','MP','Attack','Defense','Speed'];
+  if([...A,...B].some(v=>v==null)){o.innerHTML=`<div class="bcl">The new Digimon will be a <b>${F.n}</b>. Enter all five stats for both parents to work out its starting stats.</div>`;return {stage:rs}}
+  const fl=(n,d)=>Math.floor(n/d),dec=(n,d)=>{const v=n/d;return Number.isInteger(v)?String(v):(Math.floor(v*10)/10).toFixed(1)};
+  const R=[0,1,2,3,4].map(k=>{const a=A[k],b=B[k];if(k<2){const t=a+b;return {v:fl(F.hm*t,100),w:`${F.hm}% &times; (${a} + ${b}) = ${dec(F.hm*t,100)}`}}
+   if(k<4){const h=Math.max(a,b),l=Math.min(a,b),t=F.ah*h+F.al*l;return {v:fl(t,100),w:`${F.ah}% &times; ${h} + ${F.al}% &times; ${l} = ${dec(t,100)}`}}
+   const t=a+b;return {v:fl(F.sp*t,100),w:`${F.sp}% &times; (${a} + ${b}) = ${dec(F.sp*t,100)}`}});
+  o.innerHTML=`<div class="qxres"><span class="qsm">Starting stats</span><span class="qsbig">${F.n}</span><span class="qsm">at Level 1</span></div>`+
+   `<table class="qxst2"><thead><tr><th>Stat</th><th>Working</th><th style="text-align:right">Start</th></tr></thead><tbody>${R.map((r,k)=>`<tr><td>${nm[k]}</td><td class="w">${r.w}</td><td class="v">${r.v}</td></tr>`).join('')}</tbody></table>`+
+   `<div class="bcl">${rs===0?'A Champion with anything, or two of them, makes a Rookie.':rs===1?'Ultimate + Ultimate or Mega + Ultimate makes a Champion.':'Mega + Mega makes an Ultimate.'} Which slot each parent is in doesn&rsquo;t matter, and every result is rounded down. ${F.ok?'Checked in DW2 Online.':'This formula hasn&rsquo;t been checked in DW2 Online yet, so compare it with the game.'} Filled in below.</div>`;
+  return {stage:rs,st:R.map(r=>r.v)}}
  function render(){const P=parents();
   if(P){const qi=$('qxq'),li=$('qxl1');if(qi.value===''||+qi.value===auto.q)qi.value=P.q;if(li.value===''||+li.value===auto.l)li.value=P.mx;auto={q:P.q,l:P.mx}}
+  const PS=pstats();if(PS&&PS.st){const ids=['qx0','qx1','qx2','qx3','qx4'];ids.forEach((id,k)=>{const el=$(id);if(el.value===''||(autoS&&autoS.st&&+el.value===autoS.st[k]))el.value=PS.st[k]});
+   const l0=$('qxl0');if(l0.value===''||(autoS&&l0.value==='1'))l0.value='1';const r0=$('qxr0');if(!autoS||+r0.value===autoS.stage||r0.value==='0')r0.value=String(PS.stage);autoS=PS}
   $('qxqf').textContent=P&&+$('qxq').value===P.q?'from parents':'';$('qxlf').textContent=P&&+$('qxl1').value===P.mx?'from parents':'';
   const q=num('qxq',0,100),l0=num('qxl0',1,98),l1=num('qxl1',2,99),st=[0,1,2,3,4].map(k=>num('qx'+k,0,999)),o=$('qxo');let h='';
   if(q!=null){const w=[0,1,2,3].map(r=>(LO[r]*(100-q)+HI[r]*q)/100);
@@ -2491,10 +2514,19 @@ dnRender();
  out.addEventListener('click',e=>{const b=e.target.closest('.bdone');if(!b||!LAST)return;const {how,have,mvl,mlr,unk,P,qOf}=LAST,s=b.dataset.s,h=how[s],[k,d,m,,sk]=P(s);
   const take=x=>{const hv=have[x];if(!hv){const c=how[x]&&how[x].t=='catch';out.insertAdjacentHTML('afterbegin',`<div class="bcw">First add the ${DISP(P(x)[0])}${c?' you got':''} to your Digimon${c?' with &ldquo;I got it&rdquo;':''}.</div>`);return null}const r=hv.rows.find(r=>r.isConnected);if(!r){out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(x)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return null}return r};
   const mvOf=r=>r._mv||[];
-  if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input'));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el)lv.value=el;r._mv=[...new Set([...mvOf(r),...mvl(+sk)])]}
+  if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input',{bubbles:true}));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el){lv.value=el;lv.dispatchEvent(new Event('input',{bubbles:true}))}r._mv=[...new Set([...mvOf(r),...mvl(+sk)])];if(window.DWB&&r._bid&&DWB.get().some(x=>x.id===r._bid)){DWB.hush(1500);DWB.upd(r._bid,{n:DISP(k),lv:+lv.value||null,mv:r._mv.slice()})}const hf=have[h.from];if(hf)hf.rows=hf.rows.filter(x=>x!==r);if(have[s])have[s].rows.push(r);else have[s]={n:1,lv:+lv.value||0,ml:hf?hf.ml:null,rows:[r],q:hf?hf.q:null}}
   if(h.t=='dna'){const ra=take(h.a);if(!ra)return;ra.dataset.used=1;const rb=take(h.b)&&have[h.b].rows.find(r=>r.isConnected&&!r.dataset.used);delete ra.dataset.used;if(!rb){if(have[h.b])out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(h.b)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return}
-   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s);addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):''])}
-  store();solve();out.scrollIntoView({block:'start'})});
+   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,mv=[...new Set([...mvOf(ra),...mvOf(rb),...mvl(+sk)])];if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}ra.remove();rb.remove();const nq=qOf(s),nr=addRow([DISP(k),String(d),'',unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):'']);if(have[s])have[s].rows.push(nr);else have[s]={n:1,lv:0,ml:unk(s)?null:mlr(s),rows:[nr],q:nq}}
+  // keep following the same plan: tick this step off and move the button to the next one
+  const li=b.closest('li');{const m=li&&li.querySelector('.k')&&li.querySelector('.k').textContent.match(/×(\d+)/);const left=(li._left??(m?+m[1]:1))-1;if(li)li._left=left;
+   if(left>0){store();b.textContent=`Done, update my Digimon (${left} more to do)`;if(have[s]&&have[s].rows.length)have[s].rows[have[s].rows.length-1].classList.add('bused');if(window.__bcUsed)__bcUsed([...own.querySelectorAll('.bcrow.bused')]);return}}
+  DONE.add(s);store();if(li){li.classList.add('isdone');const ck=li.querySelector('.bdck');if(ck)ck.checked=true}b.remove();
+  let nx=li&&li.nextElementSibling;while(nx&&(nx.classList.contains('isdone')||!nx.querySelector('.bdck')))nx=nx.nextElementSibling;
+  if(nx){const st=nx.querySelector('.bstep');st.insertAdjacentHTML('beforeend',`<button class="qbtn bdone" type="button" data-s="${nx.querySelector('.bdck').dataset.s}">Done, update my Digimon</button>`)}
+  let fm=out.querySelector('.bfollow');if(!fm){out.querySelector('.bcsum').insertAdjacentHTML('afterend','<div class="bcl bfollow"></div>');fm=out.querySelector('.bfollow')}
+  const nd=out.querySelectorAll('li.isdone').length;fm.innerHTML=`<b>Following this plan:</b> ${nd} step${nd>1?'s':''} done, and your Digimon list is updated.${nx?' Keep going with the next step.':' That was the last step.'} Press <b>Find shortest route</b> any time to plan again from your updated list.`;
+  if(have[s])have[s].rows.forEach(x=>x.classList.add('bused'));if(window.__bcUsed)__bcUsed([...own.querySelectorAll('.bcrow.bused')]);
+  (nx||fm).scrollIntoView({block:'center',behavior:'smooth'})});
  out.addEventListener('click',e=>{const b=e.target.closest('.bcca');if(!b)return;const w=b.closest('.bcatch'),lv=w.querySelector('.bccl').value,ml=w.querySelector('.bccm').value;if(!ml){w.querySelector('.bccm').focus();w.querySelector('.bccm').placeholder='Enter it';return}addRow([w.dataset.n,'0',lv,ml,false,[],w.querySelector('.bccq').value]);store();solve();own.lastElementChild.scrollIntoView({block:'nearest'})});
 
  /* ---- tidy list: compact rows or cards, search, sort, stage groups, bulk actions, DigiBank link, route highlight ---- */

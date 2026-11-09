@@ -278,7 +278,8 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bkc .bka .qbtn{padding:2px 9px;font-size:12px}
 .bkc .bka label{display:inline-flex;gap:4px;align-items:center;color:var(--mut);margin-right:auto}
 .bke{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:4px}
-.bke label{font-size:11px;color:var(--mut);display:flex;flex-direction:column;gap:2px}.bke input{width:100%;box-sizing:border-box;padding:3px 6px}
+.bke label{font-size:11px;color:var(--mut);display:flex;flex-direction:column;gap:2px}
+.bkdv{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px;margin-top:4px}.bkdv label{flex:1 1 180px;min-width:0;font-size:11px;color:var(--mut);display:flex;flex-direction:column;gap:2px}.bkdv input{width:100%;box-sizing:border-box;padding:4px 6px;font-size:13px}.bkdvm{flex-basis:100%;color:#e0903a;font-size:12px}.bke input{width:100%;box-sizing:border-box;padding:3px 6px}
 .bkempty{color:var(--mut);font-size:13px;padding:6px 0}
 #bank input:not([type=checkbox]),#bank select{font:inherit;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);max-width:100%;box-sizing:border-box}
 #bank .bke input{padding:3px 6px}
@@ -803,7 +804,76 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="note"><p>The move lists use damaging moves from the Digimon Moves tab, strongest first. Fighting on a floor of the move&rsquo;s element adds another x1.2. If a Digimon isn&rsquo;t on any list, its specialty hasn&rsquo;t been confirmed yet.</p></div><p class="bcl qsrc">Sources: <a href="https://gopherproxy.meulie.net/tilde.pink/0/~bencollver/gamefaqs/text/ps/digimon-world-2/digimon-world-2-faqs-64683.txt" target="_blank" rel="noopener" data-nolink>MetalKid&rsquo;s Digimon World 2 FAQ</a> (GameFAQs), <a href="https://www.wikimon.net/Digimon_World_2" target="_blank" rel="noopener" data-nolink>Wikimon: Digimon World 2</a>, <a href="https://strategywiki.org/wiki/Digimon_World_2/Terms" target="_blank" rel="noopener" data-nolink>StrategyWiki: Digimon World 2 Terms</a>. The floor &times;0.8 rule and the DW2 Online changes come from DW2 Online players and the patch notes.</p></div>
 <div id="pn" hidden><div class="pnsw" role="tablist"><button type="button" data-p="N" class="on">Patch Notes</button><button type="button" data-p="T">Tips</button></div><div id="pnN"><div class="how"><b>Patch Notes</b><p>DW2 Online patch notes, newest first. Hotfixes are merged into the update they fixed, so nothing is listed twice.</p></div>
 <div class="pnl">
-<details class="pnv" open><summary><b>1.1.0</b><span class="pnd">Nov 6, 2026</span><span class="pnt">Android, matchup info</span></summary>
+<details class="pnv" open><summary><b>1.2.4</b><span class="pnt">Server, Digimon joining</span></summary>
+<h5 class="new">New</h5><ul>
+<li><b>Room for more players:</b> the player cap is raised from 420 to 600.</li>
+<li><b>Smoother full servers:</b> server network work now runs on several threads.</li></ul>
+<h5 class="fix">Changes and fixes</h5><ul>
+<li><b>Digimon joining:</b> High-DP Digimon (DP 10+) need a stronger gift to join and join less often. Champions and Ultimates that need DP also join a bit harder.</li>
+<li>Fixed a crash when typing in chat.</li>
+<li>Fixed a crash with soft HD rendering on some Windows PCs.</li>
+<li>Fixed PvP rematch sometimes never starting after both players pressed Rematch.</li>
+<li>Gamepad now works in the Tinker and Digivolver lists.</li>
+<li>Domain Connector list: hold D-pad or stick to scroll, right stick and L2 / R2 to page.</li>
+<li>Boons: Digimon you fed no longer stay stuck as held or locked in the Digivolver lists.</li>
+<li>Market: ROM Domain items no longer show as Abyss in the List window.</li></ul></details>
+
+<details class="pnv"><summary><b>1.2.1</b><span class="pnt">Digivolver, Domain Boons, Chat rooms</span></summary>
+<h5 class="new">New</h5><ul>
+<li><b>Digivolver window</b> with 3 tabs: Digivolve, DNA and Fuse. All Digimon are in one scrollable list instead of several pages.
+<ul><li>Name search, sorting and filters: Ready / All / Rookie / Champion / Ultimate / Mega.</li>
+<li><b>Digivolve</b> shows all available evolutions and the DP required for each.</li>
+<li><b>DNA</b> select a parent to see the result with every other Digimon. A confirmation window comes before DNA, and a result card shows the old and new stats.</li>
+<li>Digivolve and DNA animations are unchanged.</li></ul></li>
+<li><b>Shortcuts:</b> Q / E or L1 / R1 switch tabs, and 1 / 2 / 3 jump to a tab.</li>
+<li><b>Market:</b> Digimon listed on the Market appear as locked.</li>
+<li><b>Domain Boons</b> (Tinker &gt; Boons): feed spare Digimon to a domain to add a positive modifier.
+<ul><li>Boon slots = the number of negative mods on the domain (minimum 1, maximum 3).</li>
+<li>Cost: Lv 1&ndash;10 = 2 points, Lv 11&ndash;20 = 3, Lv 21&ndash;30 = 4, Lv 31+ = 5.</li>
+<li>Points: Rookie 1, Champion 2, Ultimate 4, Mega 8. Maximum 24 Digimon per feed; extra points are lost.</li>
+<li>Fill picks the cheapest Digimon. Each feed grants 1 random boon, and duplicate effects on the same domain are not possible.</li>
+<li>When all slots are full, you can pick a boon to reroll it. The new roll can be worse.</li>
+<li>Boons don&rsquo;t raise Threat or reduce pay. Tuning a domain keeps its boons. Boons aren&rsquo;t available on Glitched, Chaos Boss, Abyss, Miasma, Sanctum or Trinity domains.</li>
+<li>Domains with boons can&rsquo;t be sold on the Market. Party and Market Digimon can&rsquo;t be fed.</li>
+<li>Higher boon values unlock at domain levels 8, 18, 28 and 40.</li></ul></li>
+<li><b>Domain Merge</b> (Tinker &gt; Merge): merge 3 domains into 1 at no cost.
+<ul><li>Level: the highest input level +1 if all 3 are within 5 levels of each other, otherwise the highest input level. Max level: your best clear +1.</li>
+<li>Rare chance: 15% base, +10% per Rare input and +5% per Common input. The result is never Basic and takes its theme from one of the 3 inputs.</li>
+<li>Generates new random mods. Boons on the input domains are lost. Glitched, special, chain, free and Market-listed domains can&rsquo;t be merged.</li></ul></li>
+<li><b>Chat:</b> Global chat is replaced by 4 rooms: ENG, BR, ES and ID.
+<ul><li>/rooms, /join BR and /leave ES. Use /eng, /br, /es, /id or /1&ndash;/4 to send to a room.</li>
+<li>Custom chat tabs (up to 6) with unread counts. Press Tab or click a tab label to change where you send.</li>
+<li>Accented characters (&atilde;, &ccedil;, &eacute;, &ntilde;) are supported.</li>
+<li>Speech bubbles are Local chat only. /ignore Name and /unignore Name, with an Ignored tab in the F window.</li>
+<li>10-second slowmode per room.</li></ul></li>
+<li><b>Other:</b> an Ironman Removal NPC in the Tamer&rsquo;s Club (free, cannot be undone). The Events window has Active and Ended tabs. World Boss end warnings at 60, 30 and 5 minutes. Race podium messages are orange. Palmon is back dancing in the Tamer&rsquo;s Club.</li>
+<li><b>Chaos DNA:</b> Chaos-fused lines and their DNA children carry the Chaos DNA icon. Re-fusing costs less and gives no extra stats.</li></ul>
+<h5 class="fix">Balance</h5><ul>
+<li><b>Trinity:</b> charges every 3 rounds. Member attack &times;1.40 and member HP +15%. KO&rsquo;d members skip their charge.</li>
+<li>Maximum 1 fragment per Domain Boss victory.</li>
+<li>Attack buffs now always last at least 1 action.</li>
+<li><b>Twin Roll:</b> recruit quality is rolled twice and the better result counts.</li></ul>
+<h5 class="fix">Fixes</h5><ul>
+<li>Fixed DNA desync after relogging.</li>
+<li>Fixed loot being lost when leaving a domain through Esc &gt; Leave Domain.</li>
+<li>Fewer disconnects after lag spikes.</li>
+<li>Android: switching apps mid-run no longer loses the run. Drag and pinch controls on the Mastery board, a PvP target touch pad, fixed chat typing, shop keyboard support, L / R switches between Chat and Map, and item links open by tapping.</li>
+<li>Beetle station keeps the parts list after equipping.</li>
+<li>Mastery points label shows the correct maximum.</li>
+<li>Battle target shows the item name. Fixed Baihumon and Diaboromon skill names.</li>
+<li>Mission chests correctly show &ldquo;No loot in missions&rdquo;.</li>
+<li>Gamepad support for Commissions (Assign) and Tinker.</li>
+<li>Steam Deck: pressing A no longer opens chat.</li></ul>
+<details class="fam"><summary><b>Boon mods</b></summary>
+<p><b>Common (~10% each)</b></p><ul>
+<li>Free step chance: +3&ndash;5% up to +14&ndash;16%</li><li>EXP: +5&ndash;7% up to +15&ndash;18%</li><li>Bits: +10&ndash;14% up to +30&ndash;35%</li><li>Loot find: +2&ndash;3% up to +10&ndash;12%</li><li>Rare find: +2&ndash;3% up to +10&ndash;12%</li><li>Material find: +2&ndash;3% up to +10&ndash;12%</li></ul>
+<p><b>Uncommon (~5% each)</b></p><ul>
+<li>Chests per floor: +1 up to +3</li><li>Floor damage: -5&ndash;9% up to -25&ndash;30%</li><li>Enemy HP: -3&ndash;5% up to -15&ndash;18% (bosses included)</li><li>Enemy attack: -3&ndash;5% up to -15&ndash;18% (bosses included)</li><li>Boss HP: -4&ndash;6% up to -20&ndash;24%</li><li>Gift join chance: +2% up to +6%</li></ul>
+<p><b>Rare (~1% each)</b></p><ul>
+<li>Red / teal / black chest odds: +20&ndash;24% up to +45&ndash;50%</li><li>Fewer floors: -1</li><li>Stat chip find: +3&ndash;5% up to +15&ndash;18%</li><li>Toy find: +3&ndash;5% up to +15&ndash;18%</li><li>More materials: +3&ndash;5% up to +15&ndash;18%</li><li>Domain level-up chance: +3&ndash;6% up to +25&ndash;30%</li></ul>
+<p><b>Very Rare (~0.1%, Domain Lv 21+)</b></p><ul><li>Fewer floors: -2</li></ul></details></details>
+
+<details class="pnv"><summary><b>1.1.0</b><span class="pnd">Nov 6, 2026</span><span class="pnt">Android, matchup info</span></summary>
 <h5 class="new">New</h5><ul>
 <li><b>Android version</b> with touch controls (on-screen pad, finger as mouse, drag and scroll), the phone keyboard for chat, and its own auto updater.</li>
 <li><b>Chat Digimon links:</b> Alt + click a Digimon in the Digimon window (U) to post it in chat. Others can hover the green link to see it and its model.</li>
@@ -2228,9 +2298,11 @@ dnRender();
    <div class="bkst"><span class="${isMax(x)?'mx':''}">Lv ${x.lv??'?'}${isMax(x)?' ✓':''}</span><span class="${isMax(x)?'mx':''}">Max ${x.ml??'?'}</span>${fo?`<span class="foil">${qBars(x.q)}Q ${x.q}</span>`:`<span>${x.q!=null?qBars(x.q):''}Q ${x.q??'?'}</span>`}<span>DP ${x.dp}</span></div>`+
    (!ed&&(x.mv||[]).length?`<div class="bkmvs">${x.mv.map(m=>`<span>${esc(m)}</span>`).join('')}</div>`:'')+
    (ed?`<div class="bkmve">${(x.mv||[]).map((m,i)=>`<span class="bchip">${esc(m)}<button type="button" data-mi="${i}" aria-label="Remove ${esc(m)}">&times;</button></span>`).join('')}<input class="bkmvi" placeholder="Add a move it knows" autocomplete="off" aria-label="Add a move it knows"></div>`:'')+
+   (ed?`<div class="bkdv"><label>Digivolve into<input class="bkdvi" placeholder="Next stage" autocomplete="off" aria-label="Digivolve into"></label><button class="qbtn" type="button" data-a="dv">Digivolve</button><small class="bkdvm" aria-live="polite"></small></div>`:'')+
    (ed?`<div class="bke"><label>Level<input data-f="lv" type="number" min="1" max="99" value="${x.lv??''}"></label><label>Max level<input data-f="ml" type="number" min="1" max="99" value="${x.ml??''}"></label><label>Quality<input data-f="q" type="number" min="0" max="100" value="${x.q??''}"></label><label>DP<input data-f="dp" type="number" min="0" max="99" value="${x.dp}"></label><label class="bkfrl"><input type="checkbox" data-a="fr"${x.fr?' checked':''}> Fresh</label>${x.mlu||x.dpu?'<button class="qbtn" type="button" data-a="ok" title="The values shown are right">Details are right</button>':''}</div>`:'')+
    `<div class="bka"><label><input type="checkbox" data-a="use"${x.use===false?'':' checked'}> Use in chain</label><button class="qbtn" type="button" data-a="ed">${ed?'Done':'Edit'}</button><button class="qbtn" type="button" data-a="rm">Remove</button></div></div>`}
  let editing=null;
+ const evoOpts=n=>{const ALLD=[...RK,...CH,...UL,...ME,...STL];return (window.__levelUpOf?window.__levelUpOf(n):[]).map(k=>ALLD.find(d=>KEY(d.n)===k)).filter(Boolean).filter((d,i,a)=>a.findIndex(z=>KEY(z.n)===KEY(d.n))===i).map(d=>({n:d.n,t:dty(d.n),l:stg(d.n)||''}))};
  function render(){const g=$('bkg'),q=$('bks').value.trim().toLowerCase(),o=$('bko').value;let L=get().slice();
   $('bkcnt').textContent=L.length?`(${L.length})`:'';renderF();renderS();renderT();renderH();
   if(q)L=L.filter(x=>x.n.toLowerCase().includes(q)||(x.mv||[]).some(m=>m.toLowerCase().includes(q)));
@@ -2243,10 +2315,12 @@ dnRender();
   if(UI.v=='s'){const G={};L.forEach(x=>{const s=sti(x.n);(G[s]=G[s]||[]).push(x)});
    g.innerHTML=Object.keys(G).map(Number).sort((a,b)=>(b==9?-1:b)-(a==9?-1:a)).map(s=>`<h5 class="bkgh">${s==9?'Other':STN[s]}<span>${G[s].length}</span></h5><div class="bkg">${G[s].map(x=>card(x,editing===x.id)).join('')}</div>`).join('')}
   else g.innerHTML=`<div class="bkg">${L.map(x=>card(x,editing===x.id)).join('')}</div>`;
+  const di=g.querySelector('.bkdvi');if(di){const dO=get().find(z=>z.id===di.closest('.bkc').dataset.id);const opts=dO?evoOpts(dO.n):[];di.placeholder=opts.length?'Pick one of '+opts.length:'No level-up digivolution';di.disabled=!opts.length;di.closest('.bkdv').querySelector('[data-a="dv"]').disabled=!opts.length;ac(di,opts);di.addEventListener('keydown',e=>{if(e.key=='Enter'){e.preventDefault();g.querySelector('[data-a="dv"]').click()}})}
   const ei=g.querySelector('.bkmvi');if(ei){ac(ei,MVL);const id=ei.closest('.bkc').dataset.id,go=()=>{const m=mvOK(ei.value);if(!m)return;const o=get().find(z=>z.id===id);if(o&&!(o.mv||[]).includes(m)){upd(id,{mv:[...(o.mv||[]),m]})}render();const n=$('bkg').querySelector('.bkmvi');if(n)n.focus()};ei.addEventListener('acpick',go);ei.addEventListener('keydown',e=>{if(e.key=='Enter')go()})}}
  $('bkg').addEventListener('click',e=>{const mb=e.target.closest('button[data-mi]');if(mb){const id=mb.closest('.bkc').dataset.id,o=get().find(z=>z.id===id);if(o){const mv=(o.mv||[]).slice();mv.splice(+mb.dataset.mi,1);upd(id,{mv})}return}const b=e.target.closest('button[data-a]');if(!b)return;const id=b.closest('.bkc').dataset.id;
   if(b.dataset.a=='fav'){const o=get().find(z=>z.id===id);if(o)upd(id,{fav:!o.fav})}if(b.dataset.a=='ok'){upd(id,{ok:1});render()}
   if(b.dataset.a=='ed'){editing=editing===id?null:id;render()}
+  if(b.dataset.a=='dv'){const card=b.closest('.bkc'),inp=card.querySelector('.bkdvi'),msg=card.querySelector('.bkdvm'),o=get().find(x=>x.id===id),opts=o?evoOpts(o.n):[],typed=inp.value.trim(),pick=opts.find(d=>d.n.toLowerCase()===typed.toLowerCase());if(!pick){msg.textContent=!typed?'Pick the Digimon it digivolves into.':opts.length?typed+' is not a level-up digivolution of '+o.n+'. Pick one from the list.':o.n+' has no level-up digivolution.';inp.focus();return}const n=pick.n;upd(id,{n});editing=id;render();if(window.toast)toast('Digivolved to '+n+'. Lv and Max level are kept, so check them.')}
   if(b.dataset.a=='rm'){if(b.dataset.sure){if(editing===id)editing=null;del(id,{undo:1})}else{b.dataset.sure=1;b.textContent='Tap again to remove'}}});
  $('bkg').addEventListener('change',e=>{const c=e.target;const id=c.closest('.bkc')&&c.closest('.bkc').dataset.id;if(!id)return;if(c.dataset.a=='use')upd(id,{use:c.checked});else if(c.dataset.a=='fr'){upd(id,{fr:c.checked});render()}else if(c.dataset.f){upd(id,{[c.dataset.f]:c.value});if((c.dataset.f=='ml'||c.dataset.f=='dp')&&document.querySelector('#bkg .bkc[data-id="'+id+'"] .nd'))render()}});
  $('bkfb').onclick=()=>{$('bkfp').hidden=!$('bkfp').hidden;renderF()};$('bks').addEventListener('input',render);$('bkdp').addEventListener('input',()=>{const v=String($('bkdp').value).trim(),x=parseInt(v);UI.dp=v===''||isNaN(x)?null:Math.max(0,x);saveUI();render()});$('bko').addEventListener('change',render);
@@ -2303,6 +2377,7 @@ dnRender();
  const pr=x=>{if(x.endsWith('+'))return[+x.slice(0,-1),1e9];const a=x.split('-');return[+a[0],+(a[1]??a[0])]};
  const DEK={};let CAP=1;
  Object.keys(DE).forEach(p=>{DEK[KEY(p)]=DE[p].map(c=>{const r=pr(c[1]);CAP=Math.max(CAP,r[1]<1e9?r[1]+1:r[0]);return{k:KEY(c[0]),lo:r[0],hi:r[1],dp:c[1]}})});
+ window.__levelUpOf=n=>(DEK[KEY(n)]||[]).map(e=>e.k);
  const dnaK=Object.keys(ALLK),RT={},red=d=>down(d,[]);
  dnaK.forEach(a=>{RT[a]={};dnaK.forEach(b=>{let x=ALLK[a],y=ALLK[b];while(x&&y&&x.lv>y.lv)x=red(x);while(x&&y&&y.lv>x.lv)y=red(y);if(!x||!y)return;
   const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2),nm=LV[x.lv].res[code];if(!nm)return;const r=KEY(nm);if(ST[r]==null)return;RT[a][b]=r})});

@@ -501,7 +501,7 @@ i.sg{width:12px!important;height:10px!important;border:0!important;background:va
 .bkl{font-size:12px;color:var(--mut)}.bkl small{font-size:11px}
 .bkm .bmvs{margin:0}
 .bkm .acw{flex:1 1 200px;min-width:0;display:block}
-.bkm .bsend{padding:2px 10px;font-size:12px;white-space:nowrap}.bkm .bsend.ok{color:#2fae5e;border-color:#2fae5e}
+.bsend{padding:2px 10px;font-size:12px;white-space:nowrap}.bsend.ok{color:#2fae5e;border-color:#2fae5e}
 /* DNA Chain list */
 #bc .bcubl{align-items:flex-start;margin:4px 0 8px}
 #bc .bctb,#bc .bcbulk{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:6px 0}
@@ -511,7 +511,7 @@ i.sg{width:12px!important;height:10px!important;border:0!important;background:va
 #bc .bcbulk{font-size:13px}#bc .bcbulk .qbtn{padding:3px 10px;font-size:12.5px}#bc .bcbulk .sep{flex:1}
 #bc .bcbulk .qbtn:disabled{opacity:.45;cursor:default}
 #bc .bcbox{max-height:min(62vh,560px);overflow:auto;border:1px solid var(--bd);border-radius:10px;background:var(--bg)}
-#bc .bch,#bc .bcrow{display:grid;grid-template-columns:20px minmax(130px,1fr) 54px 54px 62px 92px 162px 76px 46px;gap:6px;align-items:center}
+#bc .bch,#bc .bcrow{display:grid;grid-template-columns:20px minmax(130px,1fr) 54px 54px 62px 92px 162px 76px 84px 46px;gap:6px;align-items:center}
 #bc .bcrow>.bpic{display:none}
 #bc .bch{position:sticky;top:0;z-index:3;background:var(--card);margin:0;padding:6px 10px;border-bottom:1px solid var(--bd);font-size:11.5px}
 #bcown{display:flex;flex-direction:column}
@@ -682,7 +682,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <label class="bck bcubl"><input type="checkbox" id="bcub"> <span><b>Use my DigiBank</b>: include every Digimon ticked &ldquo;Use in chain&rdquo; there, kept up to date automatically. <span id="bcubn" class="bcl"></span></span></label>
 <div class="bctb"><input id="bcq" type="search" placeholder="Search your Digimon" autocomplete="off" aria-label="Search your Digimon"><label for="bcso" class="bcl">Sort</label><select id="bcso"><option value="add">Order added</option><option value="name">Name</option><option value="stage">Stage</option><option value="dp">DP</option><option value="ml">Max level</option><option value="q">Quality</option></select><label class="bctg"><input type="checkbox" id="bcgs"> By stage</label><span class="bkvw" role="group" aria-label="View"><button class="qbtn on" type="button" data-cv="l">List</button><button class="qbtn" type="button" data-cv="c">Cards</button></span><label class="bctg" id="bcuol" hidden><input type="checkbox" id="bcuo"> Only ones the route uses</label></div>
 <div class="bcbulk"><label class="bctg"><input type="checkbox" id="bcsa"> Select all</label><span id="bcsn" class="bcl"></span><button class="qbtn" id="bcbmu" type="button" disabled>Must use</button><button class="qbtn" id="bcbnu" type="button" disabled>Don&rsquo;t use</button><button class="qbtn" id="bcbrm" type="button" disabled>Remove</button><span class="sep"></span><button class="qbtn" id="bcdup" type="button">Remove duplicates</button><button class="qbtn" id="bcclr" type="button">Clear all</button></div>
-<div class="bcbox" id="bcbox"><div class="bch" aria-hidden="true"><span></span><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Use in search</span><span></span><span></span></div>
+<div class="bcbox" id="bcbox"><div class="bch" aria-hidden="true"><span></span><span>Digimon</span><span>DP</span><span>Level</span><span>Max level</span><span>Quality</span><span>Use in search</span><span></span><span></span><span></span></div>
 <div id="bcown"></div><p class="bcl bcnone" id="bcnone" hidden>No Digimon match.</p></div><div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"><button class="qbtn" id="bcadd" type="button">+ Add a Digimon</button><button class="qbtn" id="bcab" type="button" aria-expanded="false" aria-controls="bcabp">Add from bank</button><button class="qbtn" id="bcmk" type="button">What can I make right now?</button><button class="qbtn" id="bcfill" type="button">Fill from DigiBank</button></div><div id="bcabp" class="bcabp" hidden></div><div class="bcsy"><span id="bcfm" class="bcl"></span></div></div>
 <div class="dsec dcs" id="bcres"><div class="bcvw" id="bcvw" hidden><span>Show as</span><button class="qbtn on" type="button" data-v="l">Steps</button><button class="qbtn" type="button" data-v="d">Diagram</button></div>
 <div id="bcout"></div></div>
@@ -2337,8 +2337,8 @@ dnRender();
    `<div class="bf"><label for="bcm${id}">Max level</label><input class="bml" id="bcm${id}" type="number" min="1" max="99" step="1" inputmode="numeric" placeholder="opt." aria-label="Max level"></div>`+
    `<div class="bf bfq"><label for="bcq${id}">Quality</label><span class="bqw"><span class="bqb"></span><input class="bqy" id="bcq${id}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="opt." aria-label="Quality"></span></div>`+
    `<div class="bmuw"><label class="bpin" title="Must use in chain: the route has to include this Digimon"><input class="bmu" id="bcu${id}" type="checkbox" aria-label="Must use in chain"><span>Must use</span></label><label class="bpin bskp" title="Don&rsquo;t use: leave this Digimon out of the search for now"><input class="bnu" id="bcx${id}" type="checkbox" aria-label="Don&rsquo;t use in chain"><span>Don&rsquo;t use</span></label></div>`+
-   `<button class="qbtn bmvt" type="button" aria-expanded="false" title="Moves it knows, and Send to bank">Moves</button><button class="qbtn brm" type="button" aria-label="Remove" title="Remove">&times;</button>`+
-   `<div class="bkm" hidden><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"><button class="qbtn bsend" type="button" title="Save this Digimon to your DigiBank">Send to bank</button></div>`+
+   `<button class="qbtn bmvt" type="button" aria-expanded="false" title="Moves it knows">Moves</button><button class="qbtn bsend" type="button" title="Save this Digimon to your DigiBank">Send to bank</button><button class="qbtn brm" type="button" aria-label="Remove" title="Remove">&times;</button>`+
+   `<div class="bkm" hidden><span class="bkl">Moves it knows <small>(optional)</small></span><span class="bmvs bkc"></span><input class="bkq" id="bck${id}" placeholder="Add a move it already knows" autocomplete="off" aria-label="Add a move it already knows"></div>`+
    `<button class="qbtn bcok" type="button">Done</button>`;
   own.appendChild(r);r._mv=Array.isArray(v[5])?v[5].filter(m=>MVI[m]):[];r._bid=v[7]||null;
   const kc=r.querySelector('.bkc'),kq=r.querySelector('.bkq'),kren=()=>{kc.innerHTML=r._mv.map((mv,i)=>`<span class="bchip">${mv}<button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`).join('');store()};

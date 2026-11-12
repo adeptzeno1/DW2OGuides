@@ -641,7 +641,6 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 </div>
 <div id="bank" hidden><div class="how"><b>DigiBank</b><p>Keep track of the Digimon you have. Your bank is saved in this browser.</p><ul>
 <li><b>Add:</b> pick a Digimon and fill in what you know, including moves it knows. Only the name is needed.</li>
-<li><b>Import:</b> read your party and storage straight from screenshots of the in-game Digimon window. Digimon you already have are updated instead of added twice.</li>
 <li><b>DNA Chain:</b> press <b>Fill from DigiBank</b> there to use your bank. Press <b>Send to bank</b> on a Digimon there to save it here.</li>
 <li><b>Favourite:</b> tap the star on a card. Favourites show first.</li>
 <li><b>Fresh:</b> tick it for a Digimon that has never been in a battle. Only Fresh Digimon can be sold on the Digimon Marketplace.</li>
@@ -656,10 +655,6 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="bkfrc"><label for="bkfr">Fresh</label><input id="bkfr" type="checkbox" title="Never been in a battle"></div>
 <button class="qbtn bkadd" id="bkadd" type="button">Add to bank</button>
 <div class="bkmv"><label for="bkmvq">Moves it knows <small>(optional)</small></label><span id="bkmvc" class="bmvs"></span><input id="bkmvq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div></div><div id="bkmsg" class="bcl" style="margin-top:6px"></div></div>
-<div class="dsec dcs"><details id="bkimd"><summary><b>Import from game screenshots</b> <span class="bcl">party, storage pages and Status</span></summary>
-<p class="bcl" style="margin:8px 0 4px">Open the Digimon window in game and take a screenshot of each storage page. Click a Digimon first to also read its Max level and DP from the Status panel. Add several screenshots at once if you like. Nothing goes into your bank until you check the list and press Add.</p>
-<div id="bkdz" class="bkdz">Drop screenshots here, paste one with Ctrl+V, or <button class="qbtn" id="bkimf" type="button">Choose screenshots</button><input type="file" id="bkimi" accept="image/*" multiple hidden></div>
-<div id="bkimr"></div></details></div>
 <div class="dsec dcs"><div class="bkh"><h4 style="margin:0">Your Digimon <span id="bkcnt" class="bcl"></span></h4>
 <div class="bkt"><input id="bks" type="search" placeholder="Name or move" aria-label="Search your bank" autocomplete="off"><button class="qbtn" id="bkfb" type="button" aria-expanded="false" aria-controls="bkfp">Filters</button><label for="bko" class="bcl">Sort</label><select id="bko"><option value="new">Newest</option><option value="name">Name</option><option value="stage">Stage</option><option value="lv">Level</option><option value="q">Quality</option><option value="dp">DP</option></select><span class="bkvw" role="group" aria-label="View"><button class="qbtn on" type="button" data-bv="g">Cards</button><button class="qbtn" type="button" data-bv="s">By stage</button></span></div></div>
 <div id="bkfp" class="bkfp" hidden><div id="bkfl" class="bkfl"></div><div class="bkfdp"><label for="bkdp">DP</label><input id="bkdp" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="Any" aria-label="Show only this DP"></div></div><div id="bksum" class="bksum"></div>
@@ -2925,190 +2920,6 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
 
 })();
 
-
-/* DW2 Online screenshot reader: finds the game's pixel-font text and reads it with glyph templates */
-window.DWOCR=(()=>{
-const INK=135;
-function segment(img){const {width:W,height:H,data:D}=img,N=W*H,M=new Uint8Array(N),C=new Uint8Array(N);
- for(let i=0,p=0;i<N;i++,p+=4){const r=D[p],g=D[p+1],b=D[p+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b);if(mx>=INK){M[i]=1;C[i]=(mx-mn>=60)?1:0}}
- // connected components (8-way)
- const L=new Int32Array(N).fill(-1),comps=[],st=new Int32Array(N);
- for(let i=0;i<N;i++){if(!M[i]||L[i]>=0)continue;let sp=0;st[sp++]=i;L[i]=comps.length;let x0=W,y0=H,x1=0,y1=0,n=0,col=0;
-  while(sp){const j=st[--sp],x=j%W,y=(j/W)|0;n++;col+=C[j];if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
-   for(let dy=-1;dy<=1;dy++){const yy=y+dy;if(yy<0||yy>=H)continue;for(let dx=-1;dx<=1;dx++){const xx=x+dx;if(xx<0||xx>=W)continue;const k=yy*W+xx;if(M[k]&&L[k]<0){L[k]=comps.length;st[sp++]=k}}}}
-  comps.push({x0,y0,x1,y1,n,col:col/n,id:comps.length})}
- return {W,H,M,C,L,comps}}
-function scaleOf(S){const {W,M,comps}=S,runs=[];
- for(const c of comps){const h=c.y1-c.y0+1,w=c.x1-c.x0+1;if(h<5||h>90||w>120||c.n<6)continue;
-  for(let y=c.y0;y<=c.y1;y++){let r=0,v=M[y*W+c.x0];for(let x=c.x0;x<=c.x1+1;x++){const m=x<=c.x1?M[y*W+x]:2;if(m===v)r++;else{runs.push(r);r=1;v=m}}}
-  for(let x=c.x0;x<=c.x1;x++){let r=0,v=M[c.y0*W+x];for(let y=c.y0;y<=c.y1+1;y++){const m=y<=c.y1?M[y*W+x]:2;if(m===v)r++;else{runs.push(r);r=1;v=m}}}}
- if(!runs.length)return 0;const h={};runs.forEach(r=>h[r]=(h[r]||0)+1);const tot=runs.length;
- let mn=Infinity;for(const k in h)if(h[k]>=tot*0.04&&+k<mn)mn=+k;
- const sel=runs.filter(r=>r>=mn&&r<mn*1.6);return sel.reduce((a,b)=>a+b,0)/sel.length}
-function glyphs(S,s){const {W,M,comps}=S;
- let cs=comps.filter(c=>{const h=c.y1-c.y0+1,w=c.x1-c.x0+1;return w<=9.5*s&&h<=16*s&&c.n>=s*s*0.8});
- // merge pieces stacked closely in the same column (i, j, :, ;)
- cs.sort((a,b)=>a.x0-b.x0||a.y0-b.y0);const used=new Set(),G=[];
- for(const a of cs){if(used.has(a))continue;const g={x0:a.x0,y0:a.y0,x1:a.x1,y1:a.y1,n:a.n,col:a.col*a.n,parts:[a]};used.add(a);
-  let grow=true;while(grow){grow=false;for(const b of cs){if(used.has(b))continue;if(b.x0>g.x1+0.5*s)break;const ox=Math.min(g.x1,b.x1)-Math.max(g.x0,b.x0);
-   const gap=Math.max(b.y0-g.y1,g.y0-b.y1);if(ox>=0&&gap<=3.2*s&&gap>0){g.x0=Math.min(g.x0,b.x0);g.x1=Math.max(g.x1,b.x1);g.y0=Math.min(g.y0,b.y0);g.y1=Math.max(g.y1,b.y1);g.n+=b.n;g.col+=b.col*b.n;g.parts.push(b);used.add(b);grow=true}}}
-  g.col/=g.n;if(g.y1-g.y0+1<=16*s)G.push(g)}
- // runs: chain each glyph to the run just left of it that sits at the same height
- G.sort((a,b)=>a.x0-b.x0||a.y0-b.y0);const out=[];
- for(const g of G){const h=g.y1-g.y0+1,big=h>=6*s;let best=null;
-  for(const r of out){if(r.x1<g.x0-7.5*s||r.x1>g.x0+s)continue;const ov=Math.min(r.b1,g.y1)-Math.max(r.b0,g.y0)+1;if(ov>=Math.min(h,r.b1-r.b0+1)*0.5&&(!best||ov>best.ov))best={r,ov}}
-  if(best){const r=best.r;r.g.push(g);r.x1=Math.max(r.x1,g.x1);if(!r.big&&big){r.b0=g.y0;r.b1=g.y1;r.big=true}}
-  else out.push({g:[g],x0:g.x0,x1:g.x1,b0:g.y0,b1:g.y1,big})}
- for(const r of out){const bt={};r.g.forEach(g=>bt[g.y1]=(bt[g.y1]||0)+1);
-  // baseline: the most common bottom (rounded to font pixels)
-  let base=null,bc=-1;for(const k in bt){let c=0;for(const j in bt)if(Math.abs(j-k)<=s*0.6)c+=bt[j];if(c>bc||(c==bc&&+k<base)){bc=c;base=+k}}r.base=base;
-  r.y0=Math.min(...r.g.map(g=>g.y0));r.y1=Math.max(...r.g.map(g=>g.y1));
-  for(const g of r.g){const fw=Math.max(1,Math.round((g.x1-g.x0+1)/s)),fh=Math.max(1,Math.round((g.y1-g.y0+1)/s)),cw=(g.x1-g.x0+1)/fw,ch=(g.y1-g.y0+1)/fh;let bits='';
-   for(let y=0;y<fh;y++)for(let x=0;x<fw;x++){// share of ink in the middle of each font pixel
-    const ax=g.x0+x*cw+cw*0.2,bx=g.x0+(x+1)*cw-cw*0.2,ay=g.y0+y*ch+ch*0.2,by=g.y0+(y+1)*ch-ch*0.2;let n=0,k=0;
-    for(let py=Math.floor(ay);py<=Math.min(g.y1,Math.ceil(by)-1);py++)for(let px=Math.floor(ax);px<=Math.min(g.x1,Math.ceil(bx)-1);px++){k++;n+=M[py*W+px]}
-    if(!k){const px=Math.min(g.x1,Math.floor(g.x0+(x+0.5)*cw)),py=Math.min(g.y1,Math.floor(g.y0+(y+0.5)*ch));k=1;n=M[py*W+px]}
-    bits+=n*2>=k?'1':'0'}
-   g.fw=fw;g.fh=fh;g.dy=Math.round((g.y1-base)/s);g.bits=bits;g.key=fw+'x'+fh+':'+g.dy+':'+bits;
-   g.bar=g.col>0.5&&bits.indexOf('0')<0&&fw<=2}}
- return out}
-return {segment,scaleOf,glyphs}})();
-
-window.DWOCR.TPL={"6x11:0:011111111111110000110000110000110000110000110000110000111111011111":"C","6x8:0:111110111111000011011111111111110011111111011111":"a","6x8:0:110111111111111000110000110000110000110000110000":"r","2x11:0:1111001111111111111111":"i","6x8:0:011110111111110011111111111111110000111111011111":"e","6x11:0:000011000011000011011111111111110011110011110011110011111111011111":"d","6x11:0:011110111111110011000011001110001111000011000011110011111111011110":"3","6x11:0:111110111111110011110011110011111111111110110000110000110000110000":"P","6x11:0:011000011000011000111111111111011000011000011000011000011111001111":"t","6x11:3:110011110011110011110011110011110011111111011111000011111111111110":"y","6x11:0:011111111111110000110000110111110111110011110011110011111111011110":"G","6x8:0:011110111111110011110011110011110011111111011110":"o","6x11:0:110000110000110000111110111111110011110011110011110011111111111110":"b","6x8:0:110011110011110011110011110011110011111111011110":"u","8x8:0:1111111011111111110110111101101111011011110110111101101111011011":"m","6x8:0:111110111111110011110011110011110011110011110011":"n","6x8:0:111111111111000111001110011100111000111111111111":"z","6x11:0:111110111111110011110011110011110011110011110011110011111111111110":"D","6x11:0:110000110000110000111110111111110011111111111110110111110011110011":"k","6x11:0:110011110011110011110111111110111100111110110111110011110011110011":"K","6x11:0:110000110000110000110000110000110000110000110000110000111111011111":"L","6x8:0:110011110011110011110011110011111111011110001100":"v","2x2:0:1111":".","6x11:0:011110111111110011110011110011111111011111000011110011111111011110":"9","8x11:0:1111111011111111110110111101101111011011110110111101101111011011110110111100001111000011":"M","2x11:0:1111111111111111111111":"l","6x11:0:011110111111110011000011000011000111001110011100111000111111111111":"2","6x11:0:111111111111110000110000111110111111000011000011000011111111111110":"5","6x11:0:011111111111110000110000111110011111000011000011000011111111111110":"S","6x11:3:011110111111110011110011110011110011111111011111000011111111111110":"g","6x11:0:011110111111110011110011110011110011110011110011110011111111011110":"0","6x11:0:000011000011000111000110001110001100011100011000111000110000110000":"/","6x11:0:001100111100111100001100001100001100001100001100001100111111111111":"1","6x11:0:011110111111110011110000111110111111110011110011110011111111011110":"6","6x11:0:111111111111000011000011000111000110001110001100001100001100001100":"7","6x11:0:011110111111110011110011011110111111110011110011110011111111011110":"8","6x11:0:110011110011110011110011110011110011110011110011111111011110001100":"V","6x8:0:011111111111110000111110011111000011111111111110":"s","6x11:0:011110111111110011110011110011111111111111110011110011110011110011":"A","6x8:0:011111111111110000110000110000110000111111011111":"c","6x11:0:111110111111110011110011110011110011110011110011110011110011110011":"N","6x11:0:111110111111110011110011111111111110110111110011110011110011110011":"R","6x11:0:110000110000110000111110111111110011110011110011110011110011110011":"h","6x11:3:011110111111110011110011110011110011111111111110110000110000110000":"p","6x11:0:111111111111001100001100001100001100001100001100001100111111111111":"I","6x11:0:110011110011110011110011111111111111110011110011110011110011110011":"H","6x11:0:001111011111011000111110111110011000011000011000011000011000011000":"f","6x11:0:011111111111110000110000111110111110110000110000110000111111011111":"E","7x11:0:11000111100011110001111101110111110001110001111101110111110001111000111100011":"X","7x8:0:11000111110111011111000111000011100011111011101111100011":"x","8x8:0:1100001111011011110110111101101111011011110110111111111101111110":"w","6x11:0:110011110011110011110011110011111111011111000011000011000011000011":"4","6x11:0:111110111111110011110011111111111110110011110011110011111111111110":"B","4x14:3:00110011000000110011001100110011001100110011001111111110":"j","6x11:0:110011110011110011110011110011110011110011110011110011111111011110":"U","6x11:0:111111111111001100001100001100001100001100001100001100001100001100":"T","6x2:-4:111111111111":"-"};
-
-/* reading: glyphs -> text runs -> Digimon entries */
-(()=>{const O=window.DWOCR;let LEARN={};try{LEARN=JSON.parse(localStorage.getItem('dw2-ocrfont')||'{}')}catch(e){}
-const TPL=()=>Object.assign({},O.TPL,LEARN);
-let IDX=null;const idx=()=>{if(IDX)return IDX;IDX=Object.entries(TPL()).map(([k,c])=>{const [sz,dy,bits]=k.split(':'),[w,h]=sz.split('x').map(Number);return {k,c,w,h,dy:+dy,bits}});return IDX};
-function cmp(g,t){let bad=0;for(let y=0;y<g.fh;y++)for(let x=0;x<g.fw;x++){const tx=Math.min(t.w-1,Math.floor((x+0.5)*t.w/g.fw)),ty=Math.min(t.h-1,Math.floor((y+0.5)*t.h/g.fh));if(g.bits[y*g.fw+x]!==t.bits[ty*t.w+tx])bad++}return bad/(g.fw*g.fh)}
-function charOf(g){const T=TPL();g.fz=false;if(T[g.key])return T[g.key];let best=null;for(const t of idx()){if(Math.abs(t.w-g.fw)>1||Math.abs(t.h-g.fh)>1||Math.abs(t.dy-g.dy)>1)continue;const d=cmp(g,t);if(!best||d<best.d)best={d,c:t.c}}if(best&&best.d<=0.07){g.fz=best.d>0.02;return best.c}return null}
-function score(R){let ok=0;for(const r of R)for(const g of r.g)if(!(g.col>0.5)&&charOf(g)!=null)ok+=g.fz?0.2:1;return ok}
-function runs(img){const S=O.segment(img),s0=O.scaleOf(S);
- // try the measured scale and a few from glyph heights (capitals are 11 font pixels, lowercase 8), keep whichever reads the most letters
- const hs={};for(const c of S.comps){const h=c.y1-c.y0+1;if(h>=6&&h<=70&&c.n>=6)hs[h]=(hs[h]||0)+1}
- const top=Object.entries(hs).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>+x[0]),cand=new Set();if(s0)cand.add(+s0.toFixed(2));
- for(const h of top)for(const f of [11,8,10])cand.add(+(h/f).toFixed(2));
- let best=null;for(const c of cand){if(!(c>=0.9&&c<=8))continue;const R=O.glyphs(S,c),sc=score(R);if(!best||sc>best.sc)best={s:c,R,sc}}
- if(!best)return {s:0,R:[]};const s=best.s,R=best.R;
- for(const r of R){let t='',unk=[];let gs=r.g.filter(g=>!(g.col>0.5));while(gs.length&&gs[0].fw<=2&&gs[0].fh>=4&&gs[0].fh<=8&&gs[0].bits.indexOf("0")>=0)gs=gs.slice(1);
-  for(const g of gs){const c=charOf(g);if(c==null){t+='?';unk.push(g.key)}else t+=c}
-  r.text=t;r.unk=unk;r.fz=gs.some(g=>g.fz);r.keys=gs.map(g=>g.key);r.y=r.base;r.h=Math.max(...r.g.map(g=>g.y1-g.y0+1));r.bars=r.g.some(g=>g.col>0.5)}
- return {s,R}}
-// names
-const EQ=c=>({'0':'o','1':'l','i':'l','I':'l','5':'s'}[c]||c.toLowerCase());
-let NAMES=null;const names=()=>NAMES||(NAMES=[...new Set(Object.values(typeof PROP0!=='undefined'?PROP0:{}))]);
-function nameOf(raw,force){let t=raw.replace(/^[^A-Za-z0-9?]+/,'');const cut=force||/\.$/.test(t);t=t.replace(/\.+$/,'');if(t.length<3)return null;
- const qn=(t.match(/\?/g)||[]).length;if(qn>t.length/2)return null;const res=[];
- const sub=(a,b)=>a==='?'?0.3:a===b?0:EQ(a)===EQ(b)?0.2:3;
- const dist=(t,n)=>{const m=t.length,k=n.length;let pr=new Array(k+1);for(let j=0;j<=k;j++)pr[j]=j*2.5;
-  for(let i=1;i<=m;i++){const cu=[i*2.5];for(let j=1;j<=k;j++)cu[j]=Math.min(pr[j-1]+sub(t[i-1],n[j-1]),pr[j]+2.5,cu[j-1]+2.5);pr=cu}
-  return cut?Math.min(...pr.slice(Math.max(0,m-1))):pr[k]};
- for(const n of names()){if(Math.abs((cut?Math.min(n.length,t.length):n.length)-t.length)>1)continue;const sc=dist(t,n)+(cut?0.1:0);if(sc<=4)res.push({n,sc})}
- res.sort((a,b)=>a.sc-b.sc);if(!res.length){if(!cut&&t.length>=7){const c=nameOf(raw+'.',1);if(c&&c.n)return c}return {raw:t,n:null,opts:[]}}
- const top=res[0],gap=res.length>1?res[1].sc-top.sc:9,sure=(top.sc<1.5&&gap>=0.9)||(top.sc<=2.6&&gap>=2);const o={raw:t,n:sure?top.n:null,guess:top.n,opts:res.slice(0,6).map(x=>x.n),sc:top.sc};if(!o.n&&!cut&&t.length>=7){const c=nameOf(raw+'.',1);if(c&&c.n)return c}return o}
-// layout
-// signal bars: their colour gives the Quality tier (red, orange, yellow, green)
-function barTier(img,r){const {width:W,data:D}=img;let n=0,R=0,G=0,B=0;for(const g of r.g){if(!(g.col>0.5))continue;for(let y=g.y0;y<=g.y1;y++)for(let x=g.x0;x<=g.x1;x++){const p=(y*W+x)*4,a=D[p],b=D[p+1],c=D[p+2];if(Math.max(a,b,c)-Math.min(a,b,c)<60||Math.max(a,b,c)<135)continue;n++;R+=a;G+=b;B+=c}}
- if(n<4)return null;R/=n;G/=n;B/=n;if(G>R*1.08)return 3;const k=G/R;return k<0.42?0:k<0.78?1:2}
-function parse(img){const {s,R}=runs(img);const BR=R.filter(r=>!r.text&&r.bars);const qt=q=>q>=95?3:q>=85?2:q>=60?1:0;
- const barsBetween=(a,b)=>BR.find(x=>Math.abs(x.base-a.y)<=4*s&&x.x0>=a.x1-s&&x.x1<=b.x0+s);
- const chkQ=(e,a,b)=>{const br=barsBetween(a,b);if(!br)return;const t=barTier(img,br);if(t!=null&&t!==qt(e.q)){e.fz=true;e.qbar=t}};const T=R.filter(r=>r.text);const near=(a,b,dy)=>Math.abs(a.y-b.y)<=dy;
- const out={s,party:[],storage:[],status:null,page:null,unk:{}};
- const pg=T.find(r=>/^Page(\d+)\/(\d+)$/.test(r.text));if(pg)out.page=+pg.text.match(/^Page(\d+)/)[1];out.list=T.some(r=>/^Digi-?Beetle\d+\/\d+$/.test(r.text))?'Digi-Beetle':'Storage';
- // storage rows: "<Q>Lv.<L>" with the name to the left on the same line
- const left=r=>T.filter(x=>x!==r&&near(x,r,2*s)&&x.x1<r.x0&&r.x0-x.x1<=11*s).sort((a,b)=>b.x1-a.x1)[0];
- for(const r of T){let m=r.text.match(/^(\d{1,3})Lv\.(\d{1,2})$/);if(!m){const l=/^Lv\.(\d{1,2})$/.test(r.text)&&left(r);if(l&&/^\d{1,3}$/.test(l.text)){m=[0,l.text,r.text.slice(3)];r.st=1;l.used=1}}if(!m)continue;r.st=1;
-  const nm=T.filter(x=>x!==r&&near(x,r,2*s)&&x.x1<r.x0&&/[A-Za-z?]{3}/.test(x.text)).sort((a,b)=>b.x1-a.x1)[0];
-  const e={q:+m[1],lv:+m[2],nr:nm,y:r.y,fz:!!(r.fz||(r.st&&left(r)&&left(r).fz))};if(nm)chkQ(e,nm,r.st?left(r)||r:r);out.storage.push(e)}
- out.storage.sort((a,b)=>a.y-b.y).forEach((e,i)=>e.row=i);
- // party rows: "Lv.<L>" then "<Q>", with the name just above
- for(const r of T){const m=r.text.match(/^Lv\.(\d{1,2})$/);if(!m||r.st)continue;
-  const qr=T.filter(x=>near(x,r,2*s)&&x.x0>r.x1&&x.x0-r.x1<70*s&&/^\d{1,3}$/.test(x.text)).sort((a,b)=>a.x0-b.x0)[0];if(!qr)continue;
-  const nm=T.filter(x=>x.y<r.y-6*s&&x.y>r.y-26*s&&Math.abs(x.x0-r.x0)<=4*s&&/[A-Za-z?]{3}/.test(x.text)).sort((a,b)=>b.y-a.y)[0];
-  const e={q:+qr.text,lv:+m[1],nr:nm,y:r.y,fz:!!(r.fz||qr.fz)};chkQ(e,r,qr);out.party.push(e)}
- // status panel: "Lv.<L>/<Max>" with the Quality to the left; DP, type and stage nearby
- const sr=T.find(r=>/^Lv\.(\d{1,2})\/(\d{1,2})$/.test(r.text));
- if(sr){const m=sr.text.match(/^Lv\.(\d+)\/(\d+)$/),qr=T.filter(x=>near(x,sr,2*s)&&x.x1<sr.x0&&/^\d{1,3}$/.test(x.text)).sort((a,b)=>b.x1-a.x1)[0];
-  const dr=T.find(r=>/^DP\d{0,2}$/.test(r.text)),dn=dr&&dr.text=='DP'?T.find(x=>near(x,dr,2*s)&&x.x0>dr.x1&&x.x0-dr.x1<=14*s&&/^\d{1,2}$/.test(x.text)):null,dp=dr&&(dn?{text:'DP'+dn.text}:dr.text!='DP'?dr:null),ty=T.find(r=>/^(Vaccine|Data|Virus)$/.test(r.text)),stg=T.find(r=>/^(Rookie|Champion|Ultimate|Mega)$/.test(r.text));
-  out.status={fz:!!(sr.fz||(qr&&qr.fz)),lv:+m[1],ml:+m[2],q:qr?+qr.text:null,dp:dp?+dp.text.slice(2):null,type:ty?ty.text:null,stage:stg?stg.text:null}}
- for(const e of [...out.party,...out.storage]){const nr=e.nr;e.name=nr?nameOf(nr.text):null;if(nr){e.raw=nr.text;e.keys=nr.keys.slice(nr.keys.length-nr.text.length)}delete e.nr}
- return out}
-function learn(raw,keys,name){if(!raw||!keys||!name)return;let t=raw.replace(/\.+$/,'');const off=keys.length-raw.length;let ch=0;
- for(let i=0;i<t.length;i++){if(t[i]==='?'&&name[i]){const k=keys[i+Math.max(0,off)];if(k){LEARN[k]=name[i];ch++}}}
- if(ch){IDX=null;try{localStorage.setItem('dw2-ocrfont',JSON.stringify(LEARN))}catch(e){}}}
-O.parse=parse;O.runs=runs;O.learn=learn;O.nameOf=nameOf})();
-
-/* DigiBank: import Digimon from game screenshots */
-(()=>{try{const $=id=>document.getElementById(id),box=$('bkimr'),dz=$('bkdz'),fi=$('bkimi');if(!box||!window.DWB)return;
-const NAMES=[...new Set(Object.values(PROP0))].sort();
-const dl=document.createElement('datalist');dl.id='bkimdl';dl.innerHTML=NAMES.map(n=>`<option value="${n}">`).join('');document.body.appendChild(dl);
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let ROWS=[],SHOTS=0,BUSY=false,NOTE=[];
-const canonN=v=>{v=String(v||'').trim();return PROP0[v.toLowerCase()]||PROP[v]||null};
-const num=(v,lo,hi)=>{if(v===''||v==null)return null;const n=parseInt(v);return isNaN(n)?null:Math.max(lo,Math.min(hi,n))};
-const imgData=f=>new Promise((ok,bad)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0);URL.revokeObjectURL(u);try{ok(x.getImageData(0,0,c.width,c.height))}catch(e){bad(e)}};im.onerror=()=>{URL.revokeObjectURL(u);bad(new Error('not an image'))};im.src=u});
-const typeOk=(n,st)=>{if(!st||!n)return true;try{const t=dty(n);if(st.type&&t!=null&&['Vaccine','Data','Virus'][+t]!==st.type)return false;const s=ST[KEY(n)];if(st.stage&&s!=null&&STN[s]!==st.stage)return false}catch(e){}return true};
-
-async function read(files){files=[...files].filter(f=>/^image\//.test(f.type));if(!files.length||BUSY)return;BUSY=true;box.innerHTML='<p class="bcl">Reading '+files.length+' screenshot'+(files.length>1?'s':'')+'…</p>';
- await new Promise(r=>setTimeout(r,30));const seen=new Set(ROWS.map(r=>r.key));let bad=0;
- for(const f of files){let P;try{P=DWOCR.parse(await imgData(f))}catch(e){bad++;continue}
-  const ents=[...P.party.map(e=>({...e,src:'Party'})),...P.storage.map(e=>({...e,src:P.list=='Digi-Beetle'?'Digi-Beetle':P.page?'Storage p'+P.page:'Storage'}))];
-  if(!ents.length&&!P.status){bad++;continue}SHOTS++;const mine=[];
-  for(const e of ents){const key=e.src=='Party'?'p|'+(e.name&&(e.name.n||e.name.guess))+'|'+e.q+'|'+e.lv:(P.list=='Digi-Beetle'?'b':P.page?'s'+P.page:'x'+SHOTS)+'|'+(e.name&&(e.name.n||e.name.guess)||e.row)+'|'+e.q+'|'+e.lv;
-   let r=ROWS.find(x=>x.key===key);if(!r){r={key,n:e.name&&e.name.n||'',guess:e.name&&!e.name.n?e.name.guess||'':'',opts:e.name?e.name.opts:[],raw:e.raw,keys:e.keys,q:e.q,lv:e.lv,ml:null,dp:null,src:e.src,chk:!!(e.fz),on:true};ROWS.push(r)}mine.push(r)}
-  const st=P.status;if(st&&st.q!=null){// the Digimon shown in the Status panel is the one in this screenshot with the same Quality and level
-   let m=mine.filter(r=>r.q===st.q&&r.lv===st.lv&&typeOk(r.n||r.guess,st));if(m.length>1){const p=m.filter(r=>r.src=='Party');if(p.length==1)m=p}
-   if(m.length===1){m[0].ml=st.ml;if(st.dp!=null)m[0].dp=st.dp;m[0].stat=true;if(st.fz)m[0].chk=true}
-   else{const key='st|'+st.q+'|'+st.lv+'|'+st.ml;if(!ROWS.some(x=>x.key===key))ROWS.push({key,n:'',guess:'',opts:[],q:st.q,lv:st.lv,ml:st.ml,dp:st.dp,src:'Status',stat:true,chk:!!st.fz,on:true,need:st})}}}
- if(bad)NOTE.push(bad+' image'+(bad>1?'s':'')+' had no Digimon list I could read. Use screenshots of the Digimon window at its normal size.');
- BUSY=false;match();draw()}
-
-// match each row to the bank: same Digimon and Quality means it's one you already have
-function match(){const B=DWB.get(),taken=new Set();
- for(const r of ROWS){r.act=null;r.bid=null;
-  if(r.src=='Status'&&!r.n){// a Status panel on its own: find the one Digimon in the bank with that Quality and level
-   const c=B.filter(x=>x.q===r.q&&x.lv===r.lv&&typeOk(x.n,r.need));if(c.length===1){r.n=c[0].n;r.auto=1}else if(c.length>1)r.opts=[...new Set(c.map(x=>x.n))]}
-  const n=canonN(r.n);if(!n||r.q==null){r.act='name';continue}
-  if(r.src=='Status'&&!r.n){r.act='name';continue}
-  const c=B.filter(x=>x.n===n&&x.q===r.q&&!taken.has(x.id)).sort((a,b)=>{const da=(a.lv||0)<=r.lv?r.lv-(a.lv||0):99+(a.lv||0)-r.lv,db=(b.lv||0)<=r.lv?r.lv-(b.lv||0):99+(b.lv||0)-r.lv;return da-db})[0];
-  if(!c){r.act='new';continue}taken.add(c.id);r.bid=c.id;const ch=[];
-  if(r.lv!=null&&c.lv!==r.lv)ch.push(`Lv ${c.lv??'?'} → ${r.lv}`);if(r.ml!=null&&c.ml!==r.ml)ch.push(`Max ${c.ml??'?'} → ${r.ml}`);if(r.dp!=null&&(c.dp||0)!==r.dp||(r.dp!=null&&c.dpu))ch.push(`DP ${c.dpu?'?':c.dp||0} → ${r.dp}`);
-  r.ch=ch;r.act=ch.length?'upd':'same'}}
-function draw(){if(!ROWS.length){box.innerHTML=(NOTE.length?`<p class="bwarn">${NOTE.join(' ')}</p>`:'');NOTE=[];return}
- const nN=ROWS.filter(r=>r.on&&r.act=='new').length,nU=ROWS.filter(r=>r.on&&r.act=='upd').length,nX=ROWS.filter(r=>r.act=='name').length,nS=ROWS.filter(r=>r.act=='same').length;
- const lab={new:'<span class="bia bian">New</span>',upd:r=>`<span class="bia biau">Update</span> <small>${r.ch.join(', ')}</small>`,same:'<span class="bia bias">Already in bank</span>',name:'<span class="bia biax">Pick the Digimon</span>'};
- box.innerHTML=(NOTE.length?`<p class="bwarn">${NOTE.join(' ')}</p>`:'')+
- `<p class="bcl" style="margin:8px 0">Read ${SHOTS} screenshot${SHOTS==1?'':'s'}. Check the list, fix anything that&rsquo;s wrong, then add. Rows marked <b class="bic">check</b> were hard to read.</p>`+
- `<div class="wrap"><table class="bit"><thead><tr><th><input type="checkbox" id="bimall" aria-label="Select all" ${ROWS.every(r=>r.on||r.act=='same')?'checked':''}></th><th>Digimon</th><th>Lv</th><th>Quality</th><th>Max level</th><th>DP</th><th>From</th><th>In your bank</th></tr></thead><tbody>`+
- ROWS.map((r,i)=>`<tr data-i="${i}" class="${r.act=='same'?'bis':''}${r.chk?' bichk':''}"><td><input type="checkbox" data-f="on" ${r.on&&r.act!='same'?'checked':''} ${r.act=='same'?'disabled':''} aria-label="Import this row"></td>`+
-  `<td><input data-f="n" list="bkimdl" value="${esc(r.n)}" placeholder="${esc(r.guess||'Pick a Digimon')}" autocomplete="off" aria-label="Digimon">${!r.n&&r.opts&&r.opts.length?`<div class="biop">${r.opts.slice(0,4).map(o=>`<button type="button" data-pick="${esc(o)}">${esc(o)}</button>`).join('')}</div>`:''}${r.raw&&r.n&&r.raw.replace(/\.$/,'')!==r.n?`<small class="bcl">read &ldquo;${esc(r.raw)}&rdquo;</small>`:''}</td>`+
-  `<td data-l="Lv"><input data-f="lv" type="number" min="1" max="99" value="${r.lv??''}" aria-label="Level"></td>`+
-  `<td data-l="Quality"><span class="biq">${qBars(r.q)}<input data-f="q" type="number" min="0" max="100" value="${r.q??''}" aria-label="Quality"></span></td>`+
-  `<td data-l="Max level"><input data-f="ml" type="number" min="1" max="99" value="${r.ml??''}" placeholder="?" aria-label="Max level"></td>`+
-  `<td data-l="DP"><input data-f="dp" type="number" min="0" max="99" value="${r.dp??''}" placeholder="?" aria-label="DP"></td>`+
-  `<td class="bcl">${r.src}${r.stat&&r.src!='Status'?' + Status':''}${r.chk?' <b class="bic">check</b>':''}</td><td>${typeof lab[r.act]=='function'?lab[r.act](r):lab[r.act]||''}</td></tr>`).join('')+
- `</tbody></table></div><div class="bct" style="margin-top:8px"><button class="qbtn bkadd" id="bimgo" type="button" ${nN+nU?'':'disabled'}>${nN+nU?`Add ${nN} new${nU?` and update ${nU}`:''}`:'Nothing to add'}</button><button class="qbtn" id="bimx" type="button">Clear list</button>`+
- `<span class="bcl">${[nS&&nS+' already in your bank',nX&&nX+' need a Digimon picked'].filter(Boolean).join(' &middot; ')}</span></div>`;NOTE=[]}
-box.addEventListener('input',e=>{const t=e.target,tr=t.closest('tr[data-i]');if(!tr)return;const r=ROWS[+tr.dataset.i],f=t.dataset.f;if(!f||f=='on')return;
- if(f=='n')r.n=canonN(t.value)||t.value;else r[f]=num(t.value,f=='q'||f=='dp'?0:1,f=='q'?100:99);});
-box.addEventListener('change',e=>{const t=e.target;if(t.id=='bimall'){ROWS.forEach(r=>{if(r.act!='same')r.on=t.checked});draw();return}const tr=t.closest('tr[data-i]');if(!tr)return;const r=ROWS[+tr.dataset.i];
- if(t.dataset.f=='on'){r.on=t.checked;draw();return}if(t.dataset.f=='n'){const c=canonN(t.value);if(c){r.n=c;r.chk=false}}match();draw()});
-box.addEventListener('click',e=>{const p=e.target.closest('[data-pick]');if(p){const r=ROWS[+p.closest('tr').dataset.i];r.n=p.dataset.pick;match();draw();return}
- if(e.target.id=='bimx'){ROWS=[];SHOTS=0;draw();return}
- if(e.target.id=='bimgo'){let a=0,u=0;DWB.hush(3000);
-  for(const r of ROWS){if(!r.on||(r.act!='new'&&r.act!='upd'))continue;const n=canonN(r.n);if(!n)continue;
-   if(r.act=='new'){if(DWB.add({n,lv:r.lv,ml:r.ml,q:r.q,dp:r.dp??0,mlu:r.ml==null,dpu:r.dp==null}))a++}
-   else{const p={lv:r.lv};if(r.ml!=null)p.ml=r.ml;if(r.dp!=null)p.dp=r.dp;DWB.upd(r.bid,p);u++}
-   if(r.raw&&/\?/.test(r.raw))DWOCR.learn(r.raw,r.keys,n)}
-  DWB.log('code',`Imported from screenshots: ${a} added${u?', '+u+' updated':''}`);ROWS=[];SHOTS=0;
-  box.innerHTML=`<p class="bdone">Added ${a} Digimon${u?` and updated ${u}`:''}. ${a?'New ones without a Max level or DP are marked <b>Needs details</b>; use the Filters to find them.':''}</p>`;DWB.render()}});
-// ways in: choose, drop, paste
-$('bkimf').onclick=()=>fi.click();fi.onchange=()=>{read(fi.files);fi.value=''};
-['dragenter','dragover'].forEach(k=>dz.addEventListener(k,e=>{e.preventDefault();dz.classList.add('on')}));['dragleave','drop'].forEach(k=>dz.addEventListener(k,e=>{e.preventDefault();dz.classList.remove('on')}));
-dz.addEventListener('drop',e=>{read(e.dataTransfer.files);$('bkimd').open=true});
-document.addEventListener('paste',e=>{if(CT!='bank')return;const fs=[...(e.clipboardData&&e.clipboardData.files||[])].filter(f=>/^image\//.test(f.type));if(!fs.length)return;e.preventDefault();$('bkimd').open=true;read(fs)});
-DWB.on(()=>{if(ROWS.length){match();draw()}});
-}catch(e){console.error('screenshot import failed to start',e)}})();
 
 /* ===== quality of life ===== */
 (()=>{try{

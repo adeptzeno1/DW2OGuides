@@ -307,13 +307,22 @@ td.gl{background:rgba(245,170,0,.38)!important}th.gl{background:rgba(245,170,0,.
 .bmkc img{width:22px;height:22px;image-rendering:pixelated}
 .bmkc small{color:var(--mut);font-size:11px}
 .bmkc:hover{border-color:var(--fg)}
+.bcopt{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;font-weight:600;border:1px solid var(--bd);border-radius:999px;padding:4px 12px;margin:2px 0;background:var(--card);color:var(--fg);cursor:pointer}
+.bcopt:hover{border-color:var(--fg)}
 .bcabp{border:1px solid var(--bd);border-radius:10px;padding:10px;margin-top:8px;background:var(--bg)}
 .bcabp .abh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-bottom:8px;font-size:12px;color:var(--mut)}
 #bc .bcabp .abh input{padding:3px 8px;font-size:13px;width:170px}
 .bcabp .bml2{max-height:260px;overflow:auto}
 .bcabp .bmkc.fv{border-color:#f5c542}.bcabp .bmkc .st{color:#f5c542}
 .bhq{border:1px solid #d4a72c;border-left-width:4px;border-radius:8px;padding:6px 10px;margin:8px 0;font-size:13px;background:rgba(212,167,44,.08)}
-.bwait{padding:10px 0;animation:mp-pulse 1.2s ease-in-out infinite}
+.bwait{padding:10px 0;}
+.bspin{display:inline-block;width:12px;height:12px;margin-right:7px;vertical-align:-1px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;opacity:.8;animation:bspin .8s linear infinite;will-change:transform}
+@keyframes bspin{to{transform:rotate(360deg)}}
+.qbtn.isbusy,.qbtn:disabled.isbusy{opacity:.7;cursor:progress}
+.bcchk{color:var(--mut,inherit)}
+.bcstop{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--bd);border-radius:999px;padding:1px 10px;margin-left:6px;background:var(--card);color:var(--fg);cursor:pointer;vertical-align:1px}
+.bcstop:hover{border-color:var(--fg)}
+@media (prefers-reduced-motion:reduce){.bspin{animation:none;border-right-color:currentColor;opacity:.5}}
 #bcsv{padding:0}#bcsv>summary{list-style:none;display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;user-select:none}#bcsv>summary::-webkit-details-marker{display:none}
 .bcsvt{font-weight:700;font-size:15px}.bcsvn{font-size:11px;font-weight:700;min-width:20px;text-align:center;border-radius:999px;padding:1px 7px;background:var(--fg);color:var(--bg)}.bcsvn:empty{display:none}
 .bcsvh{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bcsvc{color:var(--mut);transition:transform .15s;margin-left:auto}#bcsv[open] .bcsvc{transform:rotate(180deg)}
@@ -649,7 +658,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <div class="bcsvf"><div class="bcsvg"><input id="bcpn" placeholder="Name this setup, e.g. SkullGreymon plan" autocomplete="off" aria-label="Chain name"><button class="qbtn bcsvp" id="bcps" type="button">Save</button></div><div class="bcsvg"><input id="bcpc" placeholder="Paste a chain code (c1-…)" autocomplete="off" aria-label="Chain code"><button class="qbtn" id="bcpi" type="button">Load code</button></div></div>
 <div id="bcpm" class="bcl bcsvm" role="status"></div><div id="bcpl" class="bcpl"></div></details>
 <div class="dsec dcs"><h4>Digimon you want</h4><div class="bcr bct"><input id="bct" placeholder="e.g. SkullGreymon" autocomplete="off"><button class="qbtn" id="bcgo" type="button">Find shortest route</button></div>
-<div class="fl" style="margin-top:10px"><span>Moves it should know by the end</span><div id="bcmv" class="bmvs"></div><div class="bct"><input id="bcmq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div><div class="bcl">A DNA result starts at its stage&rsquo;s first level (Rookie 1, Champion 11, Ultimate 21) with its own move and the strongest parent move it can use. The parents&rsquo; other moves go on its <b>to learn</b> list, and it learns the ones at its stage or lower at its next level-up (EL 2, 12 or 22). Higher-stage moves wait until it digivolves to that stage and reaches the normal move level (EL 12 Champion, 22 Ultimate, 32 Mega). A move still on the list is lost in a DNA, so steps marked with a red <span class="blx" aria-hidden="true">!</span> tell you to train a parent first. The final Digimon can keep a move on its list if its own line can still reach that stage.</div></div>
+<div class="fl" style="margin-top:10px"><span>Moves it should know by the end</span><div id="bcmv" class="bmvs"></div><div class="bct"><input id="bcmq" placeholder="Add a move, e.g. Beast King Fist" autocomplete="off"></div><div class="bcl bcmvc"><span id="bcmvc" aria-live="polite">0 of 5 moves</span></div><div id="bcmvn" class="bcw" role="status" hidden></div><label class="bck"><input type="checkbox" id="bcm6"> <span>Allow up to 6 moves. Slower: searches with 6 moves get about twice the search budget, so they take longer, and hard combinations may still not find a route.</span></label><p class="bcl">Tip: leave out moves your Digimon learns by itself on its own line. For more moves, plan a chain for the hardest ones first, then plan again from the result.</p><div class="bcl">A DNA result starts at its stage&rsquo;s first level (Rookie 1, Champion 11, Ultimate 21) with its own move and the strongest parent move it can use. The parents&rsquo; other moves go on its <b>to learn</b> list, and it learns the ones at its stage or lower at its next level-up (EL 2, 12 or 22). Higher-stage moves wait until it digivolves to that stage and reaches the normal move level (EL 12 Champion, 22 Ultimate, 32 Mega). A move still on the list is lost in a DNA, so steps marked with a red <span class="blx" aria-hidden="true">!</span> tell you to train a parent first. The final Digimon can keep a move on its list if its own line can still reach that stage.</div></div>
 <label class="bck"><input type="checkbox" id="bcsk" checked> The final Digimon must be able to learn its own new move (EL 12 Champion, EL 22 Ultimate, EL 32 Mega)</label>
 <label class="bck"><input type="checkbox" id="bccc"> I can catch fresh Champions (assumed Max level under 20)</label>
 <label class="bck"><input type="checkbox" id="bccu"> I can catch fresh Ultimates (assumed Max level under 30)</label>
@@ -1647,7 +1656,8 @@ function calc(){document.getElementById('qc').innerHTML='';const ma=pick(fa.valu
  const h=hint(ma,fa.value,'first')||hint(mb,fb.value,'second');if(h){fr.innerHTML='<small>'+h+'</small>';return}if(!ma.length||!mb.length){fr.innerHTML='';return}
  const a=ma[0],b=mb[0];let x=a,y=b;while(x.lv>y.lv)x=down(x,st);while(y.lv>x.lv)y=down(y,st);
  const i=x.g.charCodeAt(0)-65,j=y.g.charCodeAt(0)-65,code=MX[x.lv][i].substr(j*2,2),nm=LV[x.lv].res[code]||code;
- fr.innerHTML=(st.length?'<div><small>Different levels: the higher one is first reduced by combining it with itself.</small><br>'+st.join('<br>')+'<br><small>Then '+x.n+' + '+y.n+':</small></div>':'')+`<div style="font-size:16px;margin-top:4px"><b>${a.n} + ${b.n} &rarr; <span class="t${rt(code)}">${nm}</span></b> <small>${code[0]=='M'?'(mutation)':'('+RL[x.lv]+')'}</small></div>`}
+ // a higher-stage parent is reduced by combining it with itself first; only the result is shown
+ fr.innerHTML=`<div style="font-size:16px;margin-top:4px"><b>${a.n} + ${b.n} &rarr; <span class="t${rt(code)}">${nm}</span></b> <small>${code[0]=='M'?'(mutation)':'('+RL[x.lv]+')'}</small></div>`}
 fa.oninput=fb.oninput=calc;calc();
 const PL=ALL.map(d=>({n:d.n,t:tyOf(d),l:LN[d.lv]}));
 const RES=[...RK.map(d=>({n:d.n,lv:0,t:rt(d.c),l:'Rookie'})),...CH.map(d=>({n:d.n,lv:1,t:rt(d.c),l:'Champion'})),...UL.map(d=>({n:d.n,lv:2,t:rt(d.c),l:'Ultimate'}))];
@@ -2518,15 +2528,22 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
  const HQ=document.getElementById('bchq'),CC=document.getElementById('bccc'),CU=document.getElementById('bccu'),own=document.getElementById('bcown'),T=document.getElementById('bct'),SK=document.getElementById('bcsk'),out=document.getElementById('bcout'),TM=document.getElementById('bctm'),ANY=document.getElementById('bcany'),VW=document.getElementById('bcvw');let DONE=new Set(),VIEW='l';try{VIEW=localStorage.getItem('dw2-bcview')||'l'}catch(e){}
 
  const MVI={},MLV={Rookie:1,Champion:12,Ultimate:22,Mega:32};MVD.forEach(r=>{if(r[7].length)MVI[r[0]]=r});let MSEL=[];
+ // the search's budget is counted in work done, not seconds, so every device gets the same answer.
+ // Each state taken off the queue counts 41.6 and each state put on it 0.0595; together that's about 1000 per ms on a typical computer
+ let GS=0;const VNOW=()=>GS/1000;let SLICE_END=Infinity,IDLE=0;
+ // moves are kept as bits per state: SKW learned + SKW still on the "to learn" list
+ let SKW=4,SKM=15,SKS=256;const MVCAP=()=>(document.getElementById('bcm6')||{}).checked?6:5;
  const MQ=document.getElementById('bcmq'),MB=document.getElementById('bcmv');
- const mvRen=()=>{MB.innerHTML=MSEL.map((mv,i)=>{const r=MVI[mv];return `<span class="bchip">${mv} <small>${r[7].join(' / ')}, EL ${MLV[r[1]]}</small><button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`}).join('');store()};
+ const mvMsg=t=>{const e=document.getElementById('bcmvn');if(e){e.innerHTML=t;e.hidden=!t}};
+ const mvRen=()=>{const c=document.getElementById('bcmvc');if(c){const cap=MVCAP();c.textContent=`${MSEL.length} of ${cap} moves`;MQ.placeholder=MSEL.length>=cap?'Move list is full':'Add a move, e.g. Beast King Fist'}if(MSEL.length<MVCAP())mvMsg('');MB.innerHTML=MSEL.map((mv,i)=>{const r=MVI[mv];return `<span class="bchip">${mv} <small>${r[7].join(' / ')}, EL ${MLV[r[1]]}</small><button type="button" data-i="${i}" aria-label="Remove ${mv}">&times;</button></span>`}).join('');store()};
  MB.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;MSEL.splice(+b.dataset.i,1);mvRen()};
  const SO={Rookie:0,Champion:1,Ultimate:2,Mega:3},MOVL=Object.keys(MVI).sort((a,b)=>SO[MVI[a][1]]-SO[MVI[b][1]]||a.localeCompare(b)).map(n=>{const r=MVI[n];return{n:n,t:null,p:r[7][0],q:n+' '+r[7].join(' ')+' '+r[1],l:`${r[1]} move &middot; ${r[7].join(', ')} &middot; ${r[2]=='None'?'no element':r[2]} &middot; ${r[3]}`}});
  ac(MQ,MOVL);
- const addMv=()=>{const q=MQ.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==q);if(!mv)return;if(!MSEL.includes(mv)){if(MSEL.length>=4){out.innerHTML='<div class="bcw">Pick up to 4 moves at a time, so the search stays fast.</div>';return}MSEL.push(mv)}MQ.value='';MQ.dispatchEvent(new Event('input'));mvRen()};
- MQ.addEventListener('acpick',addMv);MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
+ const addMv=()=>{const q=MQ.value.trim().toLowerCase(),mv=Object.keys(MVI).find(n=>n.toLowerCase()==q);if(!mv)return;if(!MSEL.includes(mv)){if(MSEL.length>=MVCAP()){mvMsg(MVCAP()<6?'You can pick up to 5 moves. To pick a 6th, tick &ldquo;Allow up to 6 moves&rdquo; below.':'You can pick up to 6 moves.');return}MSEL.push(mv)}MQ.value='';MQ.dispatchEvent(new Event('input'));mvRen()};
+ MQ.addEventListener('acpick',addMv);
+ {const m6=document.getElementById('bcm6');if(m6)m6.addEventListener('change',()=>{if(!m6.checked&&MSEL.length>5){const x=MSEL.splice(5);mvRen();mvMsg(`Removed ${x.join(', ')}: without &ldquo;Allow up to 6 moves&rdquo; the limit is 5.`)}else mvRen()})}MQ.addEventListener('keydown',e=>{if(e.key=='Enter')addMv()});
  let saved=null;try{saved=JSON.parse(localStorage.getItem('dw2-bc2')||'null')}catch(e){}
- const snap=()=>({ub:!!(document.getElementById('bcub')||{}).checked,pins:[...own.querySelectorAll('.bcrow')].filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid),rows:[...own.querySelectorAll('.bcrow')].filter(r=>!r._bk).map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null,r.querySelector('.bnu').checked,r._hm||[]])),skips:[...own.querySelectorAll('.bcrow')].filter(r=>r._bk&&r.querySelector('.bnu').checked).map(r=>r._bid),t:T.value,sk:SK.checked,cc2:CC.checked,cu2:CU.checked,hq:HQ.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE],bs:(window.DWB?DWB.get().map(x=>x.id+'='+x.n).sort().join('|'):'')});
+ const snap=()=>({m6:!!(document.getElementById('bcm6')||{}).checked,ub:!!(document.getElementById('bcub')||{}).checked,pins:[...own.querySelectorAll('.bcrow')].filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid),rows:[...own.querySelectorAll('.bcrow')].filter(r=>!r._bk).map(r=>['.bnm','.bdp','.blv','.bml'].map(c=>r.querySelector(c).value).concat([r.querySelector('.bmu').checked,r._mv||[],r.querySelector('.bqy').value,r._bid||null,r.querySelector('.bnu').checked,r._hm||[]])),skips:[...own.querySelectorAll('.bcrow')].filter(r=>r._bk&&r.querySelector('.bnu').checked).map(r=>r._bid),t:T.value,sk:SK.checked,cc2:CC.checked,cu2:CU.checked,hq:HQ.checked,mv:MSEL,tm:TM.value,any:ANY.checked,done:[...DONE],bs:(window.DWB?DWB.get().map(x=>x.id+'='+x.n).sort().join('|'):'')});
  // send one Digimon to the DigiBank (only when the button is pressed)
  const nrm=(v,lo,hi)=>{v=String(v==null?'':v).trim();if(v==='')return null;const x=parseInt(v);return x>=lo&&x<=hi?x:null};
  const toBank=r=>{if(!window.DWB)return 'none';const nm=r.querySelector('.bnm').value.trim(),n=PROP[nm.toLowerCase()];if(!n)return 'bad';
@@ -2562,7 +2579,7 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
   r.querySelectorAll('input').forEach(i=>i.addEventListener('input',store));q('.brm').onclick=()=>{const nx=r.nextSibling,nm=r.querySelector('.bnm').value.trim()||'that Digimon';r.remove();store();if(window.toast)toast(`Removed ${nm}.`,()=>{own.insertBefore(r,nx&&nx.parentNode===own?nx:null);store()})};
   q('.bsend').onclick=()=>{const b=q('.bsend'),res=toBank(r),M={add:'Sent ✓',upd:'Updated ✓',dup:'Already in bank',bad:'Pick a Digimon first',none:'Bank not available'};b.textContent=M[res];b.classList.toggle('ok',res=='add'||res=='upd');store();clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent='Send to bank';b.classList.remove('ok')},2200)};return r}
  if(saved&&saved.rows&&saved.rows.length)saved.rows.forEach(addRow);else addRow(['','','','']);
- T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);HQ.addEventListener('change',store);if(saved&&saved.hq)HQ.checked=true;if(saved&&Array.isArray(saved.mv)){MSEL=saved.mv.filter(m=>MVI[m]).slice(0,4);mvRen()}CU.addEventListener('change',store);CC.addEventListener('change',store);if(saved){CC.checked=!!saved.cc2;CU.checked=!!saved.cu2}
+ T.value=saved&&saved.t!=null?saved.t:'';if(saved&&saved.sk===false)SK.checked=false;if(saved){TM.value=saved.tm||'';ANY.checked=!!saved.any;DONE=new Set(saved.done||[])}TM.addEventListener('input',store);ANY.addEventListener('change',store);HQ.addEventListener('change',store);if(saved&&saved.hq)HQ.checked=true;if(saved&&Array.isArray(saved.mv)){{const m6=document.getElementById('bcm6');if(m6)m6.checked=!!saved.m6}MSEL=saved.mv.filter(m=>MVI[m]).slice(0,saved.m6?6:5);mvRen()}CU.addEventListener('change',store);CC.addEventListener('change',store);if(saved){CC.checked=!!saved.cc2;CU.checked=!!saved.cu2}
  ac(T,[...OWNL,...ME.map(d=>({n:d.n,t:dty(d.n),l:'Mega'}))].filter((d,i,a)=>a.findIndex(e=>KEY(e.n)==KEY(d.n))==i));T.addEventListener('input',store);SK.addEventListener('change',store);
  document.getElementById('bcadd').onclick=()=>{addRow().querySelector('.bnm').focus();store()};
  const key=v=>{const n=PROP[v.trim().toLowerCase()];return n?KEY(n):null};
@@ -2571,57 +2588,134 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
  const H=[],hp=(c,s,x)=>{H.push([c,s,x]);let i=H.length-1;while(i){const p=(i-1)>>1;if(H[p][0]<=H[i][0])break;[H[p],H[i]]=[H[i],H[p]];i=p}},
   hpop=()=>{const t=H[0],l=H.pop();if(H.length){H[0]=l;let i=0;for(;;){const a=2*i+1,b=a+1;let m=i;if(a<H.length&&H[a][0]<H[m][0])m=a;if(b<H.length&&H[b][0]<H[m][0])m=b;if(m==i)break;[H[m],H[i]]=[H[i],H[m]];i=m}}return t};
  // show a message first so the page never looks frozen while a long search runs
- function solve(mode,fix){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);out.innerHTML='<div class="bcl bwait">Finding the shortest route&hellip;</div>';if(window.__bcUsed)__bcUsed(null);if(window.__bcStart)__bcStart();solve._t=setTimeout(()=>{try{solveNow(mode,fix);if(QNOTE){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend',QNOTE)}}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';throw e}},30)}
+ // while a search or the option checks run, the page is busy: show it on the button and ignore taps that pile up meanwhile
+ let BUSYT=0;const SPIN='<span class="bspin" aria-hidden="true"></span>';
+ const busy=(on,txt)=>{const b=document.getElementById('bcgo'),m=document.getElementById('bcmk');if(!b)return;clearTimeout(BUSYT);
+  const set=v=>{if(!b.dataset.lb)b.dataset.lb=b.textContent;b.disabled=v;b.classList.toggle('isbusy',v);b.setAttribute('aria-busy',v?'true':'false');b.innerHTML=v?SPIN+(txt||'Searching&hellip;'):b.dataset.lb;if(m)m.disabled=v};
+  if(on)set(true);else BUSYT=setTimeout(()=>set(false),60)};
+ // run f once the browser has had a chance to draw the latest text
+ const afterPaint=f=>{let d=0;const g=()=>{if(!d){d=1;f()}};try{requestAnimationFrame(()=>setTimeout(g,0))}catch(e){}setTimeout(g,120)};
+ // The search runs in small pieces (about 40 ms each) so the page can scroll, redraw and take clicks in between.
+ // Its time budget counts work done, not clock time, so the route found is the same as one long uninterrupted search.
+ let CUR=null;const SLICE_MS=40;
+ const nextTick=f=>{try{const ch=new MessageChannel();ch.port1.onmessage=()=>{ch.port1.close();f()};ch.port2.postMessage(0)}catch(e){setTimeout(f,0)}};
+ // what the search reads: if any of it changes while a search runs, that search is cancelled (sorting or filtering the list doesn't count)
+ const sigNow=()=>{const R=[...own.querySelectorAll('.bcrow')].filter(r=>{const e=r.querySelector('.bnm');return e&&e.value.trim()}).map(r=>['.bnm','.bdp','.blv','.bml','.bqy'].map(c=>{const e=r.querySelector(c);return e?e.value:''}).concat([!!(r.querySelector('.bmu')||{}).checked,!!(r.querySelector('.bnu')||{}).checked,(r._mv||[]).join('+'),(r._hm||[]).join('+'),r._bl||1,r._bid||'']).join('|')).sort();
+  const c=id=>{const e=document.getElementById(id);return e?(e.type==='checkbox'?e.checked:e.value):null};return JSON.stringify([R,T.value,SK.checked,CC.checked,CU.checked,HQ.checked,ANY.checked,TM.value,MSEL,c('bcm6'),c('bcub'),c('bcresok')])};
+ // stop whatever search is running, now (its own clean-up runs straight away)
+ const cancelRun=()=>{const c=CUR;if(!c)return false;CUR=null;try{c.g.return()}catch(e){}try{c.done(null,'cancel')}catch(e){}return true};
+ // drive a search generator; done(err, why) is called once at the end ('cancel' when stopped early)
+ const drive=(g,done)=>{cancelRun();let sg0='';try{sg0=sigNow()}catch(e){}const me={g,done,sig:sg0,idleFrom:0,n:0};CUR=me;
+  const step=()=>{if(CUR!==me)return;if(me.idleFrom)IDLE+=performance.now()-me.idleFrom;
+   let sg='';try{sg=sigNow()}catch(e){}if(sg!==me.sig){CUR=null;try{g.return()}catch(e){}done(null,'changed');return}
+   SLICE_END=performance.now()+SLICE_MS;let r;
+   try{r=g.next()}catch(e){CUR=null;SLICE_END=Infinity;done(e);return}
+   SLICE_END=Infinity;if(r.done){CUR=null;done(null);return}
+   me.idleFrom=performance.now();
+   // carry straight on (the browser still draws and scrolls between pieces), but every third piece also wait for a frame to be drawn,
+   // so no browser can put off drawing for long (not when the tab is hidden: frames don't come then)
+   if(document.hidden||++me.n%3)nextTick(step);else{let k=0;const go=()=>{if(!k){k=1;nextTick(step)}};try{requestAnimationFrame(go)}catch(e){}setTimeout(go,50)}};
+  step()};
+ const STOPB='<button type="button" class="bcstop" data-k="stop">Stop</button>';let SKIPT='',PIDX=-1;
+ function solve(mode,fix,mkr){mode=mode==='make'?'make':undefined;clearTimeout(solve._t);PTOK++;cancelRun();solve._pend=true;
+  out.innerHTML='<div class="bcl bwait">'+SPIN+'Finding the shortest route&hellip; '+STOPB+'</div>';busy(true,'Searching&hellip;');if(window.__bcUsed)__bcUsed(null);if(window.__bcStart)__bcStart();
+  solve._t=setTimeout(()=>{solve._pend=false;NEXTP=null;let g;try{g=solveNow(mode,fix,mkr)}catch(e){out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';busy(false);throw e}
+   drive(g,(err,why)=>{
+    if(why==='cancel'||why==='changed'){LAST=null;out.innerHTML=`<div class="bcw">${why==='cancel'?'Search stopped.':'Search stopped because you changed your list or settings.'} Press <b>Find shortest route</b> to search again.</div>`;busy(false);return}
+    if(err){LAST=null;out.innerHTML='<div class="bcw">Something went wrong finding that route.</div>';busy(false);setTimeout(()=>{throw err});return}
+    let more=false;try{if(QNOTE){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend',QNOTE)}if(NEXTP){if(NEXTP.kind==='long'){const sm=out.querySelector('.bcsum');if(sm)sm.insertAdjacentHTML('afterend','<div class="bcl bcopts" hidden></div>')}more=startProbes(NEXTP)}}catch(e){busy(false);throw e}if(!more)busy(false)})},30)}
+ out.addEventListener('click',e=>{const b=e.target.closest('.bcstop');if(!b)return;
+  if(b.dataset.k==='skip'){if(+b.dataset.i!==PIDX)return;if(CUR&&PROBE)cancelRun();else SKIPT=PTOK+':'+PIDX;return}
+  // Stop: also works in the moment before the search has started
+  if(solve._pend){clearTimeout(solve._t);solve._pend=false;PTOK++;LAST=null;out.innerHTML='<div class="bcw">Search stopped. Press <b>Find shortest route</b> to search again.</div>';busy(false);return}
+  cancelRun()});
  let QNOTE='';
- function solveNow(mode,fix){
-  let HARD=performance.now()+3000,WGT=1,FAST=false;let TO=false,FORCE=new Set();QNOTE='';
+ // quick test searches after a search stops (or finds a very long route): each one changes one setting, searches on a small budget,
+ // and only options that really found a route are offered, as one-click buttons
+ let PROBE=null,NEXTP=null,PTOK=0,LASTOVER=null;
+ // run one test search with changed settings (the page itself is never changed); cb(result or null), or cb(null,true) when cancelled
+ const probeRun=(apply,cb)=>{let a;try{a=apply()}catch(e){cb(null,null);return}const q0=QNOTE,me={res:null,rows:a.rows||null,cc:a.cc,cu:a.cu,sel:a.sel||null};PROBE=me;let g;
+  try{g=solveNow()}catch(e){PROBE=null;QNOTE=q0;cb(null);return}
+  drive(g,(err,why)=>{if(err&&window.console)console.error(err);const r=err?null:me.res;if(PROBE===me)PROBE=null;QNOTE=q0;cb(why?null:r,why||null)})};
+ const UBX=()=>document.getElementById('bcub');
+ const bankN=()=>window.DWB?DWB.get().filter(x=>x.use!==false).length:0;
+ const P_CATCH=()=>({cc:true,cu:true});
+ const fakeRow=x=>{const v={'.bnm':{value:x.n},'.bdp':{value:String(x.dp||0)},'.blv':{value:x.lv!=null?String(x.lv):''},'.bml':{value:x.ml!=null?String(x.ml):''},'.bqy':{value:x.q!=null?String(x.q):''},'.bnu':{checked:false},'.bmu':{checked:false}};return {querySelector:c=>v[c]||{value:'',checked:false},_bid:x.id,_mv:(x.mv||[]).slice(),_hm:(x.hm||[]).slice(),_bl:x.bl||1,_fake:1}};
+ const P_BANK=()=>{const dom=[...own.querySelectorAll('.bcrow')],ids=new Set(dom.map(r=>r._bid).filter(Boolean));return {rows:dom.concat(DWB.get().filter(x=>x.use!==false&&!ids.has(x.id)).map(fakeRow)).slice(0,150)}};
+ const P_DROP=mv=>()=>({sel:MSEL.filter(x=>x!==mv)});
+ const hardMove=()=>{const SO={Rookie:0,Champion:1,Ultimate:2,Mega:3};return MSEL.slice().sort((a,b)=>SO[MVI[b][1]]-SO[MVI[a][1]])[0]};
+ const dnaTxt=r=>`${r.dna} DNA${r.dna==1?'':'s'}${r.acq?`, ${r.acq} catch${r.acq==1?'':'es'}`:''}`;
+ function startProbes(info){const tok=++PTOK;if(!info)return false;
+  const opts=[];if(!(CC.checked&&CU.checked))opts.push({k:'cc',label:'Catch Champions + Ultimates',st:'catching Champions + Ultimates',ap:P_CATCH});
+  if(!UBX().checked&&bankN())opts.push({k:'ub',label:'Use my DigiBank',st:'your DigiBank',ap:P_BANK});
+  if(info.kind==='stop'&&MSEL.length){const m=hardMove();opts.push({k:'drop',mv:m,label:`Leave out ${m}`,st:`without ${String(m).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}`,ap:P_DROP(m)})}
+  const box=()=>out.querySelector('.bcopts');let i=0;const found=[];
+  const step=()=>{if(tok!==PTOK)return;if(!box()){busy(false);return}if(i>=opts.length){fin();busy(false);return}const o=opts[i++];
+   busy(true,'Checking&hellip;');PIDX=i;const b=box();b.hidden=false;b.innerHTML=`<small class="bcchk">${SPIN}Checking other options&hellip; (${i} of ${opts.length}: ${o.st})</small> <button type="button" class="bcstop" data-k="skip" data-i="${i}">Skip</button>`;
+   afterPaint(()=>{if(tok!==PTOK)return;if(SKIPT===tok+':'+i){SKIPT='';setTimeout(step,20);return}probeRun(o.ap,(r,stopped)=>{if(stopped){if(tok!==PTOK)return;if(stopped==='cancel'){setTimeout(step,20);return}const b=box();if(b)b.remove();busy(false);return}if(r&&(info.kind==='stop'||r.dna<=info.dna-3))found.push({...o,r});setTimeout(step,20)})})};
+  const fin=()=>{const b=box();if(!b)return;b.dataset.done='1';
+   // a much longer option isn't worth offering next to a short one
+   if(found.some(o=>o.r.dna<=12)){for(let j=found.length-1;j>=0;j--)if(found[j].r.dna>12)found.splice(j,1)}found.sort((a,b)=>a.r.dna-b.r.dna);
+   if(info.kind==='stop')b.innerHTML=found.length?`<b>Try:</b> ${found.map(o=>`<button type="button" class="bcopt bmkc2" data-opt="${o.k}"${o.mv?` data-mv="${o.mv.replace(/"/g,'&quot;')}"`:''}>${o.label}</button> <small>&rarr; about ${dnaTxt(o.r)}</small>`).join(' ')}`:`<b>Try:</b> ${info.par?(bankN()&&!UBX().checked?'':'add more of the Digimon you own to the list, or ')+'search for a Digimon it digivolves from first.':'add more of the Digimon you own to the list.'}`;
+   else{const o=found.sort((a,b)=>a.r.dna-b.r.dna)[0];b.innerHTML=o?`<b>Shorter with ${o.k==='cc'?'Champion + Ultimate catches':'your DigiBank'}:</b> about ${dnaTxt(o.r)} <button type="button" class="bcopt bmkc2" data-opt="${o.k}">Switch</button>`:'';b.hidden=!o}};
+  setTimeout(step,30);return true}
+ out.addEventListener('click',e=>{const b=e.target.closest('.bcopt');if(!b)return;const o=b.dataset.opt;
+  if(o==='cc'){[CC,CU].forEach(x=>{if(!x.checked){x.checked=true;x.dispatchEvent(new Event('change',{bubbles:true}))}})}
+  else if(o==='ub'){const u=UBX();if(!u.checked){u.checked=true;u.dispatchEvent(new Event('change',{bubbles:true}))}}
+  else if(o==='drop'){MSEL=MSEL.filter(x=>x!==b.dataset.mv);mvRen()}
+  // same as pressing Search, started directly so it never depends on the button being unlocked yet
+  ACTIVE_SAVE=null;solve()});
+ function* solveNow(mode,fix,mkr){
+  // the exact search gets the first part of the time; with a long Digimon list it rarely finishes, so the quicker searches get more
+  const MKR=!PROBE&&mode!=='make'&&mkr||null,NOC=!!MKR,ROWS=PROBE&&PROBE.rows||[...own.querySelectorAll('.bcrow')],RESX0=resExcl(),MS=MKR?[]:PROBE&&PROBE.sel||MSEL,CCk=PROBE&&PROBE.cc!=null?PROBE.cc:CC.checked,CUk=PROBE&&PROBE.cu!=null?PROBE.cu:CU.checked;
+  const P1=PROBE?500:MS.length>5?3500:own.querySelectorAll('.bcrow').length>24?2000:2500;GS=0;let HARD=VNOW()+P1,SAFEHIT=false,WGT=1,SUMH=false,FAST=false;IDLE=0;const SAFE=performance.now()+20000;let PHASE='search';let TO=false,FORCE=new Set();if(!PROBE)QNOTE='';
   let have={},bad=[],errs=[];
-  const SEL=MSEL.slice(),SFULL=(1<<SEL.length)-1,LRN={};
+  const SEL=MS.slice(),SFULL=(1<<SEL.length)-1,LRN={};SKW=Math.max(4,SEL.length);SKM=(1<<SKW)-1;SKS=1<<(2*SKW);const BIG=SEL.length>5;
   SEL.forEach((mv,i)=>{const r=MVI[mv];r[7].forEach(n=>{const k=KEY(PROP[n.toLowerCase()]||n);(LRN[k]=LRN[k]||[]).push([i,MLV[r[1]]])})});
   const learn=(k,m)=>{let b=0;(LRN[k]||[]).forEach(([i,l])=>{if(m>=l)b|=1<<i});return b};
   // move rules: a DNA result inherits only the moves its parents have learned. They go on its "to learn" list and it learns them
   // at the normal move levels: a move at or below its stage one level-up after its DNA (EL 2 / 12 / 22 for a Rookie / Champion / Ultimate result),
   // a higher-stage move once it digivolves to that stage and reaches EL 12 Champion, 22 Ultimate, 32 Mega.
   // A move still on the list is lost if the Digimon is used in a DNA before then.
-  // move bits: low 4 = learned (by the time it's trained), high 4 = still on its "to learn" list
+  // move bits: low SKW bits = learned (by the time it's trained), next SKW bits = still on its "to learn" list
   const MST=SEL.map(mv=>({Rookie:0,Champion:1,Ultimate:2,Mega:3})[MVI[mv][1]]),IL=[2,12,22,32],MLL=MST.map(x=>IL[x]);
   const UNLx=(st,m,bs)=>{let b=0;MST.forEach((x,i)=>{if(st>=x&&m>=IL[Math.max(x,bs)])b|=1<<i});return b},UNL=(st,m)=>UNLx(st,m,0);
-  const evoSk=(k,m,sk)=>{const K=sk&15,Hd=(sk>>4)&15,uu=UNL(ST[k],m)|learn(k,m);return (K|learn(k,m)|(Hd&uu))|((Hd&~uu)<<4)};
+  const evoSk=(k,m,sk)=>{const K=sk&SKM,Hd=(sk>>SKW)&SKM,uu=UNL(ST[k],m)|learn(k,m);return (K|learn(k,m)|(Hd&uu))|((Hd&~uu)<<SKW)};
   // a DNA result starts at its stage's first level (Rookie 1, Champion 11, Ultimate 21) and learns that stage's moves one level later (EL 12 / 22), so it needs that Max level, like a level-up
-  const dnaSk=(k,m,a,b)=>{const inh=(a|b)&15,uu=UNLx(ST[k],m,ST[k])|learn(k,m);return (inh&uu)|learn(k,m)|((inh&~uu)<<4)};
+  const dnaSk=(k,m,a,b)=>{const inh=(a|b)&SKM,uu=UNLx(ST[k],m,ST[k])|learn(k,m);return (inh&uu)|learn(k,m)|((inh&~uu)<<SKW)};
   // the stages a Digimon can still reach by level-ups alone, at its DP and Max level
   const reachSt=(k,d,m)=>{let b=ST[k];if(b<3&&m>=EVL[b])(DEK[k]||[]).forEach(e=>{if(d>=e.lo&&d<=e.hi){const r=reachSt(e.k,d,m);if(r>b)b=r}});return b};
   const reachMask=(k,d,m)=>{const s=reachSt(k,d,m);let b=0;MST.forEach((x,i)=>{if(s>=x&&m>=MLL[i])b|=1<<i});return b};
   // the final Digimon counts a carried move only if its own evolution line can still reach that move's stage and level
-  const skOK=(k,d,m,sk,R)=>(((sk&15)|(((sk>>4)&15)&reachMask(k,d,m)))&R)===R;
+  const skOK=(k,d,m,sk,R)=>(((sk&SKM)|(((sk>>SKW)&SKM)&reachMask(k,d,m)))&R)===R;
   // the level-up path to the first form at a stage, for "learns it when it becomes …"
   const evoPath=(k,d,m,st)=>{const p=[];let c=k;while(ST[c]<st){const s=ST[c];if(m<EVL[s])return null;const e=(DEK[c]||[]).find(e=>d>=e.lo&&d<=e.hi&&reachSt(e.k,d,m)>=st);if(!e)return null;c=e.k;p.push(c)}return p};
   let nb=0,MB=2,FULL=0,rowsN=0;
   // each Digimon you added can be used at most once. To keep the search fast, rows only get their own 'used' bit when needed (must-use, or a route tried to reuse them).
-  const build=BITS=>{have={};bad=[];errs=[];nb=0;rowsN=0;let ri=0;const RESEX=resExcl();own.querySelectorAll('.bcrow').forEach(r=>{r._ri=ri++;const v=r.querySelector('.bnm').value;if(!v.trim())return;if(r.querySelector('.bnu').checked)return;if(r._bid&&RESEX.has(r._bid))return;const k=key(v);if(!k||ST[k]==null){bad.push(v);return}
+  const build=BITS=>{have={};bad=[];errs=[];nb=0;rowsN=0;let ri=0;const RESEX=RESX0;ROWS.forEach(r=>{r._ri=ri++;const v=r.querySelector('.bnm').value;if(!v.trim())return;if(r.querySelector('.bnu').checked)return;if(r._bid&&RESEX.has(r._bid))return;const k=key(v);if(!k||ST[k]==null){bad.push(v);return}
    const d=Math.min(CAP,Math.max(0,parseInt(r.querySelector('.bdp').value)||0)),lv=parseInt(r.querySelector('.blv').value)||0,ml=parseInt(r.querySelector('.bml').value)||null;
    if(ml&&lv&&lv>ml)errs.push(`${DISP(k)}'s Level (${lv}) is above its Max level (${ml}).`);const qr=r.querySelector('.bqy').value.trim(),qv=qr===''?null:parseInt(qr);if(qr!==''&&!(qv>=0&&qv<=100))errs.push(`${DISP(k)}'s Quality must be a whole number from 0 to 100.`);
-   const mu=r.querySelector('.bmu').checked,fz=FORCE.has(r._ri),mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),hb0=SEL.reduce((b,mv,i)=>(r._hm||[]).includes(mv)?b|1<<i:b,0),kn0=learn(k,mc)|kb|(hb0&UNLx(ST[k],mc,(r._bl||1)>=21?2:(r._bl||1)>=11?1:0)),hd0=hb0&~kn0,s=k+'|'+d+'|'+mc+'|'+((mu||fz||BITS.has(r._ri))?1<<nb++:0)+'|'+(kn0|(hd0<<4))+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,fz:fz,rows:[],q:null};have[s].n++;have[s].rows.push(r);rowsN++;if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
+   const mu=!MKR&&r.querySelector('.bmu').checked,fz=FORCE.has(r._ri),mc=ml?Math.min(ML,ml):ML,kb=SEL.reduce((b,mv,i)=>(r._mv||[]).includes(mv)?b|1<<i:b,0),hb0=SEL.reduce((b,mv,i)=>(r._hm||[]).includes(mv)?b|1<<i:b,0),kn0=learn(k,mc)|kb|(hb0&UNLx(ST[k],mc,(r._bl||1)>=21?2:(r._bl||1)>=11?1:0)),hd0=hb0&~kn0,s=k+'|'+d+'|'+mc+'|'+((mu||fz||(BITS.has(r._ri)&&nb<31-2*SKW))?1<<nb++:0)+'|'+(kn0|(hd0<<SKW))+'|'+(ml?0:1);have[s]=have[s]||{n:0,lv:lv,ml:ml,mu:mu,fz:fz,rows:[],q:null};have[s].n++;have[s].rows.push(r);rowsN++;if(qv!=null&&(have[s].q==null||qv>have[s].q))have[s].q=qv});
   MB=Math.max(2,2**nb);FULL=0;Object.keys(have).forEach(x=>{if(have[x].mu||have[x].fz)FULL|=+x.split('|')[3]})};
   build(new Set());if(mode==='make'&&rowsN<=12)build(new Set([...Array(rowsN).keys()]));
-  const tk=key(T.value),warn=m=>out.innerHTML=`<div class="bcw">${m}</div>`;
+  const tk=key(T.value),warn=m=>{if(PROBE)return;out.innerHTML=`<div class="bcw">${m}</div>`};
   if(bad.length)return warn(`I don't recognise ${bad.map(b=>'"'+b+'"').join(', ')}. Pick names from the dropdown.`);
   if(errs.length)return warn(errs.join('<br>'));
   if(!Object.keys(have).length)return warn(resExcl().size?`All your Digimon are left out because your saved plans use them. Tick <b>Use reserved Digimon</b> to let the search use them.`:'Add at least one Digimon you have.');
-  const anyT=ANY.checked&&mode!=='make';if(anyT&&!SEL.length)return warn('Pick at least one move for &ldquo;Any Digimon is fine&rdquo;, or untick it.');
+  const anyT=ANY.checked&&mode!=='make'&&!MKR;if(anyT&&!SEL.length)return warn('Pick at least one move for &ldquo;Any Digimon is fine&rdquo;, or untick it.');
   if(!tk&&!anyT&&mode!=='make')return warn('Pick the Digimon you want from the dropdown.');
   if(rowsN>150)return warn('Find route works with up to 150 Digimon at a time. Remove some, or untick &ldquo;Use in chain&rdquo; on some in your DigiBank.');
-  const tgt=Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
-  const run=(seeds,o={})=>{const QM=o.qc||null,DL=Math.min(o.dl||Infinity,HARD),RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
+  const tgt=MKR?0:Math.min(ML,Math.max(0,parseInt(TM.value)||0)),skN=(SK.checked&&tk&&!anyT&&!MKR)?SKL[ST[tk]]:0,need0=Math.max(skN,tgt),P=s=>s.split('|');
+  const run=function*(seeds,o={}){const QM=o.qc||null,DL=Math.min(o.dl||Infinity,HARD),RQM=o.mu!=null?o.mu:FULL,RQS=o.sk!=null?o.sk:SFULL,N0=o.n0!=null?o.n0:need0;
    const KS=Object.keys(ST),N=KS.length,KI={};KS.forEach((k,i)=>KI[k]=i);const D1=CAP+1,M1=ML+1;
-   const enc=(ki,d,m,mk,sk,u,qc)=>(((((ki*D1+d)*M1+m)*MB+mk)*256+sk)*2+u)*2+(qc?1:0);
-   const dec=id=>{const qc=id%2;id=(id-qc)/2;const u=id%2;id=(id-u)/2;const sk=id%256;id=(id-sk)/256;const mk=id%MB;id=(id-mk)/MB;const m=id%M1;id=(id-m)/M1;const d=id%D1;return [(id-d)/D1,d,m,mk,sk,u,qc]};
+   const enc=(ki,d,m,mk,sk,u,qc)=>(((((ki*D1+d)*M1+m)*MB+mk)*SKS+sk)*2+u)*2+(qc?1:0);
+   const dec=id=>{const qc=id%2;id=(id-qc)/2;const u=id%2;id=(id-u)/2;const sk=id%SKS;id=(id-sk)/SKS;const mk=id%MB;id=(id-mk)/MB;const m=id%M1;id=(id-m)/M1;const d=id%D1;return [(id-d)/D1,d,m,mk,sk,u,qc]};
    const RTi=new Int16Array(N*N).fill(-1),isD=KS.map(k=>!!ALLK[k]);KS.forEach((a,i)=>{if(!isD[i])return;KS.forEach((b,j)=>{const r=RT[a]&&RT[a][b];if(r&&KI[r]!=null)RTi[i*N+j]=KI[r]})});
    const EV=KS.map(k=>(DEK[k]||[]).filter(e=>KI[e.k]!=null).map(e=>({j:KI[e.k],lo:e.lo,hi:e.hi,dp:e.dp})));
-   const STI=KS.map(k=>ST[k]),UN=new Uint8Array(4*M1),UND=new Uint8Array(4*M1);for(let st=0;st<4;st++)for(let m=0;m<M1;m++){UN[st*M1+m]=UNL(st,m);UND[st*M1+m]=UNLx(st,m,st)}const RMk=new Map(),RM=(ki,d,m)=>{const z=(ki*D1+d)*M1+m;let v=RMk.get(z);if(v==null){v=reachMask(KS[ki],d,m);RMk.set(z,v)}return v};
+   const STI=KS.map(k=>ST[k]),UN=new Uint16Array(4*M1),UND=new Uint16Array(4*M1);for(let st=0;st<4;st++)for(let m=0;m<M1;m++){UN[st*M1+m]=UNL(st,m);UND[st*M1+m]=UNLx(st,m,st)}const RMk=new Map(),RM=(ki,d,m)=>{const z=(ki*D1+d)*M1+m;let v=RMk.get(z);if(v==null){v=reachMask(KS[ki],d,m);RMk.set(z,v)}return v};
    // training an Ultimate to EL 31 for its Mega form is a lot of work, so it counts as about 2 DNA Digivolves
    const EC=KS.map(k=>!o.reach&&ST[k]===3?2001:1);
-   const LA=KS.map(k=>{const a=new Uint8Array(M1);for(let m=0;m<M1;m++)a[m]=learn(k,m);return a});
+   const LA=KS.map(k=>{const a=new Uint16Array(M1);for(let m=0;m<M1;m++)a[m]=learn(k,m);return a});
    const best=new Map(),how=new Map(),top=new Map();H.length=0;
    // A* guide: a lower bound on the steps still needed to reach the target and learn the moves, so the search looks toward the goal first.
    // It never overestimates, so the route found is still the shortest one.
@@ -2637,44 +2731,50 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
     const Dt=anyT?new Float64Array(N*NC):dist(x=>x===tg);
     const MV=SEL.map((mv,i)=>{const L=new Set();KS.forEach((k,x)=>{if((LRN[k]||[]).some(([j])=>j==i))L.add(x)});const DL=dist(x=>L.has(x));let mn=INF;L.forEach(x=>{for(let d=0;d<NC;d++)if(Dt[x*NC+d]<mn)mn=Dt[x*NC+d]});return {DL,mn,G:INF}});
     seeds.forEach(x=>{const p=x[0].split('|'),ki=KI[p[0]],dd=Math.min(CAP,+p[1]),sk=+p[4];if(ki==null)return;MV.forEach((m,i)=>{const g=x[1]+(((sk>>i)&1)?0:m.DL[ki*NC+dd]);if(g<m.G)m.G=g})});
-    return (ki,d,sk)=>{sk=(sk|(sk>>4))&15;const z=ki*NC+(d>CAP?CAP:d);let h=Dt[z];if(h>=INF)return INF;for(let i=0;i<MV.length;i++){if(((sk>>i)&1)||!((RQS>>i)&1))continue;const m=MV[i],a=m.DL[z]+m.mn,b2=h+m.G,hm=a<b2?a:b2;if(hm>h)h=hm}return h}})();
+    // normally the hardest missing move sets the estimate (never too high, so the route found is the shortest);
+    // in the quicker search (SUMH) the missing moves add up, which finds routes for several moves much faster
+    return (ki,d,sk)=>{sk=(sk|(sk>>SKW))&SKM;const z=ki*NC+(d>CAP?CAP:d),h0=Dt[z];let h=h0,ex=0;if(h>=INF)return INF;for(let i=0;i<MV.length;i++){if(((sk>>i)&1)||!((RQS>>i)&1))continue;const m=MV[i],a=m.DL[z]+m.mn,b2=(SUMH?h0:h)+m.G,hm=a<b2?a:b2;if(hm>h)h=hm;if(hm>h0)ex+=hm-h0}return SUMH?h0+ex:h}})();
    // on a tie, prefer a DNA of two different Digimon over two of the same: same work, more variety and more moves picked up on the way
-   const push=(id,c,h)=>{const b=best.get(id);if(b!=null&&b<=c){if(b===c&&h.t==='dna'){const o=how.get(id);if(o&&!o.done&&o.t==='dna'&&dec(o.a)[0]===dec(o.b)[0]&&dec(h.a)[0]!==dec(h.b)[0])how.set(id,h)}return}let f=c;if(HG){const q=dec(id),g=HG(q[0],q[1],q[4]);if(g>=1e9)return;f=c+WGT*g}best.set(id,c);how.set(id,h);hp(f,id,c)};
+   const push=(id,c,h)=>{GS+=0.0595;const b=best.get(id);if(b!=null&&b<=c){if(b===c&&h.t==='dna'){const o=how.get(id);if(o&&!o.done&&o.t==='dna'&&dec(o.a)[0]===dec(o.b)[0]&&dec(h.a)[0]!==dec(h.b)[0])how.set(id,h)}return}let f=c;if(HG){const q=dec(id),g=HG(q[0],q[1],q[4]);if(g>=1e9)return;f=c+WGT*g}best.set(id,c);how.set(id,h);hp(f,id,c)};
    seeds.forEach(x=>{const [k,d,m,mk,sk,u]=x[0].split('|');push(enc(KI[k],+d,+m,+mk,+sk,+u,QM&&x[0]===QM),x[1],Object.assign({sid:x[0]},x[2]))});
-   const CAPF=200005,fI=new Float64Array(CAPF),fC=new Float64Array(CAPF),fD=new Int8Array(CAPF),fM=new Int8Array(CAPF),fMk=new Int32Array(CAPF),fSk=new Uint8Array(CAPF),fU=new Int8Array(CAPF),fQ=new Int8Array(CAPF);let nF=0;
+   const CAPF=200005,fI=new Float64Array(CAPF),fC=new Float64Array(CAPF),fD=new Int8Array(CAPF),fM=new Int8Array(CAPF),fMk=new Int32Array(CAPF),fSk=new Uint16Array(CAPF),fU=new Int8Array(CAPF),fQ=new Int8Array(CAPF);let nF=0;
    const BYK=KS.map(()=>[]),BYQ=KS.map(()=>[]),PK=KS.map((a,i)=>{if(!isD[i])return [];const L=[];for(let j=0;j<N;j++)if(isD[j]&&(RTi[i*N+j]>=0||RTi[j*N+i]>=0))L.push(j);return L});let goal=null,pops=0;const tki=tk?KI[tk]:-1,RCH=o.reach;
-   while(H.length){const [,id,c]=hpop();const h=how.get(id);if(best.get(id)!==c||h.done)continue;const [ki,d,m,mk,sk,u,qc]=dec(id),b0=(ki*D1+d)*MB,base=(b0+mk)*256;
+   let yc=0;while(H.length){if((++yc&63)===0&&performance.now()>SLICE_END)yield 0;const [,id,c]=hpop();const h=how.get(id);if(best.get(id)!==c||h.done)continue;const [ki,d,m,mk,sk,u,qc]=dec(id),b0=(ki*D1+d)*MB,base=(b0+mk)*SKS;
     // skip a state if one at least as good was already reached: same Digimon and DP, Max level as high, the same moves or more, and using fewer of your Digimon (must-use ones excepted)
-    const fx=mk&RQM,fr=mk&~RQM;let dom=false;for(let sub=fr;;sub=(sub-1)&fr){const bb=(b0+(sub|fx))*256;for(let s2=sk;s2<256;s2=(s2+1)|sk){const t=top.get((bb+s2)*2+qc);if(t!=null&&t>=m){dom=true;break}}if(dom||sub===0)break}if(dom)continue;
-    top.set((base+sk)*2+qc,m);h.done=1;if(++pops>200000)break;if((pops&255)==0&&performance.now()>DL){if(DL===HARD)TO=true;break}
+    const fx=mk&RQM,fa=mk|RQM,gk=(ki*D1+d)*2+qc;let TL=top.get(gk),dom=false;
+    if(TL)for(let i=0;i<TL.length;i+=3){const k2=TL[i+2];if(TL[i]>=m&&(TL[i+1]&sk)===sk&&(k2&RQM)===fx&&(k2&~fa)===0){dom=true;break}}
+    if(dom)continue;
+    // keep the list short: drop the states this one beats
+    if(!TL)top.set(gk,TL=[]);else{let w=0;for(let i=0;i<TL.length;i+=3){const k2=TL[i+2];if(!(m>=TL[i]&&(sk&TL[i+1])===TL[i+1]&&(k2&RQM)===fx&&(mk&~(k2|RQM))===0)){TL[w]=TL[i];TL[w+1]=TL[i+1];TL[w+2]=k2;w+=3}}TL.length=w}
+    TL.push(m,sk,mk);h.done=1;GS+=41.6;if(++pops>200000){if(DL===HARD)TO=true;break}if((pops&255)==0){if(performance.now()-IDLE>SAFE){SAFEHIT=true;TO=true;HARD=-1;break}if(VNOW()>DL){if(DL===HARD)TO=true;break}}
     if(RCH){if(c>3999)break;if(RCH[ki]==null||c<RCH[ki])RCH[ki]=c}
-    else if((anyT||ki==tki)&&m>=N0&&(mk&RQM)==RQM&&((sk&RQS)==RQS||((((sk&15)|((sk>>4)&RM(ki,d,m)))&RQS)==RQS))&&(!QM||qc)){goal=id;break}
-    const st=ST[KS[ki]];let evd=false;if(st<3&&m>=EVL[st])for(const e of EV[ki])if(d>=e.lo&&d<=e.hi){evd=true;{const uu=UN[STI[e.j]*M1+m]|LA[e.j][m],Hd=sk>>4;push(enc(e.j,d,m,mk,((sk&15)|LA[e.j][m]|(Hd&uu))|((Hd&~uu)<<4),u,qc),c+EC[e.j],{t:'evo',from:id,dp:e.dp})}}
+    else if((anyT||ki==tki)&&m>=N0&&(mk&RQM)==RQM&&((sk&RQS)==RQS||((((sk&SKM)|((sk>>SKW)&RM(ki,d,m)))&RQS)==RQS))&&(!QM||qc)){goal=id;break}
+    const st=ST[KS[ki]];let evd=false;if(st<3&&m>=EVL[st])for(const e of EV[ki])if(d>=e.lo&&d<=e.hi){evd=true;{const uu=UN[STI[e.j]*M1+m]|LA[e.j][m],Hd=sk>>SKW;push(enc(e.j,d,m,mk,((sk&SKM)|LA[e.j][m]|(Hd&uu))|((Hd&~uu)<<SKW),u,qc),c+EC[e.j],{t:'evo',from:id,dp:e.dp})}}
     // trained to its Max level, a Digimon that can digivolve will: only its final form can be a DNA parent (when its Max level is known)
     if(isD[ki]&&!(evd&&!u)){const f=nF++;fI[f]=id;fC[f]=c;fD[f]=d;fM[f]=m;fMk[f]=mk;fSk[f]=sk;fU[f]=u;fQ[f]=qc;BYK[ki].push(f);if(qc)BYQ[ki].push(f);
      const pk=PK[ki];for(let pi=0;pi<pk.length;pi++){const k2=pk[pi],L=QM&&!qc?BYQ[k2]:BYK[k2],r1=RTi[ki*N+k2],r2=k2!=ki?RTi[k2*N+ki]:-1;
       for(let li=0;li<L.length;li++){const q=L[li],mk2=fMk[q];if(mk&mk2)continue;
-      const m2=fM[q],u2=fU[q],q2=fQ[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),ns=(sk|fSk[q])&15,nmk=mk|mk2,cc=c+fC[q]+1000;let hi=m>m2?m:m2,lo=m>m2?m2:m,nu=u|u2,nq=0;
+      const m2=fM[q],u2=fU[q],q2=fQ[q],nd=Math.min(CAP,Math.max(d,fD[q])+1),ns=(sk|fSk[q])&SKM,nmk=mk|mk2,cc=c+fC[q]+1000;let hi=m>m2?m:m2,lo=m>m2?m2:m,nu=u|u2,nq=0;
       if(QM&&(qc||q2)){
        // keep the Quality line on top: a partner whose Max level isn't known is taken at the lowest Max level its stage allows (no higher than the line, so the line passes on its Quality)
        if(u!==u2){const km=u?m2:m,kq=u?q2:qc,su=ST[KS[u?ki:k2]],pm=su>0?EVL[su-1]:1;if(kq){if(km<pm)continue;hi=km;lo=pm;nu=0;nq=1}}
        else if(!u){nq=m>m2?qc:m2>m?q2:(qc||q2)}else nq=0}
       const nm=Math.min(ML,hi+Math.floor(lo/5));
-      const dsk=r=>{const uu=UND[STI[r]*M1+nm]|LA[r][nm];return (ns&uu)|LA[r][nm]|((ns&~uu)<<4)};if(r1>=0)push(enc(r1,nd,nm,nmk,dsk(r1),nu,nq),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0)push(enc(r2,nd,nm,nmk,dsk(r2),nu,nq),cc,{t:'dna',a:fI[q],b:id})}}}}
+      const dsk=r=>{const uu=UND[STI[r]*M1+nm]|LA[r][nm];return (ns&uu)|LA[r][nm]|((ns&~uu)<<SKW)};if(r1>=0)push(enc(r1,nd,nm,nmk,dsk(r1),nu,nq),cc,{t:'dna',a:id,b:fI[q]});if(r2>=0)push(enc(r2,nd,nm,nmk,dsk(r2),nu,nq),cc,{t:'dna',a:fI[q],b:id})}}}}
    if(goal==null)return {goal:null};
    const H2={},str=id=>{const h=how.get(id);if(h.sid){H2[h.sid]={t:h.t};return h.sid}const [ki,d,m,mk,sk,u,qc]=dec(id),sid=[KS[ki],d,m,mk,sk,u].join('|')+(qc?'|q':'');if(H2[sid])return sid;
     const o={t:h.t,dp:h.dp};if(h.t=='evo')o.from=str(h.from);if(h.t=='dna'){o.a=str(h.a);o.b=str(h.b)}H2[sid]=o;return sid};
    return {goal:str(goal),how:H2,KS}};
   // Rookies are always catchable (usually Max EL 13); Champions and Ultimates only when their boxes are ticked. The route levels catches up and uses DNA to raise their Max level.
   // a catch counts as about 3 DNA Digivolves (5 for a Champion, 8 for an Ultimate); fresh Champions and Ultimates are assumed to be below the level where they'd digivolve, so your own Digimon come first unless catching saves real work
-  const CW=[3000,5000,8000,1000000],mkCatch=maxSt=>Object.keys(ST).filter(k=>k!=tk&&(ST[k]===0||(ALLK[k]&&((ST[k]===1&&CC.checked)||(ST[k]===2&&CU.checked))))).map(k=>{const cm=CMX[ST[k]];return [k+'|0|'+cm+'|0|'+learn(k,cm)+'|0',CW[ST[k]],{t:'catch'}]}).filter(x=>!Object.keys(have).some(s=>s.split('|')[0]==x[0].split('|')[0]));
+  const CW=[3000,5000,8000,1000000],mkCatch=maxSt=>Object.keys(ST).filter(k=>k!=tk&&(!NOC&&(ST[k]===0||(ALLK[k]&&((ST[k]===1&&CCk)||(ST[k]===2&&CUk)))))).map(k=>{const cm=CMX[ST[k]];return [k+'|0|'+cm+'|0|'+learn(k,cm)+'|0',CW[ST[k]],{t:'catch'}]}).filter(x=>!Object.keys(have).some(s=>s.split('|')[0]==x[0].split('|')[0]));
   let seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);
-  if(mode==='make'){const RCH={},R0=run(seeds,{reach:RCH,mu:0,sk:0,n0:0}),KS=Object.keys(ST),ownK=new Set(Object.keys(have).map(x=>P(x)[0]));
+  if(mode==='make'){const RCH={},R0=yield* run(seeds,{reach:RCH,mu:0,sk:0,n0:0}),KS=Object.keys(ST),ownK=new Set(Object.keys(have).map(x=>P(x)[0]));
    const by=[[],[],[],[]];Object.keys(RCH).forEach(i=>{const k=KS[i],c=RCH[i];if(!c||ownK.has(k))return;by[ST[k]].push([k,c])});
    const stp=c=>{const dd=Math.floor(c/1000),ev=c%1000;return [dd?dd+' DNA':'',ev?ev+' level-up'+(ev>1?'s':''):''].filter(Boolean).join(' + ')};
    const icoK=k=>PIC[k]?`<img src="${PIC[k]}" alt="">`:'';
    const tot=by.reduce((a,b)=>a+b.length,0);LAST=null;VW.hidden=true;
-   out.innerHTML=tot?`<div class="bmk"><div class="bcsum"><b>You can make ${tot} Digimon</b> from the ones you have, within 3 DNA Digivolves, without getting any new ones. Tap one to make it your target.</div>`+
+   out.innerHTML=tot?`<div class="bmk"><div class="bcsum"><b>You can make ${tot} Digimon</b> from the ones you have, within 3 DNA Digivolves, without getting any new ones. Tap one to see its route.<br><small>This list uses only the Digimon you have. It ignores your moves, catch boxes, Must use and Max level options.</small></div>`+
     [3,2,1,0].filter(s=>by[s].length).map(s=>`<h5>${STN[s]} (${by[s].length})</h5><div class="bml2">`+by[s].sort((a,b)=>a[1]-b[1]||DISP(a[0]).localeCompare(DISP(b[0]))).map(([k,c])=>`<button type="button" class="bmkc" data-k="${DISP(k)}">${icoK(k)}${DISP(k)} <small>${stp(c)}</small></button>`).join('')+'</div>').join('')+'</div>'
     :'<div class="bcw">Nothing new within 3 DNA Digivolves. Add more of the Digimon you have, or their Max levels.</div>';
    return}
@@ -2685,18 +2785,45 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
   // a move can only be learned at its own stage: if the target can never digivolve that far, no chain can give it the move
   if(!anyT&&tk&&SEL.length){const top=Math.max(...Array.from({length:CAP+1},(x,d)=>reachSt(tk,d,ML)));const bad=SEL.filter((mv,i)=>MST[i]>top);
    if(bad.length)return warn(`<b>${dn(tk)} can&rsquo;t learn ${bad.join(' or ')}.</b> ${bad.map(mv=>`${mv} is a${/^U/.test(MVI[mv][1])?'n':''} ${MVI[mv][1]} move`).join(', ')}, and a Digimon only learns a move once it digivolves to that move&rsquo;s stage. ${DISP(tk)} is ${/^U/.test(STN[ST[tk]])?'an':'a'} ${STN[ST[tk]]} and can&rsquo;t digivolve to ${top<3?'a '+STN[top+1]:'that stage'}${top>ST[tk]?` (it goes up to ${STN[top]})`:''}. Pick a move from a stage it can reach, or a Digimon whose line reaches that stage.`)}
-  let R,PL0=null;const BITS=new Set(),T0=performance.now();
-  const toMsg=()=>{const hints=[],own=Object.keys(have).map(x=>P(x)[0]),oTy=new Set(own.map(k=>dty(DISP(k))).filter(t=>t!=null)),TYN3=['Vaccine','Data','Virus'];
-   const par=tk?(PAR[tk]||[]).map(x=>({k:KEY(x.p),dp:x.dp})).filter(x=>ST[x.k]!=null):[];
-   if(tk&&ST[tk]>=3)hints.push(`${DISP(tk)} is a Mega, so the route needs several DNA Digivolves and level-ups. That&rsquo;s the slowest kind of search.`);
-   else if(tk&&ST[tk]==2)hints.push(`${DISP(tk)} is an Ultimate, so the route needs a few DNA Digivolves and level-ups.`);
-   if(par.length){const lo=Math.min(...par.map(x=>parseInt(x.dp)||0)),hd=Math.max(0,...Object.keys(have).map(x=>+P(x)[1]));if(lo-hd>=4){const pn=par.filter(x=>(parseInt(x.dp)||0)==lo).map(x=>DISP(x.k)).join(' or ');hints.push(`${DISP(tk)} needs ${pn} at <b>DP ${lo} or more</b>. Your highest DP is ${hd}, and each DNA Digivolve adds only 1 DP, so this takes at least <b>${lo-hd} more DNA Digivolves</b>. That chain is too long to search in one go.`)}}
-   if(par.length){const pt=[...new Set(par.map(x=>dty(DISP(x.k))).filter(t=>t!=null))];if(pt.length&&!pt.some(t=>oTy.has(t)))hints.push(`${DISP(tk)} digivolves from ${pt.map(t=>TYN3[t]).join(' or ')} Digimon, and none of yours are ${pt.map(t=>TYN3[t]).join(' or ')}, so the route has to make or get one first.`)}
-   if(rowsN>8)hints.push(`You have ${rowsN} Digimon in your list. Fewer Digimon makes the search faster.`);
-   if(SEL.length)hints.push('Each move you pick makes the search bigger.');if(nb&&FULL)hints.push('&ldquo;Must use in chain&rdquo; makes the search bigger.');if(tgt)hints.push('A Final Max level target makes the search bigger.');
-   const step=par.length?`<br><b>Try a step at a time:</b> search for one of the Digimon it digivolves from first, then add it to your list and search for ${DISP(tk)} again.<div class="bml2" style="margin-top:6px">${par.map(x=>`<button type="button" class="bmkc btgt" data-k="${DISP(x.k)}">${PIC[x.k]?`<img src="${PIC[x.k]}" alt="">`:''}${DISP(x.k)}${x.dp&&x.dp!='0+'?` <small>DP ${x.dp}</small>`:''}</button>`).join('')}</div>`:'';
-   return warn(`<b>Stopped after 6 seconds without finding a route${tk?' to '+dn(tk):''}.</b> The search was too big to finish quickly.`+(hints.length?'<ul style="margin:6px 0 0;padding-left:18px">'+hints.map(h=>`<li>${h}</li>`).join('')+'</ul>':'')+step)};
-  const overOf=pl=>Object.keys(have).filter(s=>have[s]&&(pl.need[s]||0)>have[s].n),grow=over=>{over.forEach(s=>have[s].rows.forEach(r=>BITS.add(r._ri)));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}])};
+  LASTOVER=null;let R,PL0=null,RESV=null;const BITS=new Set(),T0=VNOW();
+  // with only a few Digimon listed, each one can be used once from the start (cheap, and the route never counts on using one twice);
+  // a DP 0 one that a fresh catch can replace is left free, so a second use simply becomes 'get another'
+  const BITS0=new Set();if(rowsN<=6&&!fix&&mode!=='make'){Object.keys(have).forEach(s=>{const q=P(s);if(+q[1]===0&&(!NOC&&(ST[q[0]]===0||(ALLK[q[0]]&&((ST[q[0]]===1&&CCk)||(ST[q[0]]===2&&CUk))))))return;(have[s].rows||[]).forEach(r=>BITS0.add(r._ri))});BITS0.forEach(x=>BITS.add(x));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}])}
+   const toMsg=()=>{const par=tk?(PAR[tk]||[]).map(x=>({k:KEY(x.p),dp:x.dp})).filter(x=>ST[x.k]!=null):[];
+    const lo=par.length?Math.min(...par.map(x=>parseInt(x.dp)||0)):0,hd=Math.max(0,...Object.keys(have).map(x=>+P(x)[1])),OV=LASTOVER;
+    const why=OV?(OV.n==1?`the best routes need your ${DISP(OV.k)}${OV.d?` (DP ${OV.d})`:''} more than once, and you have only one.`:`the best routes need more of your ${DISP(OV.k)}${OV.d?` (DP ${OV.d})`:''} than the ${OV.n} you have.`)
+     :lo-hd>=4?`${DISP(tk)} needs DP ${lo}+, and your highest is DP ${hd}, so the chain is long.`
+     :tk&&ST[tk]>=2&&!CCk&&!CUk&&!UBX().checked?'with only Rookie catches, the chain is very long.'
+     :SEL.length>=3?`${SEL.length} moves make the search very big.`
+     :rowsN>24?`${rowsN} Digimon in your list make the search very big.`:'the route is too long to find in time.';
+    if(!PROBE&&!MKR)NEXTP={kind:'stop',par:par.length>0};
+    const step=par.length?`<div class="bml2" style="margin-top:6px"><small>Or a step at a time:</small> ${par.map(x=>`<button type="button" class="bmkc btgt" data-k="${DISP(x.k)}">${PIC[x.k]?`<img src="${PIC[x.k]}" alt="">`:''}${DISP(x.k)}${x.dp&&x.dp!='0+'?` <small>DP ${x.dp}</small>`:''}</button>`).join('')}</div>`:'';
+    return warn(`<b>Stopped: no route found in time${tk?' for '+dn(tk):''}.</b><div>Why: ${why}${SAFEHIT?' Your device also hit the 20-second safety stop.':''}</div><div class="bcopts" style="margin-top:6px"><small>Checking what would help&hellip;</small></div>`+step)};
+  const overOf=pl=>Object.keys(have).filter(s=>have[s]&&(pl.need[s]||0)>have[s].n),grow=over=>{{const x=over.find(s=>{const q=P(s);return have[s]&&!(+q[1]===0&&(!NOC&&(ST[q[0]]===0||(ALLK[q[0]]&&((ST[q[0]]===1&&CCk)||(ST[q[0]]===2&&CUk))))))});if(x){const q=P(x);LASTOVER={k:q[0],d:+q[1],n:have[x].n}}}const k0=Object.keys(have).join();over.forEach(s=>have[s].rows.forEach(r=>BITS.add(r._ri)));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);return Object.keys(have).join()!==k0};
+  // a route that uses one of your Digimon more times than you have it: give each extra use another of your Digimon of the same kind,
+  // or a fresh catch (DP 0) when you have none left, then work every step out again and keep the route only if it still does everything asked
+  const repair=(pl,noCatch)=>{try{const OH=pl.how;if(Object.keys(OH).some(x=>/\|q$/.test(x)))return null;
+    const left={};Object.keys(have).forEach(x=>left[x]=have[x].n);const H2={};
+    const alts=x=>{const [k,d,m]=P(x);return Object.keys(have).filter(y=>y!==x&&P(y)[0]===k).sort((a,b)=>{const A=P(a),B=P(b);return (+A[1]!==+d)-(+B[1]!==+d)||(+A[2]!==+m)-(+B[2]!==+m)||(+B[2])-(+A[2])})};
+    const catchOK=k=>k!==tk&&(!NOC&&(ST[k]===0||(ALLK[k]&&((ST[k]===1&&CCk)||(ST[k]===2&&CUk)))));
+    const put=(o,h)=>{const e=H2[o];if(e){if(e.t!==h.t||e.from!==h.from||e.a!==h.a||e.b!==h.b)throw 'clash';return}H2[o]=h};
+    const evolves=Q=>{const st=ST[Q[0]];if(Q[5]==='1'||st>=3||+Q[2]<EVL[st])return false;return (DEK[Q[0]]||[]).some(e=>+Q[1]>=e.lo&&+Q[1]<=e.hi)};
+    // a step's result must not look like one of your own Digimon (the search never makes those)
+    const made=o=>{if(have[o])throw 'own';return o};
+    const sim=x=>{const h=OH[x];let o;
+     if(h.t=='have'){const y=left[x]>0?x:alts(x).find(z=>left[z]>0);
+      if(y){left[y]--;o=y;put(o,{t:'have'})}
+      else{const k=P(x)[0];if(noCatch||+P(x)[1]!==0||!catchOK(k))throw 'none';const cm=CMX[ST[k]];o=k+'|0|'+cm+'|0|'+learn(k,cm)+'|0';put(o,{t:'catch'})}}
+     else if(h.t=='catch'){o=x;put(o,{t:'catch'})}
+     else if(h.t=='evo'){const f=sim(h.from),[k0,d,m,mk,sk,u]=P(f),k=P(x)[0],st=ST[k0];if(u!=='1'&&+m<EVL[st])throw 'evo';
+      const e=(DEK[k0]||[]).find(e=>e.k===k&&+d>=e.lo&&+d<=e.hi);if(!e)throw 'evo';o=made([k,d,m,mk,evoSk(k,+m,+sk),u].join('|'));put(o,{t:'evo',from:f,dp:e.dp})}
+     else{const a=sim(h.a),b=sim(h.b),A=P(a),B=P(b),k=P(x)[0];if((+A[3])&(+B[3]))throw 'twice';if(evolves(A)||evolves(B))throw 'digivolves';
+      const la=+A[2],lb=+B[2],hi=Math.max(la,lb),lo=Math.min(la,lb),nm=Math.min(ML,hi+Math.floor(lo/5)),nd=Math.min(CAP,Math.max(+A[1],+B[1])+1);
+      o=made([k,nd,nm,(+A[3])|(+B[3]),dnaSk(k,nm,+A[4],+B[4]),(A[5]==='1'||B[5]==='1')?1:0].join('|'));put(o,{t:'dna',a,b})}
+     return o};
+    const g=sim(pl.goal),G=P(g);
+    if(!anyT&&G[0]!==tk)return null;if(G[5]!=='1'&&+G[2]<need0)return null;if(!skOK(G[0],+G[1],+G[2],+G[4],SFULL))return null;if(((+G[3])&FULL)!==FULL)return null;
+    const np=plan({goal:g,how:H2});if(overOf(np).length)return null;return np}catch(e){return null}};
   // a saved chain brings its own route: rebuild it on the same Digimon instead of searching again
   let FIXED=false,FIXMSG='';
   if(fix&&fix.g&&fix.how&&fix.hv&&mode!=='make'){const byId=rowIds(),hv={};let ok=true;
@@ -2739,19 +2866,28 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    catch(e){if(why)FIXMSG=`<div class="bcw"><b>Your ${E_(fix.nm)} doesn&rsquo;t fit the chain you were on:</b> ${why}. I planned a new route with it.</div>`}}
   if(!FIXED){
   // catches cost far more than anything you own, so one search finds the no-catch route first when there is one
-  for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}
+  for(let it=0;it<10;it++){R=yield* run(seeds.concat(mkCatch(CUk?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;{const rp=repair(PL0,true);if(rp){PL0=rp;R={goal:rp.goal,how:rp.how};break}if(!RESV){const rc=repair(PL0);if(rc)RESV={pl:rc,R:{goal:rc.goal,how:rc.how},have,nb,MB,FULL,seeds,B:[...BITS]}}}{if(!grow(over))break}}
   // if catches are needed, check once whether a route with fewer catches exists
-  const DL=Math.max(performance.now()+250,T0+1200);if(PL0&&PL0.acq>0&&performance.now()-T0<900){const sv0={have,nb,MB,FULL,seeds,B:[...BITS]};let got3=false;for(let it=0;it<10&&performance.now()<DL;it++){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]),R3=run(pen.concat(mkCatch(CU.checked?2:1)),{dl:DL});if(!R3.goal)break;const p3=plan(R3),over=overOf(p3);
-    if(!over.length){if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna)){PL0=p3;got3=true}break}grow(over)}
+  const DL=Math.max(VNOW()+250,T0+1200);if(PL0&&PL0.acq>0&&VNOW()-T0<900){PHASE='extra';const sv0={have,nb,MB,FULL,seeds,B:[...BITS]};let got3=false;for(let it=0;it<10&&VNOW()<DL;it++){const pen=Object.keys(have).map(s=>[s,have[s].mu?0:CW[ST[P(s)[0]]],{t:'have'}]),R3=yield* run(pen.concat(mkCatch(CUk?2:1)),{dl:DL});if(!R3.goal)break;let p3=plan(R3),over=overOf(p3);if(over.length){const rp=repair(p3,true);if(rp){p3=rp;over=[]}}
+    if(!over.length){if(p3.acq<PL0.acq||(p3.acq==PL0.acq&&p3.dna<PL0.dna)){PL0=p3;got3=true}break}{if(!grow(over))break}}
    // keep the route and the Digimon list it was planned on together
    if(!got3){have=sv0.have;nb=sv0.nb;MB=sv0.MB;FULL=sv0.FULL;seeds=sv0.seeds;BITS.clear();sv0.B.forEach(x=>BITS.add(x))}
-   if(overOf(PL0).length){for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}}}
+   if(overOf(PL0).length){for(let it=0;it<10;it++){R=yield* run(seeds.concat(mkCatch(CUk?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;{const rp=repair(PL0,true);if(rp){PL0=rp;R={goal:rp.goal,how:rp.how};break}if(!RESV){const rc=repair(PL0);if(rc)RESV={pl:rc,R:{goal:rc.goal,how:rc.how},have,nb,MB,FULL,seeds,B:[...BITS]}}}{if(!grow(over))break}}}}
+  if(RESV&&((PL0&&overOf(PL0).length)||(!PL0&&!TO))){const K=RESV;PL0=K.pl;R=K.R;have=K.have;nb=K.nb;MB=K.MB;FULL=K.FULL;seeds=K.seeds;BITS.clear();K.B.forEach(x=>BITS.add(x));RESV=null}
   // too big to finish: search again leaning hard toward the target. It finds a good route quickly, but it may not be the shortest one.
-  if(!PL0&&TO&&mode!=='make'){TO=false;FAST=true;WGT=10;HARD=performance.now()+3000;BITS.clear();build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);
-   for(let it=0;it<10;it++){R=run(seeds.concat(mkCatch(CU.checked?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;grow(over)}
-   WGT=1;}
+  // quicker searches when the exact one runs out of time: one leans on the hardest missing move, the other adds the missing moves up (better with 5 or more moves, so it goes first then); with 3-4 moves they share the budget evenly
+  if(!PL0&&TO&&mode!=='make'){FAST=true;PHASE='search';const T1=VNOW();
+   // both get a turn while time is left; the route with fewer catches, then fewer DNA Digivolves, is kept (with the Digimon list it was planned on)
+   let BEST=null,LASTP=null;
+   const FB=PROBE?1200:BIG?9000:6500-P1,AT=[10,false],BT=[3,true],ORD=SEL.length>=5?[[...BT,Math.round(FB*0.6)],[...AT,FB]]:[[...AT,Math.round(FB*(SEL.length>=3?0.5:0.8))],[...BT,FB]];for(const [w,sum,ms0] of ORD){if(SAFEHIT||VNOW()>T1+FB-200)break;const ms=BEST?Math.round(FB*0.25):ms0;TO=false;WGT=w;SUMH=sum;HARD=Math.min(T1+FB,VNOW()+ms);BITS.clear();BITS0.forEach(x=>BITS.add(x));build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);
+    for(let it=0;it<10;it++){R=yield* run(seeds.concat(mkCatch(CUk?2:1)));PL0=R.goal?plan(R):null;if(!PL0)break;const over=overOf(PL0);if(!over.length)break;{const rp=repair(PL0);if(rp){PL0=rp;R={goal:rp.goal,how:rp.how};break}}{if(!grow(over))break}}
+    if(PL0){const sv={pl:PL0,R,have,nb,MB,FULL,seeds,B:[...BITS]};if(overOf(PL0).length)LASTP=LASTP||sv;else if(!BEST||PL0.acq<BEST.pl.acq||(PL0.acq==BEST.pl.acq&&PL0.dna<BEST.pl.dna))BEST=sv}}
+   const K=BEST||RESV||LASTP;if(K){PL0=K.pl;R=K.R;have=K.have;nb=K.nb;MB=K.MB;FULL=K.FULL;seeds=K.seeds;BITS.clear();K.B.forEach(x=>BITS.add(x));TO=false}else PL0=null;
+   WGT=1;SUMH=false;}
   }
-  if(PL0&&HQ.checked&&!anyT&&!FIXED){
+  if(PL0&&HQ.checked&&!anyT&&!FIXED&&!PROBE&&!MKR){
+    // the Quality pass gets its own share of the budget, even after a long search
+    if(!SAFEHIT)PHASE='extra';if(!SAFEHIT&&HARD<VNOW()+1500)HARD=VNOW()+2500;
    // [Quality, sure]. A DNA with a Digimon whose Max level isn't known assumes yours is the higher-level parent (not sure).
    let QA=null;const qG=(how,s)=>{const h=how[s],hv=have[s];if(hv)return [hv.q,P(s)[5]!=='1'];if(!h||h.t=='catch')return [null,false];if(h.t=='evo')return qG(how,h.from);
     const A=qG(how,h.a),B=qG(how,h.b),ua=P(h.a)[5]==='1'&&!/\|q$/.test(h.a),ub=P(h.b)[5]==='1'&&!/\|q$/.test(h.b),ml=x=>have[x]&&have[x].ml?have[x].ml:+P(x)[2];
@@ -2764,10 +2900,10 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    const qF=(how,s)=>{const r=qG(how,s);QA=r;return r[0]};
    const snapS=()=>({have,nb,MB,FULL,seeds,B:[...BITS]}),restS=o=>{have=o.have;nb=o.nb;MB=o.MB;FULL=o.FULL;seeds=o.seeds;BITS.clear();o.B.forEach(x=>BITS.add(x))};
    const base=snapS(),q0=qF(PL0.how,PL0.goal),s0=QA[1],d0=PL0.dna;let best={pl:PL0,q:q0==null?-1:q0,sure:s0,st:base},left=false;
-   const cand=[...own.querySelectorAll('.bcrow')].map(r=>({ri:r._ri,q:parseInt(r.querySelector('.bqy').value)})).filter(x=>x.q>=0&&x.q<=100).sort((a,b)=>b.q-a.q);
-   const QMIN=q0==null?50:q0+1,noML=[];for(const c of cand){if(c.q<=best.q||c.q<QMIN)break;{const rr=own.querySelectorAll('.bcrow')[c.ri];if(rr&&!rr.querySelector('.bml').value.trim()){noML.push(`${rr.querySelector('.bnm').value.trim()} (Quality ${c.q})`);continue}}if(performance.now()>HARD-200){left=true;break}
+   const cand=ROWS.map(r=>({ri:r._ri,q:parseInt(r.querySelector('.bqy').value)})).filter(x=>x.q>=0&&x.q<=100).sort((a,b)=>b.q-a.q);
+   const QMIN=q0==null?50:q0+1,noML=[];for(const c of cand){if(c.q<=best.q||c.q<QMIN)break;{const rr=ROWS[c.ri];if(rr&&!rr.querySelector('.bml').value.trim()){noML.push(`${rr.querySelector('.bnm').value.trim()} (Quality ${c.q})`);continue}}if(VNOW()>HARD-200){left=true;break}
     restS(base);FORCE=new Set([c.ri]);BITS.add(c.ri);build(BITS);seeds=Object.keys(have).map(s=>[s,0,{t:'have'}]);let pl=null;
-    for(let it=0;it<10;it++){const qk=Object.keys(have).find(x=>have[x].fz);const R2=run(seeds.concat(mkCatch(2)),{qc:qk});pl=R2.goal?plan(R2):null;if(!pl)break;const over=overOf(pl);if(!over.length)break;grow(over)}
+    for(let it=0;it<10;it++){const qk=Object.keys(have).find(x=>have[x].fz);const R2=yield* run(seeds.concat(mkCatch(2)),{qc:qk});pl=R2.goal?plan(R2):null;if(!pl)break;const over=overOf(pl);if(!over.length)break;{if(!grow(over))break}}
     if(pl&&!overOf(pl).length){const q=qF(pl.how,pl.goal),su=QA[1];if(q!=null&&q>best.q)best={pl,q,sure:su,st:snapS()}}}
    FORCE=new Set();restS(best.st);PL0=best.pl;TO=false;
    const nm2=noML.length?` <br>${noML.join(', ')} ${noML.length>1?'have':'has'} no Max level entered, so the route can&rsquo;t plan around ${noML.length>1?'them':'it'}. Enter it to include ${noML.length>1?'them':'it'}.`:'';
@@ -2775,14 +2911,18 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    QNOTE=best.pl!==base.pl&&best.q>(q0==null?-1:q0)?`<div class="bhq"><b>Highest Quality:</b> this route ends at <b>Quality ${best.q}</b>. ${best.pl.dna>d0?`The shortest route has ${best.pl.dna-d0} fewer DNA Digivolve${best.pl.dna-d0==1?'':'s'} but `:'The shortest route '}${q0==null?'has no Quality that can be worked out':'ends at Quality '+q0}.${cav}</div>`
     :best.q>=0?`<div class="bhq"><b>Highest Quality:</b> this route already ends at the best Quality I could find, <b>Quality ${best.q}</b>.${cav}${left?' (Ran out of time before checking every option.)':''}${nm2}</div>`
     :`<div class="bhq"><b>Highest Quality:</b> ${cand.length?'none of your Digimon could pass on a Quality of 50 or more here, so this is the shortest route. Its final Quality depends on the Digimon you get.':'enter the Quality of your Digimon to use this.'}${nm2}</div>`}
+  if(PROBE){PROBE.res=PL0&&!overOf(PL0).length?{dna:PL0.dna,acq:PL0.acq}:null;return}
+  if(PL0&&!fix&&!MKR&&!HQ.checked&&PL0.dna>12)NEXTP={kind:'long',dna:PL0.dna};
+  if(PL0&&SAFEHIT)QNOTE+=PHASE==='extra'?'<div class="bcw">Your device was slow, so the search hit its 20-second safety stop while checking for a route with fewer catches or a higher Quality. This route works; a faster device may improve on it.</div>':'<div class="bcw">Your device was slow, so the search hit its 20-second safety stop before it was done. This route works, but a faster device may find a shorter one.</div>';
   if(!PL0&&TO)return toMsg();
   if(!PL0){
-   const tries=[],base=seeds.concat(mkCatch(CU.checked?2:1));
-   if(nb&&run(base,{mu:0}).goal)tries.push('untick &ldquo;Must use in chain&rdquo;'+(nb>1?' on some of your Digimon':''));
-   if(SEL.length){const okm=SEL.filter((mv,i)=>run(base,{sk:SFULL&~(1<<i)}).goal);if(run(base,{sk:0}).goal)tries.push(okm.length?`remove ${okm.map(x=>'&ldquo;'+x+'&rdquo;').join(' or ')} from the moves`:'remove some of the moves you picked')}
-   if(skN&&run(base,{n0:tgt}).goal)tries.push('untick the new-move option');
-   if(tgt&&run(base,{n0:skN}).goal)tries.push('lower or clear the Final Max level target');
-   if(TO)return toMsg();
+   // the exact search proved there's no route; the suggestions get their own small budget, and one that can't finish is just left out
+   HARD=VNOW()+2000;const tries=[],base=seeds.concat(mkCatch(CUk?2:1));
+   if(nb&&(yield* run(base,{mu:0})).goal)tries.push('untick &ldquo;Must use in chain&rdquo;'+(nb>1?' on some of your Digimon':''));
+   if(SEL.length){const okm=[];for(let i=0;i<SEL.length;i++)if((yield* run(base,{sk:SFULL&~(1<<i)})).goal)okm.push(SEL[i]);if((yield* run(base,{sk:0})).goal)tries.push(okm.length?`remove ${okm.map(x=>'&ldquo;'+x+'&rdquo;').join(' or ')} from the moves`:'remove some of the moves you picked')}
+   if(skN&&(yield* run(base,{n0:tgt})).goal)tries.push('untick the new-move option');
+   if(tgt&&(yield* run(base,{n0:skN})).goal)tries.push('lower or clear the Final Max level target');
+   TO=false;
    const why=[];SEL.forEach(mv=>{const r=MVI[mv],ok=r[7].some(n=>{const k=KEY(PROP[n.toLowerCase()]||n);return ST[k]<3||Object.keys(have).some(x=>P(x)[0]==k)});if(!ok)why.push(`${mv} is only learned by ${r[7].join(', ')}, a Mega, at EL 32. Megas can&rsquo;t be found in the wild, so the chain has to grow one, or you can add one you have.`)});
    Object.keys(have).forEach(x=>{const [k]=P(x),hh=have[x];if(hh.ml&&ST[k]<3&&hh.ml<EVL[ST[k]])why.push(`${DISP(k)}&rsquo;s Max level (${hh.ml}) is below EL ${EVL[ST[k]]}, so it can&rsquo;t digivolve. It can still be DNA Digivolved.`)});
    if(anyT)return warn(`<b>No route to a Digimon knowing ${SEL.join(', ')} with these settings.</b>`+(why.length?'<br>'+why.join('<br>'):'')+(tries.length?`<br><b>A route is possible if you</b> ${tries.join(', or ')}.`:'<br>Try adding more Digimon you have.'));
@@ -2802,6 +2942,7 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    return ch?{goal:pl.goal,how}:null};
   if(PL0&&!FIXED){const dv=diversify(PL0);if(dv){const p2=plan(dv);if(!overOf(p2).length&&p2.dna===PL0.dna)PL0=p2}}
   if(FIXMSG)QNOTE=FIXMSG+QNOTE;
+  if(MKR&&!/bmkn/.test(QNOTE))QNOTE+='<div class="bcl bmkn"><b>Route using only your Digimon</b>, as in &ldquo;What can I make right now?&rdquo;. Your moves, catch boxes, Must use and Max level options weren&rsquo;t used. <button type="button" class="bcopt" data-opt="mine">Search again with my settings</button></div>';
   if(FAST&&!FIXED)QNOTE+='<div class="bcl" style="margin:6px 0">This chain is big, so I used a quicker search. The route works, but a slightly shorter one may exist.</div>';
   const {goal,how,need,order}=PL0;
   let nD=0,nE=0,nU=0;const steps=[],short=[],cat=[];
@@ -2833,7 +2974,7 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
   const rq=s=>{const lo=reqN(s),hi=QCAP[s];return hi!=null?(lo?`${lo}+, train to EL ${hi} at most`:`train to EL ${hi} at most`):`${lo}+`};
   const capL=s=>QCAP[s]!=null&&unk(s)?`up to EL ${QCAP[s]} for the DNA`:null;
   const anyQ=Object.keys(have).some(x=>have[x].q!=null);
-  const ownK=new Set(Object.keys(have).map(x=>P(x)[0])),catchable=x=>x!==tk&&ALLK[x]&&(ST[x]==1||(CU.checked&&ST[x]==2));
+  const ownK=new Set(Object.keys(have).map(x=>P(x)[0])),catchable=x=>x!==tk&&ALLK[x]&&(ST[x]==1||(CUk&&ST[x]==2));
   const mkSame=(x,y,k)=>(RT[x]&&RT[x][y]==k)||(RT[y]&&RT[y][x]==k);
   const swaps=(h,k)=>{const ka=P(h.a)[0],kb=P(h.b)[0],alt=(keep,sw)=>{const o=[],c=[];dnaK.forEach(x=>{if(x==sw||!mkSame(keep,x,k))return;if(ownK.has(x))o.push(x);else if(catchable(x))c.push(x)});return{o,c}};
    const A=alt(ka,kb),B=ka==kb?{o:[],c:[]}:alt(kb,ka);if(!A.o.length&&!A.c.length&&!B.o.length&&!B.c.length)return '';
@@ -2844,19 +2985,19 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
     `<div class="bcl">DP, Max level, Quality and moves can change with a different partner.</div></details>`};
   const mvl=b=>SEL.filter((x,i)=>b&(1<<i)),lrnTxt=(k,m)=>(LRN[k]||[]).filter(([i,l])=>m>=l).map(([i,l])=>`learns ${SEL[i]} at EL ${l}`).join(', ');
   // the level a Digimon has to reach to learn a picked move from its "to learn" list (null: it already knows it by the level it's at)
-  const lrnAt=(x,i)=>{const h=how[x],[k,,m,,skv]=P(x);if(!(((+skv||0)&15)&(1<<i)))return null;if((LRN[k]||[]).some(([j,l])=>j===i&&+m>=l))return null;
+  const lrnAt=(x,i)=>{const h=how[x],[k,,m,,skv]=P(x);if(!(((+skv||0)&SKM)&(1<<i)))return null;if((LRN[k]||[]).some(([j,l])=>j===i&&+m>=l))return null;
    if(!h||h.t=='catch')return null;
    if(h.t=='have'){const hv=have[x];if(!hv)return null;const rs=hv.rows||[];if(!rs.length||rs.some(r=>(r._mv||[]).includes(SEL[i])))return null;const bl=Math.max(1,...rs.map(r=>r._bl||1)),L=IL[Math.max(MST[i],bl>=21?2:bl>=11?1:0)];return hv.lv&&hv.lv>=L?null:L}
    if(h.t=='evo'){const fs=+P(h.from)[4]||0,L=(fs&(1<<i))?lrnAt(h.from,i):IL[MST[i]];return L!=null&&L>EVL[ST[P(h.from)[0]]]?L:null}
    if(h.t=='dna')return IL[Math.max(MST[i],ST[k])];return null};
   // a parent in a DNA must have learned the moves it passes on: anything still on its "to learn" list is lost
-  const LW={};Object.keys(how).forEach(r=>{const h=how[r];if(h.t!='dna')return;const rb=(+P(r)[4]||0),pass=(rb|(rb>>4))&15;[h.a,h.b].forEach(x=>{let L=0;const mv=[];SEL.forEach((nm,i)=>{if(!(pass&(1<<i)))return;const l=lrnAt(x,i);if(l!=null){L=Math.max(L,l);mv.push(nm)}});if(mv.length){const o=LW[x]||(LW[x]={L:0,mv:[]});o.L=Math.max(o.L,L);mv.forEach(z=>{if(!o.mv.includes(z))o.mv.push(z)})}})});
+  const LW={};Object.keys(how).forEach(r=>{const h=how[r];if(h.t!='dna')return;const rb=(+P(r)[4]||0),pass=(rb|(rb>>SKW))&SKM;[h.a,h.b].forEach(x=>{let L=0;const mv=[];SEL.forEach((nm,i)=>{if(!(pass&(1<<i)))return;const l=lrnAt(x,i);if(l!=null){L=Math.max(L,l);mv.push(nm)}});if(mv.length){const o=LW[x]||(LW[x]={L:0,mv:[]});o.L=Math.max(o.L,L);mv.forEach(z=>{if(!o.mv.includes(z))o.mv.push(z)})}})});
   const lwTip=x=>LW[x]?`Train it to EL ${LW[x].L} before the DNA, so it learns ${LW[x].mv.join(' and ')}`:'';
   const lwB=x=>LW[x]?`<span class="blx" role="img" aria-label="${lwTip(x)}" title="${lwTip(x)}">!</span>`:'';
   const lwBox=(x,dna)=>{const w=LW[x];if(!w)return '';const hv=have[x];return `<div class="blrn"><span class="blx" aria-hidden="true">!</span><div><b>Train ${DISP(P(x)[0])} to EL ${w.L} before this DNA</b>${hv&&hv.lv?` (it&rsquo;s EL ${hv.lv} now)`:''}, so it learns ${w.mv.join(' and ')}. Check its moves in game first: a move still on its &ldquo;to learn&rdquo; list is lost in a DNA.</div></div>`};
   const mon=(s,res,cx,mn)=>{if(res===2&&QCAP[s]!=null&&(need[s]||1)===1)cx=true;const [k,d,m,,skv]=P(s),h=have[s],c=how[s]&&how[s].t=='catch',v=mlr(s),kn=mvl(+skv||0),lt=(res===1||h||c)?lrnTxt(k,+m):'';
    const note=(res?'':unk(s)?(c?'Get it, then train it to its Max level':h&&h.lv?`Train it from EL ${h.lv} to its Max level`:'Train it to its Max level'):mn?(h&&h.lv&&h.lv>=mn?`EL ${h.lv} is already enough for this DNA`:`Train to EL ${mn}${h&&h.lv?` (from EL ${h.lv})`:''}: anything from ${mn} to ${mlt(v)} gives the same result`):h&&h.lv&&h.lv<h.ml?`Train from EL ${h.lv} to its Max level, EL ${h.ml}`:`Train to its Max level, EL ${mlt(v)}`)+(lt?`${res?'':' ('}${res?lt.charAt(0).toUpperCase()+lt.slice(1):lt}${res?'':')'}`:'');
-   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${res===0?lwB(s):''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; ${(cx&&capL(s))||'Max EL '+mls(s)}${qOf(s)!=null?' &middot; '+qBars(qOf(s))+'Quality '+qOf(s):''}</div>${(()=>{const now=[],lat=[];kn.forEach(x=>{const l=lrnAt(s,SEL.indexOf(x));if(l!=null)lat.push(`${x} <span class="bcl">(learns it at EL ${l})</span>`);else now.push(x)});return (now.length?`<div class="bkn">Knows ${now.join(', ')}</div>`:'')+(lat.length?`<div class="bkn">To learn: ${lat.join(', ')}</div>`:'')})()}${(()=>{const hd=mvl(((+skv||0)>>4)&15);return hd.length?`<div class="bkn bcarry">To learn later: ${hd.map(x=>`${x} <span class="bcl">(once it&rsquo;s a${/^U/.test(MVI[x][1])?'n':''} ${MVI[x][1]}, at EL ${IL[MST[SEL.indexOf(x)]]})</span>`).join(', ')}</div>`:''})()}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px">${QCAP[s]!=null?`${reqN(s)&&!(cx&&reqN(s)>QCAP[s])?`<b>Needs Max EL ${reqN(s)}+</b> &middot; `:''}<b>train ${cx||(need[s]||1)===1?'it':'the one for the DNA with '+QCN[s]} no higher than EL ${QCAP[s]}</b>${cx||(need[s]||1)===1?' before the DNA with '+QCN[s]:''}, so your Quality carries on`:`<b>Needs Max EL ${rq(s)}</b>${h?' &middot; check it in game':' &middot; get one this high'}`}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
+   return `<div class="bmon${res===1?' bres':''}"><div class="bmn">${dn(k)}${h?yb:''}${c?'<span class="bdpb bcy">get</span>':''}${res===0?lwB(s):''}</div><div class="bsg">${STN[ST[k]]}</div><div class="bst">DP ${+d>=CAP?d+'+':d} &middot; ${(cx&&capL(s))||'Max EL '+mls(s)}${qOf(s)!=null?' &middot; '+qBars(qOf(s))+'Quality '+qOf(s):''}</div>${(()=>{const now=[],lat=[];kn.forEach(x=>{const l=lrnAt(s,SEL.indexOf(x));if(l!=null)lat.push(`${x} <span class="bcl">(learns it at EL ${l})</span>`);else now.push(x)});return (now.length?`<div class="bkn">Knows ${now.join(', ')}</div>`:'')+(lat.length?`<div class="bkn">To learn: ${lat.join(', ')}</div>`:'')})()}${(()=>{const hd=mvl(((+skv||0)>>SKW)&SKM);return hd.length?`<div class="bkn bcarry">To learn later: ${hd.map(x=>`${x} <span class="bcl">(once it&rsquo;s a${/^U/.test(MVI[x][1])?'n':''} ${MVI[x][1]}, at EL ${IL[MST[SEL.indexOf(x)]]})</span>`).join(', ')}</div>`:''})()}${isLeafU(s)&&(reqN(s)||QCAP[s]!=null)?`<div class="bwarn" style="margin-top:4px;padding:3px 8px">${QCAP[s]!=null?`${reqN(s)&&!(cx&&reqN(s)>QCAP[s])?`<b>Needs Max EL ${reqN(s)}+</b> &middot; `:''}<b>train ${cx||(need[s]||1)===1?'it':'the one for the DNA with '+QCN[s]} no higher than EL ${QCAP[s]}</b>${cx||(need[s]||1)===1?' before the DNA with '+QCN[s]:''}, so your Quality carries on`:`<b>Needs Max EL ${rq(s)}</b>${h?' &middot; check it in game':' &middot; get one this high'}`}</div>`:''}${note?`<div class="bnt">${note}</div>`:''}</div>`};
   const DN=[];let first=true;const doneBtn=s=>{if(!first||DONE.has(s))return '';first=false;DN.push(s);return `<button class="qbtn bdone" type="button" data-s="${s}">Done, update my Digimon</button>`};
   const USED=[];order.forEach(s=>{const h=how[s],[k,d,m]=P(s),n=need[s],tag=n>1?` &times;${n}`:'';
    if(h.t=='catch'){{const ci=cat.length;cat.push(`<div class="bcatch" data-n="${DISP(k)}" data-s="${s}"><div class="bcn"><b>Get ${n>1?n:/^[AEIOU]/i.test(DISP(k))?'an':'a'}</b> ${dn(k)} <small>(${STN[ST[k]]})</small>${(()=>{if(ST[k]!==0)return '';const ch=Object.keys(how).find(x=>how[x].t=='evo'&&how[x].from===s);return ch?`<div class="bcl">Level it up to its Champion form, <b>${DISP(P(ch)[0])}</b>, at EL 11 before you use it. Rookies can&rsquo;t DNA Digivolve.</div>`:''})()}${QCAP[s]!=null?`<div class="bcl">${reqN(s)?`<b>Needs a Max level of ${reqN(s)} or more.</b> `:''}When you DNA ${n>1?'one of them':'it'} with ${QCN[s]}, <b>train it no higher than EL ${QCAP[s]}</b> (as close to ${QCAP[s]} as you can), so your Quality carries on.</div>`:reqN(s)?`<div class="bcl"><b>Needs a Max level of ${reqN(s)} or more</b> for this chain.</div>`:''}</div><label for="bcc${ci}l">Level</label><input id="bcc${ci}l" class="bccl" type="number" min="1" max="${ST[k]<3?EVL[ST[k]]-1:99}" inputmode="numeric" placeholder="e.g. 9"><label for="bcc${ci}m">Max level</label><input id="bcc${ci}m" class="bccm" type="number" min="1" max="99" inputmode="numeric" placeholder="e.g. 24"><label for="bcc${ci}d">DP</label><input id="bcc${ci}d" class="bccd" type="number" min="0" max="99" inputmode="numeric" placeholder="0"><label for="bcc${ci}q">Quality</label><input id="bcc${ci}q" class="bccq" type="number" min="0" max="100" inputmode="numeric" placeholder="optional"><button class="qbtn bcca" type="button">I got it, add to my Digimon</button></div>`)};return}
@@ -2880,7 +3021,7 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    if(h.t=='evo'){nE+=n;const kf=P(h.from)[0],el=EVL[ST[kf]],v=mlr(h.from);
     steps.push(`<li${DONE.has(s)?' class="isdone"':''}><div class="bstep"><label class="bdn"><input type="checkbox" class="bdck" data-s="${s}"${DONE.has(s)?' checked':''}> Mark as done</label><span class="k">Level up${tag}</span><div class="bdna">${mon(h.from,2)}<span class="bop ar">&rarr;</span>${mon(s,1)}</div>`+
      `<div class="bmath">${DISP(kf)} digivolves into ${DISP(k)} at EL ${el}. ${h.dp=='0+'?'Any DP works':`DP ${+d>=CAP?d+'+':d} is in the ${h.dp} range`}.${unk(h.from)?'':` Its Max EL stays ${mlt(v)}.`}</div>${unk(h.from)&&lb(h.from)<el?(nU++,`<div class="bwarn"><b>Needs a Max level of ${el} or more.</b> ${DISP(kf)}&rsquo;s Max level isn&rsquo;t known, so check it in game before you start. If it&rsquo;s below ${el}, it can&rsquo;t digivolve: add it to your Digimon with its real Max level and find the route again.</div>`):''}${doneBtn(s)}</div></li>`)}});
-  const [gk,gd,gm]=P(goal),fin2=`<li><div><span class="k">Train</span>${dn(gk)} to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}${(()=>{const gs=+P(goal)[4]||0,L=[];SEL.forEach((x,i)=>{const l=(gs&(1<<i))?lrnAt(goal,i):((gs>>4)&(1<<i))?IL[MST[i]]:null;if(l!=null)L.push(`${x} at EL ${l}`)});return L.length?`. It learns ${L.join(' and ')} from its &ldquo;to learn&rdquo; list on the way`:''})()}.</div></li>`;
+  const [gk,gd,gm]=P(goal),fin2=`<li><div><span class="k">Train</span>${dn(gk)} to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}${(()=>{const gs=+P(goal)[4]||0,L=[];SEL.forEach((x,i)=>{const l=(gs&(1<<i))?lrnAt(goal,i):((gs>>SKW)&(1<<i))?IL[MST[i]]:null;if(l!=null)L.push(`${x} at EL ${l}`)});return L.length?`. It learns ${L.join(' and ')} from its &ldquo;to learn&rdquo; list on the way`:''})()}.</div></li>`;
   const gq=qOf(goal),tgtTxt=tgt?(unk(goal)?` <span class="bdpb">Max EL target ${tgt}: depends on Max levels you haven&rsquo;t entered</span>`:` <span class="bdpb">Max EL target ${tgt} reached</span>`):'',qTxt=gq!=null?` <span class="bdpb">Quality ${gq}</span>`:'';
   const icoK=k=>PIC[k]?`<img class="bxico" src="${PIC[k]}" alt="">`:'';
   const tnode=(s,cx)=>{const h=how[s],[k,d]=P(s),hv=have[s],c=h.t=='catch',q=qOf(s),n=need[s];const kids=h.t=='dna'?[h.a,h.b]:h.t=='evo'?[h.from]:[];
@@ -2889,17 +3030,21 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
   const treeH=steps.length?`<div class="bxtree"><p class="bxcap">The Digimon you want is at the top. Follow the lines down to see what each one is made from.${Object.values(EX).length&&order.some(x=>unk(x)&&!isLeafU(x))?' A Max EL like <b>29+</b> means at least that, as long as each Digimon you get has the Max level shown on it.':''}</p><div class="bxroot">${tnode(goal)}</div></div>`:'';
   const LEFTN=leftNote();
   out.innerHTML=!steps.length?`<div class="bcsum"><b>You already have ${dn(gk)}.</b> Train it to its Max level${unk(goal)?'':`, EL ${mlt(mlr(goal))}`}, for the best stats${skN?`. It learns its new move at EL ${skN}`:''}.</div>`:
-   `<div class="bcsum"><b>${nD} DNA Digivolve${nD==1?'':'s'}</b> and <b>${nE} level-up${nE==1?'':'s'}</b> to reach ${dn(gk)} ${dpb(+gd)}${unk(goal)?'':' '+mlb(+gm)}${qTxt}${tgtTxt}${(()=>{if(!SEL.length)return '';const g4=+P(goal)[4]||0,kk=mvl(g4),hh=mvl((g4>>4)&15).filter(x=>!kk.includes(x));let t=kk.length?` knowing ${kk.join(', ')}`:'';if(hh.length)t+=(kk.length?', and':'')+` with ${hh.length>1?'these':'this'} on its &ldquo;to learn&rdquo; list: ${hh.map(x=>{const p=evoPath(P(goal)[0],+P(goal)[1],+P(goal)[2],({Rookie:0,Champion:1,Ultimate:2,Mega:3})[MVI[x][1]]);return `${x} (it learns it when it digivolves${p&&p.length?' to '+p.map(DISP).join(' → '):''} and reaches EL ${IL[MST[SEL.indexOf(x)]]})`}).join(', ')}`;return t})()}.</div>`+
+   `<div class="bcsum"><b>${nD} DNA Digivolve${nD==1?'':'s'}</b> and <b>${nE} level-up${nE==1?'':'s'}</b> to reach ${dn(gk)} ${dpb(+gd)}${unk(goal)?'':' '+mlb(+gm)}${qTxt}${tgtTxt}${(()=>{if(!SEL.length)return '';const g4=+P(goal)[4]||0,kk=mvl(g4),hh=mvl((g4>>SKW)&SKM).filter(x=>!kk.includes(x));let t=kk.length?` knowing ${kk.join(', ')}`:'';if(hh.length)t+=(kk.length?', and':'')+` with ${hh.length>1?'these':'this'} on its &ldquo;to learn&rdquo; list: ${hh.map(x=>{const p=evoPath(P(goal)[0],+P(goal)[1],+P(goal)[2],({Rookie:0,Champion:1,Ultimate:2,Mega:3})[MVI[x][1]]);return `${x} (it learns it when it digivolves${p&&p.length?' to '+p.map(DISP).join(' → '):''} and reaches EL ${IL[MST[SEL.indexOf(x)]]})`}).join(', ')}`;return t})()}.</div>`+
    (nU?`<div class="bcw bwarn"><b>${nU} level-up${nU>1?'s depend':' depends'} on a Max level you haven&rsquo;t entered.</b> A Digimon needs a Max level of at least 11 to reach Champion, 21 for Ultimate and 31 for Mega. Those steps are marked below, so check them before you start.</div>`:'')+(cat.length?`<div class="bcw bcc"><b>To finish this chain, get:</b>${resExcl().size?` <span class="bcl">(${resExcl().size} Digimon are left out because your saved plans use them. Tick <b>Use reserved Digimon</b> to use them first.)</span>`:''}${cat.join('')}<div class="bcl" style="margin-top:6px">Once you&rsquo;ve got one, enter its Level and Max level and press <b>I got it</b>. It moves to your Digimon and the route is worked out again, now with real Max levels for that line.</div></div>`:'')+LEFTN+(short.length?`<div class="bcw"><b>You'll need extra copies:</b><br>${short.join('<br>')}</div>`:'')+`<ol class="bcs">${steps.join('')}${fin2}</ol>`+treeH;
   VW.hidden=!steps.length;out.dataset.v=VIEW;markNext();
-  LAST={goal,how,have,mvl,mlr,unk,P,qOf};if(window.__bcUsed)__bcUsed(USED);}
+  LAST={goal,how,have,mvl,mlr,unk,P,qOf,skw:SKW,qn:QNOTE,mk:NOC};if(window.__bcUsed)__bcUsed(USED);}
  let LAST=null;
  function markNext(){const tr=out.querySelector('.bxtree');if(!tr)return;tr.querySelectorAll('.bxdn').forEach(x=>x.remove());tr.querySelectorAll('.bxnext').forEach(x=>x.classList.remove('bxnext'));const nxs=out.querySelector('li:not(.isdone) .bdone');if(!nxs)return;const ns=nxs.dataset.s;let done=false;tr.querySelectorAll('.bxcard').forEach(c=>{if(done||c.dataset.s!==ns||c.classList.contains('bxdone'))return;done=true;c.classList.add('bxnext');c.insertAdjacentHTML('afterend',`<button class="qbtn bxdn" type="button" data-s="${ns}">Done, update my Digimon</button>`)})}
  out.addEventListener('click',e=>{const b=e.target.closest('.bxdn');if(!b)return;const d=out.querySelector('li:not(.isdone) .bdone[data-s="'+b.dataset.s+'"]')||out.querySelector('li:not(.isdone) .bdone');if(d)d.click()});
  // Find always plans a new chain, so every followed saved chain keeps its Digimon
  document.getElementById('bcgo').onclick=()=>{ACTIVE_SAVE=null;solve()};
  document.getElementById('bcmk').onclick=()=>{solve('make');out.scrollIntoView({block:'nearest'})};
- out.addEventListener('click',e=>{const b=e.target.closest('.bmkc');if(!b)return;T.value=b.dataset.k;ANY.checked=false;store();LAST=null;VW.hidden=true;out.innerHTML=`<div class="bcl" style="padding:8px 0">Target set to <b>${b.dataset.k}</b>. Press <b>Find shortest route</b> to search.</div>`;T.scrollIntoView({block:'center'})});
+ out.addEventListener('click',e=>{const b=e.target.closest('.bmkc');if(!b)return;T.value=b.dataset.k;ANY.checked=false;store();LAST=null;VW.hidden=true;
+  // "Or a step at a time" (under a stopped search): only set the target, as before
+  if(b.classList.contains('btgt')){out.innerHTML=`<div class="bcl" style="padding:8px 0">Target set to <b>${b.dataset.k}</b>. Press <b>Find shortest route</b> to search.</div>`;T.scrollIntoView({block:'center'});return}
+  // from "What can I make right now?": show the route the list promised, with the list's rules, just this once (your settings stay as they are)
+  ACTIVE_SAVE=null;solve(undefined,undefined,{make:true});out.scrollIntoView({block:'nearest'})});
  VW.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;VIEW=b.dataset.v;try{localStorage.setItem('dw2-bcview',VIEW)}catch(x){}VW.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));out.dataset.v=VIEW});
  VW.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===VIEW));
  out.addEventListener('change',e=>{const c=e.target.closest('.bdck');if(!c)return;if(c.checked)DONE.add(c.dataset.s);else DONE.delete(c.dataset.s);c.closest('li').classList.toggle('isdone',c.checked);store()});
@@ -2908,9 +3053,9 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
  let ACTIVE_SAVE=null;const RESOK=document.getElementById('bcresok');
  // each row's id for saving a route: its DigiBank id, or its place among the rows that aren't in the DigiBank
  function rowIds(){const m=new Map();let t=0;own.querySelectorAll('.bcrow').forEach(r=>m.set(r._bid?'b'+r._bid:'t'+(t++),r));return m}
- function routeData(){if(!LAST||!LAST.goal)return null;const ids=new Map();rowIds().forEach((r,k)=>ids.set(r,k));const hv={};
+ function routeData(){if(!LAST||!LAST.goal||solve._pend||(CUR&&!PROBE))return null;const ids=new Map();rowIds().forEach((r,k)=>ids.set(r,k));const hv={};
   Object.keys(LAST.have).forEach(k=>{const o=LAST.have[k];hv[k]={n:o.n,lv:o.lv,ml:o.ml,mu:o.mu,fz:o.fz,q:o.q,r:(o.rows||[]).filter(r=>r.isConnected&&ids.has(r)).map(r=>ids.get(r))}});
-  return {g:LAST.goal,how:LAST.how,hv,qn:QNOTE||''}}
+  const o={g:LAST.goal,how:LAST.how,hv,qn:LAST.qn||''};if(LAST.mk)o.mk=1;return o}
  function usedIds(){return [...own.querySelectorAll('.bcrow.bused')].map(r=>r._bid).filter(Boolean)}
  function pjKeep(merge){if(!ACTIVE_SAVE)return;const P=pjGet();if(!P[ACTIVE_SAVE])return;P[ACTIVE_SAVE].d=snap();{const rd=routeData();if(rd)P[ACTIVE_SAVE].r=rd}const k=new Set(merge?P[ACTIVE_SAVE].res||[]:[]);usedIds().forEach(i=>k.add(i));P[ACTIVE_SAVE].res=[...k];pjSet(P)}
  const pjRaw=()=>{try{return JSON.parse(localStorage.getItem('dw2-bc-proj')||'{}')||{}}catch(e){return {}}},pjPut=o=>{try{localStorage.setItem('dw2-bc-proj',JSON.stringify(o))}catch(e){}};
@@ -2922,20 +3067,20 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
  let PJM={};const PJK='dw2-bc-proj',pjGet=()=>{try{return JSON.parse(localStorage.getItem(PJK)||'{}')||{}}catch(e){return PJM}},pjSet=o=>{PJM=o;try{localStorage.setItem(PJK,JSON.stringify(o))}catch(e){}};
  const PM=document.getElementById('bcpm'),PLs=document.getElementById('bcpl'),pmsg=m=>{PM.textContent=m;clearTimeout(PM._t);PM._t=setTimeout(()=>{PM.textContent=""},6000)};
  const enc64=o=>'c1-'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))),dec64=c=>{try{c=c.trim();if(!c.startsWith('c1-'))return null;return JSON.parse(decodeURIComponent(escape(atob(c.slice(3)))))}catch(e){return null}};
- const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CC.checked=!!o.cc2;CU.checked=!!o.cu2;HQ.checked=!!o.hq;TM.value=o.tm||'';ANY.checked=!!o.any;MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,4);mvRen();DONE=new Set(o.done||[]);if(window.__bcLoad)__bcLoad(o);store();LAST=null;VW.hidden=true;if(window.__bcUsed)__bcUsed(null);out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
+ const applySnap=o=>{own.innerHTML='';(o.rows&&o.rows.length?o.rows:[['','','','']]).forEach(addRow);T.value=o.t||'';SK.checked=o.sk!==false;CC.checked=!!o.cc2;CU.checked=!!o.cu2;HQ.checked=!!o.hq;TM.value=o.tm||'';ANY.checked=!!o.any;{const m6=document.getElementById('bcm6');if(m6)m6.checked=!!o.m6||(o.mv||[]).length>5}MSEL=(o.mv||[]).filter(m=>MVI[m]).slice(0,MVCAP());mvRen();DONE=new Set(o.done||[]);if(window.__bcLoad)__bcLoad(o);store();LAST=null;VW.hidden=true;if(window.__bcUsed)__bcUsed(null);out.innerHTML=T.value||ANY.checked?'<div class="bcl" style="padding:8px 0">Press <b>Find shortest route</b> to plan this chain.</div>':''};
  const pjRen=()=>{const P0=pjGet(),ks=Object.keys(P0).sort((a,b)=>(P0[b].at||0)-(P0[a].at||0));PLs.innerHTML='';
   const IC={c:'<svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',d:'<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>'};
   const ago=t=>{if(!t)return '';const d=new Date(t),now=new Date();return d.toDateString()===now.toDateString()?'today':d.toLocaleDateString(undefined,{month:'short',day:'numeric'})};
   document.getElementById('bcsvn').textContent=ks.length||'';
   ks.forEach(n=>{const o=P0[n],r=document.createElement('div');r.className='bcpr';const tk=o.d.t&&PROP[String(o.d.t).trim().toLowerCase()],pic=tk&&PIC[KEY(tk)],cnt=(o.d.rows||[]).filter(x=>x[0]).length;
    r.innerHTML=`<span class="bcpi">${pic?`<img src="${pic}" alt="">`:'<span>⛓</span>'}</span><span class="bcpx" data-nolink><b></b><small></small></span><button class="qbtn bcfo" data-a="f" type="button" aria-pressed="${!!o.fo}" title="Keep this plan's DigiBank Digimon out of other searches">${o.fo?'Following ✓':'Follow'}</button><button class="qbtn" data-a="l" type="button">Load</button><button class="qbtn bcpb" data-a="c" type="button" title="Copy chain code" aria-label="Copy chain code">${IC.c}</button><button class="qbtn bcpb" data-a="d" type="button" title="Delete" aria-label="Delete">${IC.d}</button>`;
-   r.querySelector('b').textContent=n;r.querySelector('small').textContent=[o.d.any?'Any Digimon with '+(o.d.mv||[]).join(', '):(tk||o.d.t||'No target'),(cnt?cnt+' Digimon':'')+(o.d.ub?(cnt?' + ':'')+'DigiBank':''),ago(o.at)].filter(Boolean).join(' · ');
+   r.querySelector('b').textContent=n;r.querySelector('small').textContent=[o.d.any?'Any Digimon with '+(o.d.mv||[]).join(', '):(tk||o.d.t||'No target'),(cnt?cnt+' Digimon':'')+(o.d.ub?(cnt?' + ':'')+'DigiBank':''),o.r&&o.r.mk?'only your Digimon':'',ago(o.at)].filter(Boolean).join(' · ');
    r.onclick=e=>{const b=e.target.closest('button');if(!b)return;const a=b.dataset.a;if(a=='f'){const P=pjGet();if(P[n]){P[n].fo=!P[n].fo;pjSet(P);pjRen();pmsg(P[n].fo?`Following “${n}”. Its DigiBank Digimon are kept out of other searches.`:`Stopped following “${n}”.`)}return}
-    if(a=='l'){const cur=pjGet()[n]||o;applySnap(cur.d);ACTIVE_SAVE=n;pjFollowOn(n);if(cur.r)solve(undefined,cur.r);const now=window.DWB?DWB.get().map(x=>x.id+'='+x.n).sort().join('|'):'';const changed=cur.d.bs!=null&&cur.d.bs!==now&&(cur.d.done||[]).length>0;pmsg(changed?`Loaded “${n}”, but your DigiBank has changed since you saved it, so the steps may not match. Check your Digimon before you start.`:`Loaded “${n}”.`)}
+    if(a=='l'){const cur=pjGet()[n]||o;applySnap(cur.d);ACTIVE_SAVE=n;pjFollowOn(n);if(cur.r)solve(undefined,cur.r,cur.r.mk?{make:true}:undefined);const now=window.DWB?DWB.get().map(x=>x.id+'='+x.n).sort().join('|'):'';const changed=cur.d.bs!=null&&cur.d.bs!==now&&(cur.d.done||[]).length>0;pmsg(changed?`Loaded “${n}”, but your DigiBank has changed since you saved it, so the steps may not match. Check your Digimon before you start.`:`Loaded “${n}”.`)}
     if(a=='c'){const c=enc64(o.d);const done=()=>pmsg('Chain code copied. Paste it into “Paste a chain code” to load it.');if(navigator.clipboard)navigator.clipboard.writeText(c).then(done).catch(()=>{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')});else{document.getElementById('bcpc').value=c;document.getElementById('bcpc').select();pmsg('Press Ctrl+C to copy the selected code.')}}
     if(a=='d'){if(b.dataset.sure){const P1=pjGet(),old=P1[n];delete P1[n];pjSet(P1);pjRen();pmsg(`Deleted “${n}”.`);if(window.toast)toast(`Deleted “${n}”.`,()=>{const P2=pjGet();P2[n]=old;pjSet(P2);pjRen();pmsg(`Put back “${n}”.`)})}else{b.dataset.sure=1;b.classList.add('sure');b.textContent='Delete?';setTimeout(()=>{if(b.isConnected&&b.dataset.sure){delete b.dataset.sure;b.classList.remove('sure');b.innerHTML=IC.d}},3000)}}};PLs.appendChild(r)});
   if(!ks.length)PLs.innerHTML='<div class="bcpe">No saved chains yet. Name your setup above and press Save.</div>'};
- document.getElementById('bcps').onclick=()=>{const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap(),r:routeData(),fo:true,res:usedIds()};pjSet(P0);ACTIVE_SAVE=n;ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
+ document.getElementById('bcps').onclick=()=>{if(solve._pend||(CUR&&!PROBE)){pmsg('Wait for the search to finish, then save.');return}const ni=document.getElementById('bcpn'),n=ni.value.trim()||T.value.trim()||'My chain';const P0=pjGet();P0[n]={at:Date.now(),d:snap(),r:routeData(),fo:true,res:usedIds()};pjSet(P0);ACTIVE_SAVE=n;ni.value='';pjRen();pmsg(`Saved “${n}”.`)};
  document.getElementById('bcpi').onclick=()=>{const o=dec64(document.getElementById('bcpc').value);if(!o||!o.rows){pmsg('That code didn’t work. Chain codes start with c1-.');return}applySnap(o);document.getElementById('bcpc').value='';pmsg('Chain loaded. Save it to keep it in your list.')};
  pjRen();
  {const sv=document.getElementById('bcsv');try{if(localStorage.getItem('dw2-bcsv')==='1')sv.open=true}catch(e){}sv.addEventListener('toggle',()=>{try{localStorage.setItem('dw2-bcsv',sv.open?'1':'0')}catch(e){}});
@@ -2970,9 +3115,9 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
  out.addEventListener('click',e=>{const b=e.target.closest('.bdone');if(!b||!LAST)return;const {how,have,mvl,mlr,unk,P,qOf}=LAST,s=b.dataset.s,h=how[s],[k,d,m,,sk]=P(s);
   const take=x=>{const hv=have[x];if(!hv){const c=how[x]&&how[x].t=='catch';out.insertAdjacentHTML('afterbegin',`<div class="bcw">First add the ${DISP(P(x)[0])}${c?' you got':''} to your Digimon${c?' with &ldquo;I got it&rdquo;':''}.</div>`);return null}const inB=r=>!!(window.DWB&&r._bid&&DWB.get().some(x=>x.id===r._bid)),rs=hv.rows.filter(r=>r.isConnected),r=rs.find(inB)||rs[0];if(!r){out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(x)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return null}return r};
   const mvOf=r=>r._mv||[];
-  if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input',{bubbles:true}));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el){lv.value=el;lv.dispatchEvent(new Event('input',{bubbles:true}))}{const kn=mvOf(r),cand=[...(r._hm||[]),...mvl((+sk)&15),...mvl((+sk>>4)&15)].filter(x=>!kn.includes(x)),sp=mvSplit(DISP(k),+lv.value||null,cand,r._bl);r._mv=[...new Set([...kn,...sp.mv])];r._hm=[...new Set(sp.hm)];if(r._kren)r._kren()}if(window.DWB&&r._bid&&DWB.get().some(x=>x.id===r._bid)){DWB.hush(1500);const bo=DWB.get().find(x=>x.id===r._bid);DWB.upd(r._bid,{n:DISP(k),lv:+lv.value||null,mv:r._mv.slice(),hm:r._hm.slice(),hist:[...(bo.hist||[]),bo.n]})}const hf=have[h.from];if(hf)hf.rows=hf.rows.filter(x=>x!==r);if(have[s])have[s].rows.push(r);else have[s]={n:1,lv:+lv.value||0,ml:hf?hf.ml:null,rows:[r],q:hf?hf.q:null}}
+  if(h.t=='evo'){const r=take(h.from);if(!r)return;r.querySelector('.bnm').value=DISP(k);r.querySelector('.bnm').dispatchEvent(new Event('input',{bubbles:true}));const lv=r.querySelector('.blv'),el=EVL[ST[P(h.from)[0]]];if((parseInt(lv.value)||0)<el){lv.value=el;lv.dispatchEvent(new Event('input',{bubbles:true}))}{const kn=mvOf(r),cand=[...(r._hm||[]),...mvl((+sk)&((1<<(LAST.skw||4))-1)),...mvl((+sk>>(LAST.skw||4))&((1<<(LAST.skw||4))-1))].filter(x=>!kn.includes(x)),sp=mvSplit(DISP(k),+lv.value||null,cand,r._bl);r._mv=[...new Set([...kn,...sp.mv])];r._hm=[...new Set(sp.hm)];if(r._kren)r._kren()}if(window.DWB&&r._bid&&DWB.get().some(x=>x.id===r._bid)){DWB.hush(1500);const bo=DWB.get().find(x=>x.id===r._bid);DWB.upd(r._bid,{n:DISP(k),lv:+lv.value||null,mv:r._mv.slice(),hm:r._hm.slice(),hist:[...(bo.hist||[]),bo.n]})}const hf=have[h.from];if(hf)hf.rows=hf.rows.filter(x=>x!==r);if(have[s])have[s].rows.push(r);else have[s]={n:1,lv:+lv.value||0,ml:hf?hf.ml:null,rows:[r],q:hf?hf.q:null}}
   if(h.t=='dna'){const ra=take(h.a);if(!ra)return;ra.dataset.used=1;const rb=take(h.b)&&(()=>{const c=have[h.b].rows.filter(r=>r.isConnected&&!r.dataset.used);return c.find(r=>window.DWB&&r._bid&&DWB.get().some(x=>x.id===r._bid))||c[0]})();delete ra.dataset.used;if(!rb){if(have[h.b])out.insertAdjacentHTML('afterbegin',`<div class="bcw">You need another ${DISP(P(h.b)[0])} for this step. Recruit one and add it to your Digimon first.</div>`);return}
-   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,lv0=[1,11,21,31][ST[k]]||1,kOf=(r,x)=>{const P0=P(x);return [...new Set([...mvOf(r),...mvSplit(P0[0],+P0[2],r._hm||[],r._bl).mv,...mvl((+P0[4])&15)])]},sp=dnaMoves(DISP(k),lv0,[...kOf(ra,h.a),...kOf(rb,h.b)]),mv=sp.mv,hm=sp.hm.filter(x=>!mv.includes(x));if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}const fromB=[ra,rb].some(x=>x._bid&&window.DWB&&DWB.get().some(z=>z.id===x._bid))||!!(document.getElementById('bcub')||{}).checked;ra.remove();rb.remove();const nq=qOf(s);let nr=addRow([DISP(k),String(d),String(lv0),unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):'',null,false,hm,lv0]);if(window.DWB&&fromB){const o=DWB.add({n:DISP(k),dp:d,lv:lv0,ml:unk(s)?null:mlr(s),q:nq,mv:mv.slice(),hm:hm.slice(),bl:lv0});if(o){const br=[...own.querySelectorAll('.bcrow')].find(x=>x!==nr&&x._bid===o.id);if(br){nr.remove();nr=br;if(mu&&!br.querySelector('.bmu').checked){br.querySelector('.bmu').checked=true;br.querySelector('.bmu').dispatchEvent(new Event('change',{bubbles:true}))}br._mv=mv.slice();br._hm=hm.slice();br._bl=lv0}else nr._bid=o.id}}if(have[s])have[s].rows.push(nr);else have[s]={n:1,lv:lv0,ml:unk(s)?null:mlr(s),rows:[nr],q:nq}}
+   const mu=ra.querySelector('.bmu').checked||rb.querySelector('.bmu').checked,lv0=[1,11,21,31][ST[k]]||1,kOf=(r,x)=>{const P0=P(x);return [...new Set([...mvOf(r),...mvSplit(P0[0],+P0[2],r._hm||[],r._bl).mv,...mvl((+P0[4])&((1<<(LAST.skw||4))-1))])]},sp=dnaMoves(DISP(k),lv0,[...kOf(ra,h.a),...kOf(rb,h.b)]),mv=sp.mv,hm=sp.hm.filter(x=>!mv.includes(x));if(window.DWB){const nA=ra.querySelector('.bnm').value.trim(),nB=rb.querySelector('.bnm').value.trim();DWB.log('dna',`${nA} + ${nB} → ${DISP(k)}`);DWB.hush(2500);[ra,rb].forEach(x=>{if(x._bid)DWB.del(x._bid)})}const fromB=[ra,rb].some(x=>x._bid&&window.DWB&&DWB.get().some(z=>z.id===x._bid))||!!(document.getElementById('bcub')||{}).checked;ra.remove();rb.remove();const nq=qOf(s);let nr=addRow([DISP(k),String(d),String(lv0),unk(s)?'':String(mlr(s)),mu,mv,nq!=null?String(nq):'',null,false,hm,lv0]);if(window.DWB&&fromB){const o=DWB.add({n:DISP(k),dp:d,lv:lv0,ml:unk(s)?null:mlr(s),q:nq,mv:mv.slice(),hm:hm.slice(),bl:lv0});if(o){const br=[...own.querySelectorAll('.bcrow')].find(x=>x!==nr&&x._bid===o.id);if(br){nr.remove();nr=br;if(mu&&!br.querySelector('.bmu').checked){br.querySelector('.bmu').checked=true;br.querySelector('.bmu').dispatchEvent(new Event('change',{bubbles:true}))}br._mv=mv.slice();br._hm=hm.slice();br._bl=lv0}else nr._bid=o.id}}if(have[s])have[s].rows.push(nr);else have[s]={n:1,lv:lv0,ml:unk(s)?null:mlr(s),rows:[nr],q:nq}}
   // keep following the same plan: tick this step off and move the button to the next one
   const li=b.closest('li');{const m=li&&li.querySelector('.k')&&li.querySelector('.k').textContent.match(/×(\d+)/);const left=(li._left??(m?+m[1]:1))-1;if(li)li._left=left;
    if(left>0){store();pjKeep(true);b.textContent=`Done, update my Digimon (${left} more to do)`;if(have[s]&&have[s].rows.length)have[s].rows[have[s].rows.length-1].classList.add('bused');if(window.__bcUsed)__bcUsed([...own.querySelectorAll('.bcrow.bused')]);return}}
@@ -3070,6 +3215,7 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
      r._mv=(x.mv||[]).slice();r._hm=(x.hm||[]).slice();r._bl=x.bl||1;const kc=r.querySelector('.bkc');kc.innerHTML=r._mv.map(m=>`<span class="bchip">${esc(m)}</span>`).join('')+r._hm.map(m=>`<span class="bchip bchh">${esc(m)} <small>to learn</small></span>`).join('');sum(r)});
     if(L.length)rows().forEach(r=>{if(!r._bk&&!val(r,'.bnm')&&!r.contains(document.activeElement))r.remove()})}
    if(!rows().length)addRow(['','','','']);arrange()}
+  window.__bcSync=syncBank;
   UB.addEventListener('change',()=>{PINS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid));SKIPS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bnu').checked).map(r=>r._bid));syncBank();store()});
   if(window.DWB)DWB.on(()=>{if(UB.checked){PINS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bmu').checked).map(r=>r._bid));SKIPS=new Set(rows().filter(r=>r._bk&&r.querySelector('.bnu').checked).map(r=>r._bid));syncBank()}else $('bcubn').textContent=`(${DWB.get().filter(x=>x.use!==false).length} in your bank)`;rows().forEach(sum);later()});
   window.__bcLoad=o=>{UB.checked=!!o.ub;PINS=new Set(o.pins||[]);SKIPS=new Set(o.skips||[]);syncBank()};

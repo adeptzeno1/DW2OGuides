@@ -1662,12 +1662,19 @@ function calc(){document.getElementById('qc').innerHTML='';const ma=pick(fa.valu
 fa.oninput=fb.oninput=calc;calc();
 const PL=ALL.map(d=>({n:d.n,t:tyOf(d),l:LN[d.lv]}));
 const RES=[...RK.map(d=>({n:d.n,lv:0,t:rt(d.c),l:'Rookie'})),...CH.map(d=>({n:d.n,lv:1,t:rt(d.c),l:'Champion'})),...UL.map(d=>({n:d.n,lv:2,t:rt(d.c),l:'Ultimate'}))];
+// The game shortens some names (MetalGarurumon is "M-Garurumon"). Searches accept both: ALTS gives a name's other spellings.
+// The game shows both MasterTyrannomon and MetalTyrannomon as "M-Tyrannomon", so that one belongs to both.
+const ALTS=(()=>{let M=null;return n=>{if(!M){M={};const add=(a,b)=>{(M[NRM(a)]=M[NRM(a)]||[]).push(b)};const A=Object.assign({},typeof AL!=='undefined'?AL:{},{VenomMyotismon:'V-Myotismon'});for(const f in A){add(A[f],f);add(f,A[f])}add('MetalTyrannomon','M-Tyrannomon')}return M[NRM(n)]||[]}})();
+const ALTN=n=>ALTS(n).join(' ');
 function ac(inp,list){const w=document.createElement('span');w.className='acw';inp.parentNode.insertBefore(w,inp);w.appendChild(inp);const box=document.createElement('div');box.className='sug';w.appendChild(box);
  const ic=document.createElement('img');ic.className='aci';ic.alt='';ic.hidden=true;w.insertBefore(ic,inp);
  const pic=n=>PIC[KEY(PROP[n.toLowerCase()]||n)];
+ const alts=d=>ALTS(d.n).map(NRM);
+ // typing the other spelling in full (e.g. MetalGarurumon) switches to the name this list uses, when only one Digimon has it
+ inp.addEventListener('input',()=>{const q=NRM(inp.value.trim());if(!q||list.some(d=>NRM(d.n)==q))return;const ds=list.filter(d=>alts(d).includes(q));if(ds.length===1){inp.value=ds[0].n;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
  const sync=()=>{const q=NRM(inp.value.trim()),d=q&&list.find(d=>NRM(d.n)==q),p=d&&pic(d.n);if(p){ic.src=p;ic.hidden=false;w.classList.add('hasic')}else{ic.hidden=true;w.classList.remove('hasic')}};
  inp.addEventListener('input',sync);setTimeout(sync,0);
- const render=()=>{const q=NRM(inp.value.trim());let m=list.filter(d=>NRM(d.n).startsWith(q));if(q)m=m.concat(list.filter(d=>!NRM(d.n).startsWith(q)&&NRM(d.q||d.n).includes(q)));
+ const render=()=>{const q=NRM(inp.value.trim());const st=d=>NRM(d.n).startsWith(q)||alts(d).some(a=>a.startsWith(q));let m=list.filter(st);if(q)m=m.concat(list.filter(d=>!st(d)&&(NRM(d.q||d.n).includes(q)||alts(d).some(a=>a.includes(q)))));
   if(!m.length&&q.length>=4){m=list.map(d=>[d,EDL(q,NRM(d.n).slice(0,Math.max(q.length,NRM(d.n).length)),2)]).filter(x=>x[1]<=2).sort((a,b)=>a[1]-b[1]).slice(0,6).map(x=>x[0])}
   box.innerHTML=m.map(d=>{const p=pic(d.p||d.n);return `<div data-n="${d.n}">${p?`<img class="sgi" src="${p}" alt="">`:'<span class="sgi"></span>'}<span class="${d.t!=null?'t'+d.t:''}">${d.t!=null?IC[d.t]:''}${d.n}</span> <small>${d.l}</small></div>`}).join('');box.style.display=m.length?'block':'none';pos();if(m.length)live()};
  // float the list over the page so a scrolling list box or card can't clip it; it follows the input while the page scrolls
@@ -1874,7 +1881,7 @@ function mvBtns(id,arr,set){const b=document.getElementById(id);b.innerHTML=arr.
 function mvRender(){
  mvBtns('mvst',MR.map(x=>[x,x]),MS.r);mvBtns('mvk',['Attack','Counter','Interrupt','Assist'].map(x=>[x,x]),MS.k);mvBtns('mve',EL,MS.e);
  const q=MS.q.toLowerCase();
- let rows=MVD.filter(r=>!isBoss(r)&&(!MS.r.size||MS.r.has(r[1]))&&(!MS.k.size||MS.k.has(r[3]))&&(!MS.s||r[2]==MS.s)&&(!MS.d||r[7].includes(MS.d))&&(!MS.e.size||[...MS.e].some(t=>r[9].split(',').includes(t)))&&(!q||[r[0],r[2],r[3],r[4],r[8]||'',...r[7],...r[9].split(',').map(t=>(EL.find(x=>x[0]==t)||[0,''])[1])].some(x=>x&&String(x).toLowerCase().includes(q))));
+ let rows=MVD.filter(r=>!isBoss(r)&&(!MS.r.size||MS.r.has(r[1]))&&(!MS.k.size||MS.k.has(r[3]))&&(!MS.s||r[2]==MS.s)&&(!MS.d||r[7].includes(MS.d))&&(!MS.e.size||[...MS.e].some(t=>r[9].split(',').includes(t)))&&(!q||[r[0],r[2],r[3],r[4],r[8]||'',...r[7],...r[7].map(ALTN),...r[9].split(',').map(t=>(EL.find(x=>x[0]==t)||[0,''])[1])].some(x=>x&&String(x).toLowerCase().includes(q))));
  const KO=['Attack','Counter','Interrupt','Assist'],SO=['Fire','Water','Nature','Machine','Darkness','None'];
  const key={r:r=>MR.indexOf(r[1]),m:r=>r[0].toLowerCase(),p:r=>r[6]==null?-1:r[6],c:r=>r[5],k:r=>KO.indexOf(r[3]),s:r=>SO.indexOf(r[2]),t:r=>r[4],l:r=>(r[7][0]||'~').toLowerCase(),e:r=>(r[8]||'~~').toLowerCase()};
  const f=key[MS.sort];rows=rows.slice().sort((a,b)=>{const x=f(a),y=f(b);return (x<y?-1:x>y?1:(MR.indexOf(a[1])-MR.indexOf(b[1])||a[0].localeCompare(b[0])))*MS.dir});

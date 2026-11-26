@@ -2262,11 +2262,12 @@ dnRender();
  function parents(){const la=num('qxla',1,99),qa=num('qxqa',0,100),lb=num('qxlb',1,99),qb=num('qxqb',0,100),o=$('qxp');
   const RN0=resOf(),nl=RN0?`<div class="qxres"><span class="qsm">New Digimon</span><span class="qsbig">${resH(RN0)}</span></div>`:'';
   if([la,qa,lb,qb].every(v=>v==null)){o.innerHTML=nl+(RN0?'<div class="bcl">Enter both parents&rsquo; Level and Quality to get its Max level and Quality.</div>':'<div class="bcl">Skip this step if you already know the new Digimon&rsquo;s Quality, Max level and starting stats.</div>');return null}
-  if([la,qa,lb,qb].some(v=>v==null)){o.innerHTML=nl+'<div class="bcl">Enter the Level and Quality of both parents.</div>';return null}
-  const hi=Math.max(la,lb),lo=Math.min(la,lb),mx=Math.min(99,hi+Math.floor(lo/5)),q=la>lb?qa:lb>la?qb:Math.max(qa,qb);
-  const why=la!=lb?`Quality comes from the higher-level parent, Parent ${la>lb?'A':'B'} (EL ${hi}).`:`Both parents are EL ${la}, so it gets the higher Quality.`;
-  const RN=resOf();o.innerHTML=`<div class="qxres"><span class="qsm">New Digimon</span>${RN?`<span class="qsbig">${resH(RN)}</span>`:''}<span class="qsbig">Quality ${q}</span>${tag(q)}<span class="qsbig">Max level ${mx}</span></div>`+
-   `<div class="bcl">${why} Max level = ${hi} + (${lo} &divide; 5 = ${Math.floor(lo/5)}) = ${mx}. Both values are filled in below.</div>`;
+  // Max level needs both Levels. Quality needs the higher-level parent's Quality (both when they're the same level).
+  if(la==null||lb==null){o.innerHTML=nl+'<div class="bcl">Enter both parents&rsquo; Level to get its Max level, and their Quality to get its Quality.</div>';return null}
+  const hi=Math.max(la,lb),lo=Math.min(la,lb),mx=Math.min(99,hi+Math.floor(lo/5)),q=la>lb?qa:lb>la?qb:(qa!=null&&qb!=null?Math.max(qa,qb):null);
+  const why=q==null?(la!==lb?`For its Quality, enter Parent ${la>lb?'A':'B'}&rsquo;s Quality (the higher-level parent&rsquo;s).`:`Both parents are EL ${la}: enter both Qualities to get its Quality (it gets the higher one).`):la!=lb?`Quality comes from the higher-level parent, Parent ${la>lb?'A':'B'} (EL ${hi}).`:`Both parents are EL ${la}, so it gets the higher Quality.`;
+  const RN=resOf();o.innerHTML=`<div class="qxres"><span class="qsm">New Digimon</span>${RN?`<span class="qsbig">${resH(RN)}</span>`:''}${q!=null?`<span class="qsbig">Quality ${q}</span>${tag(q)}`:''}<span class="qsbig">Max level ${mx}</span></div>`+
+   `<div class="bcl">${why} Max level = ${hi} + (${lo} &divide; 5 = ${Math.floor(lo/5)}) = ${mx}. ${q!=null?'Both values are':'It&rsquo;s'} filled in below.</div>`;
   return {q,mx}}
  // DNA starting stats: which formula depends on the parents' stages (Champion 1, Ultimate 2, Mega 3); every result is rounded down
  const SF={0:{n:'Rookie',hm:10,ah:40,al:30,sp:30,ok:1},1:{n:'Champion',hm:34,ah:50,al:30,sp:45},2:{n:'Ultimate',hm:45,ah:50,al:40,sp:50}};window.__DNA_SF=SF;
@@ -2303,7 +2304,7 @@ dnRender();
  let autoR=null,autoL=null,autoB=null,autoD=null;
  // the form it digivolves into at a stage, from the digivolution lines and its DP
  const inRng=(r,dp)=>{const m=String(r).match(/^(\d+)(?:-(\d+)|\+)$/);return m?dp>=+m[1]&&(m[2]==null||dp<=+m[2]):false};
- function nextForm(n,dp){const k=Object.keys(DE).find(x=>KEY(x)===KEY(n));if(!k)return null;const c=(DE[k]||[]).find(e=>inRng(e[1],dp));return c?(PROP[c[0].toLowerCase()]||c[0]):null}
+ function nextForm(n,dp){const k=Object.keys(DE).find(x=>KEY(x)===KEY(n));if(!k)return null;const c=(DE[k]||[]).find(e=>inRng(e[1],dp));if(!c)return null;const d=ALL.find(x=>KEY(x.n)===KEY(c[0]));return d?d.n:(PROP[c[0].toLowerCase()]||c[0])}
  // players digivolve as soon as they can: EL 11, 21 and 31. Works out each form and its growth grades.
  function formsOf(n,r0,dp,l0,l1,cls0){const dv=[0,0,0,0],clsR=[],fn=[];clsR[r0]=cls0;fn[r0]=n||null;let cur=n,cl=cls0;
   for(let s=r0+1;s<=3;s++){const at=[0,11,21,31][s];if(at<=l0||at>=l1||!cur)break;const nx=nextForm(cur,dp);if(!nx)break;const g=growOf(nx);
@@ -2318,10 +2319,12 @@ dnRender();
   const o=$('qxbn');if(o)o.hidden=!(autoB&&el.every((e,k)=>e.value===String(BASE1[k])))}
  function render(){growFill();const P=parents();
   {const da=num('qxda',0,99),db=num('qxdb',0,99),di=$('qxdp');if(da!=null||db!=null){const v=Math.max(da||0,db||0)+1;if(di.value===''||+di.value===autoD)di.value=v;autoD=v}$('qxdf').textContent=autoD!=null&&+di.value===autoD?'from parents':''}
-  if(P){const qi=$('qxq'),li=$('qxl1');if(qi.value===''||+qi.value===auto.q)qi.value=P.q;if(li.value===''||+li.value===auto.l)li.value=P.mx;auto={q:P.q,l:P.mx}}
+  {const qi=$('qxq'),li=$('qxl1'),nq=P?P.q:null,nl=P?P.mx:null;
+   // fill in from the parents; a value filled in earlier that no longer follows from them is cleared, not left stale
+   if(qi.value===''||(auto.q!=null&&+qi.value===auto.q))qi.value=nq??'';if(li.value===''||(auto.l!=null&&+li.value===auto.l))li.value=nl??'';auto={q:nq,l:nl}}
   const PS=pstats();{const r=resOf(),h=$('qxnn');h.innerHTML=r?`: ${resH(r)}`:'';$('qxrr').innerHTML=r?`: <span class="dg" data-dg="${r.n}">${r.n}</span> at Max level`:''}if(PS&&PS.st){const ids=['qx0','qx1','qx2','qx3','qx4'];ids.forEach((id,k)=>{const el=$(id);if(el.value===''||(autoS&&autoS.st&&+el.value===autoS.st[k]))el.value=PS.st[k]});
    const r0=$('qxr0'),rr=resOf();if(rr&&rr.st!=null&&rr.st<=3)PS.stage=rr.st;const sl=String([1,11,21,31][PS.stage]||1),l0=$('qxl0');if(l0.value===''||(autoS&&l0.value===autoS.sl))l0.value=sl;PS.sl=sl;if(!autoS||+r0.value===autoS.stage||r0.value==='0')r0.value=String(PS.stage);autoS=PS}
-  $('qxqf').textContent=P&&+$('qxq').value===P.q?'from parents':'';$('qxlf').textContent=P&&+$('qxl1').value===P.mx?'from parents':'';
+  $('qxqf').textContent=P&&P.q!=null&&+$('qxq').value===P.q?'from parents':'';$('qxlf').textContent=P&&+$('qxl1').value===P.mx?'from parents':'';
   baseFill(PS);
   const q=num('qxq',0,100),l0=num('qxl0',1,98),l1=num('qxl1',2,99),st=[0,1,2,3,4].map(k=>num('qx'+k,0,999)),o=$('qxo');
   qslRender(q);

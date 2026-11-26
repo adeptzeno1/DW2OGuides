@@ -468,6 +468,7 @@ i.sg{width:12px!important;height:10px!important;border:0!important;background:va
 @media (max-width:560px){.grt{font-size:13px}.grt .grtg{width:34px;padding:5px 2px}.grt td.grtn .stg{display:none}.grt td.grtn{padding-left:8px}.grt .grb{min-width:20px;height:20px;font-size:12px}.grtsm{display:none}}
 .bkpa{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px;font-size:12px;color:var(--mut)}.bkpa .dg{color:var(--fg)}
 .bkpaste{margin-top:10px;display:flex;flex-direction:column;gap:6px}.bkpaste label{font-size:13px;color:var(--mut)}.bkpaste textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);resize:vertical;min-height:84px}
+.bkrev{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding:10px;border:1px solid var(--bd);border-radius:8px}.bkrvr{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.bkrvr small{color:var(--mut)}.bkrev .qbtn{align-self:flex-start}
 .pcvia{align-self:center;color:var(--mut)}
 .pcplus{align-self:center;font-weight:700;color:var(--mut);font-size:16px}
 .pcpair .pctl{display:flex;flex-wrap:wrap;gap:6px}.pcpair .pct{overflow:visible}
@@ -2644,25 +2645,41 @@ function card(x,ed){const p=PIC[KEY(x.n)],t=tyi(x.n),sp=spc(x.n),tn=inTeam(x.id)
    q.innerHTML=`<span>Found <b>${n}</b> Digimon${nm?` and <b>${nm}</b> known moves`:''} in ${esc(f.name)}.${have?` Your bank has <b>${have}</b>.`:''}</span>${badT}${badM} `+(have?`<button class="qbtn" type="button" data-i="u" title="Match these to the Digimon already in your bank and update them, keeping your saved chains, favourites and teams">Update my bank</button> <button class="qbtn" type="button" data-i="a">Add to my bank</button> <button class="qbtn" type="button" data-i="r">Replace my bank</button>`:`<button class="qbtn" type="button" data-i="a">Add ${n} Digimon</button>`)+` <button class="qbtn" type="button" data-i="x">Cancel</button>`}
  // Update: each imported Digimon is matched to one already in the bank (same Quality, same parents when both are known,
  // same species or a form it digivolves into, same level or higher) and updated in place, so its ID stays the same
- let RMX=null;
+ let RMX=null,REV=null;
+ const leftH=R=>{const left=R.B0.filter(x=>!R.used.has(x.id)&&get().some(z=>z.id===x.id));RMX=left.map(x=>x.id);if(!left.length)return '';
+  return ` <span>${left.length} Digimon in your bank ${left.length>1?'weren&rsquo;t':'wasn&rsquo;t'} in the import (sold, released, or used in a DNA Digivolve?): ${left.slice(0,12).map(x=>`${esc(x.n)}${x.lv?' Lv '+x.lv:''}`).join(', ')}${left.length>12?'&hellip;':''}.</span> <button class="qbtn" type="button" data-i="rmx">Remove ${left.length>1?'them':'it'}</button> <button class="qbtn" type="button" data-i="x">Keep ${left.length>1?'them':'it'}</button>`};
  const evoReach=(a,b)=>{const ka=KEY(a),kb=KEY(b);if(ka===kb)return 0;let fr=[a],seen=new Set([ka]);for(let d=1;d<=3&&fr.length;d++){const nx=[];fr.forEach(n=>{const k=Object.keys(DE).find(x=>KEY(x)===KEY(n));(k?DE[k]:[]).forEach(c=>{const kc=KEY(c[0]);if(!seen.has(kc)){seen.add(kc);nx.push(c[0])}})});if(nx.some(n=>KEY(n)===kb))return d;fr=nx}return -1};
- function updateFrom(L){const B=get(),B0=B.slice(),used=new Set();let up=0,ad=0;const pk=a=>(a||[]).map(KEY).sort().join('|');
-  L.forEach(e=>{let best=null,bs=1e9;B0.forEach(x=>{if(used.has(x.id))return;if(x.q!=null&&e.q!=null&&x.q!==e.q)return;if(x.pa&&x.pa.length&&e.pa&&e.pa.length&&pk(x.pa)!==pk(e.pa))return;
-    if(x.lv!=null&&e.lv!=null&&e.lv<x.lv)return;const d=evoReach(x.n,e.n);if(d<0)return;
-    const sc=d*1000+((x.dp||0)===(e.dp||0)?0:500)+(x.pa&&e.pa?0:50)+((e.lv||0)-(x.lv||0));if(sc<bs){bs=sc;best=x}});
-   if(!best){if(add(e))ad++;return}used.add(best.id);
-   upd(best.id,{n:e.n,lv:e.lv,ml:e.ml,q:e.q,dp:e.dp||0,mv:(e.mv||[]).map(MVFIX),...(e.st?{st:e.st}:{}),ok:1});
-   const o=B.find(x=>x.id===best.id);if(o){if(e.pa&&e.pa.length)o.pa=e.pa.map(v=>canon(String(v))||String(v));if(e.ch)o.ch={c:num(e.ch.c,0,999),m:num(e.ch.m,0,999)};o.fr=!!e.fr&&!(o.dp>0)}up++});
-  return {up,ad,left:B0.filter(x=>!used.has(x.id))}}
+ // matching runs in passes, strictest first, so a loose hand-added entry can't grab the wrong Digimon:
+ //  1 same species + same Quality, 2 same species with no Quality typed, 3 a form it has digivolved into, only when its Quality or parents confirm it.
+ //  Near matches (same species, Quality a few points off or a slightly lower level) aren't applied: they're listed for you to tick.
+ const pk=a=>(a||[]).map(KEY).sort().join('|'),paOK=(x,e)=>!(x.pa&&x.pa.length&&e.pa&&e.pa.length&&pk(x.pa)!==pk(e.pa)),lvOK=(x,e)=>x.lv==null||e.lv==null||e.lv>=x.lv;
+ function applyUp(x,e){upd(x.id,{n:e.n,lv:e.lv,ml:e.ml,q:e.q,dp:e.dp||0,mv:(e.mv||[]).map(MVFIX),...(e.st?{st:e.st}:{}),ok:1});
+  const o=get().find(z=>z.id===x.id);if(o){if(e.pa&&e.pa.length)o.pa=e.pa.map(v=>canon(String(v))||String(v));if(e.ch)o.ch={c:num(e.ch.c,0,999),m:num(e.ch.m,0,999)};o.fr=!!e.fr&&!(o.dp>0)}}
+ function updateFrom(L){const B0=get().slice(),used=new Set(),done=new Set();let up=0,ad=0;
+  const pass=ok=>L.forEach((e,i)=>{if(done.has(i))return;let best=null,bs=1e9;B0.forEach(x=>{if(used.has(x.id)||!paOK(x,e)||!lvOK(x,e))return;const sc=ok(x,e);if(sc==null)return;if(sc<bs){bs=sc;best=x}});
+   if(best){used.add(best.id);done.add(i);applyUp(best,e);up++}});
+  const same=(x,e)=>KEY(x.n)===KEY(e.n),dl=(x,e)=>Math.abs((e.lv||0)-(x.lv||0))+((x.dp||0)===(e.dp||0)?0:20);
+  pass((x,e)=>same(x,e)&&x.q!=null&&x.q===e.q?dl(x,e):null);
+  pass((x,e)=>same(x,e)&&x.q==null?dl(x,e):null);
+  pass((x,e)=>{if(same(x,e))return null;const conf=(x.q!=null&&x.q===e.q)||(x.pa&&x.pa.length&&e.pa&&e.pa.length&&pk(x.pa)===pk(e.pa));if(!conf)return null;const d=evoReach(x.n,e.n);return d>0?d*100+dl(x,e):null});
+  // near matches to review
+  const rev=[];L.forEach((e,i)=>{if(done.has(i))return;let best=null,bs=1e9;B0.forEach(x=>{if(used.has(x.id)||!same(x,e)||!paOK(x,e))return;const dq=x.q!=null&&e.q!=null?Math.abs(x.q-e.q):0,dv=x.lv!=null&&e.lv!=null?x.lv-e.lv:0;if(dq>5||dv>3)return;const sc=dq+Math.max(0,dv)*2;if(sc<bs){bs=sc;best=x}});
+   if(best){used.add(best.id);done.add(i);rev.push({x:best,e})}});
+  L.forEach((e,i)=>{if(!done.has(i)&&add(e))ad++});
+  return {up,ad,rev,B0,used}}
  // paste box: the roster text copied in game
  $('bkpgo').onclick=()=>{const t=$('bkpt').value;if(!t.trim()){$('bkpt').focus();return}$('bkcsvn').textContent='';impText(t,'the pasted text');$('bkpt').value=''};
  {const cb=$('bkpcb');if(!(navigator.clipboard&&navigator.clipboard.readText))cb.hidden=true;else cb.onclick=async()=>{try{const t=await navigator.clipboard.readText();if(!t.trim()){$('bkpm').textContent='Your clipboard is empty. Copy your roster in game first.';return}$('bkpm').textContent='';$('bkpt').value=t;$('bkpgo').click()}catch(e){$('bkpm').textContent='The browser didn\u2019t allow reading the clipboard. Paste into the box instead (Ctrl+V, or long-press and Paste).';}}}
  $('bkcsvq').addEventListener('click',e=>{const b=e.target.closest('button[data-i]');if(!b)return;const q=$('bkcsvq'),P=CSVP;CSVP=null;
   if(b.dataset.i==='rmx'){const ids=RMX||[];RMX=null;if(!ids.length)return;snapUndo('csv');hush(3000);ids.forEach(id=>del(id));log('csv',`Removed ${ids.length} Digimon that weren't in the import`);save();render();undoBar();q.innerHTML=`<span>Removed ${ids.length} Digimon. You can undo it at the top of Your Digimon.</span>`;return}
+  if(b.dataset.i==='rva'){const R=REV;REV=null;if(!R)return;hush(3000);let up=0,ad=0;R.rev.forEach((r,k)=>{const c=q.querySelector(`input[data-r="${k}"]`);if(c&&c.checked){applyUp(r.x,r.e);up++}else{R.used.delete(r.x.id);if(add(r.e))ad++}});
+   log('csv',`Import review: ${up} matched, ${ad} added`);save();render();undoBar();q.innerHTML=`<span>Matched <b>${up}</b>${ad?` and added <b>${ad}</b> new`:''}.</span>`+leftH(R);return}
   if(b.dataset.i==='x'||!P){q.hidden=true;q.innerHTML='';$('bkcsvn').textContent='';return}
-  if(b.dataset.i==='u'){hush(3000);snapUndo('csv');const R=updateFrom(P.ok);log('csv',`Updated the bank from an import: ${R.up} updated, ${R.ad} added`);save();render();undoBar();RMX=R.left.map(x=>x.id);
-   q.innerHTML=`<span>Updated <b>${R.up}</b> Digimon${R.ad?` and added <b>${R.ad}</b> new`:''}. Your saved chains, favourites and teams still point at the same Digimon.${P.bad.length?` Skipped ${P.bad.length} unrecognised name${P.bad.length>1?'s':''}.`:''}</span>`+
-    (R.left.length?` <span>${R.left.length} Digimon in your bank ${R.left.length>1?'weren&rsquo;t':'wasn&rsquo;t'} in the import (sold, released, or used in a DNA Digivolve?): ${R.left.slice(0,12).map(x=>`${esc(x.n)}${x.lv?' Lv '+x.lv:''}`).join(', ')}${R.left.length>12?'&hellip;':''}.</span> <button class="qbtn" type="button" data-i="rmx">Remove ${R.left.length>1?'them':'it'}</button> <button class="qbtn" type="button" data-i="x">Keep ${R.left.length>1?'them':'it'}</button>`:'');$('bkcsvn').textContent='';return}
+  if(b.dataset.i==='u'){hush(3000);snapUndo('csv');const R=updateFrom(P.ok);log('csv',`Updated the bank from an import: ${R.up} updated, ${R.ad} added`);save();render();undoBar();$('bkcsvn').textContent='';
+   const head=`<span>Updated <b>${R.up}</b> Digimon${R.ad?` and added <b>${R.ad}</b> new`:''}. Your saved chains, favourites and teams still point at the same Digimon.${P.bad.length?` Skipped ${P.bad.length} unrecognised name${P.bad.length>1?'s':''}.`:''}</span>`;
+   if(R.rev.length){REV=R;const f=x=>`${esc(x.n)} Q${x.q??'?'} Lv${x.lv??'?'}`;
+    q.innerHTML=head+` <div class="bkrev"><b>Are these the same Digimon?</b> They&rsquo;re close but not exact (a typo in your bank?). Ticked ones are updated with the game&rsquo;s numbers; unticked ones are added as new.`+R.rev.map((r,k)=>`<label class="bkrvr"><input type="checkbox" data-r="${k}" checked> ${f(r.x)} <small>(your bank)</small> &rarr; ${f(r.e)} <small>(game)</small></label>`).join('')+`<button class="qbtn" type="button" data-i="rva">Apply</button></div>`;return}
+   q.innerHTML=head+leftH(R);return}
   const mode=b.dataset.i;hush(3000);let rep=0;if(mode==='r'){snapUndo('csv');rep=get().length;get().length=0;teams().length=0;saveT()}
   // adding: skip ones already in the bank with exactly the same details
   const same=(x,e)=>x.n===e.n&&x.lv===num(e.lv,1,99)&&x.ml===num(e.ml,1,99)&&x.q===num(e.q,0,100)&&(x.dp||0)===(e.dp||0)&&JSON.stringify(x.st||null)===JSON.stringify(e.st?{hp:num(e.st.hp,0,9999),mp:num(e.st.mp,0,9999),at:num(e.st.at,0,9999),df:num(e.st.df,0,9999),sp:num(e.st.sp,0,9999)}:null)&&(x.mv||[]).slice().sort().join('|')===(e.mv||[]).slice().sort().join('|');

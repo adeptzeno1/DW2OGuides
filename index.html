@@ -648,7 +648,7 @@ lab();if(window.matchMedia)matchMedia('(prefers-color-scheme: dark)').addEventLi
 <p><b>Mutations</b> are special results that break the normal pattern:</p><ul>
 <li>M-Tyrannomon, MetalGreymon, Whamon or Zudomon + Cherrymon = Vademon</li>
 </ul><p class="bcl">DW2 Online fixed an original-game bug: H-Kabuterimon + a Data Mega (Rosemon, Gryphonmon, P-Mamemon, SaberLeomon, Baihumon or M-Garurumon) used to give Yanmamon or SandYanmamon. It now gives M-Kabuterimon. Digimon already made this way don&rsquo;t change.</p>
-<p class="bcl"><b>Same-line DNA</b> (DW2 Online): two parents from the same special line make that line&rsquo;s own Digimon, picked by the weaker parent&rsquo;s stage. BlackGatomon line (BlackGatomon, LadyDevimon, Beelzemon, BeelStarmon): Champion &rarr; Gazimon, Ultimate &rarr; BlackGatomon, both Mega &rarr; LadyDevimon. Renamon line (Kyubimon, Taomon, Sakuyamon, Sakuyamon MM), from the Renamon Hunt event on Dec 4: Champion &rarr; Renamon, Ultimate &rarr; Kyubimon, both Mega &rarr; Taomon. A line Digimon with any other partner uses the normal table.</p></div></div>
+<p class="bcl"><b>Same-line DNA</b> (DW2 Online): two parents from the same special line make that line&rsquo;s own Digimon, picked by the weaker parent&rsquo;s stage. BlackGatomon line (BlackGatomon, LadyDevimon, Beelzemon, BeelStarmon): Champion &rarr; Gazimon, Ultimate &rarr; BlackGatomon, both Mega &rarr; LadyDevimon. Renamon line (Kyubimon, Taomon, Sakuyamon, Sakuyamon MM): Champion &rarr; Renamon, Ultimate &rarr; Kyubimon, both Mega &rarr; Taomon. A line Digimon with any other partner uses the normal table.</p></div></div>
 <div id="dv" hidden><div class="leg"><span class="pill t0">Vaccine (green)</span><span class="pill t1">Data (blue)</span><span class="pill t2">Virus (red)</span></div><div class="how"><b>Digipedia</b><p>Every Digimon&rsquo;s family tree, from Rookie to Mega. Tap a name to open its info card, which shows its type, specialty, weaknesses, moves and digivolutions.</p><ul>
 <li><b>Levels:</b> a Digimon can digivolve at EL 11 (Rookie to Champion), EL 21 (Champion to Ultimate) and EL 31 (Ultimate to Mega).</li>
 <li><b>DP (Digivolve Points):</b> where a tree branches, the game picks the branch whose <b>DP badge</b> matches your Digimon&rsquo;s DP. &ldquo;any DP&rdquo; means there is only one branch. A DNA result gets the higher parent&rsquo;s DP + 1.</li></ul></div>
@@ -1746,9 +1746,9 @@ const MUTE={MA:{n:'Vademon',lv:1,g:'O'},MB:{n:'SandYanmamon',lv:0,g:'L'},MC:{n:'
 const fa=document.getElementById('fa'),fb=document.getElementById('fb'),fr=document.getElementById('fr');
 // Same-line DNA (DW2 Online 2026-11-27): two parents from the same special line make that line's own Digimon,
 // picked by the weaker parent's stage (Champion / Ultimate / Mega). Pairs with an outside Digimon use the normal table.
-// A line only counts once its event has released it: darkness (Gazimon Hunt) is live; renamon opens with the Renamon Hunt.
+// A line can be given a start time with from: (ms); without one it always applies.
 const SLINES=[{id:'darkness',m:['BlackGatomon','LadyDevimon','Beelzemon','BeelStarmon'],r:['Gazimon','BlackGatomon','LadyDevimon']},
- {id:'renamon',m:['Kyubimon','Taomon','Sakuyamon','Sakuyamon MM'],r:['Renamon','Kyubimon','Taomon'],from:Date.UTC(2026,11,4,23,0)}];
+ {id:'renamon',m:['Kyubimon','Taomon','Sakuyamon','Sakuyamon MM'],r:['Renamon','Kyubimon','Taomon']}];
 const slOf=n=>{const k=String(n).toLowerCase().replace(/[^a-z0-9]/g,'');return SLINES.find(L=>(L.from==null||Date.now()>=L.from)&&L.m.some(x=>x.toLowerCase().replace(/[^a-z0-9]/g,'')===k))||null};
 // -> {nm, lv: result stage (0 Rookie..2 Ultimate), line} or null
 function sameLine(a,b){const A=slOf(a.n),B=slOf(b.n);if(!A||A!==B)return null;const w=Math.min(a.lv,b.lv);return {nm:A.r[w],lv:w,line:A}}
